@@ -1,0 +1,692 @@
+<!doctype html>
+<html lang="no">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Daniel Ramslien – SoMe-rådgiver og digital markedsfører</title>
+<meta name="description" content="Portefølje 2026. Daniel Ramslien er digital markedsfører med hjertet i sosiale medier: kampanjer, innhold og analyse for Mufano, M40 Studios, Punkt Oslo, NOT Management og flere.">
+<meta name="theme-color" content="#0e0c0b">
+<meta property="og:title" content="Daniel Ramslien – Portefølje 2026">
+<meta property="og:description" content="SoMe-rådgiver og digital markedsfører. Utvalgte case fra idé til ferdig post.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="assets/img/profil.webp">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cdefs%3E%3CradialGradient id='g' cx='35%25' cy='30%25' r='75%25'%3E%3Cstop offset='0' stop-color='%23ffe0bf'/%3E%3Cstop offset='.45' stop-color='%23ff8327'/%3E%3Cstop offset='1' stop-color='%23a8380a'/%3E%3C/radialGradient%3E%3C/defs%3E%3Ccircle cx='32' cy='32' r='30' fill='url(%23g)'/%3E%3C/svg%3E">
+<link rel="preload" href="assets/fonts/archivo.woff2" as="font" type="font/woff2" crossorigin>
+<style>
+/* Fontene ligger lokalt i assets/fonts (SIL Open Font License), så siden fungerer uten nett */
+@font-face{font-family:"Archivo";font-style:normal;font-weight:100 900;font-stretch:62% 125%;font-display:swap;src:url(assets/fonts/archivo.woff2) format("woff2-variations"),url(assets/fonts/archivo.woff2) format("woff2")}
+@font-face{font-family:"Instrument Sans";font-style:normal;font-weight:400 700;font-stretch:75% 100%;font-display:swap;src:url(assets/fonts/instrument-sans.woff2) format("woff2-variations"),url(assets/fonts/instrument-sans.woff2) format("woff2")}
+:root{
+  --bg:#0e0c0b;
+  --bg-raised:#151210;
+  --bg-card:#1a1613;
+  --text:#f3ede6;
+  --text-soft:#d9d0c7;
+  --muted:#9d948b;
+  --faint:#6e665f;
+  --line:rgba(243,237,230,.14);
+  --line-strong:rgba(243,237,230,.28);
+  --accent:#ff7a1a;
+  --accent-soft:rgba(255,122,26,.12);
+  --accent-line:rgba(255,122,26,.45);
+  --ink:#130c07;
+
+  --font-display:"Archivo","Arial Black",system-ui,sans-serif;
+  --font-body:"Instrument Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+
+  --gutter:clamp(16px,5vw,72px);
+  --max:1240px;
+  --header-h:68px;
+  --ease:cubic-bezier(.2,.7,.2,1);
+}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:var(--header-h);-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--text);font-family:var(--font-body);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+main{overflow-x:hidden;overflow-x:clip}
+img,video{display:block;max-width:100%}
+a{color:inherit}
+button{font:inherit;color:inherit}
+::selection{background:var(--accent);color:var(--ink)}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:4px}
+
+.skip{position:absolute;left:12px;top:-60px;z-index:100;background:var(--accent);color:var(--ink);padding:10px 16px;border-radius:999px;font-weight:600;text-decoration:none}
+.skip:focus{top:12px}
+
+.wrap{width:100%;max-width:calc(var(--max) + var(--gutter)*2);margin:0 auto;padding:0 var(--gutter)}
+
+/* ---------- Typografi ---------- */
+.display{font-family:var(--font-display);font-stretch:125%;font-weight:900;text-transform:uppercase;line-height:.92;letter-spacing:-.005em;margin:0}
+.h-xl{font-size:clamp(40px,5.6vw,80px)}
+.lead{font-size:clamp(18px,1.6vw,20px);line-height:1.5;color:var(--text);margin:0}
+.body{color:var(--text-soft);margin:0}
+.label{font-size:12px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--muted)}
+
+.eyebrow{display:flex;align-items:center;gap:14px;margin-bottom:26px}
+.eyebrow .num{color:var(--accent);font-size:13px;font-weight:700;letter-spacing:.14em}
+.eyebrow .rule{width:28px;height:1px;background:var(--faint)}
+
+.pills{display:flex;flex-wrap:wrap;gap:8px;list-style:none;margin:0;padding:0}
+.pill{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--line-strong);border-radius:999px;padding:6px 14px;font-size:13px;line-height:1.3;color:var(--text);white-space:nowrap}
+.pill--accent{border-color:var(--accent-line);background:var(--accent-soft);color:#ffb27a}
+.pill--accent .dot{width:7px;height:7px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 0 rgba(255,122,26,.6);animation:pulse 2.4s infinite}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(255,122,26,.55)}70%{box-shadow:0 0 0 9px rgba(255,122,26,0)}100%{box-shadow:0 0 0 0 rgba(255,122,26,0)}}
+
+/* ---------- Kule ---------- */
+.orb{position:relative;aspect-ratio:1;border-radius:50%;isolation:isolate;
+  --hx:34%;--hy:29%;
+  background:radial-gradient(circle at var(--hx) var(--hy),#ffe6cc 0%,#ffc58e 11%,#ffa24f 28%,#ff8125 50%,#ec6612 68%,#c24a0b 86%,#93330a 100%);
+  box-shadow:0 0 70px 6px rgba(255,115,25,.30),inset -26px -34px 70px rgba(110,30,0,.35)}
+.orb::before{content:"";position:absolute;inset:-42%;z-index:-1;border-radius:50%;
+  background:radial-gradient(circle,rgba(255,110,20,.20) 0%,rgba(255,105,20,.08) 38%,rgba(255,100,20,0) 66%);pointer-events:none}
+.brand-dot{width:14px;height:14px;border-radius:50%;flex:none;background:radial-gradient(circle at 35% 30%,#ffd2a6,#ff8327 55%,#b8420a);box-shadow:0 0 12px rgba(255,122,26,.45)}
+
+/* ---------- Header ---------- */
+.site-header{position:fixed;inset:0 0 auto 0;z-index:50;height:var(--header-h);display:flex;align-items:center;transition:background .3s var(--ease),border-color .3s var(--ease);border-bottom:1px solid transparent}
+.site-header.scrolled{background:rgba(14,12,11,.78);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);border-bottom-color:var(--line)}
+.site-header .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;font-weight:600;font-size:15px;white-space:nowrap}
+.nav{display:flex;gap:clamp(14px,2.4vw,32px)}
+.nav a{text-decoration:none;font-size:14px;color:var(--muted);transition:color .2s;white-space:nowrap}
+.nav a .n{color:var(--faint);margin-right:6px;transition:color .2s}
+.nav a:hover,.nav a.active{color:var(--text)}
+.nav a.active .n{color:var(--accent)}
+
+/* ---------- Seksjoner ---------- */
+section{position:relative}
+.section{padding:clamp(96px,12vw,150px) 0 0}
+.section-foot{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:clamp(56px,7vw,96px) 0 28px;font-size:11px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--faint)}
+
+/* ---------- Hero ---------- */
+.hero{min-height:100vh;min-height:100svh;display:flex;flex-direction:column;overflow:hidden}
+.hero-main{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:clamp(36px,6vh,64px);padding-top:calc(var(--header-h) + 24px)}
+.hero .orb{width:min(82vw,58vh,560px);container-type:inline-size;display:grid;place-items:center;text-align:center;animation:float 9s ease-in-out infinite}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+.hero-copy{padding:0 6cqi}
+.hero-kicker{display:block;font-size:max(10px,2.3cqi);font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:#3b2212;margin-bottom:2.2cqi}
+.hero-title{font-family:var(--font-display);font-stretch:125%;font-weight:800;font-size:8.2cqi;line-height:1.02;letter-spacing:-.01em;color:var(--ink);margin:0}
+.hero-nav{display:flex;flex-wrap:wrap;justify-content:center;gap:clamp(14px,4vw,64px);list-style:none;margin:0;padding:0 var(--gutter)}
+.hero-nav a{font-family:var(--font-display);font-stretch:125%;font-weight:800;text-transform:uppercase;text-decoration:none;font-size:clamp(26px,4.4vw,58px);line-height:1;color:transparent;-webkit-text-stroke:1.2px rgba(243,237,230,.5);transition:color .3s var(--ease),-webkit-text-stroke-color .3s var(--ease)}
+.hero-nav a:hover,.hero-nav a:focus-visible{color:var(--accent);-webkit-text-stroke-color:var(--accent)}
+@supports not (-webkit-text-stroke:1px #000){.hero-nav a{color:var(--text)}}
+
+/* ---------- Om meg ---------- */
+.about-grid{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:clamp(40px,6vw,96px);align-items:center}
+.portrait{position:relative;max-width:460px;width:100%;margin:0 auto;aspect-ratio:4/5}
+.portrait .orb{position:absolute;width:86%;left:-2%;top:2%}
+.portrait img{position:absolute;bottom:0;left:50%;transform:translateX(-50%);width:84%;height:auto;
+  -webkit-mask-image:linear-gradient(to bottom,#000 82%,transparent 100%);mask-image:linear-gradient(to bottom,#000 82%,transparent 100%)}
+.about-copy .display{margin-bottom:32px}
+.about-copy .lead{margin-bottom:22px}
+.about-copy .body + .body{margin-top:16px}
+.about-copy > .label{display:block;margin:34px 0 14px}
+.facts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px 32px;margin:36px 0 0;padding:28px 0 0;border-top:1px solid var(--line)}
+.facts dt{font-size:12px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);margin-bottom:6px}
+.facts dd{margin:0;font-size:14px;line-height:1.55;color:var(--text-soft)}
+
+.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));margin-top:clamp(72px,9vw,120px);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.stat{padding:30px 24px 30px 0}
+.stat + .stat{padding-left:24px;border-left:1px solid var(--line)}
+.stat-num{display:block;font-family:var(--font-display);font-stretch:118%;font-weight:800;font-size:clamp(28px,3.3vw,46px);line-height:1;color:var(--accent);letter-spacing:-.01em;white-space:nowrap}
+.stat-num small{font-size:.5em;font-weight:700;margin-left:.25em;letter-spacing:0}
+.stat-label{display:block;margin-top:12px;font-size:14px;line-height:1.45;color:var(--text-soft)}
+
+/* ---------- Arbeid ---------- */
+.work-head{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,420px);gap:32px;align-items:end;margin-bottom:clamp(40px,5vw,64px)}
+.work-head .lead{text-align:right;color:var(--text-soft)}
+.cases{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(40px,4vw,56px) clamp(18px,2vw,28px);list-style:none;margin:0;padding:0}
+.case{position:relative;display:flex;flex-direction:column}
+.case-media{position:relative;aspect-ratio:3/4;overflow:hidden;background:var(--bg-card);border-radius:3px}
+.case-media img,.case-media video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .9s var(--ease),opacity .4s}
+.case-media video{opacity:0}
+.case.playing .case-media video{opacity:1}
+.case:hover .case-media img,.case:hover .case-media video{transform:scale(1.035)}
+.case-media::after{content:"";position:absolute;inset:auto 0 0 0;height:45%;background:linear-gradient(to top,rgba(14,12,11,.75),rgba(14,12,11,0));pointer-events:none}
+.case-badge{position:absolute;left:14px;bottom:14px;z-index:2;display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:600;letter-spacing:.06em;color:var(--text);background:rgba(14,12,11,.55);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);border:1px solid var(--line);border-radius:999px;padding:6px 12px 6px 10px}
+.case-badge svg{width:12px;height:12px;fill:var(--accent)}
+.case-open{position:absolute;right:14px;top:14px;z-index:2;width:40px;height:40px;border-radius:50%;display:grid;place-items:center;background:var(--accent);color:var(--ink);transform:scale(.6);opacity:0;transition:transform .35s var(--ease),opacity .35s}
+.case:hover .case-open,.case:focus-within .case-open{transform:scale(1);opacity:1}
+.case-open svg{width:16px;height:16px}
+.case-body{padding-top:18px}
+.case-title-row{display:flex;justify-content:space-between;align-items:baseline;gap:12px}
+.case-title{font-family:var(--font-display);font-stretch:125%;font-weight:800;font-size:clamp(19px,1.7vw,22px);line-height:1.15;margin:0}
+.case-year{font-size:13px;color:var(--muted);flex:none}
+.case-client{font-size:14px;color:var(--muted);margin:6px 0 0}
+.case-result{display:flex;align-items:center;gap:8px;font-size:15px;font-weight:600;color:var(--accent);margin:14px 0 16px}
+.case-result::before{content:"";width:16px;height:1px;background:var(--accent)}
+.case-link{position:absolute;inset:0;z-index:3;background:none;border:0;padding:0;cursor:pointer;border-radius:4px}
+.case-link span{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+
+/* ---------- Kontakt ---------- */
+.contact-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(40px,6vw,96px);align-items:center}
+.contact-copy .display{margin-bottom:28px}
+.contact-copy .lead{color:var(--text-soft);max-width:520px}
+.contact-email{display:inline-block;margin:40px 0 28px;font-family:var(--font-display);font-stretch:118%;font-weight:800;font-size:clamp(22px,2.9vw,38px);line-height:1.15;color:var(--accent);text-decoration:none;word-break:break-word;background:linear-gradient(currentColor,currentColor) 0 100%/0 2px no-repeat;transition:background-size .4s var(--ease)}
+.contact-email:hover{background-size:100% 2px}
+.contact-list{list-style:none;margin:0 0 32px;padding:0;display:grid;gap:10px}
+.contact-list a{text-decoration:none;color:var(--text);font-size:16px}
+.contact-list a span{color:var(--muted)}
+.contact-list a:hover{color:var(--accent)}
+.contact-orb{display:grid;place-items:center}
+.contact-orb .orb{width:min(100%,460px);animation:float 10s ease-in-out infinite}
+.footer-note{color:var(--faint);font-size:13px;padding:0 0 32px;margin:0}
+
+/* ---------- Case-dialog ---------- */
+.case-dialog{width:min(1180px,calc(100% - 32px));max-width:none;max-height:calc(100vh - 48px);max-height:calc(100dvh - 48px);padding:0;border:1px solid var(--line);border-radius:18px;background:var(--bg-raised);color:var(--text);overflow:hidden}
+.case-dialog::backdrop{background:rgba(6,5,4,.78);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
+.case-dialog[open]{animation:dlg .45s var(--ease)}
+@keyframes dlg{from{opacity:0;transform:translateY(18px) scale(.985)}to{opacity:1;transform:none}}
+.dlg-scroll{max-height:inherit;overflow:auto;overscroll-behavior:contain}
+.dlg-grid{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr)}
+.dlg-media{position:sticky;top:0;align-self:start;padding:24px;display:flex;flex-direction:column;gap:14px}
+.viewer{position:relative;display:grid;place-items:center;background:#0a0807;border-radius:10px;overflow:hidden;height:min(70vh,640px);height:min(70dvh,640px)}
+.viewer img,.viewer video{width:100%;height:100%;object-fit:contain}
+.viewer-cap{font-size:13px;color:var(--muted);margin:0;min-height:1.4em}
+.thumbs{display:flex;gap:8px;overflow-x:auto;padding-bottom:4px;scrollbar-width:thin}
+.thumb{position:relative;flex:none;width:58px;height:58px;padding:0;border:1px solid var(--line);border-radius:8px;overflow:hidden;background:var(--bg-card);cursor:pointer;opacity:.6;transition:opacity .2s,border-color .2s}
+.thumb img{width:100%;height:100%;object-fit:cover}
+.thumb[aria-current="true"]{opacity:1;border-color:var(--accent)}
+.thumb:hover{opacity:1}
+.thumb .play{position:absolute;inset:0;display:grid;place-items:center;background:rgba(0,0,0,.25)}
+.thumb .play svg{width:14px;height:14px;fill:#fff}
+.dlg-body{padding:clamp(28px,4vw,56px);border-left:1px solid var(--line)}
+.dlg-top{display:flex;justify-content:space-between;align-items:center;gap:16px;margin-bottom:28px}
+.dlg-close{width:44px;height:44px;border-radius:50%;border:1px solid var(--line-strong);background:transparent;cursor:pointer;display:grid;place-items:center;flex:none;transition:background .2s,border-color .2s}
+.dlg-close:hover{background:var(--accent);border-color:var(--accent);color:var(--ink)}
+.dlg-close svg{width:16px;height:16px}
+.dlg-title{font-size:clamp(30px,3.6vw,48px);margin-bottom:22px}
+.dlg-intro{margin:0 0 28px;color:var(--text-soft);font-size:17px}
+.dlg-meta{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px 28px;margin:0 0 32px;padding:22px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.dlg-meta dt{font-size:11px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);margin-bottom:4px}
+.dlg-meta dd{margin:0;font-size:14px;color:var(--text)}
+.metrics{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:26px 28px;margin:0 0 36px}
+.metric-num{display:block;font-family:var(--font-display);font-stretch:118%;font-weight:800;font-size:clamp(24px,2.4vw,32px);line-height:1.05;color:var(--accent)}
+.metric-label{display:block;font-size:14px;color:var(--text-soft);margin-top:6px;line-height:1.4}
+.dlg-sub{display:block;margin:0 0 14px}
+.dlg-list{margin:0 0 32px;padding:0;list-style:none;display:grid;gap:12px}
+.dlg-list li{position:relative;padding-left:26px;color:var(--text-soft)}
+.dlg-list li::before{content:"";position:absolute;left:0;top:.78em;width:14px;height:1px;background:var(--accent)}
+.quote{margin:0 0 32px;padding:20px 22px;border-left:2px solid var(--accent);background:var(--accent-soft);border-radius:0 10px 10px 0}
+.quote p{margin:0 0 10px;font-style:italic;color:var(--text)}
+.quote footer{font-size:13px;color:var(--muted)}
+.dlg-nav{display:flex;justify-content:space-between;gap:12px;padding-top:24px;border-top:1px solid var(--line)}
+.dlg-nav button{display:inline-flex;align-items:center;gap:10px;background:none;border:1px solid var(--line-strong);border-radius:999px;padding:10px 18px;cursor:pointer;font-size:14px;transition:border-color .2s,color .2s}
+.dlg-nav button:hover{border-color:var(--accent);color:var(--accent)}
+.dlg-nav svg{width:14px;height:14px}
+
+/* ---------- Animasjon ved scroll ---------- */
+.js .reveal{opacity:0;transform:translateY(26px);transition:opacity .9s var(--ease),transform .9s var(--ease);transition-delay:var(--d,0s)}
+.js .reveal.in{opacity:1;transform:none}
+
+/* ---------- Responsivt ---------- */
+@media (max-width:1000px){
+  .cases{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .stats{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .stat:nth-child(3){padding-left:0;border-left:0}
+  .stat:nth-child(n+3){border-top:1px solid var(--line)}
+}
+@media (max-width:860px){
+  .about-grid,.contact-grid{grid-template-columns:1fr}
+  .portrait{max-width:340px}
+  .work-head{grid-template-columns:1fr;gap:18px}
+  .work-head .lead{text-align:left}
+  .contact-orb{order:-1}
+  .contact-orb .orb{width:min(62vw,300px)}
+  .dlg-grid{grid-template-columns:1fr}
+  .dlg-media{position:relative;padding:16px}
+  .dlg-body{border-left:0;border-top:1px solid var(--line)}
+  .viewer{height:min(62vh,560px);height:min(62dvh,560px)}
+  .case-dialog{width:100%;max-height:100dvh;height:100dvh;border-radius:0;border:0;margin:0}
+  .dlg-scroll{max-height:100dvh;height:100%}
+  .dlg-close{position:fixed;top:14px;right:14px;z-index:5;background:rgba(14,12,11,.72);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
+  .dlg-top{padding-right:56px}
+}
+@media (max-width:600px){
+  :root{--header-h:60px}
+  .nav a .n{display:none}
+  .nav a{font-size:13px}
+  .brand{font-size:14px}
+  .cases{grid-template-columns:1fr;gap:44px}
+  .case-media{aspect-ratio:4/5}
+  .case-open{opacity:1;transform:scale(1)}
+  .facts{grid-template-columns:1fr}
+  .stat{padding:22px 14px 22px 0}
+  .stat + .stat{padding-left:14px}
+  .stat:nth-child(3){padding-left:0}
+  .stat-label{font-size:13px}
+  .stat-num{font-size:26px;font-stretch:108%}
+  .dlg-meta,.metrics{grid-template-columns:1fr 1fr}
+  .dlg-nav button .t{display:none}
+  .section-foot{font-size:10px}
+}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  .js .reveal{opacity:1;transform:none}
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#om-meg">Hopp til innhold</a>
+
+<header class="site-header" id="top-bar">
+  <div class="wrap">
+    <a class="brand" href="#top"><span class="brand-dot" aria-hidden="true"></span>Daniel Ramslien</a>
+    <nav class="nav" aria-label="Hovedmeny">
+      <a href="#om-meg"><span class="n">01</span>Om meg</a>
+      <a href="#arbeid"><span class="n">02</span>Arbeid</a>
+      <a href="#kontakt"><span class="n">03</span>Kontakt</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <!-- ======== Hero ======== -->
+  <section class="hero" id="top" aria-label="Introduksjon">
+    <div class="hero-main">
+      <div class="orb" id="hero-orb">
+        <div class="hero-copy">
+          <span class="hero-kicker">Digital markedsfører</span>
+          <h1 class="hero-title">Hei, jeg er Daniel.</h1>
+        </div>
+      </div>
+      <ul class="hero-nav">
+        <li><a href="#om-meg">Om meg</a></li>
+        <li><a href="#arbeid">Arbeid</a></li>
+        <li><a href="#kontakt">Kontakt</a></li>
+      </ul>
+    </div>
+    <div class="wrap">
+      <div class="section-foot"><span>Portefølje 2026</span><span>01 / 04</span></div>
+    </div>
+  </section>
+
+  <!-- ======== 01 Om meg ======== -->
+  <section class="section" id="om-meg" aria-labelledby="om-meg-tittel">
+    <div class="wrap">
+      <div class="about-grid">
+        <div class="portrait reveal">
+          <div class="orb" aria-hidden="true"></div>
+          <img src="assets/img/profil.webp" width="933" height="1400" alt="Portrett av Daniel Ramslien" loading="lazy">
+        </div>
+        <div class="about-copy">
+          <div class="eyebrow reveal"><span class="num">01</span><span class="rule"></span><span class="label">Om meg</span></div>
+          <h2 class="display h-xl reveal" id="om-meg-tittel">Hei, jeg<br>er Daniel</h2>
+          <p class="lead reveal">Jeg er digital markedsfører med hjertet i sosiale medier. Jeg liker å finne historien i en merkevare og fortelle den på en måte som passer feeden.</p>
+          <p class="body reveal">Enten det er en Reel på femten sekunder eller en kampanje over flere måneder, starter jeg med menneskene på andre siden av skjermen. Hva får dem til å stoppe opp, le, eller dele videre?</p>
+          <p class="body reveal">Nå ser jeg etter en jobb som SoMe-rådgiver, der jeg kan jobbe tett med et team som bryr seg om både idé og resultat.</p>
+          <span class="label reveal">Det jeg jobber med</span>
+          <ul class="pills reveal">
+            <li class="pill">Innholdsstrategi</li><li class="pill">Instagram</li><li class="pill">TikTok</li><li class="pill">LinkedIn</li><li class="pill">Foto og video</li><li class="pill">Copy</li><li class="pill">Analyse</li><li class="pill">Kampanjeplanlegging</li>
+          </ul>
+          <dl class="facts reveal">
+            <div><dt>Utdanning</dt><dd>Bachelor i digital markedsføring, Høyskolen Kristiania (2024–2027)</dd></div>
+            <div><dt>Eget foretak</dt><dd>Rams Creative, frilans med fire faste kunder</dd></div>
+            <div><dt>Verktøy</dt><dd>Claude, CapCut, Canva, Premiere Pro, Meta &amp; TikTok Insights, Google Workspace</dd></div>
+            <div><dt>Analyse og web</dt><dd>GA4, Hotjar, Looker Studio, Search Console, WordPress, Elementor, Meta Ads</dd></div>
+          </dl>
+        </div>
+      </div>
+
+      <div class="stats" aria-label="Resultater i tall">
+        <div class="stat reveal"><span class="stat-num" data-count="863000" data-suffix="+">863 000+</span><span class="stat-label">visninger på TikTok for Mufano</span></div>
+        <div class="stat reveal" style="--d:.08s"><span class="stat-num"><span data-count="100000" data-suffix="+">100 000+</span><small>kr</small></span><span class="stat-label">i salg av studioleie for M40 Studios</span></div>
+        <div class="stat reveal" style="--d:.16s"><span class="stat-num"><span data-count="46000">46 000</span><small>USD</small></span><span class="stat-label">samlet inn til Make-A-Wish med NOT Management</span></div>
+        <div class="stat reveal" style="--d:.24s"><span class="stat-num" data-count="25" data-suffix=" + 150">25 + 150</span><span class="stat-label">videoer og bilder i innholdsbanken til Punkt Oslo</span></div>
+      </div>
+
+      <div class="section-foot"><span>Daniel Ramslien</span><span>02 / 04</span></div>
+    </div>
+  </section>
+
+  <!-- ======== 02 Arbeid ======== -->
+  <section class="section" id="arbeid" aria-labelledby="arbeid-tittel">
+    <div class="wrap">
+      <div class="eyebrow reveal"><span class="num">02</span><span class="rule"></span><span class="label">Arbeid</span></div>
+      <div class="work-head">
+        <h2 class="display h-xl reveal" id="arbeid-tittel">Utvalgte<br>case</h2>
+        <p class="lead reveal">Et utvalg av innhold og kampanjer jeg har laget, fra idé til ferdig post. Trykk på et case for å se video, tall og hva jeg gjorde.</p>
+      </div>
+      <ul class="cases" id="cases"></ul>
+      <noscript><p class="body">Slå på JavaScript for å se casene.</p></noscript>
+      <div class="section-foot"><span>Daniel Ramslien</span><span>03 / 04</span></div>
+    </div>
+  </section>
+
+  <!-- ======== 03 Kontakt ======== -->
+  <section class="section" id="kontakt" aria-labelledby="kontakt-tittel">
+    <div class="wrap">
+      <div class="contact-grid">
+        <div class="contact-copy">
+          <div class="eyebrow reveal"><span class="num">03</span><span class="rule"></span><span class="label">Kontakt</span></div>
+          <h2 class="display h-xl reveal" id="kontakt-tittel">La oss ta<br>en prat</h2>
+          <p class="lead reveal">Har du en ledig stilling, et prosjekt eller bare lyst på en kaffe? Send meg en melding, så svarer jeg innen to dager.</p>
+          <a class="contact-email reveal" href="mailto:daniel@ramscreative.no">daniel@ramscreative.no</a>
+          <ul class="contact-list reveal">
+            <li><a href="tel:+4791168076"><span>Telefon — </span>+47 911 68 076</a></li>
+            <!-- Bytt ut lenken under med den nøyaktige adressen til LinkedIn-profilen din -->
+            <li><a href="https://www.linkedin.com/search/results/people/?keywords=Daniel%20Ramslien" target="_blank" rel="noopener"><span>LinkedIn — </span>Daniel Ramslien</a></li>
+            <li><a href="https://beacons.ai/ramscreative" target="_blank" rel="noopener"><span>Portefølje — </span>beacons.ai/ramscreative</a></li>
+          </ul>
+          <span class="pill pill--accent reveal"><span class="dot" aria-hidden="true"></span>Tilgjengelig for nye roller</span>
+        </div>
+        <div class="contact-orb reveal" aria-hidden="true"><div class="orb"></div></div>
+      </div>
+      <div class="section-foot"><span>Takk for at du tok deg tid</span><span>04 / 04</span></div>
+      <p class="footer-note">© 2026 Daniel Ramslien · Rams Creative (Ramslien Creative ENK) · Referanser oppgis på forespørsel</p>
+    </div>
+  </section>
+</main>
+
+<!-- ======== Case-dialog ======== -->
+<dialog class="case-dialog" id="case-dialog" aria-labelledby="dlg-title">
+  <div class="dlg-scroll">
+    <div class="dlg-grid">
+      <div class="dlg-media">
+        <div class="viewer" id="dlg-viewer"></div>
+        <p class="viewer-cap" id="dlg-cap"></p>
+        <div class="thumbs" id="dlg-thumbs" role="group" aria-label="Velg bilde eller video"></div>
+      </div>
+      <div class="dlg-body">
+        <div class="dlg-top">
+          <span class="label" id="dlg-count"></span>
+          <button class="dlg-close" id="dlg-close" type="button" aria-label="Lukk case">
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M2 2l12 12M14 2L2 14"/></svg>
+          </button>
+        </div>
+        <h2 class="display dlg-title" id="dlg-title"></h2>
+        <p class="dlg-intro" id="dlg-intro"></p>
+        <dl class="dlg-meta" id="dlg-meta"></dl>
+        <div class="metrics" id="dlg-metrics"></div>
+        <span class="label dlg-sub">Hva jeg gjorde</span>
+        <ul class="dlg-list" id="dlg-list"></ul>
+        <div id="dlg-quote"></div>
+        <div class="dlg-nav">
+          <button type="button" id="dlg-prev"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M10 3L5 8l5 5"/></svg><span class="t" id="dlg-prev-t">Forrige</span></button>
+          <button type="button" id="dlg-next"><span class="t" id="dlg-next-t">Neste</span><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M6 3l5 5-5 5"/></svg></button>
+        </div>
+      </div>
+    </div>
+  </div>
+</dialog>
+
+<script>
+document.documentElement.classList.add('js');
+
+/* ------------------------------------------------------------
+   Casene. Tall og beskrivelser er hentet fra Master CV 2026.
+   ------------------------------------------------------------ */
+const V = 'assets/video/', I = 'assets/img/', P = 'assets/img/posters/';
+const CASES = [
+  {
+    id:'mufano', card:'Låtlansering', title:'Låtlansering på TikTok',
+    client:'Mufano', clientDesc:'TikToker og influenser', year:'2026', period:'Jan. 2026 – nå',
+    role:'Markedsfører og veileder (via Rams Creative)', tags:['TikTok','Video'],
+    result:'863 000+ visninger', cover:P+'mufano.jpg', preview:V+'mufano.mp4',
+    intro:'Fire TikTok-videoer for lanseringen av Mufanos egen låt, planlagt og produsert av meg.',
+    metrics:[['863 000+','visninger'],['9,1 %','engasjementsrate, over dobbelt så høyt som plattformsnittet på ca. 4 %'],['78 000+','interaksjoner'],['1,8 %','delingsrate']],
+    bullets:[
+      'Planla og produserte fire TikTok-videoer for lanseringen av hans egen låt.',
+      'Videoene fikk 863 000+ visninger og 78 000+ interaksjoner: 57 000 likes, 15 900 delinger, 4 800 saves og 900 kommentarer.',
+      'Oppnådde 9,1 % engasjementsrate og 1,8 % delingsrate.',
+      'Veileder Mufano i innholdsstrategi, publiseringsrytme og analyse, slik at han selv kan drive kanalene videre.'
+    ],
+    media:[
+      {type:'video',src:V+'mufano.mp4',poster:P+'mufano.jpg',cap:'Promovideo for låtlanseringen'},
+      {type:'image',src:I+'mufano-views.webp',cap:'Visninger på TikTok-videoene'}
+    ]
+  },
+  {
+    id:'m40', card:'Studiokampanje', title:'Fra null til 20 faste kunder',
+    client:'M40 Studios', clientDesc:'M40 Eiendom AS', year:'2026', period:'Jan. – sep. 2026',
+    role:'Marketing & Communication (via Rams Creative)', tags:['Sosiale medier','Kampanje','Video'],
+    result:'100 000 kr+ i salg', cover:P+'m40.jpg', preview:V+'m40.mp4',
+    intro:'Jeg bygget merkevaren M40 Studios fra bunnen av, og hadde ansvar for alt fra kampanjer og innhold til salg og kunderelasjoner.',
+    metrics:[['100 000 kr+','i salg av studioleie fra kampanjen i mars'],['8','nye fastbetalende kunder fra én konverteringsvideo'],['16 000','visninger på konverteringsvideoen'],['20','faste kunder via sosiale medier']],
+    bullets:[
+      'Utviklet og kjørte kampanje i mars som ga 100 000 kr+ i salg av studioleie.',
+      'Produserte konverteringsvideo som ga 8 nye fastbetalende kunder på 16 000 visninger.',
+      'Bygget merkevaren M40 Studios fra bunnen av til 20 faste kunder via sosiale medier.',
+      'Ansvar for salg, kunderelasjoner, kampanjebygging og innholdsproduksjon, inkludert grafisk design i Canva, Photoshop og Illustrator.'
+    ],
+    media:[{type:'video',src:V+'m40.mp4',poster:P+'m40.jpg',cap:'Video for M40 Studios'}]
+  },
+  {
+    id:'ride-for-wishes', card:'Ride for Wishes', title:'Ride for Wishes – Portugal Edition',
+    client:'NOT Management', clientDesc:'Til inntekt for Make-A-Wish', year:'2026', period:'Mars – apr. 2026',
+    role:'Praksisstudent / marketing intern', tags:['Livestream','Innhold','Planlegging'],
+    result:'46 000 USD samlet inn', cover:I+'ride-for-wishes.webp', coverPos:'0% 50%',
+    intro:'Streameren Hitch, en av talentene til NOT Management, er kjent for å ta haiking til Twitch. Idéen hans var «Random Tandem»: å ta med andre creators ut av komfortsonen på en tandemsykkel. Sammen med Make-A-Wish ble det til Ride for Wishes, en veldedighetstur langs kysten av Portugal som ble livestreamet hele veien.',
+    metrics:[['46 000 USD','samlet inn til Make-A-Wish'],['32,7 mill.','watch hours'],['11 000','samtidige seere på det meste'],['1 000+ km','på 26 dager med 12 creators']],
+    bullets:[
+      'Bidro med innholdsideer til en tur der 12 creators syklet 1 000+ km over 26 dager.',
+      'Researchet og detaljplanla rute, gjester, sponsorer og medieoppfølging sammen med et team på 10+ personer.',
+      'Livestreamen gikk på 3 plattformer og fikk 32,7 mill. watch hours og opptil 11 000 samtidige seere.',
+      'Kampanjen samlet inn 46 000 USD for å oppfylle ønsker for alvorlig syke barn.'
+    ],
+    quote:{text:'… our interns (Simon Brusdal, Kathalina Nunez-Garate, Daniel Ramslien) researching every detail of the trip …',by:'Lynn, NOT Management, i LinkedIn-innlegget om turen'},
+    media:[
+      {type:'image',src:I+'ride-for-wishes.webp',cap:'Ride for Wishes – Portugal Edition med Hitch'},
+      {type:'image',src:I+'daniel-not.webp',cap:'Praksisstudent hos NOT Management'}
+    ]
+  },
+  {
+    id:'punkt-oslo', card:'Arendalsuka', title:'Arendalsuka og innholdsbank for høsten',
+    client:'Punkt Oslo', clientDesc:'Møte- og eventsted i Oslo', year:'2026', period:'Mars – aug. 2026',
+    role:'Innholdsprodusent og lydtekniker (via Rams Creative)', tags:['LinkedIn','Video','Lyd'],
+    result:'15 videoer på stedet', cover:P+'arendalsuka.jpg', preview:V+'arendalsuka.mp4',
+    intro:'Innhold fra tre arrangementer, blant annet sommerfest og Arendalsuka, og en innholdsbank som dekker publiseringen gjennom hele høsten.',
+    metrics:[['15','videoer filmet og klippet på stedet under Arendalsuka'],['10','podcastinnspillinger med lyd rigget og kjørt'],['25 + 150','videoer og utvalgte bilder i innholdsbanken'],['3','arrangementer dekket']],
+    bullets:[
+      'Produserte innhold fra 3 arrangementer, blant annet sommerfest og Arendalsuka.',
+      'Under Arendalsuka filmet og klippet jeg 15 videoer på stedet til LinkedIn-kanalen deres.',
+      'Rigget og kjørte lyd for 10 podcastinnspillinger i paviljongen.',
+      'Leverte en innholdsbank på 25 videoer og 150 utvalgte bilder som dekker publiseringen deres gjennom hele høsten.'
+    ],
+    media:[
+      {type:'video',src:V+'arendalsuka.mp4',poster:P+'arendalsuka.jpg',cap:'Arendalsuka, 11. august'},
+      {type:'video',src:V+'punkt-oslo-2.mp4',poster:P+'punkt-oslo-2.jpg',cap:'Sommerfest hos Punkt Oslo'},
+      {type:'video',src:V+'punkt-oslo-1.mp4',poster:P+'punkt-oslo-1.jpg',cap:'Falling Walls Lab Oslo hos Punkt Oslo'}
+    ]
+  },
+  {
+    id:'knytt', card:'Knytt.org', title:'Knytt: nettside, analyse og partnere',
+    client:'Knytt SB', clientDesc:'Studentbedrift', year:'2025', period:'Sep. – des. 2025',
+    role:'Kommunikasjonsleder og gründer', tags:['Nettside','Analyse','SEO'],
+    result:'82 % scroll depth', cover:P+'knytt.jpg', preview:V+'knytt.mp4',
+    intro:'Knytt er en studentbedrift som arrangerer lavterskel events for studenter og unge voksne i Oslo. Jeg ledet kommunikasjonen og bygget nettsiden med nettbutikk fra bunnen av.',
+    metrics:[['62 %','returnerende brukere'],['82 %','scroll depth'],['100','i SEO-score'],['5','partnere']],
+    bullets:[
+      'Ledet kommunikasjonen for studentbedriften.',
+      'Bygget knytt.org med nettbutikk fra bunnen av i WordPress og Elementor. Siden er nå tatt ned.',
+      'Målte trafikk, brukeratferd og konvertering i GA4 og Hotjar. Nettsiden endte på 62 % returnerende brukere, 82 % scroll depth og 100 i SEO-score.',
+      'Sikret samarbeid med 5 partnere: NoHo Norway, Anker Studentbolig, Mesh Oslo, Punkt Oslo og SiO.'
+    ],
+    media:[
+      {type:'video',src:V+'knytt.mp4',poster:P+'knytt.jpg',cap:'Video for Knytt, klippet av meg'},
+      {type:'image',src:I+'knytt-landing.webp',cap:'Landingssiden på knytt.org'},
+      {type:'image',src:I+'knytt-team.webp',cap:'Om oss-siden'},
+      {type:'image',src:I+'knytt-shop.webp',cap:'Nettbutikken'},
+      {type:'image',src:I+'knytt-heatmap.webp',cap:'Heatmap av landingssiden'},
+      {type:'image',src:I+'knytt-hotjar.webp',cap:'Brukeratferd målt i Hotjar'},
+      {type:'image',src:I+'knytt-looker.webp',cap:'Trafikk i Looker Studio'},
+      {type:'image',src:I+'knytt-pagespeed.webp',cap:'PageSpeed på mobil, med SEO-score 100'},
+      {type:'image',src:I+'knytt-serp.webp',cap:'Knytt i Google-søk'},
+      {type:'image',src:I+'knytt-alder.webp',cap:'Aldersfordeling i publikum'}
+    ]
+  },
+  {
+    id:'kristiania', card:'Eventinnhold', title:'Eventinnhold for Høyskolen Kristiania',
+    client:'Høyskolen Kristiania', clientDesc:'Praksis', year:'2026', period:'Apr. 2026',
+    role:'Innholdsprodusent (praksisstudent)', tags:['LinkedIn','Instagram','Video'],
+    result:'10 videoer fra 3 arrangementer', cover:P+'kristiania.jpg', preview:V+'kristiania.mp4',
+    intro:'Video og foto fra tre arrangementer til skolens egne kanaler, og teknisk ansvar under praksisdagen for masterstudenter.',
+    metrics:[['10','videoer'],['3','arrangementer'],['20','bedrifter på praksisdagen'],['ca. 85','deltakere']],
+    bullets:[
+      'Filmet, fotograferte og klippet 10 videoer fra 3 arrangementer, publisert på skolens LinkedIn og Instagram.',
+      'Hadde dedikert ansvar for at skjermer og scenepresentasjon fungerte teknisk under praksisdagen for masterstudenter, med 20 bedrifter og ca. 85 deltakere.'
+    ],
+    media:[{type:'video',src:V+'kristiania.mp4',poster:P+'kristiania.jpg',cap:'Workshop, 16. april'}]
+  }
+];
+
+const esc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const ICON_PLAY = '<svg viewBox="0 0 12 12" aria-hidden="true"><path d="M2.5 1.5v9l8-4.5z"/></svg>';
+const ICON_ARROW = '<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 12L12 4M5.5 4H12v6.5"/></svg>';
+const canHover = window.matchMedia('(hover:hover) and (pointer:fine)').matches;
+
+/* ---------- Bygg kortene ---------- */
+const list = document.getElementById('cases');
+list.innerHTML = CASES.map((c,i) => {
+  const hasVideo = c.media.some(m => m.type === 'video');
+  return `
+  <li class="case reveal" style="--d:${(i%3)*0.08}s" data-index="${i}">
+    <div class="case-media">
+      <img src="${c.cover}" alt="" loading="lazy"${c.coverPos ? ` style="object-position:${c.coverPos}"` : ''}>
+      ${c.preview ? `<video muted loop playsinline preload="none" data-src="${c.preview}"></video>` : ''}
+      <span class="case-badge">${hasVideo ? ICON_PLAY + 'Video' : 'Bilder'}</span>
+      <span class="case-open" aria-hidden="true">${ICON_ARROW}</span>
+    </div>
+    <div class="case-body">
+      <div class="case-title-row"><h3 class="case-title">${esc(c.card)}</h3><span class="case-year">${c.year}</span></div>
+      <p class="case-client">${esc(c.client)}</p>
+      <p class="case-result">${esc(c.result)}</p>
+      <ul class="pills">${c.tags.map(t => `<li class="pill">${esc(t)}</li>`).join('')}</ul>
+    </div>
+    <button class="case-link" type="button" data-open="${i}"><span>Se case: ${esc(c.title)} for ${esc(c.client)}</span></button>
+  </li>`;
+}).join('');
+
+/* Forhåndsvisning av video når man holder musepekeren over et kort */
+if (canHover) {
+  list.querySelectorAll('.case').forEach(card => {
+    const v = card.querySelector('video');
+    if (!v) return;
+    card.addEventListener('mouseenter', () => {
+      if (!v.src) v.src = v.dataset.src;
+      v.play().then(() => card.classList.add('playing')).catch(() => {});
+    });
+    card.addEventListener('mouseleave', () => { v.pause(); card.classList.remove('playing'); });
+  });
+}
+
+/* ---------- Dialog ---------- */
+const dlg = document.getElementById('case-dialog');
+const $ = id => document.getElementById(id);
+let current = 0, lastFocus = null;
+
+function showMedia(c, idx){
+  const m = c.media[idx];
+  const viewer = $('dlg-viewer');
+  viewer.querySelectorAll('video').forEach(v => v.pause());
+  viewer.innerHTML = m.type === 'video'
+    ? `<video src="${m.src}" poster="${m.poster||''}" controls playsinline preload="metadata"></video>`
+    : `<img src="${m.src}" alt="${esc(m.cap)}">`;
+  $('dlg-cap').textContent = m.cap || '';
+  $('dlg-thumbs').querySelectorAll('.thumb').forEach((t,i) => t.setAttribute('aria-current', i === idx ? 'true' : 'false'));
+}
+
+function fillDialog(i){
+  current = (i + CASES.length) % CASES.length;
+  const c = CASES[current];
+  $('dlg-count').textContent = `Case ${String(current+1).padStart(2,'0')} / ${String(CASES.length).padStart(2,'0')} · ${c.year}`;
+  $('dlg-title').textContent = c.title;
+  $('dlg-intro').textContent = c.intro;
+  $('dlg-meta').innerHTML = [
+    ['Kunde', c.client + (c.clientDesc ? ` · ${c.clientDesc}` : '')],
+    ['Rolle', c.role], ['Periode', c.period], ['Kanaler og fag', c.tags.join(', ')]
+  ].map(([k,v]) => `<div><dt>${k}</dt><dd>${esc(v)}</dd></div>`).join('');
+  $('dlg-metrics').innerHTML = c.metrics.map(([n,l]) => `<div><span class="metric-num">${esc(n)}</span><span class="metric-label">${esc(l)}</span></div>`).join('');
+  $('dlg-list').innerHTML = c.bullets.map(b => `<li>${esc(b)}</li>`).join('');
+  $('dlg-quote').innerHTML = c.quote ? `<blockquote class="quote"><p>${esc(c.quote.text)}</p><footer>${esc(c.quote.by)}</footer></blockquote>` : '';
+  const thumbs = $('dlg-thumbs');
+  thumbs.innerHTML = c.media.length > 1 ? c.media.map((m,k) => `
+    <button class="thumb" type="button" data-k="${k}" aria-label="${esc(m.cap)}">
+      <img src="${m.type==='video' ? m.poster : m.src}" alt="" loading="lazy">
+      ${m.type==='video' ? `<span class="play">${ICON_PLAY}</span>` : ''}
+    </button>`).join('') : '';
+  thumbs.hidden = c.media.length < 2;
+  showMedia(c, 0);
+  const prev = CASES[(current - 1 + CASES.length) % CASES.length], next = CASES[(current + 1) % CASES.length];
+  $('dlg-prev-t').textContent = prev.card;
+  $('dlg-next-t').textContent = next.card;
+  dlg.querySelector('.dlg-scroll').scrollTop = 0;
+  history.replaceState(null, '', '#case-' + c.id);
+}
+
+function openCase(i){
+  lastFocus = document.activeElement;
+  fillDialog(i);
+  if (!dlg.open) dlg.showModal();
+  document.body.style.overflow = 'hidden';
+}
+function closeCase(){ dlg.close(); }
+
+dlg.addEventListener('close', () => {
+  dlg.querySelectorAll('video').forEach(v => v.pause());
+  document.body.style.overflow = '';
+  history.replaceState(null, '', location.pathname + location.search);
+  if (lastFocus) lastFocus.focus({preventScroll:true});
+});
+list.addEventListener('click', e => { const b = e.target.closest('[data-open]'); if (b) openCase(+b.dataset.open); });
+$('dlg-close').addEventListener('click', closeCase);
+$('dlg-prev').addEventListener('click', () => fillDialog(current - 1));
+$('dlg-next').addEventListener('click', () => fillDialog(current + 1));
+$('dlg-thumbs').addEventListener('click', e => { const t = e.target.closest('.thumb'); if (t) showMedia(CASES[current], +t.dataset.k); });
+dlg.addEventListener('click', e => { if (e.target === dlg) closeCase(); });
+dlg.addEventListener('keydown', e => {
+  if (e.target.closest('video')) return;
+  if (e.key === 'ArrowRight') fillDialog(current + 1);
+  if (e.key === 'ArrowLeft') fillDialog(current - 1);
+});
+const fromHash = CASES.findIndex(c => location.hash === '#case-' + c.id);
+if (fromHash > -1) openCase(fromHash);
+
+/* ---------- Header og aktiv seksjon ---------- */
+const bar = $('top-bar');
+const onScroll = () => bar.classList.toggle('scrolled', window.scrollY > 24);
+onScroll(); window.addEventListener('scroll', onScroll, {passive:true});
+
+const navLinks = [...document.querySelectorAll('.nav a')];
+const secObs = new IntersectionObserver(entries => {
+  entries.forEach(en => {
+    if (en.isIntersecting) navLinks.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + en.target.id));
+  });
+}, {rootMargin:'-45% 0px -50% 0px'});
+['top','om-meg','arbeid','kontakt'].forEach(id => secObs.observe($(id)));
+
+/* ---------- Animasjon ved scroll ---------- */
+const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+const fmt = n => Math.round(n).toLocaleString('nb-NO');
+function countUp(el){
+  const target = +el.dataset.count, suffix = el.dataset.suffix || '';
+  if (reduce) { el.textContent = fmt(target) + suffix; return; }
+  const t0 = performance.now(), dur = 1600;
+  const step = t => {
+    const p = Math.min(1, (t - t0) / dur), e = 1 - Math.pow(1 - p, 3);
+    el.textContent = fmt(target * e) + suffix;
+    if (p < 1) requestAnimationFrame(step);
+  };
+  requestAnimationFrame(step);
+}
+const revObs = new IntersectionObserver(entries => {
+  entries.forEach(en => {
+    if (!en.isIntersecting) return;
+    en.target.classList.add('in');
+    en.target.querySelectorAll('[data-count]').forEach(countUp);
+    if (en.target.matches('[data-count]')) countUp(en.target);
+    revObs.unobserve(en.target);
+  });
+}, {threshold:.15, rootMargin:'0px 0px -6% 0px'});
+document.querySelectorAll('.reveal').forEach(el => revObs.observe(el));
+
+/* ---------- Lyset på kula følger musepekeren ---------- */
+if (canHover && !reduce) {
+  const orbs = document.querySelectorAll('.orb');
+  window.addEventListener('pointermove', e => {
+    const x = e.clientX / window.innerWidth - .5, y = e.clientY / window.innerHeight - .5;
+    orbs.forEach(o => { o.style.setProperty('--hx', (34 + x * 14) + '%'); o.style.setProperty('--hy', (29 + y * 14) + '%'); });
+  }, {passive:true});
+}
+</script>
+</body>
+</html>
