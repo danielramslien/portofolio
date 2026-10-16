@@ -49,6 +49,7 @@ button{font:inherit;color:inherit}
 ::selection{background:var(--accent);color:var(--ink)}
 :focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:4px}
 
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 .skip{position:absolute;left:12px;top:-60px;z-index:100;background:var(--accent);color:var(--ink);padding:10px 16px;border-radius:999px;font-weight:600;text-decoration:none}
 .skip:focus{top:12px}
 
@@ -90,6 +91,14 @@ button{font:inherit;color:inherit}
 .nav a .n{color:var(--faint);margin-right:6px;transition:color .2s}
 .nav a:hover,.nav a.active{color:var(--text)}
 .nav a.active .n{color:var(--accent)}
+.header-right{display:flex;align-items:center;gap:clamp(16px,2.6vw,36px)}
+.lang{display:inline-flex;align-items:center;gap:2px;padding:3px;border:1px solid var(--line-strong);border-radius:999px;background:rgba(14,12,11,.4)}
+.lang-btn{display:inline-flex;align-items:center;gap:7px;padding:5px 10px 5px 6px;border:0;border-radius:999px;background:transparent;cursor:pointer;font-size:12px;font-weight:600;letter-spacing:.08em;color:var(--muted);transition:background .2s,color .2s}
+.lang-btn .flag{width:22px;height:15px;border-radius:3px;flex:none;filter:grayscale(.45);opacity:.7;transition:filter .2s,opacity .2s;box-shadow:0 0 0 1px rgba(255,255,255,.12)}
+.lang-btn:hover{color:var(--text)}
+.lang-btn:hover .flag{opacity:.85;filter:grayscale(.3)}
+.lang-btn[aria-pressed="true"]{background:rgba(243,237,230,.12);color:var(--text)}
+.lang-btn[aria-pressed="true"] .flag{filter:none;opacity:1}
 
 /* ---------- Seksjoner ---------- */
 section{position:relative}
@@ -243,6 +252,8 @@ section{position:relative}
 @media (max-width:600px){
   :root{--header-h:60px}
   .nav a .n{display:none}
+  .lang-btn{padding:5px 6px}
+  .lang-btn .code{display:none}
   .nav a{font-size:13px}
   .brand{font-size:14px}
   .cases{grid-template-columns:1fr;gap:44px}
@@ -258,6 +269,9 @@ section{position:relative}
   .dlg-nav button .t{display:none}
   .section-foot{font-size:10px}
 }
+@media (max-width:480px){
+  .nav{display:none}
+}
 @media (prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
   *,*::before,*::after{animation:none!important;transition:none!important}
@@ -266,37 +280,43 @@ section{position:relative}
 </style>
 </head>
 <body>
-<a class="skip" href="#om-meg">Hopp til innhold</a>
+<a class="skip" href="#om-meg" data-i18n="skip">Hopp til innhold</a>
 
 <header class="site-header" id="top-bar">
   <div class="wrap">
     <a class="brand" href="#top"><span class="brand-dot" aria-hidden="true"></span>Daniel Ramslien</a>
-    <nav class="nav" aria-label="Hovedmeny">
-      <a href="#om-meg"><span class="n">01</span>Om meg</a>
-      <a href="#arbeid"><span class="n">02</span>Arbeid</a>
-      <a href="#kontakt"><span class="n">03</span>Kontakt</a>
-    </nav>
+    <div class="header-right">
+      <nav class="nav" aria-label="Hovedmeny" data-i18n-aria="aria.menu">
+        <a href="#om-meg"><span class="n">01</span><span data-i18n="nav.about">Om meg</span></a>
+        <a href="#arbeid"><span class="n">02</span><span data-i18n="nav.work">Arbeid</span></a>
+        <a href="#kontakt"><span class="n">03</span><span data-i18n="nav.contact">Kontakt</span></a>
+      </nav>
+      <div class="lang" role="group" aria-label="Velg språk" data-i18n-aria="aria.lang">
+        <button class="lang-btn" type="button" data-lang="no" lang="no" aria-pressed="true" title="Norsk"><svg class="flag" viewBox="0 0 22 16" aria-hidden="true" preserveAspectRatio="xMidYMid slice"><rect width="22" height="16" fill="#BA0C2F"/><rect x="6" width="4" height="16" fill="#fff"/><rect y="6" width="22" height="4" fill="#fff"/><rect x="7" width="2" height="16" fill="#00205B"/><rect y="7" width="22" height="2" fill="#00205B"/></svg><span class="code">NO</span><span class="sr">Norsk</span></button>
+        <button class="lang-btn" type="button" data-lang="en" lang="en" aria-pressed="false" title="English"><svg class="flag" viewBox="0 0 19 13" aria-hidden="true" preserveAspectRatio="xMidYMid slice"><rect width="19" height="13" fill="#B22234"/><rect y="1" width="19" height="1" fill="#fff"/><rect y="3" width="19" height="1" fill="#fff"/><rect y="5" width="19" height="1" fill="#fff"/><rect y="7" width="19" height="1" fill="#fff"/><rect y="9" width="19" height="1" fill="#fff"/><rect y="11" width="19" height="1" fill="#fff"/><rect width="7.6" height="7" fill="#3C3B6E"/><g fill="#fff"><circle cx="0.63" cy="0.45" r=".26"/><circle cx="1.90" cy="0.45" r=".26"/><circle cx="3.17" cy="0.45" r=".26"/><circle cx="4.44" cy="0.45" r=".26"/><circle cx="5.71" cy="0.45" r=".26"/><circle cx="6.98" cy="0.45" r=".26"/><circle cx="1.27" cy="1.22" r=".26"/><circle cx="2.54" cy="1.22" r=".26"/><circle cx="3.81" cy="1.22" r=".26"/><circle cx="5.08" cy="1.22" r=".26"/><circle cx="6.35" cy="1.22" r=".26"/><circle cx="0.63" cy="1.98" r=".26"/><circle cx="1.90" cy="1.98" r=".26"/><circle cx="3.17" cy="1.98" r=".26"/><circle cx="4.44" cy="1.98" r=".26"/><circle cx="5.71" cy="1.98" r=".26"/><circle cx="6.98" cy="1.98" r=".26"/><circle cx="1.27" cy="2.75" r=".26"/><circle cx="2.54" cy="2.75" r=".26"/><circle cx="3.81" cy="2.75" r=".26"/><circle cx="5.08" cy="2.75" r=".26"/><circle cx="6.35" cy="2.75" r=".26"/><circle cx="0.63" cy="3.51" r=".26"/><circle cx="1.90" cy="3.51" r=".26"/><circle cx="3.17" cy="3.51" r=".26"/><circle cx="4.44" cy="3.51" r=".26"/><circle cx="5.71" cy="3.51" r=".26"/><circle cx="6.98" cy="3.51" r=".26"/><circle cx="1.27" cy="4.28" r=".26"/><circle cx="2.54" cy="4.28" r=".26"/><circle cx="3.81" cy="4.28" r=".26"/><circle cx="5.08" cy="4.28" r=".26"/><circle cx="6.35" cy="4.28" r=".26"/><circle cx="0.63" cy="5.04" r=".26"/><circle cx="1.90" cy="5.04" r=".26"/><circle cx="3.17" cy="5.04" r=".26"/><circle cx="4.44" cy="5.04" r=".26"/><circle cx="5.71" cy="5.04" r=".26"/><circle cx="6.98" cy="5.04" r=".26"/><circle cx="1.27" cy="5.81" r=".26"/><circle cx="2.54" cy="5.81" r=".26"/><circle cx="3.81" cy="5.81" r=".26"/><circle cx="5.08" cy="5.81" r=".26"/><circle cx="6.35" cy="5.81" r=".26"/><circle cx="0.63" cy="6.57" r=".26"/><circle cx="1.90" cy="6.57" r=".26"/><circle cx="3.17" cy="6.57" r=".26"/><circle cx="4.44" cy="6.57" r=".26"/><circle cx="5.71" cy="6.57" r=".26"/><circle cx="6.98" cy="6.57" r=".26"/></g></svg><span class="code">EN</span><span class="sr">English</span></button>
+      </div>
+    </div>
   </div>
 </header>
 
 <main>
   <!-- ======== Hero ======== -->
-  <section class="hero" id="top" aria-label="Introduksjon">
+  <section class="hero" id="top" aria-label="Introduksjon" data-i18n-aria="aria.intro">
     <div class="hero-main">
       <div class="orb" id="hero-orb">
         <div class="hero-copy">
-          <span class="hero-kicker">Digital markedsfører</span>
-          <h1 class="hero-title">Hei, jeg er Daniel.</h1>
+          <span class="hero-kicker" data-i18n="hero.kicker">Digital markedsfører</span>
+          <h1 class="hero-title" data-i18n="hero.title">Hei, jeg er Daniel.</h1>
         </div>
       </div>
       <ul class="hero-nav">
-        <li><a href="#om-meg">Om meg</a></li>
-        <li><a href="#arbeid">Arbeid</a></li>
-        <li><a href="#kontakt">Kontakt</a></li>
+        <li><a href="#om-meg" data-i18n="nav.about">Om meg</a></li>
+        <li><a href="#arbeid" data-i18n="nav.work">Arbeid</a></li>
+        <li><a href="#kontakt" data-i18n="nav.contact">Kontakt</a></li>
       </ul>
     </div>
     <div class="wrap">
-      <div class="section-foot"><span>Portefølje 2026</span><span>01 / 04</span></div>
+      <div class="section-foot"><span data-i18n="foot.portfolio">Portefølje 2026</span><span>01 / 04</span></div>
     </div>
   </section>
 
@@ -306,32 +326,32 @@ section{position:relative}
       <div class="about-grid">
         <div class="portrait reveal">
           <div class="orb" aria-hidden="true"></div>
-          <img src="assets/img/profil.webp" width="933" height="1400" alt="Portrett av Daniel Ramslien" loading="lazy">
+          <img src="assets/img/profil.webp" width="933" height="1400" alt="Portrett av Daniel Ramslien" data-i18n-alt="about.alt" loading="lazy">
         </div>
         <div class="about-copy">
-          <div class="eyebrow reveal"><span class="num">01</span><span class="rule"></span><span class="label">Om meg</span></div>
-          <h2 class="display h-xl reveal" id="om-meg-tittel">Hei, jeg<br>er Daniel</h2>
-          <p class="lead reveal">Jeg er digital markedsfører med hjertet i sosiale medier. Jeg liker å finne historien i en merkevare og fortelle den på en måte som passer feeden.</p>
-          <p class="body reveal">Enten det er en Reel på femten sekunder eller en kampanje over flere måneder, starter jeg med menneskene på andre siden av skjermen. Hva får dem til å stoppe opp, le, eller dele videre?</p>
-          <p class="body reveal">Nå ser jeg etter en jobb som SoMe-rådgiver, der jeg kan jobbe tett med et team som bryr seg om både idé og resultat.</p>
-          <span class="label reveal">Det jeg jobber med</span>
+          <div class="eyebrow reveal"><span class="num">01</span><span class="rule"></span><span class="label" data-i18n="nav.about">Om meg</span></div>
+          <h2 class="display h-xl reveal" id="om-meg-tittel" data-i18n-html="about.title">Hei, jeg<br>er Daniel</h2>
+          <p class="lead reveal" data-i18n="about.lead">Jeg er digital markedsfører med hjertet i sosiale medier. Jeg liker å finne historien i en merkevare og fortelle den på en måte som passer feeden.</p>
+          <p class="body reveal" data-i18n="about.p1">Enten det er en Reel på femten sekunder eller en kampanje over flere måneder, starter jeg med menneskene på andre siden av skjermen. Hva får dem til å stoppe opp, le, eller dele videre?</p>
+          <p class="body reveal" data-i18n="about.p2">Nå ser jeg etter en jobb som SoMe-rådgiver, der jeg kan jobbe tett med et team som bryr seg om både idé og resultat.</p>
+          <span class="label reveal" data-i18n="about.skills">Det jeg jobber med</span>
           <ul class="pills reveal">
-            <li class="pill">Innholdsstrategi</li><li class="pill">Instagram</li><li class="pill">TikTok</li><li class="pill">LinkedIn</li><li class="pill">Foto og video</li><li class="pill">Copy</li><li class="pill">Analyse</li><li class="pill">Kampanjeplanlegging</li>
+            <li class="pill" data-i18n="skill.1">Innholdsstrategi</li><li class="pill">Instagram</li><li class="pill">TikTok</li><li class="pill">LinkedIn</li><li class="pill" data-i18n="skill.5">Foto og video</li><li class="pill" data-i18n="skill.6">Copy</li><li class="pill" data-i18n="skill.7">Analyse</li><li class="pill" data-i18n="skill.8">Kampanjeplanlegging</li>
           </ul>
           <dl class="facts reveal">
-            <div><dt>Utdanning</dt><dd>Bachelor i digital markedsføring, Høyskolen Kristiania (2024–2027)</dd></div>
-            <div><dt>Eget foretak</dt><dd>Rams Creative, frilans med fire faste kunder</dd></div>
-            <div><dt>Verktøy</dt><dd>Claude, CapCut, Canva, Premiere Pro, Meta &amp; TikTok Insights, Google Workspace</dd></div>
-            <div><dt>Analyse og web</dt><dd>GA4, Hotjar, Looker Studio, Search Console, WordPress, Elementor, Meta Ads</dd></div>
+            <div><dt data-i18n="facts.edu">Utdanning</dt><dd data-i18n="facts.edu.v">Bachelor i digital markedsføring, Høyskolen Kristiania (2024–2027)</dd></div>
+            <div><dt data-i18n="facts.biz">Eget foretak</dt><dd data-i18n="facts.biz.v">Rams Creative, frilans med fire faste kunder</dd></div>
+            <div><dt data-i18n="facts.tools">Verktøy</dt><dd>Claude, CapCut, Canva, Premiere Pro, Meta &amp; TikTok Insights, Google Workspace</dd></div>
+            <div><dt data-i18n="facts.web">Analyse og web</dt><dd>GA4, Hotjar, Looker Studio, Search Console, WordPress, Elementor, Meta Ads</dd></div>
           </dl>
         </div>
       </div>
 
-      <div class="stats" aria-label="Resultater i tall">
-        <div class="stat reveal"><span class="stat-num" data-count="863000" data-suffix="+">863 000+</span><span class="stat-label">visninger på TikTok for Mufano</span></div>
-        <div class="stat reveal" style="--d:.08s"><span class="stat-num"><span data-count="100000" data-suffix="+">100 000+</span><small>kr</small></span><span class="stat-label">i salg av studioleie for M40 Studios</span></div>
-        <div class="stat reveal" style="--d:.16s"><span class="stat-num"><span data-count="46000">46 000</span><small>USD</small></span><span class="stat-label">samlet inn til Make-A-Wish med NOT Management</span></div>
-        <div class="stat reveal" style="--d:.24s"><span class="stat-num" data-count="25" data-suffix=" + 150">25 + 150</span><span class="stat-label">videoer og bilder i innholdsbanken til Punkt Oslo</span></div>
+      <div class="stats" aria-label="Resultater i tall" data-i18n-aria="aria.stats">
+        <div class="stat reveal"><span class="stat-num" data-count="863000" data-suffix="+">863 000+</span><span class="stat-label" data-i18n="stat.1">visninger på TikTok for Mufano</span></div>
+        <div class="stat reveal" style="--d:.08s"><span class="stat-num"><span data-count="100000" data-suffix="+">100 000+</span><small data-i18n="stat.2.unit">kr</small></span><span class="stat-label" data-i18n="stat.2">i salg av studioleie for M40 Studios</span></div>
+        <div class="stat reveal" style="--d:.16s"><span class="stat-num"><span data-count="46000">46 000</span><small>USD</small></span><span class="stat-label" data-i18n="stat.3">samlet inn til Make-A-Wish med NOT Management</span></div>
+        <div class="stat reveal" style="--d:.24s"><span class="stat-num" data-count="25" data-suffix=" + 150">25 + 150</span><span class="stat-label" data-i18n="stat.4">videoer og bilder i innholdsbanken til Punkt Oslo</span></div>
       </div>
 
       <div class="section-foot"><span>Daniel Ramslien</span><span>02 / 04</span></div>
@@ -341,13 +361,13 @@ section{position:relative}
   <!-- ======== 02 Arbeid ======== -->
   <section class="section" id="arbeid" aria-labelledby="arbeid-tittel">
     <div class="wrap">
-      <div class="eyebrow reveal"><span class="num">02</span><span class="rule"></span><span class="label">Arbeid</span></div>
+      <div class="eyebrow reveal"><span class="num">02</span><span class="rule"></span><span class="label" data-i18n="nav.work">Arbeid</span></div>
       <div class="work-head">
-        <h2 class="display h-xl reveal" id="arbeid-tittel">Utvalgte<br>case</h2>
-        <p class="lead reveal">Et utvalg av innhold og kampanjer jeg har laget, fra idé til ferdig post. Trykk på et case for å se video, tall og hva jeg gjorde.</p>
+        <h2 class="display h-xl reveal" id="arbeid-tittel" data-i18n-html="work.title">Utvalgte<br>case</h2>
+        <p class="lead reveal" data-i18n="work.lead">Et utvalg av innhold og kampanjer jeg har laget, fra idé til ferdig post. Trykk på et case for å se video, tall og hva jeg gjorde.</p>
       </div>
       <ul class="cases" id="cases"></ul>
-      <noscript><p class="body">Slå på JavaScript for å se casene.</p></noscript>
+      <noscript><p class="body">Slå på JavaScript for å se casene. / Enable JavaScript to see the work.</p></noscript>
       <div class="section-foot"><span>Daniel Ramslien</span><span>03 / 04</span></div>
     </div>
   </section>
@@ -357,22 +377,22 @@ section{position:relative}
     <div class="wrap">
       <div class="contact-grid">
         <div class="contact-copy">
-          <div class="eyebrow reveal"><span class="num">03</span><span class="rule"></span><span class="label">Kontakt</span></div>
-          <h2 class="display h-xl reveal" id="kontakt-tittel">La oss ta<br>en prat</h2>
-          <p class="lead reveal">Har du en ledig stilling, et prosjekt eller bare lyst på en kaffe? Send meg en melding, så svarer jeg innen to dager.</p>
+          <div class="eyebrow reveal"><span class="num">03</span><span class="rule"></span><span class="label" data-i18n="nav.contact">Kontakt</span></div>
+          <h2 class="display h-xl reveal" id="kontakt-tittel" data-i18n-html="contact.title">La oss ta<br>en prat</h2>
+          <p class="lead reveal" data-i18n="contact.lead">Har du en ledig stilling, et prosjekt eller bare lyst på en kaffe? Send meg en melding, så svarer jeg innen to dager.</p>
           <a class="contact-email reveal" href="mailto:daniel@ramscreative.no">daniel@ramscreative.no</a>
           <ul class="contact-list reveal">
-            <li><a href="tel:+4791168076"><span>Telefon — </span>+47 911 68 076</a></li>
+            <li><a href="tel:+4791168076"><span data-i18n="contact.phone">Telefon — </span>+47 911 68 076</a></li>
             <!-- Bytt ut lenken under med den nøyaktige adressen til LinkedIn-profilen din -->
             <li><a href="https://www.linkedin.com/search/results/people/?keywords=Daniel%20Ramslien" target="_blank" rel="noopener"><span>LinkedIn — </span>Daniel Ramslien</a></li>
-            <li><a href="https://beacons.ai/ramscreative" target="_blank" rel="noopener"><span>Portefølje — </span>beacons.ai/ramscreative</a></li>
+            <li><a href="https://beacons.ai/ramscreative" target="_blank" rel="noopener"><span data-i18n="contact.portfolio">Portefølje — </span>beacons.ai/ramscreative</a></li>
           </ul>
-          <span class="pill pill--accent reveal"><span class="dot" aria-hidden="true"></span>Tilgjengelig for nye roller</span>
+          <span class="pill pill--accent reveal"><span class="dot" aria-hidden="true"></span><span data-i18n="contact.open">Tilgjengelig for nye roller</span></span>
         </div>
         <div class="contact-orb reveal" aria-hidden="true"><div class="orb"></div></div>
       </div>
-      <div class="section-foot"><span>Takk for at du tok deg tid</span><span>04 / 04</span></div>
-      <p class="footer-note">© 2026 Daniel Ramslien · Rams Creative (Ramslien Creative ENK) · Referanser oppgis på forespørsel</p>
+      <div class="section-foot"><span data-i18n="foot.thanks">Takk for at du tok deg tid</span><span>04 / 04</span></div>
+      <p class="footer-note" data-i18n="foot.note">© 2026 Daniel Ramslien · Rams Creative (Ramslien Creative ENK) · Referanser oppgis på forespørsel</p>
     </div>
   </section>
 </main>
@@ -384,12 +404,12 @@ section{position:relative}
       <div class="dlg-media">
         <div class="viewer" id="dlg-viewer"></div>
         <p class="viewer-cap" id="dlg-cap"></p>
-        <div class="thumbs" id="dlg-thumbs" role="group" aria-label="Velg bilde eller video"></div>
+        <div class="thumbs" id="dlg-thumbs" role="group" aria-label="Velg bilde eller video" data-i18n-aria="dlg.thumbs"></div>
       </div>
       <div class="dlg-body">
         <div class="dlg-top">
           <span class="label" id="dlg-count"></span>
-          <button class="dlg-close" id="dlg-close" type="button" aria-label="Lukk case">
+          <button class="dlg-close" id="dlg-close" type="button" aria-label="Lukk case" data-i18n-aria="dlg.close">
             <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M2 2l12 12M14 2L2 14"/></svg>
           </button>
         </div>
@@ -397,7 +417,7 @@ section{position:relative}
         <p class="dlg-intro" id="dlg-intro"></p>
         <dl class="dlg-meta" id="dlg-meta"></dl>
         <div class="metrics" id="dlg-metrics"></div>
-        <span class="label dlg-sub">Hva jeg gjorde</span>
+        <span class="label dlg-sub" data-i18n="dlg.did">Hva jeg gjorde</span>
         <ul class="dlg-list" id="dlg-list"></ul>
         <div id="dlg-quote"></div>
         <div class="dlg-nav">
@@ -413,119 +433,221 @@ section{position:relative}
 document.documentElement.classList.add('js');
 
 /* ------------------------------------------------------------
+   Tekster på norsk og engelsk. Statisk tekst i HTML-en har
+   data-i18n="nøkkel" og hentes herfra når språket byttes.
+   ------------------------------------------------------------ */
+const I18N = {
+  no: {
+    'meta.title':'Daniel Ramslien – SoMe-rådgiver og digital markedsfører',
+    'meta.desc':'Portefølje 2026. Daniel Ramslien er digital markedsfører med hjertet i sosiale medier: kampanjer, innhold og analyse for Mufano, M40 Studios, Punkt Oslo, NOT Management og flere.',
+    'skip':'Hopp til innhold', 'aria.menu':'Hovedmeny', 'aria.intro':'Introduksjon', 'aria.stats':'Resultater i tall', 'aria.lang':'Velg språk',
+    'nav.about':'Om meg', 'nav.work':'Arbeid', 'nav.contact':'Kontakt',
+    'hero.kicker':'Digital markedsfører', 'hero.title':'Hei, jeg er Daniel.',
+    'foot.portfolio':'Portefølje 2026',
+    'about.title':'Hei, jeg<br>er Daniel', 'about.alt':'Portrett av Daniel Ramslien',
+    'about.lead':'Jeg er digital markedsfører med hjertet i sosiale medier. Jeg liker å finne historien i en merkevare og fortelle den på en måte som passer feeden.',
+    'about.p1':'Enten det er en Reel på femten sekunder eller en kampanje over flere måneder, starter jeg med menneskene på andre siden av skjermen. Hva får dem til å stoppe opp, le, eller dele videre?',
+    'about.p2':'Nå ser jeg etter en jobb som SoMe-rådgiver, der jeg kan jobbe tett med et team som bryr seg om både idé og resultat.',
+    'about.skills':'Det jeg jobber med',
+    'skill.1':'Innholdsstrategi','skill.5':'Foto og video','skill.6':'Copy','skill.7':'Analyse','skill.8':'Kampanjeplanlegging',
+    'facts.edu':'Utdanning', 'facts.edu.v':'Bachelor i digital markedsføring, Høyskolen Kristiania (2024–2027)',
+    'facts.biz':'Eget foretak', 'facts.biz.v':'Rams Creative, frilans med fire faste kunder',
+    'facts.tools':'Verktøy', 'facts.web':'Analyse og web',
+    'stat.1':'visninger på TikTok for Mufano', 'stat.2':'i salg av studioleie for M40 Studios', 'stat.2.unit':'kr',
+    'stat.3':'samlet inn til Make-A-Wish med NOT Management', 'stat.4':'videoer og bilder i innholdsbanken til Punkt Oslo',
+    'work.title':'Utvalgte<br>case', 'work.lead':'Et utvalg av innhold og kampanjer jeg har laget, fra idé til ferdig post. Trykk på et case for å se video, tall og hva jeg gjorde.',
+    'contact.title':'La oss ta<br>en prat', 'contact.lead':'Har du en ledig stilling, et prosjekt eller bare lyst på en kaffe? Send meg en melding, så svarer jeg innen to dager.',
+    'contact.phone':'Telefon — ', 'contact.portfolio':'Portefølje — ', 'contact.open':'Tilgjengelig for nye roller',
+    'foot.thanks':'Takk for at du tok deg tid',
+    'foot.note':'© 2026 Daniel Ramslien · Rams Creative (Ramslien Creative ENK) · Referanser oppgis på forespørsel',
+    'dlg.close':'Lukk case', 'dlg.did':'Hva jeg gjorde', 'dlg.thumbs':'Velg bilde eller video',
+    'dlg.client':'Kunde', 'dlg.role':'Rolle', 'dlg.period':'Periode', 'dlg.tags':'Kanaler og fag',
+    'card.video':'Video', 'card.images':'Bilder', 'card.view':'Se case', 'card.for':'for'
+  },
+  en: {
+    'meta.title':'Daniel Ramslien – Social Media Advisor and Digital Marketer',
+    'meta.desc':'Portfolio 2026. Daniel Ramslien is a digital marketer with a heart for social media: campaigns, content and analytics for Mufano, M40 Studios, Punkt Oslo, NOT Management and more.',
+    'skip':'Skip to content', 'aria.menu':'Main menu', 'aria.intro':'Introduction', 'aria.stats':'Results in numbers', 'aria.lang':'Choose language',
+    'nav.about':'About', 'nav.work':'Work', 'nav.contact':'Contact',
+    'hero.kicker':'Digital marketer', 'hero.title':'Hi, I’m Daniel.',
+    'foot.portfolio':'Portfolio 2026',
+    'about.title':'Hi, I’m<br>Daniel', 'about.alt':'Portrait of Daniel Ramslien',
+    'about.lead':'I’m a digital marketer with a heart for social media. I love finding the story in a brand and telling it in a way that fits the feed.',
+    'about.p1':'Whether it’s a fifteen-second Reel or a campaign running for months, I start with the people on the other side of the screen. What makes them stop, laugh, or share?',
+    'about.p2':'Right now I’m looking for a role as a social media advisor, working closely with a team that cares about both the idea and the results.',
+    'about.skills':'What I work with',
+    'skill.1':'Content strategy','skill.5':'Photo and video','skill.6':'Copywriting','skill.7':'Analytics','skill.8':'Campaign planning',
+    'facts.edu':'Education', 'facts.edu.v':'Bachelor’s in Digital Marketing, Kristiania University of Applied Sciences (2024–2027)',
+    'facts.biz':'Own business', 'facts.biz.v':'Rams Creative, freelance with four regular clients',
+    'facts.tools':'Tools', 'facts.web':'Analytics and web',
+    'stat.1':'views on TikTok for Mufano', 'stat.2':'in studio rental sales for M40 Studios', 'stat.2.unit':'NOK',
+    'stat.3':'raised for Make-A-Wish with NOT Management', 'stat.4':'videos and photos in Punkt Oslo’s content bank',
+    'work.title':'Selected<br>work', 'work.lead':'A selection of content and campaigns I’ve made, from idea to finished post. Tap a case to see video, numbers and what I did.',
+    'contact.title':'Let’s<br>talk', 'contact.lead':'Have an open position, a project, or just fancy a coffee? Send me a message and I’ll reply within two days.',
+    'contact.phone':'Phone — ', 'contact.portfolio':'Portfolio — ', 'contact.open':'Open to new roles',
+    'foot.thanks':'Thanks for your time',
+    'foot.note':'© 2026 Daniel Ramslien · Rams Creative (Ramslien Creative ENK) · References available on request',
+    'dlg.close':'Close case', 'dlg.did':'What I did', 'dlg.thumbs':'Choose image or video',
+    'dlg.client':'Client', 'dlg.role':'Role', 'dlg.period':'Period', 'dlg.tags':'Channels and skills',
+    'card.video':'Video', 'card.images':'Images', 'card.view':'View case', 'card.for':'for'
+  }
+};
+
+/* ------------------------------------------------------------
    Casene. Tall og beskrivelser er hentet fra Master CV 2026.
    ------------------------------------------------------------ */
 const V = 'assets/video/', I = 'assets/img/', P = 'assets/img/posters/';
 const CASES = [
   {
-    id:'mufano', card:'Låtlansering', title:'Låtlansering på TikTok',
-    client:'Mufano', clientDesc:'TikToker og influenser', year:'2026', period:'Jan. 2026 – nå',
-    role:'Markedsfører og veileder (via Rams Creative)', tags:['TikTok','Video'],
-    result:'863 000+ visninger', cover:P+'mufano.jpg', preview:V+'mufano.mp4',
-    intro:'Fire TikTok-videoer for lanseringen av Mufanos egen låt, planlagt og produsert av meg.',
-    metrics:[['863 000+','visninger'],['9,1 %','engasjementsrate, over dobbelt så høyt som plattformsnittet på ca. 4 %'],['78 000+','interaksjoner'],['1,8 %','delingsrate']],
-    bullets:[
-      'Planla og produserte fire TikTok-videoer for lanseringen av hans egen låt.',
-      'Videoene fikk 863 000+ visninger og 78 000+ interaksjoner: 57 000 likes, 15 900 delinger, 4 800 saves og 900 kommentarer.',
-      'Oppnådde 9,1 % engasjementsrate og 1,8 % delingsrate.',
-      'Veileder Mufano i innholdsstrategi, publiseringsrytme og analyse, slik at han selv kan drive kanalene videre.'
-    ],
+    id:'mufano', year:'2026', cover:P+'mufano.jpg', preview:V+'mufano.mp4',
     media:[
-      {type:'video',src:V+'mufano.mp4',poster:P+'mufano.jpg',cap:'Promovideo for låtlanseringen'},
-      {type:'image',src:I+'mufano-views.webp',cap:'Visninger på TikTok-videoene'}
-    ]
+      {type:'video',src:V+'mufano.mp4',poster:P+'mufano.jpg',cap:{no:'Promovideo for låtlanseringen',en:'Promo video for the song launch'}},
+      {type:'image',src:I+'mufano-views.webp',cap:{no:'Visninger på TikTok-videoene',en:'Views on the TikTok videos'}}
+    ],
+    t:{
+      no:{card:'Låtlansering', title:'Låtlansering på TikTok', client:'Mufano', clientDesc:'TikToker og influenser', period:'Jan. 2026 – nå',
+        role:'Markedsfører og veileder (via Rams Creative)', tags:['TikTok','Video'], result:'863 000+ visninger',
+        intro:'Fire TikTok-videoer for lanseringen av Mufanos egen låt, planlagt og produsert av meg.',
+        metrics:[['863 000+','visninger'],['9,1 %','engasjementsrate, over dobbelt så høyt som plattformsnittet på ca. 4 %'],['78 000+','interaksjoner'],['1,8 %','delingsrate']],
+        bullets:['Planla og produserte fire TikTok-videoer for lanseringen av hans egen låt.',
+          'Videoene fikk 863 000+ visninger og 78 000+ interaksjoner: 57 000 likes, 15 900 delinger, 4 800 saves og 900 kommentarer.',
+          'Oppnådde 9,1 % engasjementsrate og 1,8 % delingsrate.',
+          'Veileder Mufano i innholdsstrategi, publiseringsrytme og analyse, slik at han selv kan drive kanalene videre.']},
+      en:{card:'Song launch', title:'Song launch on TikTok', client:'Mufano', clientDesc:'TikToker and influencer', period:'Jan 2026 – present',
+        role:'Marketer and mentor (via Rams Creative)', tags:['TikTok','Video'], result:'863,000+ views',
+        intro:'Four TikTok videos for the launch of Mufano’s own song, planned and produced by me.',
+        metrics:[['863,000+','views'],['9.1%','engagement rate, more than double the platform average of about 4%'],['78,000+','interactions'],['1.8%','share rate']],
+        bullets:['Planned and produced four TikTok videos for the launch of his own song.',
+          'The videos got 863,000+ views and 78,000+ interactions: 57,000 likes, 15,900 shares, 4,800 saves and 900 comments.',
+          'Achieved a 9.1% engagement rate and a 1.8% share rate.',
+          'Mentor Mufano on content strategy, posting cadence and analytics, so he can run his channels on his own.']}
+    }
   },
   {
-    id:'m40', card:'Studiokampanje', title:'Fra null til 20 faste kunder',
-    client:'M40 Studios', clientDesc:'M40 Eiendom AS', year:'2026', period:'Jan. – sep. 2026',
-    role:'Marketing & Communication (via Rams Creative)', tags:['Sosiale medier','Kampanje','Video'],
-    result:'100 000 kr+ i salg', cover:P+'m40.jpg', preview:V+'m40.mp4',
-    intro:'Jeg bygget merkevaren M40 Studios fra bunnen av, og hadde ansvar for alt fra kampanjer og innhold til salg og kunderelasjoner.',
-    metrics:[['100 000 kr+','i salg av studioleie fra kampanjen i mars'],['8','nye fastbetalende kunder fra én konverteringsvideo'],['16 000','visninger på konverteringsvideoen'],['20','faste kunder via sosiale medier']],
-    bullets:[
-      'Utviklet og kjørte kampanje i mars som ga 100 000 kr+ i salg av studioleie.',
-      'Produserte konverteringsvideo som ga 8 nye fastbetalende kunder på 16 000 visninger.',
-      'Bygget merkevaren M40 Studios fra bunnen av til 20 faste kunder via sosiale medier.',
-      'Ansvar for salg, kunderelasjoner, kampanjebygging og innholdsproduksjon, inkludert grafisk design i Canva, Photoshop og Illustrator.'
-    ],
-    media:[{type:'video',src:V+'m40.mp4',poster:P+'m40.jpg',cap:'Video for M40 Studios'}]
+    id:'m40', year:'2026', cover:P+'m40.jpg', preview:V+'m40.mp4',
+    media:[{type:'video',src:V+'m40.mp4',poster:P+'m40.jpg',cap:{no:'Video for M40 Studios',en:'Video for M40 Studios'}}],
+    t:{
+      no:{card:'Studiokampanje', title:'Fra null til 20 faste kunder', client:'M40 Studios', clientDesc:'M40 Eiendom AS', period:'Jan. – sep. 2026',
+        role:'Marketing & Communication (via Rams Creative)', tags:['Sosiale medier','Kampanje','Video'], result:'100 000 kr+ i salg',
+        intro:'Jeg bygget merkevaren M40 Studios fra bunnen av, og hadde ansvar for alt fra kampanjer og innhold til salg og kunderelasjoner.',
+        metrics:[['100 000 kr+','i salg av studioleie fra kampanjen i mars'],['8','nye fastbetalende kunder fra én konverteringsvideo'],['16 000','visninger på konverteringsvideoen'],['20','faste kunder via sosiale medier']],
+        bullets:['Utviklet og kjørte kampanje i mars som ga 100 000 kr+ i salg av studioleie.',
+          'Produserte konverteringsvideo som ga 8 nye fastbetalende kunder på 16 000 visninger.',
+          'Bygget merkevaren M40 Studios fra bunnen av til 20 faste kunder via sosiale medier.',
+          'Ansvar for salg, kunderelasjoner, kampanjebygging og innholdsproduksjon, inkludert grafisk design i Canva, Photoshop og Illustrator.']},
+      en:{card:'Studio campaign', title:'From zero to 20 regular clients', client:'M40 Studios', clientDesc:'M40 Eiendom AS', period:'Jan – Sep 2026',
+        role:'Marketing & Communication (via Rams Creative)', tags:['Social media','Campaign','Video'], result:'NOK 100,000+ in sales',
+        intro:'I built the M40 Studios brand from scratch and was responsible for everything from campaigns and content to sales and client relations.',
+        metrics:[['NOK 100,000+','in studio rental sales from the March campaign'],['8','new paying regular clients from one conversion video'],['16,000','views on the conversion video'],['20','regular clients through social media']],
+        bullets:['Developed and ran a campaign in March that generated NOK 100,000+ in studio rental sales.',
+          'Produced a conversion video that brought in 8 new paying regular clients from 16,000 views.',
+          'Built the M40 Studios brand from scratch to 20 regular clients through social media.',
+          'Responsible for sales, client relations, campaign building and content production, including graphic design in Canva, Photoshop and Illustrator.']}
+    }
   },
   {
-    id:'ride-for-wishes', card:'Ride for Wishes', title:'Ride for Wishes – Portugal Edition',
-    client:'NOT Management', clientDesc:'Til inntekt for Make-A-Wish', year:'2026', period:'Mars – apr. 2026',
-    role:'Praksisstudent / marketing intern', tags:['Livestream','Innhold','Planlegging'],
-    result:'46 000 USD samlet inn', cover:I+'ride-for-wishes.webp', coverPos:'0% 50%',
-    intro:'Streameren Hitch, en av talentene til NOT Management, er kjent for å ta haiking til Twitch. Idéen hans var «Random Tandem»: å ta med andre creators ut av komfortsonen på en tandemsykkel. Sammen med Make-A-Wish ble det til Ride for Wishes, en veldedighetstur langs kysten av Portugal som ble livestreamet hele veien.',
-    metrics:[['46 000 USD','samlet inn til Make-A-Wish'],['32,7 mill.','watch hours'],['11 000','samtidige seere på det meste'],['1 000+ km','på 26 dager med 12 creators']],
-    bullets:[
-      'Bidro med innholdsideer til en tur der 12 creators syklet 1 000+ km over 26 dager.',
-      'Researchet og detaljplanla rute, gjester, sponsorer og medieoppfølging sammen med et team på 10+ personer.',
-      'Livestreamen gikk på 3 plattformer og fikk 32,7 mill. watch hours og opptil 11 000 samtidige seere.',
-      'Kampanjen samlet inn 46 000 USD for å oppfylle ønsker for alvorlig syke barn.'
-    ],
-    quote:{text:'… our interns (Simon Brusdal, Kathalina Nunez-Garate, Daniel Ramslien) researching every detail of the trip …',by:'Lynn, NOT Management, i LinkedIn-innlegget om turen'},
+    id:'ride-for-wishes', year:'2026', cover:I+'ride-for-wishes.webp', coverPos:'0% 50%',
+    quote:{text:'… our interns (Simon Brusdal, Kathalina Nunez-Garate, Daniel Ramslien) researching every detail of the trip …',
+      by:{no:'Lynn, NOT Management, i LinkedIn-innlegget om turen',en:'Lynn, NOT Management, in her LinkedIn post about the ride'}},
     media:[
-      {type:'image',src:I+'ride-for-wishes.webp',cap:'Ride for Wishes – Portugal Edition med Hitch'},
-      {type:'image',src:I+'daniel-not.webp',cap:'Praksisstudent hos NOT Management'}
-    ]
+      {type:'image',src:I+'ride-for-wishes.webp',cap:{no:'Ride for Wishes – Portugal Edition med Hitch',en:'Ride for Wishes – Portugal Edition with Hitch'}},
+      {type:'image',src:I+'daniel-not.webp',cap:{no:'Praksisstudent hos NOT Management',en:'Intern at NOT Management'}}
+    ],
+    t:{
+      no:{card:'Ride for Wishes', title:'Ride for Wishes – Portugal Edition', client:'NOT Management', clientDesc:'Til inntekt for Make-A-Wish', period:'Mars – apr. 2026',
+        role:'Praksisstudent / marketing intern', tags:['Livestream','Innhold','Planlegging'], result:'46 000 USD samlet inn',
+        intro:'Streameren Hitch, en av talentene til NOT Management, er kjent for å ta haiking til Twitch. Idéen hans var «Random Tandem»: å ta med andre creators ut av komfortsonen på en tandemsykkel. Sammen med Make-A-Wish ble det til Ride for Wishes, en veldedighetstur langs kysten av Portugal som ble livestreamet hele veien.',
+        metrics:[['46 000 USD','samlet inn til Make-A-Wish'],['32,7 mill.','watch hours'],['11 000','samtidige seere på det meste'],['1 000+ km','på 26 dager med 12 creators']],
+        bullets:['Bidro med innholdsideer til en tur der 12 creators syklet 1 000+ km over 26 dager.',
+          'Researchet og detaljplanla rute, gjester, sponsorer og medieoppfølging sammen med et team på 10+ personer.',
+          'Livestreamen gikk på 3 plattformer og fikk 32,7 mill. watch hours og opptil 11 000 samtidige seere.',
+          'Kampanjen samlet inn 46 000 USD for å oppfylle ønsker for alvorlig syke barn.']},
+      en:{card:'Ride for Wishes', title:'Ride for Wishes – Portugal Edition', client:'NOT Management', clientDesc:'In support of Make-A-Wish', period:'Mar – Apr 2026',
+        role:'Marketing intern', tags:['Livestream','Content','Planning'], result:'USD 46,000 raised',
+        intro:'Streamer Hitch, one of NOT Management’s talents, is known for bringing hitchhiking to Twitch. His idea was “Random Tandem”: taking other creators out of their comfort zone on a tandem bike. Together with Make-A-Wish it became Ride for Wishes, a charity ride along the coast of Portugal, livestreamed all the way.',
+        metrics:[['USD 46,000','raised for Make-A-Wish'],['32.7M','watch hours'],['11,000','peak concurrent viewers'],['1,000+ km','in 26 days with 12 creators']],
+        bullets:['Contributed content ideas for a ride where 12 creators cycled 1,000+ km over 26 days.',
+          'Researched and planned the route, guests, sponsors and media follow-up in detail with a team of 10+ people.',
+          'The livestream ran on 3 platforms and reached 32.7M watch hours and up to 11,000 concurrent viewers.',
+          'The campaign raised USD 46,000 to grant wishes for critically ill children.']}
+    }
   },
   {
-    id:'punkt-oslo', card:'Arendalsuka', title:'Arendalsuka og innholdsbank for høsten',
-    client:'Punkt Oslo', clientDesc:'Møte- og eventsted i Oslo', year:'2026', period:'Mars – aug. 2026',
-    role:'Innholdsprodusent og lydtekniker (via Rams Creative)', tags:['LinkedIn','Video','Lyd'],
-    result:'15 videoer på stedet', cover:P+'arendalsuka.jpg', preview:V+'arendalsuka.mp4',
-    intro:'Innhold fra tre arrangementer, blant annet sommerfest og Arendalsuka, og en innholdsbank som dekker publiseringen gjennom hele høsten.',
-    metrics:[['15','videoer filmet og klippet på stedet under Arendalsuka'],['10','podcastinnspillinger med lyd rigget og kjørt'],['25 + 150','videoer og utvalgte bilder i innholdsbanken'],['3','arrangementer dekket']],
-    bullets:[
-      'Produserte innhold fra 3 arrangementer, blant annet sommerfest og Arendalsuka.',
-      'Under Arendalsuka filmet og klippet jeg 15 videoer på stedet til LinkedIn-kanalen deres.',
-      'Rigget og kjørte lyd for 10 podcastinnspillinger i paviljongen.',
-      'Leverte en innholdsbank på 25 videoer og 150 utvalgte bilder som dekker publiseringen deres gjennom hele høsten.'
-    ],
+    id:'punkt-oslo', year:'2026', cover:P+'arendalsuka.jpg', preview:V+'arendalsuka.mp4',
     media:[
-      {type:'video',src:V+'arendalsuka.mp4',poster:P+'arendalsuka.jpg',cap:'Arendalsuka, 11. august'},
-      {type:'video',src:V+'punkt-oslo-2.mp4',poster:P+'punkt-oslo-2.jpg',cap:'Sommerfest hos Punkt Oslo'},
-      {type:'video',src:V+'punkt-oslo-1.mp4',poster:P+'punkt-oslo-1.jpg',cap:'Falling Walls Lab Oslo hos Punkt Oslo'}
-    ]
+      {type:'video',src:V+'arendalsuka.mp4',poster:P+'arendalsuka.jpg',cap:{no:'Arendalsuka, 11. august',en:'Arendalsuka, August 11'}},
+      {type:'video',src:V+'punkt-oslo-2.mp4',poster:P+'punkt-oslo-2.jpg',cap:{no:'Sommerfest hos Punkt Oslo',en:'Summer party at Punkt Oslo'}},
+      {type:'video',src:V+'punkt-oslo-1.mp4',poster:P+'punkt-oslo-1.jpg',cap:{no:'Falling Walls Lab Oslo hos Punkt Oslo',en:'Falling Walls Lab Oslo at Punkt Oslo'}}
+    ],
+    t:{
+      no:{card:'Arendalsuka', title:'Arendalsuka og innholdsbank for høsten', client:'Punkt Oslo', clientDesc:'Møte- og eventsted i Oslo', period:'Mars – aug. 2026',
+        role:'Innholdsprodusent og lydtekniker (via Rams Creative)', tags:['LinkedIn','Video','Lyd'], result:'15 videoer på stedet',
+        intro:'Innhold fra tre arrangementer, blant annet sommerfest og Arendalsuka, og en innholdsbank som dekker publiseringen gjennom hele høsten.',
+        metrics:[['15','videoer filmet og klippet på stedet under Arendalsuka'],['10','podcastinnspillinger med lyd rigget og kjørt'],['25 + 150','videoer og utvalgte bilder i innholdsbanken'],['3','arrangementer dekket']],
+        bullets:['Produserte innhold fra 3 arrangementer, blant annet sommerfest og Arendalsuka.',
+          'Under Arendalsuka filmet og klippet jeg 15 videoer på stedet til LinkedIn-kanalen deres.',
+          'Rigget og kjørte lyd for 10 podcastinnspillinger i paviljongen.',
+          'Leverte en innholdsbank på 25 videoer og 150 utvalgte bilder som dekker publiseringen deres gjennom hele høsten.']},
+      en:{card:'Arendalsuka', title:'Arendalsuka and a content bank for the fall', client:'Punkt Oslo', clientDesc:'Meeting and event venue in Oslo', period:'Mar – Aug 2026',
+        role:'Content producer and sound engineer (via Rams Creative)', tags:['LinkedIn','Video','Audio'], result:'15 videos on location',
+        intro:'Content from three events, including a summer party and Arendalsuka, Norway’s largest political festival, plus a content bank covering their posting throughout the fall.',
+        metrics:[['15','videos filmed and edited on location at Arendalsuka'],['10','podcast recordings with sound rigged and run'],['25 + 150','videos and selected photos in the content bank'],['3','events covered']],
+        bullets:['Produced content from 3 events, including a summer party and Arendalsuka.',
+          'At Arendalsuka I filmed and edited 15 videos on location for their LinkedIn channel.',
+          'Rigged and ran sound for 10 podcast recordings in the pavilion.',
+          'Delivered a content bank of 25 videos and 150 selected photos covering their posting throughout the fall.']}
+    }
   },
   {
-    id:'knytt', card:'Knytt.org', title:'Knytt: nettside, analyse og partnere',
-    client:'Knytt SB', clientDesc:'Studentbedrift', year:'2025', period:'Sep. – des. 2025',
-    role:'Kommunikasjonsleder og gründer', tags:['Nettside','Analyse','SEO'],
-    result:'82 % scroll depth', cover:P+'knytt.jpg', preview:V+'knytt.mp4',
-    intro:'Knytt er en studentbedrift som arrangerer lavterskel events for studenter og unge voksne i Oslo. Jeg ledet kommunikasjonen og bygget nettsiden med nettbutikk fra bunnen av.',
-    metrics:[['62 %','returnerende brukere'],['82 %','scroll depth'],['100','i SEO-score'],['5','partnere']],
-    bullets:[
-      'Ledet kommunikasjonen for studentbedriften.',
-      'Bygget knytt.org med nettbutikk fra bunnen av i WordPress og Elementor. Siden er nå tatt ned.',
-      'Målte trafikk, brukeratferd og konvertering i GA4 og Hotjar. Nettsiden endte på 62 % returnerende brukere, 82 % scroll depth og 100 i SEO-score.',
-      'Sikret samarbeid med 5 partnere: NoHo Norway, Anker Studentbolig, Mesh Oslo, Punkt Oslo og SiO.'
-    ],
+    id:'knytt', year:'2025', cover:P+'knytt.jpg', preview:V+'knytt.mp4',
     media:[
-      {type:'video',src:V+'knytt.mp4',poster:P+'knytt.jpg',cap:'Video for Knytt, klippet av meg'},
-      {type:'image',src:I+'knytt-landing.webp',cap:'Landingssiden på knytt.org'},
-      {type:'image',src:I+'knytt-team.webp',cap:'Om oss-siden'},
-      {type:'image',src:I+'knytt-shop.webp',cap:'Nettbutikken'},
-      {type:'image',src:I+'knytt-heatmap.webp',cap:'Heatmap av landingssiden'},
-      {type:'image',src:I+'knytt-hotjar.webp',cap:'Brukeratferd målt i Hotjar'},
-      {type:'image',src:I+'knytt-looker.webp',cap:'Trafikk i Looker Studio'},
-      {type:'image',src:I+'knytt-pagespeed.webp',cap:'PageSpeed på mobil, med SEO-score 100'},
-      {type:'image',src:I+'knytt-serp.webp',cap:'Knytt i Google-søk'},
-      {type:'image',src:I+'knytt-alder.webp',cap:'Aldersfordeling i publikum'}
-    ]
+      {type:'video',src:V+'knytt.mp4',poster:P+'knytt.jpg',cap:{no:'Video for Knytt, klippet av meg',en:'Video for Knytt, edited by me'}},
+      {type:'image',src:I+'knytt-landing.webp',cap:{no:'Landingssiden på knytt.org',en:'Landing page on knytt.org'}},
+      {type:'image',src:I+'knytt-team.webp',cap:{no:'Om oss-siden',en:'About us page'}},
+      {type:'image',src:I+'knytt-shop.webp',cap:{no:'Nettbutikken',en:'Online store'}},
+      {type:'image',src:I+'knytt-heatmap.webp',cap:{no:'Heatmap av landingssiden',en:'Heatmap of the landing page'}},
+      {type:'image',src:I+'knytt-hotjar.webp',cap:{no:'Brukeratferd målt i Hotjar',en:'User behavior tracked in Hotjar'}},
+      {type:'image',src:I+'knytt-looker.webp',cap:{no:'Trafikk i Looker Studio',en:'Traffic in Looker Studio'}},
+      {type:'image',src:I+'knytt-pagespeed.webp',cap:{no:'PageSpeed på mobil, med SEO-score 100',en:'PageSpeed on mobile, with an SEO score of 100'}},
+      {type:'image',src:I+'knytt-serp.webp',cap:{no:'Knytt i Google-søk',en:'Knytt in Google search'}},
+      {type:'image',src:I+'knytt-alder.webp',cap:{no:'Aldersfordeling i publikum',en:'Audience age distribution'}}
+    ],
+    t:{
+      no:{card:'Knytt.org', title:'Knytt: nettside, analyse og partnere', client:'Knytt SB', clientDesc:'Studentbedrift', period:'Sep. – des. 2025',
+        role:'Kommunikasjonsleder og gründer', tags:['Nettside','Analyse','SEO'], result:'82 % scroll depth',
+        intro:'Knytt er en studentbedrift som arrangerer lavterskel events for studenter og unge voksne i Oslo. Jeg ledet kommunikasjonen og bygget nettsiden med nettbutikk fra bunnen av.',
+        metrics:[['62 %','returnerende brukere'],['82 %','scroll depth'],['100','i SEO-score'],['5','partnere']],
+        bullets:['Ledet kommunikasjonen for studentbedriften.',
+          'Bygget knytt.org med nettbutikk fra bunnen av i WordPress og Elementor. Siden er nå tatt ned.',
+          'Målte trafikk, brukeratferd og konvertering i GA4 og Hotjar. Nettsiden endte på 62 % returnerende brukere, 82 % scroll depth og 100 i SEO-score.',
+          'Sikret samarbeid med 5 partnere: NoHo Norway, Anker Studentbolig, Mesh Oslo, Punkt Oslo og SiO.']},
+      en:{card:'Knytt.org', title:'Knytt: website, analytics and partners', client:'Knytt SB', clientDesc:'Student company', period:'Sep – Dec 2025',
+        role:'Head of communications and founder', tags:['Website','Analytics','SEO'], result:'82% scroll depth',
+        intro:'Knytt is a student company hosting low-threshold events for students and young adults in Oslo. I led communications and built the website with an online store from scratch.',
+        metrics:[['62%','returning users'],['82%','scroll depth'],['100','SEO score'],['5','partners']],
+        bullets:['Led communications for the student company.',
+          'Built knytt.org with an online store from scratch in WordPress and Elementor. The site has since been taken down.',
+          'Tracked traffic, user behavior and conversion in GA4 and Hotjar. The site ended at 62% returning users, 82% scroll depth and an SEO score of 100.',
+          'Secured partnerships with 5 partners: NoHo Norway, Anker Studentbolig, Mesh Oslo, Punkt Oslo and SiO.']}
+    }
   },
   {
-    id:'kristiania', card:'Eventinnhold', title:'Eventinnhold for Høyskolen Kristiania',
-    client:'Høyskolen Kristiania', clientDesc:'Praksis', year:'2026', period:'Apr. 2026',
-    role:'Innholdsprodusent (praksisstudent)', tags:['LinkedIn','Instagram','Video'],
-    result:'10 videoer fra 3 arrangementer', cover:P+'kristiania.jpg', preview:V+'kristiania.mp4',
-    intro:'Video og foto fra tre arrangementer til skolens egne kanaler, og teknisk ansvar under praksisdagen for masterstudenter.',
-    metrics:[['10','videoer'],['3','arrangementer'],['20','bedrifter på praksisdagen'],['ca. 85','deltakere']],
-    bullets:[
-      'Filmet, fotograferte og klippet 10 videoer fra 3 arrangementer, publisert på skolens LinkedIn og Instagram.',
-      'Hadde dedikert ansvar for at skjermer og scenepresentasjon fungerte teknisk under praksisdagen for masterstudenter, med 20 bedrifter og ca. 85 deltakere.'
-    ],
-    media:[{type:'video',src:V+'kristiania.mp4',poster:P+'kristiania.jpg',cap:'Workshop, 16. april'}]
+    id:'kristiania', year:'2026', cover:P+'kristiania.jpg', preview:V+'kristiania.mp4',
+    media:[{type:'video',src:V+'kristiania.mp4',poster:P+'kristiania.jpg',cap:{no:'Workshop, 16. april',en:'Workshop, April 16'}}],
+    t:{
+      no:{card:'Eventinnhold', title:'Eventinnhold for Høyskolen Kristiania', client:'Høyskolen Kristiania', clientDesc:'Praksis', period:'Apr. 2026',
+        role:'Innholdsprodusent (praksisstudent)', tags:['LinkedIn','Instagram','Video'], result:'10 videoer fra 3 arrangementer',
+        intro:'Video og foto fra tre arrangementer til skolens egne kanaler, og teknisk ansvar under praksisdagen for masterstudenter.',
+        metrics:[['10','videoer'],['3','arrangementer'],['20','bedrifter på praksisdagen'],['ca. 85','deltakere']],
+        bullets:['Filmet, fotograferte og klippet 10 videoer fra 3 arrangementer, publisert på skolens LinkedIn og Instagram.',
+          'Hadde dedikert ansvar for at skjermer og scenepresentasjon fungerte teknisk under praksisdagen for masterstudenter, med 20 bedrifter og ca. 85 deltakere.']},
+      en:{card:'Event content', title:'Event content for Kristiania University', client:'Kristiania University of Applied Sciences', clientDesc:'Internship', period:'Apr 2026',
+        role:'Content producer (intern)', tags:['LinkedIn','Instagram','Video'], result:'10 videos from 3 events',
+        intro:'Video and photo from three events for the school’s own channels, plus technical responsibility during the internship day for master’s students.',
+        metrics:[['10','videos'],['3','events'],['20','companies at the internship day'],['approx. 85','participants']],
+        bullets:['Filmed, photographed and edited 10 videos from 3 events, published on the school’s LinkedIn and Instagram.',
+          'Was responsible for screens and stage presentations running smoothly during the internship day for master’s students, with 20 companies and approx. 85 participants.']}
+    }
   }
 ];
 
@@ -533,84 +655,107 @@ const esc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':
 const ICON_PLAY = '<svg viewBox="0 0 12 12" aria-hidden="true"><path d="M2.5 1.5v9l8-4.5z"/></svg>';
 const ICON_ARROW = '<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 12L12 4M5.5 4H12v6.5"/></svg>';
 const canHover = window.matchMedia('(hover:hover) and (pointer:fine)').matches;
+const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+const $ = id => document.getElementById(id);
+
+/* ---------- Språk ---------- */
+let lang = 'no';
+try {
+  const fromUrl = new URLSearchParams(location.search).get('lang');
+  const saved = localStorage.getItem('lang');
+  if (fromUrl === 'en' || fromUrl === 'no') lang = fromUrl;
+  else if (saved === 'en' || saved === 'no') lang = saved;
+} catch (e) {}
+const tr = key => (I18N[lang] && I18N[lang][key]) ?? I18N.no[key] ?? '';
+const tc = c => c.t[lang] || c.t.no;
+const pick = v => (v && typeof v === 'object') ? (v[lang] || v.no) : v;
+const fmt = n => Math.round(n).toLocaleString(lang === 'en' ? 'en-US' : 'nb-NO');
 
 /* ---------- Bygg kortene ---------- */
-const list = document.getElementById('cases');
-list.innerHTML = CASES.map((c,i) => {
-  const hasVideo = c.media.some(m => m.type === 'video');
-  return `
-  <li class="case reveal" style="--d:${(i%3)*0.08}s" data-index="${i}">
-    <div class="case-media">
-      <img src="${c.cover}" alt="" loading="lazy"${c.coverPos ? ` style="object-position:${c.coverPos}"` : ''}>
-      ${c.preview ? `<video muted loop playsinline preload="none" data-src="${c.preview}"></video>` : ''}
-      <span class="case-badge">${hasVideo ? ICON_PLAY + 'Video' : 'Bilder'}</span>
-      <span class="case-open" aria-hidden="true">${ICON_ARROW}</span>
-    </div>
-    <div class="case-body">
-      <div class="case-title-row"><h3 class="case-title">${esc(c.card)}</h3><span class="case-year">${c.year}</span></div>
-      <p class="case-client">${esc(c.client)}</p>
-      <p class="case-result">${esc(c.result)}</p>
-      <ul class="pills">${c.tags.map(t => `<li class="pill">${esc(t)}</li>`).join('')}</ul>
-    </div>
-    <button class="case-link" type="button" data-open="${i}"><span>Se case: ${esc(c.title)} for ${esc(c.client)}</span></button>
-  </li>`;
-}).join('');
+const list = $('cases');
+function renderCards(){
+  list.innerHTML = CASES.map((c,i) => {
+    const x = tc(c);
+    const hasVideo = c.media.some(m => m.type === 'video');
+    return `
+    <li class="case reveal in" style="--d:${(i%3)*0.08}s" data-index="${i}">
+      <div class="case-media">
+        <img src="${c.cover}" alt="" loading="lazy"${c.coverPos ? ` style="object-position:${c.coverPos}"` : ''}>
+        ${c.preview ? `<video muted loop playsinline preload="none" data-src="${c.preview}"></video>` : ''}
+        <span class="case-badge">${hasVideo ? ICON_PLAY + tr('card.video') : tr('card.images')}</span>
+        <span class="case-open" aria-hidden="true">${ICON_ARROW}</span>
+      </div>
+      <div class="case-body">
+        <div class="case-title-row"><h3 class="case-title">${esc(x.card)}</h3><span class="case-year">${c.year}</span></div>
+        <p class="case-client">${esc(x.client)}</p>
+        <p class="case-result">${esc(x.result)}</p>
+        <ul class="pills">${x.tags.map(t => `<li class="pill">${esc(t)}</li>`).join('')}</ul>
+      </div>
+      <button class="case-link" type="button" data-open="${i}"><span>${tr('card.view')}: ${esc(x.title)} ${tr('card.for')} ${esc(x.client)}</span></button>
+    </li>`;
+  }).join('');
 
-/* Forhåndsvisning av video når man holder musepekeren over et kort */
-if (canHover) {
-  list.querySelectorAll('.case').forEach(card => {
-    const v = card.querySelector('video');
-    if (!v) return;
-    card.addEventListener('mouseenter', () => {
-      if (!v.src) v.src = v.dataset.src;
-      v.play().then(() => card.classList.add('playing')).catch(() => {});
+  /* Forhåndsvisning av video når man holder musepekeren over et kort */
+  if (canHover) {
+    list.querySelectorAll('.case').forEach(card => {
+      const v = card.querySelector('video');
+      if (!v) return;
+      card.addEventListener('mouseenter', () => {
+        if (!v.src) v.src = v.dataset.src;
+        v.play().then(() => card.classList.add('playing')).catch(() => {});
+      });
+      card.addEventListener('mouseleave', () => { v.pause(); card.classList.remove('playing'); });
     });
-    card.addEventListener('mouseleave', () => { v.pause(); card.classList.remove('playing'); });
-  });
+  }
 }
 
 /* ---------- Dialog ---------- */
-const dlg = document.getElementById('case-dialog');
-const $ = id => document.getElementById(id);
-let current = 0, lastFocus = null;
+const dlg = $('case-dialog');
+let current = 0, currentMedia = 0, lastFocus = null;
 
 function showMedia(c, idx){
+  currentMedia = idx;
   const m = c.media[idx];
   const viewer = $('dlg-viewer');
   viewer.querySelectorAll('video').forEach(v => v.pause());
   viewer.innerHTML = m.type === 'video'
     ? `<video src="${m.src}" poster="${m.poster||''}" controls playsinline preload="metadata"></video>`
-    : `<img src="${m.src}" alt="${esc(m.cap)}">`;
-  $('dlg-cap').textContent = m.cap || '';
+    : `<img src="${m.src}" alt="${esc(pick(m.cap))}">`;
+  $('dlg-cap').textContent = pick(m.cap) || '';
   $('dlg-thumbs').querySelectorAll('.thumb').forEach((t,i) => t.setAttribute('aria-current', i === idx ? 'true' : 'false'));
 }
 
-function fillDialog(i){
+function fillDialog(i, keepMedia){
   current = (i + CASES.length) % CASES.length;
-  const c = CASES[current];
+  const c = CASES[current], x = tc(c);
   $('dlg-count').textContent = `Case ${String(current+1).padStart(2,'0')} / ${String(CASES.length).padStart(2,'0')} · ${c.year}`;
-  $('dlg-title').textContent = c.title;
-  $('dlg-intro').textContent = c.intro;
+  $('dlg-title').textContent = x.title;
+  $('dlg-intro').textContent = x.intro;
   $('dlg-meta').innerHTML = [
-    ['Kunde', c.client + (c.clientDesc ? ` · ${c.clientDesc}` : '')],
-    ['Rolle', c.role], ['Periode', c.period], ['Kanaler og fag', c.tags.join(', ')]
+    [tr('dlg.client'), x.client + (x.clientDesc ? ` · ${x.clientDesc}` : '')],
+    [tr('dlg.role'), x.role], [tr('dlg.period'), x.period], [tr('dlg.tags'), x.tags.join(', ')]
   ].map(([k,v]) => `<div><dt>${k}</dt><dd>${esc(v)}</dd></div>`).join('');
-  $('dlg-metrics').innerHTML = c.metrics.map(([n,l]) => `<div><span class="metric-num">${esc(n)}</span><span class="metric-label">${esc(l)}</span></div>`).join('');
-  $('dlg-list').innerHTML = c.bullets.map(b => `<li>${esc(b)}</li>`).join('');
-  $('dlg-quote').innerHTML = c.quote ? `<blockquote class="quote"><p>${esc(c.quote.text)}</p><footer>${esc(c.quote.by)}</footer></blockquote>` : '';
+  $('dlg-metrics').innerHTML = x.metrics.map(([n,l]) => `<div><span class="metric-num">${esc(n)}</span><span class="metric-label">${esc(l)}</span></div>`).join('');
+  $('dlg-list').innerHTML = x.bullets.map(b => `<li>${esc(b)}</li>`).join('');
+  $('dlg-quote').innerHTML = c.quote ? `<blockquote class="quote"><p>${esc(c.quote.text)}</p><footer>${esc(pick(c.quote.by))}</footer></blockquote>` : '';
   const thumbs = $('dlg-thumbs');
   thumbs.innerHTML = c.media.length > 1 ? c.media.map((m,k) => `
-    <button class="thumb" type="button" data-k="${k}" aria-label="${esc(m.cap)}">
+    <button class="thumb" type="button" data-k="${k}" aria-label="${esc(pick(m.cap))}">
       <img src="${m.type==='video' ? m.poster : m.src}" alt="" loading="lazy">
       ${m.type==='video' ? `<span class="play">${ICON_PLAY}</span>` : ''}
     </button>`).join('') : '';
   thumbs.hidden = c.media.length < 2;
-  showMedia(c, 0);
+  if (keepMedia) {
+    $('dlg-cap').textContent = pick(c.media[currentMedia].cap) || '';
+    thumbs.querySelectorAll('.thumb').forEach((t,k) => t.setAttribute('aria-current', k === currentMedia ? 'true' : 'false'));
+  } else {
+    showMedia(c, 0);
+    dlg.querySelector('.dlg-scroll').scrollTop = 0;
+  }
   const prev = CASES[(current - 1 + CASES.length) % CASES.length], next = CASES[(current + 1) % CASES.length];
-  $('dlg-prev-t').textContent = prev.card;
-  $('dlg-next-t').textContent = next.card;
-  dlg.querySelector('.dlg-scroll').scrollTop = 0;
-  history.replaceState(null, '', '#case-' + c.id);
+  $('dlg-prev-t').textContent = tc(prev).card;
+  $('dlg-next-t').textContent = tc(next).card;
+  history.replaceState(null, '', location.pathname + location.search + '#case-' + c.id);
 }
 
 function openCase(i){
@@ -638,6 +783,35 @@ dlg.addEventListener('keydown', e => {
   if (e.key === 'ArrowRight') fillDialog(current + 1);
   if (e.key === 'ArrowLeft') fillDialog(current - 1);
 });
+
+/* ---------- Bytt språk ---------- */
+function applyLang(next, save){
+  lang = next;
+  document.documentElement.lang = lang === 'en' ? 'en' : 'no';
+  document.title = tr('meta.title');
+  document.querySelector('meta[name="description"]').setAttribute('content', tr('meta.desc'));
+  document.querySelectorAll('[data-i18n]').forEach(el => { el.textContent = tr(el.dataset.i18n); });
+  document.querySelectorAll('[data-i18n-html]').forEach(el => { el.innerHTML = tr(el.dataset.i18nHtml); });
+  document.querySelectorAll('[data-i18n-aria]').forEach(el => { el.setAttribute('aria-label', tr(el.dataset.i18nAria)); });
+  document.querySelectorAll('[data-i18n-alt]').forEach(el => { el.setAttribute('alt', tr(el.dataset.i18nAlt)); });
+  document.querySelectorAll('[data-count].counted').forEach(el => { el.textContent = fmt(+el.dataset.count) + (el.dataset.suffix || ''); });
+  document.querySelectorAll('.lang-btn').forEach(b => b.setAttribute('aria-pressed', b.dataset.lang === lang ? 'true' : 'false'));
+  renderCards();
+  if (dlg.open) fillDialog(current, true);
+  if (save) {
+    try { localStorage.setItem('lang', lang); } catch (e) {}
+    try {
+      const u = new URL(location.href);
+      if (lang === 'en') u.searchParams.set('lang','en'); else u.searchParams.delete('lang');
+      history.replaceState(null, '', u.pathname + u.search + u.hash);
+    } catch (e) {}
+  }
+}
+document.querySelectorAll('.lang-btn').forEach(b => b.addEventListener('click', () => { if (b.dataset.lang !== lang) applyLang(b.dataset.lang, true); }));
+applyLang(lang, false);
+/* Kortene tegnes på nytt ved språkbytte, så de skal ikke animeres inn igjen */
+list.querySelectorAll('.case').forEach(el => el.classList.remove('in'));
+
 const fromHash = CASES.findIndex(c => location.hash === '#case-' + c.id);
 if (fromHash > -1) openCase(fromHash);
 
@@ -655,10 +829,9 @@ const secObs = new IntersectionObserver(entries => {
 ['top','om-meg','arbeid','kontakt'].forEach(id => secObs.observe($(id)));
 
 /* ---------- Animasjon ved scroll ---------- */
-const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-const fmt = n => Math.round(n).toLocaleString('nb-NO');
 function countUp(el){
   const target = +el.dataset.count, suffix = el.dataset.suffix || '';
+  el.classList.add('counted');
   if (reduce) { el.textContent = fmt(target) + suffix; return; }
   const t0 = performance.now(), dur = 1600;
   const step = t => {
