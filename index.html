@@ -91,7 +91,9 @@ button{font:inherit;color:inherit}
 /* ---------- Header ---------- */
 .site-header{position:fixed;inset:0 0 auto 0;z-index:50;height:var(--header-h);display:flex;align-items:center;transition:background .3s var(--ease),border-color .3s var(--ease);border-bottom:1px solid transparent}
 .site-header.scrolled{background:rgba(14,12,11,.78);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);border-bottom-color:var(--line)}
-.site-header .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px}
+.site-header .wrap{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:16px}
+.site-header .lang{justify-self:end}
+.nav{justify-self:center}
 .brand{display:flex;align-items:center;gap:10px;text-decoration:none;font-weight:600;font-size:15px;white-space:nowrap}
 .brand-sub{font-weight:400;color:var(--muted);margin-left:-4px}
 .nav{display:flex;gap:clamp(14px,2.4vw,32px)}
@@ -102,6 +104,11 @@ button{font:inherit;color:inherit}
 .nav a.nav-cta{color:var(--ink);background:var(--accent);font-weight:600;padding:8px 18px;border-radius:999px;box-shadow:0 0 0 0 rgba(255,122,26,.5);transition:background .2s,box-shadow .3s,transform .2s}
 .nav a.nav-cta:hover,.nav a.nav-cta.active{color:var(--ink);background:#ff9447;box-shadow:0 6px 24px rgba(255,122,26,.35);transform:translateY(-1px)}
 .header-right{display:flex;align-items:center;gap:clamp(16px,2.6vw,36px)}
+.menu-btn{visibility:hidden;justify-self:start;width:44px;height:44px;padding:0 11px;border:1px solid var(--line-strong);border-radius:50%;background:rgba(14,12,11,.4);cursor:pointer;display:flex;flex-direction:column;justify-content:center;gap:5px}
+.menu-btn span{display:block;height:2px;border-radius:2px;background:var(--text);transition:transform .3s var(--ease),opacity .2s}
+.menu-open .menu-btn span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.menu-open .menu-btn span:nth-child(2){opacity:0}
+.menu-open .menu-btn span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
 .lang{display:inline-flex;align-items:center;gap:2px;padding:3px;border:1px solid var(--line-strong);border-radius:999px;background:rgba(14,12,11,.4)}
 .lang-btn{display:inline-flex;align-items:center;gap:7px;padding:5px 10px 5px 6px;border:0;border-radius:999px;background:transparent;cursor:pointer;font-size:12px;font-weight:600;letter-spacing:.08em;color:var(--muted);transition:background .2s,color .2s}
 .lang-btn .flag{width:22px;height:15px;border-radius:3px;flex:none;filter:grayscale(.45);opacity:.7;transition:filter .2s,opacity .2s;box-shadow:0 0 0 1px rgba(255,255,255,.12)}
@@ -171,6 +178,10 @@ section{position:relative}
 .work-head .lead{text-align:right;color:var(--text-soft)}
 .cases{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(40px,4vw,56px) clamp(18px,2vw,28px);list-style:none;margin:0;padding:0}
 .case{position:relative;display:flex;flex-direction:column}
+.cases:not(.expanded) > .case:nth-child(n+4){display:none}
+.more-wrap{display:flex;justify-content:center;margin-top:clamp(40px,5vw,64px)}
+.more-btn{display:inline-flex;align-items:center;gap:10px;padding:14px 30px;border:1px solid var(--accent-line);border-radius:999px;background:var(--accent-soft);color:var(--text);font-weight:600;font-size:15px;cursor:pointer;transition:background .2s,color .2s,transform .2s}
+.more-btn:hover{background:var(--accent);color:var(--ink);transform:translateY(-1px)}
 .case-media{position:relative;aspect-ratio:3/4;overflow:hidden;background:var(--bg-card);border-radius:3px}
 .case-media img,.case-media video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .9s var(--ease),opacity .4s}
 .case-media video{opacity:0}
@@ -385,11 +396,18 @@ section{position:relative}
   .dlg-nav button .t{display:none}
 }
 @media (max-width:1080px){
-  .nav a:not(.nav-cta){display:none}
+  .menu-btn{visibility:visible}
+  .site-header .lang{grid-column:3;grid-row:1}
+  .site-header .nav{grid-column:1/-1;grid-row:1;justify-self:stretch;width:100vw}
+  .site-header.menu-open{background:rgba(14,12,11,.96);border-bottom-color:var(--line)}
+  .nav{position:fixed;left:0;right:0;top:var(--header-h);z-index:49;flex-direction:column;align-items:stretch;gap:0;
+    padding:8px var(--gutter) 28px;background:rgba(14,12,11,.97);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);border-bottom:1px solid var(--line);
+    opacity:0;transform:translateY(-10px);pointer-events:none;visibility:hidden;transition:opacity .3s var(--ease),transform .3s var(--ease),visibility 0s .3s}
+  .menu-open .nav{opacity:1;transform:none;pointer-events:auto;visibility:visible;transition:opacity .3s var(--ease),transform .3s var(--ease)}
+  .nav a{display:block;padding:16px 0;border-bottom:1px solid var(--line);font-family:var(--font-display);font-stretch:118%;font-weight:800;font-size:22px;text-transform:uppercase;color:var(--text)}
+  .nav a.nav-cta{margin-top:20px;padding:14px 22px;border-bottom:0;text-align:center;font-family:var(--font-body);font-stretch:100%;font-size:16px;text-transform:none}
 }
-@media (max-width:760px){
-  .nav a.nav-cta{padding:7px 13px;font-size:13px}
-}
+
 @media (prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
   *,*::before,*::after{animation:none!important;transition:none!important}
@@ -402,9 +420,8 @@ section{position:relative}
 
 <header class="site-header" id="top-bar">
   <div class="wrap">
-    <a class="brand" href="#top"><span class="brand-dot" aria-hidden="true"></span>Daniel Ramslien <span class="brand-sub" data-i18n="brand.sub">Portefølje</span></a>
-    <div class="header-right">
-      <nav class="nav" aria-label="Hovedmeny" data-i18n-aria="aria.menu">
+    <button class="menu-btn" id="menu-btn" type="button" aria-expanded="false" aria-controls="main-nav" aria-label="Meny" data-i18n-aria="aria.menuBtn"><span></span><span></span><span></span></button>
+    <nav class="nav" id="main-nav" aria-label="Hovedmeny" data-i18n-aria="aria.menu">
         <a href="#om-meg"><span data-i18n="nav.about">Om meg</span></a>
         <a href="#verktoy"><span data-i18n="nav.tools">Verktøy</span></a>
         <a href="#arbeid"><span data-i18n="nav.work">Arbeid</span></a>
@@ -416,7 +433,6 @@ section{position:relative}
         <button class="lang-btn" type="button" data-lang="no" lang="no" aria-pressed="true" title="Norsk"><svg class="flag" viewBox="0 0 22 16" aria-hidden="true" preserveAspectRatio="xMidYMid slice"><rect width="22" height="16" fill="#BA0C2F"/><rect x="6" width="4" height="16" fill="#fff"/><rect y="6" width="22" height="4" fill="#fff"/><rect x="7" width="2" height="16" fill="#00205B"/><rect y="7" width="22" height="2" fill="#00205B"/></svg><span class="code">NO</span><span class="sr">Norsk</span></button>
         <button class="lang-btn" type="button" data-lang="en" lang="en" aria-pressed="false" title="English"><svg class="flag" viewBox="0 0 19 13" aria-hidden="true" preserveAspectRatio="xMidYMid slice"><rect width="19" height="13" fill="#B22234"/><rect y="1" width="19" height="1" fill="#fff"/><rect y="3" width="19" height="1" fill="#fff"/><rect y="5" width="19" height="1" fill="#fff"/><rect y="7" width="19" height="1" fill="#fff"/><rect y="9" width="19" height="1" fill="#fff"/><rect y="11" width="19" height="1" fill="#fff"/><rect width="7.6" height="7" fill="#3C3B6E"/><g fill="#fff"><circle cx="0.63" cy="0.45" r=".26"/><circle cx="1.90" cy="0.45" r=".26"/><circle cx="3.17" cy="0.45" r=".26"/><circle cx="4.44" cy="0.45" r=".26"/><circle cx="5.71" cy="0.45" r=".26"/><circle cx="6.98" cy="0.45" r=".26"/><circle cx="1.27" cy="1.22" r=".26"/><circle cx="2.54" cy="1.22" r=".26"/><circle cx="3.81" cy="1.22" r=".26"/><circle cx="5.08" cy="1.22" r=".26"/><circle cx="6.35" cy="1.22" r=".26"/><circle cx="0.63" cy="1.98" r=".26"/><circle cx="1.90" cy="1.98" r=".26"/><circle cx="3.17" cy="1.98" r=".26"/><circle cx="4.44" cy="1.98" r=".26"/><circle cx="5.71" cy="1.98" r=".26"/><circle cx="6.98" cy="1.98" r=".26"/><circle cx="1.27" cy="2.75" r=".26"/><circle cx="2.54" cy="2.75" r=".26"/><circle cx="3.81" cy="2.75" r=".26"/><circle cx="5.08" cy="2.75" r=".26"/><circle cx="6.35" cy="2.75" r=".26"/><circle cx="0.63" cy="3.51" r=".26"/><circle cx="1.90" cy="3.51" r=".26"/><circle cx="3.17" cy="3.51" r=".26"/><circle cx="4.44" cy="3.51" r=".26"/><circle cx="5.71" cy="3.51" r=".26"/><circle cx="6.98" cy="3.51" r=".26"/><circle cx="1.27" cy="4.28" r=".26"/><circle cx="2.54" cy="4.28" r=".26"/><circle cx="3.81" cy="4.28" r=".26"/><circle cx="5.08" cy="4.28" r=".26"/><circle cx="6.35" cy="4.28" r=".26"/><circle cx="0.63" cy="5.04" r=".26"/><circle cx="1.90" cy="5.04" r=".26"/><circle cx="3.17" cy="5.04" r=".26"/><circle cx="4.44" cy="5.04" r=".26"/><circle cx="5.71" cy="5.04" r=".26"/><circle cx="6.98" cy="5.04" r=".26"/><circle cx="1.27" cy="5.81" r=".26"/><circle cx="2.54" cy="5.81" r=".26"/><circle cx="3.81" cy="5.81" r=".26"/><circle cx="5.08" cy="5.81" r=".26"/><circle cx="6.35" cy="5.81" r=".26"/><circle cx="0.63" cy="6.57" r=".26"/><circle cx="1.90" cy="6.57" r=".26"/><circle cx="3.17" cy="6.57" r=".26"/><circle cx="4.44" cy="6.57" r=".26"/><circle cx="5.71" cy="6.57" r=".26"/><circle cx="6.98" cy="6.57" r=".26"/></g></svg><span class="code">EN</span><span class="sr">English</span></button>
       </div>
-    </div>
   </div>
 </header>
 
@@ -513,6 +529,7 @@ section{position:relative}
         <h2 class="display h-xl reveal" id="arbeid-tittel" data-i18n-html="work.title">Utvalgte<br>case</h2>
       </div>
       <ul class="cases" id="cases"></ul>
+      <div class="more-wrap"><button type="button" class="more-btn" id="more-btn" aria-controls="cases" aria-expanded="false"><span data-i18n="work.more">Se mer</span></button></div>
       <noscript><p class="body">Slå på JavaScript for å se casene. / Enable JavaScript to see the work.</p></noscript>
     </div>
   </section>
@@ -542,12 +559,11 @@ section{position:relative}
         <div class="contact-copy">
           <h2 class="display h-xl reveal" id="kontakt-tittel" data-i18n-html="contact.title">La oss ta<br>en prat</h2>
           <p class="lead reveal" data-i18n="contact.lead">Har du en ledig stilling, et prosjekt eller bare lyst på en kaffe? Send meg en melding, så svarer jeg så raskt som mulig.</p>
-          <a class="contact-email reveal" href="mailto:daniel@ramscreative.no">daniel@ramscreative.no</a>
+          <a class="contact-email reveal" href="mailto:danielramslien@gmail.com">danielramslien@gmail.com</a>
           <ul class="contact-list reveal">
             <li><a href="tel:+4791168076"><span data-i18n="contact.phone">Telefon · </span>+47 911 68 076</a></li>
             <!-- Bytt ut lenken under med den nøyaktige adressen til LinkedIn-profilen din -->
             <li><a href="https://www.linkedin.com/search/results/people/?keywords=Daniel%20Ramslien" target="_blank" rel="noopener"><span>LinkedIn · </span>Daniel Ramslien</a></li>
-            <li><a href="https://beacons.ai/ramscreative" target="_blank" rel="noopener"><span data-i18n="contact.portfolio">Portefølje · </span>beacons.ai/ramscreative</a></li>
           </ul>
         </div>
         <div class="contact-orb reveal" aria-hidden="true"><div class="orb"></div></div>
@@ -625,7 +641,7 @@ const I18N = {
     'about.p3':'I hverdagen jobber jeg med alt fra innholdsproduksjon og videoredigering til kampanjer som konverterer, og jeg måler alltid hva som faktisk virker. Gjennom eget foretak har jeg også fått erfaring med merkevarebygging, salg, kunderelasjoner og regnskap. I bunn har jeg sju år med musikkproduksjon, som har gitt meg et øre for rytme, timing og hva som fanger oppmerksomhet.',
     'skill.1':'Innholdsstrategi','skill.5':'Videoproduksjon','skill.6':'Copy','skill.7':'Analyse','skill.8':'Kampanjeplanlegging',
     'facts.edu':'Utdanning', 'facts.edu.v':'Bachelor i digital markedsføring, Høyskolen Kristiania (2024–2027)',
-    'stats.title':'Resultater', 'dlg.full':'Fullskjerm', 'dlg.previmg':'Forrige bilde', 'dlg.nextimg':'Neste bilde', 'brand.sub':'Portefølje', 'work.school':'Skolearbeid', 'dlg.slide':'Vis', 'facts.biz':'Eget foretak', 'facts.biz.v':'Rams Creative, frilans markedsføring og videoredigering',
+    'stats.title':'Resultater', 'aria.menuBtn':'Meny', 'work.more':'Se mer', 'work.less':'Se mindre', 'dlg.full':'Fullskjerm', 'dlg.previmg':'Forrige bilde', 'dlg.nextimg':'Neste bilde', 'brand.sub':'Portefølje', 'work.school':'Skolearbeid', 'dlg.slide':'Vis', 'facts.biz':'Eget foretak', 'facts.biz.v':'Rams Creative, frilans markedsføring og videoredigering',
     'facts.tools':'Verktøy', 'facts.web':'Analyse og web',
     'stat.1':'visninger på TikTok for Mufano', 'stat.2':'i salg av studioleie for M40 Studios', 'stat.2.unit':'kr',
     'stat.3':'samlet inn til Make-A-Wish med NOT Management', 'stat.4':'videoer og bilder i innholdsbanken til Punkt Oslo',
@@ -657,7 +673,7 @@ const I18N = {
     'about.p3':'Day to day I work on everything from content production and video editing to campaigns that convert, and I always measure what actually works. Running my own business has also given me experience with brand building, sales, client relations and bookkeeping. At the core I have seven years of music production behind me, which has given me an ear for rhythm, timing and what grabs attention.',
     'skill.1':'Content strategy','skill.5':'Video production','skill.6':'Copywriting','skill.7':'Analytics','skill.8':'Campaign planning',
     'facts.edu':'Education', 'facts.edu.v':'Bachelor’s in Digital Marketing, Kristiania University of Applied Sciences (2024–2027)',
-    'stats.title':'Results', 'dlg.full':'Fullscreen', 'dlg.previmg':'Previous image', 'dlg.nextimg':'Next image', 'brand.sub':'Portfolio', 'work.school':'Coursework', 'dlg.slide':'Show', 'facts.biz':'Own business', 'facts.biz.v':'Rams Creative, freelance marketing and video editing',
+    'stats.title':'Results', 'aria.menuBtn':'Menu', 'work.more':'See more', 'work.less':'See less', 'dlg.full':'Fullscreen', 'dlg.previmg':'Previous image', 'dlg.nextimg':'Next image', 'brand.sub':'Portfolio', 'work.school':'Coursework', 'dlg.slide':'Show', 'facts.biz':'Own business', 'facts.biz.v':'Rams Creative, freelance marketing and video editing',
     'facts.tools':'Tools', 'facts.web':'Analytics and web',
     'stat.1':'views on TikTok for Mufano', 'stat.2':'in studio rental sales for M40 Studios', 'stat.2.unit':'NOK',
     'stat.3':'raised for Make-A-Wish with NOT Management', 'stat.4':'videos and photos in Punkt Oslo’s content bank',
@@ -1056,6 +1072,22 @@ $('ref-dlg-close').addEventListener('click', () => refDlg.close());
 refDlg.addEventListener('click', e => { if (e.target === refDlg) refDlg.close(); });
 refDlg.addEventListener('close', () => { document.body.style.overflow = ''; if (refFocus) refFocus.focus({preventScroll:true}); });
 
+/* ---------- Se mer / se mindre ---------- */
+const moreBtn = $('more-btn');
+function syncMore(){
+  const open = list.classList.contains('expanded');
+  moreBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+  const sp = moreBtn.querySelector('span');
+  sp.dataset.i18n = open ? 'work.less' : 'work.more';
+  sp.textContent = tr(open ? 'work.less' : 'work.more');
+}
+moreBtn.addEventListener('click', () => {
+  const open = !list.classList.contains('expanded');
+  list.classList.toggle('expanded', open);
+  syncMore();
+  if (!open) $('arbeid').scrollIntoView({behavior: reduce ? 'auto' : 'smooth'});
+});
+
 /* ---------- Dialog ---------- */
 const dlg = $('case-dialog');
 let current = 0, currentMedia = 0, lastFocus = null;
@@ -1139,6 +1171,7 @@ function fillDialog(i, keepMedia){
 }
 
 function openCase(i){
+  if (i >= 3) { list.classList.add('expanded'); syncMore(); }
   lastFocus = document.activeElement;
   fillDialog(i);
   if (!dlg.open) dlg.showModal();
@@ -1234,6 +1267,13 @@ renderDots(); showSlide(0); startSlides();
 const bar = $('top-bar');
 const onScroll = () => bar.classList.toggle('scrolled', window.scrollY > 24);
 onScroll(); window.addEventListener('scroll', onScroll, {passive:true});
+
+/* ---------- Hamburgermeny ---------- */
+const menuBtn = $('menu-btn');
+function setMenu(open){ bar.classList.toggle('menu-open', open); menuBtn.setAttribute('aria-expanded', open ? 'true' : 'false'); }
+menuBtn.addEventListener('click', () => setMenu(!bar.classList.contains('menu-open')));
+$('main-nav').addEventListener('click', e => { if (e.target.closest('a')) setMenu(false); });
+document.addEventListener('keydown', e => { if (e.key === 'Escape' && bar.classList.contains('menu-open')) { setMenu(false); menuBtn.focus(); } });
 
 const navLinks = [...document.querySelectorAll('.nav a')];
 const secObs = new IntersectionObserver(entries => {
