@@ -79,7 +79,9 @@ button{font:inherit;color:inherit}
 
 /* ---------- Typografi ---------- */
 .display{font-family:var(--font-display);font-stretch:125%;font-weight:900;text-transform:uppercase;line-height:.92;letter-spacing:-.005em;margin:0}
-.h-xl{font-size:clamp(22px,3.1vw,44px)}
+.h-xl{font-size:clamp(22px,4vw,58px)}
+.contact-copy{container-type:inline-size}
+.contact-copy .h-xl{font-size:clamp(22px,min(4vw,7.6cqi),58px)}
 .work-head,.refs-head{grid-template-columns:1fr!important}
 .lead{font-size:clamp(18px,1.6vw,20px);line-height:1.5;color:var(--text);margin:0}
 .body{color:var(--text-soft);margin:0}
@@ -152,6 +154,12 @@ section{position:relative}
 .hero-clip{position:absolute;inset:0;z-index:1;border-radius:50%;overflow:hidden;-webkit-mask-image:-webkit-radial-gradient(white,black)}
 .hero-photo{position:absolute;left:50%;bottom:-6%;transform:translateX(-50%);width:74%;height:auto}
 @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+.hero-scroll{align-self:center;display:grid;place-items:center;width:60px;height:60px;margin:0 0 clamp(14px,2.4vh,26px);color:var(--accent);text-decoration:none;animation:scrollBob 1.8s ease-in-out infinite}
+.hero-scroll svg{width:42px;height:42px;animation:scrollGlow 1.8s ease-in-out infinite}
+.hero-scroll:hover{color:#ffa45c}
+@keyframes scrollBob{0%,100%{transform:translateY(-5px)}50%{transform:translateY(7px)}}
+@keyframes scrollGlow{0%,100%{opacity:.75;filter:drop-shadow(0 0 4px rgba(255,122,26,.7)) drop-shadow(0 0 10px rgba(255,122,26,.35))}50%{opacity:1;filter:drop-shadow(0 0 8px rgba(255,122,26,1)) drop-shadow(0 0 22px rgba(255,122,26,.6))}}
+@media (prefers-reduced-motion:reduce){.hero-scroll,.hero-scroll svg{animation:none}}
 .hero-nav{display:flex;flex-wrap:wrap;justify-content:center;gap:clamp(14px,3vw,44px);list-style:none;margin:0;padding:0 var(--gutter)}
 .hero-nav a{font-family:var(--font-display);font-stretch:125%;font-weight:800;text-transform:uppercase;text-decoration:none;font-size:clamp(20px,2.3vw,36px);line-height:1;color:transparent;-webkit-text-stroke:1.2px rgba(243,237,230,.5);transition:color .3s var(--ease),-webkit-text-stroke-color .3s var(--ease)}
 .hero-nav a:hover,.hero-nav a:focus-visible{color:var(--accent);-webkit-text-stroke-color:var(--accent)}
@@ -251,7 +259,7 @@ section{position:relative}
 @media (hover:none){.case-nav{display:none}}
 
 /* ---------- Kontakt ---------- */
-.contact-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(40px,6vw,96px);align-items:center}
+.contact-grid{display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,1fr);gap:clamp(40px,6vw,96px);align-items:center}
 .contact-copy .display{margin-bottom:28px}
 .contact-copy .lead{color:var(--text-soft);max-width:520px}
 .contact-email{display:inline-block;margin:40px 0 28px;font-family:var(--font-display);font-stretch:118%;font-weight:800;font-size:clamp(17px,2vw,28px);line-height:1.15;color:var(--accent);text-decoration:none;white-space:nowrap;background:linear-gradient(currentColor,currentColor) 0 100%/0 2px no-repeat;transition:background-size .4s var(--ease)}
@@ -512,6 +520,7 @@ section{position:relative}
         <li><a href="#kontakt" class="hero-cta" data-i18n="nav.contact">Kontakt</a></li>
       </ul>
     </div>
+    <a class="hero-scroll" href="#arbeid" aria-label="Bla ned" data-i18n-aria="aria.scroll"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 7l7 6 7-6"/><path d="M5 13l7 6 7-6"/></svg></a>
   </section>
 
   <!-- ======== Arbeid ======== -->
@@ -697,7 +706,7 @@ const I18N = {
   no: {
     'meta.title':'Daniel Ramslien Portefølje',
     'meta.desc':'Portefølje 2026. Daniel Ramslien er digital markedsfører med hjertet i sosiale medier: kampanjer, innhold og analyse for Mufano, M40 Studios, Punkt Oslo, NOT Management og flere.',
-    'skip':'Hopp til innhold', 'aria.menu':'Hovedmeny', 'aria.intro':'Introduksjon', 'aria.stats':'Resultater i tall', 'aria.lang':'Velg språk',
+    'skip':'Hopp til innhold', 'aria.menu':'Hovedmeny', 'aria.scroll':'Bla ned', 'aria.intro':'Introduksjon', 'aria.stats':'Resultater i tall', 'aria.lang':'Velg språk',
     'nav.about':'Om meg', 'nav.work':'Arbeid', 'nav.contact':'Kontakt',
     'hero.kicker':'Digital markedsfører', 'hero.title':'Hei, jeg er Daniel.',
     'foot.portfolio':'Portefølje 2026',
@@ -729,7 +738,7 @@ const I18N = {
   en: {
     'meta.title':'Daniel Ramslien Portfolio',
     'meta.desc':'Portfolio 2026. Daniel Ramslien is a digital marketer with a heart for social media: campaigns, content and analytics for Mufano, M40 Studios, Punkt Oslo, NOT Management and more.',
-    'skip':'Skip to content', 'aria.menu':'Main menu', 'aria.intro':'Introduction', 'aria.stats':'Results in numbers', 'aria.lang':'Choose language',
+    'skip':'Skip to content', 'aria.menu':'Main menu', 'aria.scroll':'Scroll down', 'aria.intro':'Introduction', 'aria.stats':'Results in numbers', 'aria.lang':'Choose language',
     'nav.about':'About', 'nav.work':'Work', 'nav.contact':'Contact',
     'hero.kicker':'Digital marketer', 'hero.title':'Hi, I’m Daniel.',
     'foot.portfolio':'Portfolio 2026',
