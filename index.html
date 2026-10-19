@@ -820,7 +820,7 @@ const CASES = [
       {type:'video',src:V+'punkt-oslo-1.mp4',poster:P+'punkt-oslo-1.jpg',cap:{no:'Falling Walls Lab Oslo hos Punkt Oslo',en:'Falling Walls Lab Oslo at Punkt Oslo'}}
     ],
     t:{
-      no:{card:'Arendalsuka', title:'Arendalsuka og innholdsbank for høsten', client:'Punkt Oslo', clientDesc:'Møte- og eventsted i Oslo', period:'Mars – aug. 2026',
+      no:{card:'Innholdsproduksjon i Arendalsuka', title:'Innholdsproduksjon i Arendalsuka', client:'Punkt Oslo', clientDesc:'Møte- og eventsted i Oslo', period:'Mars – aug. 2026',
         role:'Innholdsprodusent og lydtekniker (via Rams Creative)', tags:['LinkedIn','Video','Lyd'], result:'15 videoer på stedet',
         intro:'Innhold fra tre arrangementer, blant annet sommerfest og Arendalsuka, og en innholdsbank som dekker publiseringen gjennom hele høsten.',
         metrics:[['15','videoer filmet og klippet på stedet under Arendalsuka'],['10','podcastinnspillinger med lyd rigget og kjørt'],['25 + 150','videoer og utvalgte bilder i innholdsbanken'],['3','arrangementer dekket']],
@@ -828,7 +828,7 @@ const CASES = [
           'Under Arendalsuka filmet og klippet jeg 15 videoer på stedet til LinkedIn-kanalen deres.',
           'Rigget og kjørte lyd for 10 podcastinnspillinger i paviljongen.',
           'Leverte en innholdsbank på 25 videoer og 150 utvalgte bilder som dekker publiseringen deres gjennom hele høsten.']},
-      en:{card:'Arendalsuka', title:'Arendalsuka and a content bank for the fall', client:'Punkt Oslo', clientDesc:'Meeting and event venue in Oslo', period:'Mar – Aug 2026',
+      en:{card:'Content production at Arendalsuka', title:'Content production at Arendalsuka', client:'Punkt Oslo', clientDesc:'Meeting and event venue in Oslo', period:'Mar – Aug 2026',
         role:'Content producer and sound engineer (via Rams Creative)', tags:['LinkedIn','Video','Audio'], result:'15 videos on location',
         intro:'Content from three events, including a summer party and Arendalsuka, Norway’s largest political festival, plus a content bank covering their posting throughout the fall.',
         metrics:[['15','videos filmed and edited on location at Arendalsuka'],['10','podcast recordings with sound rigged and run'],['25 + 150','videos and selected photos in the content bank'],['3','events covered']],
@@ -1123,7 +1123,7 @@ function showMedia(c, idx){
       if (k !== currentMedia && hasVideo) el.innerHTML = `<img src="${m.poster}" alt=""><span class="vplay">${ICON_PLAY}</span>`;
     }
   });
-  $('dlg-cap').textContent = `${pick(c.media[currentMedia].cap) || ''}${c.media.length > 1 ? `  ·  ${currentMedia+1} / ${c.media.length}` : ''}`;
+  $('dlg-cap').textContent = pick(c.media[currentMedia].cap) || '';
   $('dlg-thumbs').querySelectorAll('button').forEach((b,k) => b.setAttribute('aria-current', k === currentMedia ? 'true' : 'false'));
   const pv = viewer.querySelector('.vprev'), nx = viewer.querySelector('.vnext');
   if (pv) pv.disabled = currentMedia === 0;
