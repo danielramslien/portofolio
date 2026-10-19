@@ -56,6 +56,17 @@ button{font:inherit;color:inherit}
 ::selection{background:var(--accent);color:var(--ink)}
 :focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:4px}
 
+.cookie-btn{position:fixed;left:18px;bottom:18px;z-index:60;width:52px;height:52px;border-radius:50%;display:grid;place-items:center;padding:0;cursor:pointer;background:rgba(14,12,11,.78);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border:1px solid var(--accent-line);color:var(--accent);box-shadow:0 0 0 1px rgba(255,122,26,.08),0 0 22px rgba(255,122,26,.35);transition:transform .25s var(--ease),box-shadow .25s var(--ease)}
+.cookie-btn svg{width:26px;height:26px;filter:drop-shadow(0 0 6px rgba(255,122,26,.85)) drop-shadow(0 0 14px rgba(255,122,26,.45));animation:cookieGlow 3.2s ease-in-out infinite}
+.cookie-btn:hover{transform:scale(1.07) rotate(-8deg);box-shadow:0 0 0 1px rgba(255,122,26,.2),0 0 34px rgba(255,122,26,.55)}
+@keyframes cookieGlow{50%{filter:drop-shadow(0 0 9px rgba(255,122,26,1)) drop-shadow(0 0 22px rgba(255,122,26,.6))}}
+@media (prefers-reduced-motion:reduce){.cookie-btn svg{animation:none}}
+.cookie-pop{position:fixed;left:18px;bottom:82px;z-index:60;width:min(320px,calc(100vw - 36px));padding:18px 18px 16px;border-radius:16px;background:rgba(20,17,15,.96);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);border:1px solid var(--line-strong);box-shadow:0 18px 50px rgba(0,0,0,.5),0 0 30px rgba(255,122,26,.12);opacity:0;transform:translateY(8px);pointer-events:none;transition:opacity .25s var(--ease),transform .25s var(--ease)}
+.cookie-pop.open{opacity:1;transform:none;pointer-events:auto}
+.cookie-pop h3{margin:0 0 6px;font-family:var(--font-display);font-stretch:118%;font-weight:800;font-size:16px;color:var(--text)}
+.cookie-pop p{margin:0 0 14px;font-size:14px;line-height:1.5;color:var(--text-soft)}
+.cookie-ok{border:0;border-radius:999px;padding:8px 18px;background:var(--accent);color:var(--ink);font-weight:600;font-size:14px;cursor:pointer}
+@media (max-width:640px){.cookie-btn{left:14px;bottom:14px;width:46px;height:46px}.cookie-btn svg{width:23px;height:23px}.cookie-pop{left:14px;bottom:72px}}
 .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 .skip{position:absolute;left:12px;top:-60px;z-index:100;background:var(--accent);color:var(--ink);padding:10px 16px;border-radius:999px;font-weight:600;text-decoration:none}
 .skip:focus{top:12px}
@@ -172,11 +183,11 @@ section{position:relative}
 .facts dd{margin:0;font-size:14px;line-height:1.55;color:var(--text-soft)}
 
 .stats-title{margin:clamp(72px,9vw,120px) 0 18px;font-family:var(--font-display);font-stretch:118%;font-weight:800;font-size:clamp(17px,1.5vw,20px);color:var(--text)}
-.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));margin-top:0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.stats{container-type:inline-size;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));margin-top:0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
 .stat{padding:30px 24px 30px 0}
 .stat + .stat{padding-left:24px;border-left:1px solid var(--line)}
-.stat-num{display:block;font-family:var(--font-display);font-stretch:118%;font-weight:800;font-size:clamp(28px,3.3vw,46px);line-height:1;color:var(--accent);letter-spacing:-.01em;white-space:nowrap}
-.stat-num small{font-size:.5em;font-weight:700;margin-left:.25em;letter-spacing:0}
+.stat-num{display:flex;flex-wrap:wrap;align-items:baseline;column-gap:.25em;row-gap:.1em;font-family:var(--font-display);font-stretch:118%;font-weight:800;font-size:clamp(26px,2.5vw,36px);font-size:clamp(22px,2.75cqi,38px);line-height:1;color:var(--accent);letter-spacing:-.01em;white-space:nowrap}
+.stat-num small{font-size:.5em;font-weight:700;letter-spacing:0}
 .stat-label{display:block;margin-top:12px;font-size:14px;line-height:1.45;color:var(--text-soft)}
 
 /* ---------- Arbeid ---------- */
@@ -397,16 +408,16 @@ section{position:relative}
   .stat + .stat{padding-left:14px}
   .stat:nth-child(3){padding-left:0}
   .stat-label{font-size:13px}
-  .stat-num{font-size:26px;font-stretch:108%}
+  .stat-num{font-size:24px;font-size:clamp(19px,6.2cqi,26px);font-stretch:108%}
   .dlg-meta,.metrics{grid-template-columns:1fr 1fr}
   .dlg-nav button .t{display:none}
 }
 @media (max-width:1080px){
   .menu-btn{visibility:visible}
-  .site-header .wrap{grid-template-columns:1fr auto auto auto;gap:10px}
-  .site-header .lang{grid-column:2;grid-row:1}
-  .hdr-cta{display:inline-flex;grid-column:3;grid-row:1}
-  .menu-btn{grid-column:4;grid-row:1;justify-self:end}
+  .site-header .wrap{grid-template-columns:1fr auto 1fr;gap:10px}
+  .menu-btn{grid-column:1;grid-row:1;justify-self:start}
+  .site-header .lang{grid-column:2;grid-row:1;justify-self:center;position:relative;z-index:2;-webkit-transform:translateZ(0);transform:translateZ(0)}
+  .hdr-cta{display:inline-flex;grid-column:3;grid-row:1;justify-self:end}
   .nav a.nav-cta{display:none}
   .site-header .nav{grid-column:1/-1;grid-row:1;justify-self:stretch;width:100vw}
   .site-header.menu-open{background:rgba(14,12,11,.96);border-bottom-color:var(--line)}
@@ -628,6 +639,14 @@ section{position:relative}
   </div>
 </dialog>
 
+<button class="cookie-btn" type="button" id="cookie-btn" aria-expanded="false" aria-controls="cookie-pop" aria-label="Cookies" data-i18n-aria="cookie.aria">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.3A9 9 0 1 1 11.7 3a3 3 0 0 0 3.6 3.6 3 3 0 0 0 3.6 3.6 3 3 0 0 0 2.1 2.1Z"/><circle cx="8.5" cy="9.5" r="1" fill="currentColor"/><circle cx="15.5" cy="14.5" r="1" fill="currentColor"/><circle cx="9.5" cy="15.5" r="1" fill="currentColor"/><circle cx="12.5" cy="11.5" r=".6" fill="currentColor"/></svg>
+</button>
+<div class="cookie-pop" id="cookie-pop" role="dialog" aria-labelledby="cookie-h">
+  <h3 id="cookie-h" data-i18n="cookie.title">Cookies</h3>
+  <p data-i18n="cookie.text">Denne siden bruker ingen sporings- eller reklamecookies. Bare språkvalget ditt lagres lokalt i nettleseren.</p>
+  <button class="cookie-ok" type="button" id="cookie-ok" data-i18n="cookie.ok">Skjønner</button>
+</div>
 <script>
 document.documentElement.classList.add('js');
 
@@ -654,7 +673,7 @@ const I18N = {
     'stats.title':'Resultater', 'aria.menuBtn':'Meny', 'work.more':'Se mer', 'work.less':'Se mindre', 'dlg.full':'Fullskjerm', 'dlg.previmg':'Forrige bilde', 'dlg.nextimg':'Neste bilde', 'brand.sub':'Portefølje', 'work.school':'Skolearbeid', 'dlg.slide':'Vis', 'facts.biz':'Eget foretak', 'facts.biz.v':'Rams Creative, frilans markedsføring og videoredigering',
     'facts.tools':'Verktøy', 'facts.web':'Analyse og web',
     'stat.1':'visninger på TikTok for Mufano', 'stat.2':'i salg av studioleie for M40 Studios', 'stat.2.unit':'kr',
-    'stat.3':'samlet inn til Make-A-Wish med NOT Management', 'stat.4':'videoer og bilder i innholdsbanken til Punkt Oslo',
+    'stat.3':'samlet inn til Make-A-Wish med NOT Management', 'stat.4':'videoer og bilder i innholdsbanken til Punkt Oslo', 'cookie.aria':'Om cookies', 'cookie.title':'Cookies', 'cookie.text':'Denne siden bruker ingen sporings- eller reklamecookies. Bare språkvalget ditt lagres lokalt i nettleseren.', 'cookie.ok':'Skjønner',
     'work.title':'Utvalgte<br>case', 'work.lead':'Et utvalg av innhold og kampanjer jeg har laget, fra idé til ferdig post. Trykk på et case for å se video, tall og hva jeg gjorde.',
     'contact.title':'La oss ta<br>en prat', 'contact.lead':'Har du en ledig stilling, et prosjekt eller bare lyst på en kaffe? Send meg en melding, så svarer jeg så raskt som mulig.',
     'contact.phone':'Telefon · ', 'contact.portfolio':'Portefølje · ', 'contact.open':'Tilgjengelig for nye roller',
@@ -686,7 +705,7 @@ const I18N = {
     'stats.title':'Results', 'aria.menuBtn':'Menu', 'work.more':'See more', 'work.less':'See less', 'dlg.full':'Fullscreen', 'dlg.previmg':'Previous image', 'dlg.nextimg':'Next image', 'brand.sub':'Portfolio', 'work.school':'Coursework', 'dlg.slide':'Show', 'facts.biz':'Own business', 'facts.biz.v':'Rams Creative, freelance marketing and video editing',
     'facts.tools':'Tools', 'facts.web':'Analytics and web',
     'stat.1':'views on TikTok for Mufano', 'stat.2':'in studio rental sales for M40 Studios', 'stat.2.unit':'NOK',
-    'stat.3':'raised for Make-A-Wish with NOT Management', 'stat.4':'videos and photos in Punkt Oslo’s content bank',
+    'stat.3':'raised for Make-A-Wish with NOT Management', 'stat.4':'videos and photos in Punkt Oslo’s content bank', 'cookie.aria':'About cookies', 'cookie.title':'Cookies', 'cookie.text':'This site uses no tracking or advertising cookies. Only your language choice is stored locally in your browser.', 'cookie.ok':'Got it',
     'work.title':'Selected<br>work', 'work.lead':'A selection of content and campaigns I’ve made, from idea to finished post. Tap a case to see video, numbers and what I did.',
     'contact.title':'Let’s<br>talk', 'contact.lead':'Have an open position, a project, or just fancy a coffee? Send me a message and I’ll get back to you as soon as possible.',
     'contact.phone':'Phone · ', 'contact.portfolio':'Portfolio · ', 'contact.open':'Open to new roles',
@@ -1345,6 +1364,16 @@ const revObs = new IntersectionObserver(entries => {
   });
 }, {threshold:.15, rootMargin:'0px 0px -6% 0px'});
 document.querySelectorAll('.reveal').forEach(el => revObs.observe(el));
+
+/* ---------- Cookies ---------- */
+{
+  const cb = document.getElementById('cookie-btn'), cp = document.getElementById('cookie-pop');
+  const setCookie = open => { cp.classList.toggle('open', open); cb.setAttribute('aria-expanded', open); if (open) document.getElementById('cookie-ok').focus({preventScroll:true}); };
+  cb.addEventListener('click', () => setCookie(!cp.classList.contains('open')));
+  document.getElementById('cookie-ok').addEventListener('click', () => { setCookie(false); cb.focus({preventScroll:true}); });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape' && cp.classList.contains('open')) setCookie(false); });
+  document.addEventListener('click', e => { if (cp.classList.contains('open') && !cp.contains(e.target) && !cb.contains(e.target)) setCookie(false); });
+}
 
 /* ---------- Lyset på kula følger musepekeren ---------- */
 if (canHover && !reduce) {
