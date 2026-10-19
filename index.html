@@ -86,6 +86,7 @@ button{font:inherit;color:inherit}
 .site-header.scrolled{background:rgba(14,12,11,.78);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);border-bottom-color:var(--line)}
 .site-header .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px}
 .brand{display:flex;align-items:center;gap:10px;text-decoration:none;font-weight:600;font-size:15px;white-space:nowrap}
+.brand-sub{font-weight:400;color:var(--muted);margin-left:-4px}
 .nav{display:flex;gap:clamp(14px,2.4vw,32px)}
 .nav a{text-decoration:none;font-size:14px;color:var(--muted);transition:color .2s;white-space:nowrap}
 .nav a .n{color:var(--faint);margin-right:6px;transition:color .2s}
@@ -206,8 +207,27 @@ section{position:relative}
 .dlg-scroll{max-height:inherit;overflow:auto;overscroll-behavior:contain}
 .dlg-grid{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr)}
 .dlg-media{position:sticky;top:0;align-self:start;padding:24px;display:flex;flex-direction:column;gap:14px}
-.viewer{position:relative;display:grid;place-items:center;background:#0a0807;border-radius:10px;overflow:hidden;height:min(70vh,640px);height:min(70dvh,640px)}
-.viewer img,.viewer video{width:100%;height:100%;object-fit:contain}
+.viewer{position:relative;height:min(70vh,640px);height:min(70dvh,640px);isolation:isolate}
+.viewer::before{content:"";position:absolute;inset:-10%;z-index:-1;background:radial-gradient(circle,rgba(255,122,26,.14),rgba(255,122,26,0) 62%);pointer-events:none}
+.vslide{position:absolute;top:0;bottom:0;left:15%;right:15%;border-radius:14px;overflow:hidden;background:#0a0807;opacity:0;z-index:0;pointer-events:none;
+  transform:scale(.7);filter:brightness(.45);box-shadow:0 24px 60px rgba(0,0,0,.5);
+  transition:transform .8s cubic-bezier(.22,.8,.2,1),opacity .6s var(--ease),filter .6s var(--ease)}
+.viewer.single .vslide{left:0;right:0}
+.vslide img,.vslide video{width:100%;height:100%;object-fit:contain;display:block}
+.vslide.on{opacity:1;z-index:3;transform:none;filter:none;pointer-events:auto}
+.vslide.next{opacity:.9;z-index:2;transform:translateX(30%) scale(.8) rotate(4deg);pointer-events:auto;cursor:pointer}
+.vslide.prev{opacity:.9;z-index:1;transform:translateX(-30%) scale(.8) rotate(-4deg);pointer-events:auto;cursor:pointer}
+.vslide.next:hover,.vslide.prev:hover{filter:brightness(.7)}
+.vplay{position:absolute;inset:0;display:grid;place-items:center;pointer-events:none}
+.vplay svg{width:42px;height:42px;padding:13px;border-radius:50%;background:var(--accent);fill:var(--ink)}
+.vslide.on .vplay{display:none}
+.vdots{display:flex;gap:8px;flex-wrap:wrap}
+.vdots button{width:9px;height:9px;padding:0;border:0;border-radius:50%;background:var(--line-strong);cursor:pointer;transition:background .3s,width .3s}
+.vdots button[aria-current="true"]{width:26px;border-radius:999px;background:var(--accent)}
+.case-media img.case-logo{position:absolute;inset:auto;left:14px;top:14px;z-index:2;width:64px;height:64px;object-fit:contain;transform:none!important;filter:drop-shadow(0 4px 14px rgba(0,0,0,.5))}
+.work-sub{margin:clamp(64px,8vw,104px) 0 clamp(24px,3vw,36px);font-family:var(--font-display);font-stretch:125%;font-weight:800;font-size:clamp(24px,2.6vw,36px);text-transform:uppercase;line-height:1}
+.dlg-link{display:inline-flex;align-items:center;gap:8px;margin:0 0 32px;color:var(--accent);font-weight:600;font-size:14px;text-decoration:none}
+.dlg-link:hover{text-decoration:underline}
 .viewer-cap{font-size:13px;color:var(--muted);margin:0;min-height:1.4em}
 .thumbs{display:flex;gap:8px;overflow-x:auto;padding-bottom:4px;scrollbar-width:thin}
 .thumb{position:relative;flex:none;width:58px;height:58px;padding:0;border:1px solid var(--line);border-radius:8px;overflow:hidden;background:var(--bg-card);cursor:pointer;opacity:.6;transition:opacity .2s,border-color .2s}
@@ -361,7 +381,7 @@ section{position:relative}
 
 <header class="site-header" id="top-bar">
   <div class="wrap">
-    <a class="brand" href="#top"><span class="brand-dot" aria-hidden="true"></span>Daniel Ramslien</a>
+    <a class="brand" href="#top"><span class="brand-dot" aria-hidden="true"></span>Daniel Ramslien <span class="brand-sub" data-i18n="brand.sub">Portefølje</span></a>
     <div class="header-right">
       <nav class="nav" aria-label="Hovedmeny" data-i18n-aria="aria.menu">
         <a href="#om-meg"><span data-i18n="nav.about">Om meg</span></a>
@@ -472,6 +492,8 @@ section{position:relative}
         <h2 class="display h-xl reveal" id="arbeid-tittel" data-i18n-html="work.title">Utvalgte<br>case</h2>
       </div>
       <ul class="cases" id="cases"></ul>
+      <h3 class="work-sub reveal" data-i18n="work.school">Skolearbeid</h3>
+      <ul class="cases" id="school"></ul>
       <noscript><p class="body">Slå på JavaScript for å se casene. / Enable JavaScript to see the work.</p></noscript>
     </div>
   </section>
@@ -537,7 +559,7 @@ section{position:relative}
       <div class="dlg-media">
         <div class="viewer" id="dlg-viewer"></div>
         <p class="viewer-cap" id="dlg-cap"></p>
-        <div class="thumbs" id="dlg-thumbs" role="group" aria-label="Velg bilde eller video" data-i18n-aria="dlg.thumbs"></div>
+        <div class="vdots" id="dlg-thumbs" role="group" aria-label="Velg bilde eller video" data-i18n-aria="dlg.thumbs"></div>
       </div>
       <div class="dlg-body">
         <div class="dlg-top">
@@ -553,6 +575,7 @@ section{position:relative}
         <span class="label dlg-sub" data-i18n="dlg.did">Hva jeg gjorde</span>
         <ul class="dlg-list" id="dlg-list"></ul>
         <div id="dlg-quote"></div>
+        <div id="dlg-link"></div>
         <div class="dlg-nav">
           <button type="button" id="dlg-prev"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M10 3L5 8l5 5"/></svg><span class="t" id="dlg-prev-t">Forrige</span></button>
           <button type="button" id="dlg-next"><span class="t" id="dlg-next-t">Neste</span><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M6 3l5 5-5 5"/></svg></button>
@@ -585,7 +608,7 @@ const I18N = {
     'about.p3':'I hverdagen jobber jeg med alt fra innholdsproduksjon og videoredigering til kampanjer som konverterer, og jeg måler alltid hva som faktisk virker. Gjennom eget foretak har jeg også fått erfaring med merkevarebygging, salg, kunderelasjoner og regnskap. I bunn har jeg sju år med musikkproduksjon, som har gitt meg et øre for rytme, timing og hva som fanger oppmerksomhet.',
     'skill.1':'Innholdsstrategi','skill.5':'Foto og video','skill.6':'Copy','skill.7':'Analyse','skill.8':'Kampanjeplanlegging',
     'facts.edu':'Utdanning', 'facts.edu.v':'Bachelor i digital markedsføring, Høyskolen Kristiania (2024–2027)',
-    'stats.title':'Resultater', 'facts.biz':'Eget foretak', 'facts.biz.v':'Rams Creative, frilans markedsføring og videoredigering',
+    'stats.title':'Resultater', 'brand.sub':'Portefølje', 'work.school':'Skolearbeid', 'dlg.slide':'Vis', 'facts.biz':'Eget foretak', 'facts.biz.v':'Rams Creative, frilans markedsføring og videoredigering',
     'facts.tools':'Verktøy', 'facts.web':'Analyse og web',
     'stat.1':'visninger på TikTok for Mufano', 'stat.2':'i salg av studioleie for M40 Studios', 'stat.2.unit':'kr',
     'stat.3':'samlet inn til Make-A-Wish med NOT Management', 'stat.4':'videoer og bilder i innholdsbanken til Punkt Oslo',
@@ -617,7 +640,7 @@ const I18N = {
     'about.p3':'Day to day I work on everything from content production and video editing to campaigns that convert, and I always measure what actually works. Running my own business has also given me experience with brand building, sales, client relations and bookkeeping. At the core I have seven years of music production behind me, which has given me an ear for rhythm, timing and what grabs attention.',
     'skill.1':'Content strategy','skill.5':'Photo and video','skill.6':'Copywriting','skill.7':'Analytics','skill.8':'Campaign planning',
     'facts.edu':'Education', 'facts.edu.v':'Bachelor’s in Digital Marketing, Kristiania University of Applied Sciences (2024–2027)',
-    'stats.title':'Results', 'facts.biz':'Own business', 'facts.biz.v':'Rams Creative, freelance marketing and video editing',
+    'stats.title':'Results', 'brand.sub':'Portfolio', 'work.school':'Coursework', 'dlg.slide':'Show', 'facts.biz':'Own business', 'facts.biz.v':'Rams Creative, freelance marketing and video editing',
     'facts.tools':'Tools', 'facts.web':'Analytics and web',
     'stat.1':'views on TikTok for Mufano', 'stat.2':'in studio rental sales for M40 Studios', 'stat.2.unit':'NOK',
     'stat.3':'raised for Make-A-Wish with NOT Management', 'stat.4':'videos and photos in Punkt Oslo’s content bank',
@@ -641,6 +664,28 @@ const I18N = {
    ------------------------------------------------------------ */
 const V = 'assets/video/', I = 'assets/img/', P = 'assets/img/posters/';
 const CASES = [
+  {
+    id:'kraft', year:'2026', cover:P+'kraft.jpg', preview:V+'kraft.mp4', logo:'assets/img/kraft/kraft-logo.png',
+    link:{href:'https://kraftcollective.no/products/kraft-1-ar', text:{no:'Les om jubileet på kraftcollective.no',en:'Read about the anniversary on kraftcollective.no'}},
+    media:[{type:'video',src:V+'kraft.mp4',poster:P+'kraft.jpg',cap:{no:'Jubileumsvideo for KRAFT Collective',en:'Anniversary video for KRAFT Collective'}},
+      {type:'image',src:'assets/img/kraft/kraft-logo.png',cap:{no:'KRAFT Collective',en:'KRAFT Collective'}}],
+    t:{
+      no:{card:'KRAFT 1 år', title:'KRAFT Collective fyller 1 år', client:'KRAFT Collective', clientDesc:'Treningsfellesskap i Oslo', period:'2026',
+        role:'Filming og videoredigering (via Rams Creative)', tags:['Video','Event','Sosiale medier'], result:'Jubileumsvideo · 45 deltakere',
+        intro:'KRAFT Collective feiret ettårsjubileum med en signaturøkt for 45 deltakere i Frognerparken, der den aller første økten ble holdt, etterfulgt av kake, prat og drikke fra Ambijus. Jeg filmet og klippet jubileumsvideoen.',
+        metrics:[['45','deltakere på jubileumsøkten'],['1 år','siden første økt i Frognerparken'],['1 min','ferdig vertikal video']],
+        bullets:['Filmet signaturøkten og feiringen etterpå i Frognerparken.',
+          'Klippet en vertikal jubileumsvideo på rundt ett minutt.',
+          'Fanget det som gjør fellesskapet: høy energi, svette smil og både kjente og nye ansikter.']},
+      en:{card:'KRAFT 1 year', title:'KRAFT Collective turns 1', client:'KRAFT Collective', clientDesc:'Fitness community in Oslo', period:'2026',
+        role:'Filming and video editing (via Rams Creative)', tags:['Video','Event','Social media'], result:'Anniversary video · 45 participants',
+        intro:'KRAFT Collective celebrated its first anniversary with a signature session for 45 participants in Frognerparken, where the very first session was held, followed by cake, conversation and drinks from Ambijus. I filmed and edited the anniversary video.',
+        metrics:[['45','participants in the anniversary session'],['1 year','since the first session in Frognerparken'],['1 min','finished vertical video']],
+        bullets:['Filmed the signature session and the celebration afterwards in Frognerparken.',
+          'Edited a vertical anniversary video of about one minute.',
+          'Captured what makes the community: high energy, sweaty smiles and both familiar and new faces.']}
+    }
+  },
   {
     id:'mufano', year:'2026', cover:P+'mufano.jpg', preview:V+'mufano.mp4',
     media:[
@@ -672,6 +717,17 @@ const CASES = [
                  en:'Daniel is a good and reliable advisor in sales, communication and marketing whom I can truly recommend. He wants the best for those around him and always puts the customer first.'},
       by:{no:'Kjartan Håvik, daglig leder i M40 Eiendom AS',en:'Kjartan Håvik, CEO of M40 Eiendom AS (translated from Norwegian)'}},
     media:[{type:'video',src:V+'m40.mp4',poster:P+'m40.jpg',cap:{no:'Video for M40 Studios',en:'Video for M40 Studios'}},
+      {type:'image',src:'assets/img/m40/m40-ad-1.webp',cap:{no:'Annonse: Bygge ditt drømmestudio?',en:'Ad: Build your dream studio?'}},
+      {type:'image',src:'assets/img/m40/m40-ad-2.webp',cap:{no:'Annonse: Ledige plasser',en:'Ad: Spots available'}},
+      {type:'image',src:'assets/img/m40/m40-hvor-1.webp',cap:{no:'Karusellinnlegg: Hvor finner du oss?',en:'Carousel post: Where to find us'}},
+      {type:'image',src:'assets/img/m40/m40-hvor-2.webp',cap:{no:'Karusellinnlegg: Studio-kollektiver i Oslo',en:'Carousel post: Studio collectives in Oslo'}},
+      {type:'image',src:'assets/img/m40/m40-hvor-3.webp',cap:{no:'Karusellinnlegg: Gangavstand',en:'Carousel post: Walking distance'}},
+      {type:'image',src:'assets/img/m40/m40-hvor-4.webp',cap:{no:'Karusellinnlegg: Ta kontakt',en:'Carousel post: Get in touch'}},
+      {type:'image',src:'assets/img/m40/m40-li-1.webp',cap:{no:'LinkedIn-innlegg: M40 Studios',en:'LinkedIn post: M40 Studios'}},
+      {type:'image',src:'assets/img/m40/m40-li-2.webp',cap:{no:'LinkedIn-innlegg: Marketing & Communication',en:'LinkedIn post: Marketing & Communication'}},
+      {type:'image',src:'assets/img/m40/m40-li-3.webp',cap:{no:'LinkedIn-innlegg: Business & Administration',en:'LinkedIn post: Business & Administration'}},
+      {type:'image',src:'assets/img/m40/m40-li-4.webp',cap:{no:'LinkedIn-innlegg: Hvor vi er',en:'LinkedIn post: Where we are'}},
+      {type:'image',src:'assets/img/m40/m40-li-5.webp',cap:{no:'LinkedIn-innlegg: Studio midt i Oslo sentrum',en:'LinkedIn post: A studio in central Oslo'}},
       {type:'image',src:'assets/img/attester/attest-m40.webp',cap:{no:'Uttalelse fra daglig leder Kjartan Håvik',en:'Statement from CEO Kjartan Håvik'}}],
     t:{
       no:{card:'Studiokampanje', title:'Fra null til 20 faste kunder', client:'M40 Studios', clientDesc:'M40 Eiendom AS', period:'Jan. – sep. 2026',
@@ -805,6 +861,46 @@ const CASES = [
           'The event was a great success, and several of the students later got internships at the participating companies.',
           'Filmed, photographed and edited a total of 10 videos from 3 events, published on the school’s LinkedIn and Instagram.']}
     }
+  },
+  {
+    id:'iko', group:'school', year:'2025', cover:P+'iko.jpg', preview:V+'iko.mp4',
+    media:[{type:'video',src:V+'iko.mp4',poster:P+'iko.jpg',cap:{no:'Kampanjevideoen',en:'The campaign video'}}],
+    t:{
+      no:{card:'Kampanjevideo', title:'Kampanjevideo i Innholdskommunikasjon', client:'Høyskolen Kristiania', clientDesc:'Innholdskommunikasjon', period:'Vår 2025',
+        role:'Ansvarlig for kampanjevideoen i gruppen', tags:['Kampanje','Video','Skolearbeid'], result:'Karakter A',
+        intro:'I gruppeeksamen i Innholdskommunikasjon startet vi vårt eget mediebyrå, Ung Media, som tilpasser markedsføring til yngre målgrupper. Jeg hadde ansvaret for kampanjevideoen.',
+        metrics:[['A','karakter i emnet'],['16 timer','arbeid med kampanjevideoen']],
+        bullets:['Planla kampanjen sammen med gruppen, med felles moodboard i Milanote.',
+          'Hentet klipp og satte dem sammen til en tydelig fortelling som skulle fange oppmerksomhet og skape engasjement.',
+          'Klippet og ferdigstilte videoen selv, et arbeid på rundt 16 timer.']},
+      en:{card:'Campaign video', title:'Campaign video in Content Communication', client:'Kristiania University of Applied Sciences', clientDesc:'Content Communication', period:'Spring 2025',
+        role:'Responsible for the group’s campaign video', tags:['Campaign','Video','Coursework'], result:'Grade A',
+        intro:'For the group exam in Content Communication we started our own media agency, Ung Media, tailoring marketing to younger audiences. I was responsible for the campaign video.',
+        metrics:[['A','grade in the course'],['16 hours','spent on the campaign video']],
+        bullets:['Planned the campaign with the group, using a shared moodboard in Milanote.',
+          'Gathered clips and built them into a clear story designed to grab attention and drive engagement.',
+          'Edited and finished the video myself, about 16 hours of work.']}
+    }
+  },
+  {
+    id:'div', group:'school', year:'2025', cover:P+'div-eksamen.jpg', coverPos:'0% 50%', preview:V+'div-eksamen.mp4',
+    media:[{type:'video',src:V+'div-eksamen.mp4',poster:P+'div-eksamen.jpg',cap:{no:'Eksamensvideo i Digitale verktøy',en:'Exam video in Digital Tools'}}],
+    t:{
+      no:{card:'Digital strategi', title:'Eksamensvideo i Digitale verktøy', client:'Høyskolen Kristiania', clientDesc:'Digitale verktøy', period:'2025',
+        role:'Individuell eksamen', tags:['Nettside','Analyse','Skolearbeid'], result:'Karakter A',
+        intro:'En videopresentasjon på rundt tolv minutter der jeg går gjennom en digital markedsføringsstrategi, fra kundereisen og nettsiden til ytelse og hvor brukerne klikker.',
+        metrics:[['A','karakter i emnet'],['12 min','videopresentasjon']],
+        bullets:['Kartla kundereisen og hvilke kanaler og verktøy som brukes i hvert steg.',
+          'Presenterte nettsiden bygget i WordPress og målte ytelsen på PC og mobil.',
+          'Analyserte hvor brukerne klikker og hvordan det henger sammen med konvertering.']},
+      en:{card:'Digital strategy', title:'Exam video in Digital Tools', client:'Kristiania University of Applied Sciences', clientDesc:'Digital Tools', period:'2025',
+        role:'Individual exam', tags:['Website','Analytics','Coursework'], result:'Grade A',
+        intro:'A video presentation of about twelve minutes walking through a digital marketing strategy, from the customer journey and the website to performance and where users click.',
+        metrics:[['A','grade in the course'],['12 min','video presentation']],
+        bullets:['Mapped the customer journey and the channels and tools used at each step.',
+          'Presented the website built in WordPress and measured its performance on desktop and mobile.',
+          'Analysed where users click and how that ties into conversion.']}
+    }
   }
 ];
 
@@ -862,9 +958,9 @@ const pick = v => (v && typeof v === 'object') ? (v[lang] || v.no) : v;
 const fmt = n => Math.round(n).toLocaleString(lang === 'en' ? 'en-US' : 'nb-NO');
 
 /* ---------- Bygg kortene ---------- */
-const list = $('cases');
+const list = $('cases'), schoolList = $('school');
 function renderCards(){
-  list.innerHTML = CASES.map((c,i) => {
+  const cardHtml = (c,i) => {
     const x = tc(c);
     const hasVideo = c.media.some(m => m.type === 'video');
     return `
@@ -874,6 +970,7 @@ function renderCards(){
         ${c.preview ? `<video muted loop playsinline preload="none" data-src="${c.preview}"></video>` : ''}
         <span class="case-badge">${hasVideo ? ICON_PLAY + tr('card.video') : tr('card.images')}</span>
         <span class="case-open" aria-hidden="true">${ICON_ARROW}</span>
+        ${c.logo ? `<img class="case-logo" src="${c.logo}" alt="">` : ''}
       </div>
       <div class="case-body">
         <div class="case-title-row"><h3 class="case-title">${esc(x.card)}</h3><span class="case-year">${c.year}</span></div>
@@ -883,11 +980,13 @@ function renderCards(){
       </div>
       <button class="case-link" type="button" data-open="${i}"><span>${tr('card.view')}: ${esc(x.title)} ${tr('card.for')} ${esc(x.client)}</span></button>
     </li>`;
-  }).join('');
+  };
+  list.innerHTML = CASES.map((c,i) => c.group === 'school' ? '' : cardHtml(c,i)).join('');
+  schoolList.innerHTML = CASES.map((c,i) => c.group === 'school' ? cardHtml(c,i) : '').join('');
 
   /* Forhåndsvisning av video når man holder musepekeren over et kort */
   if (canHover) {
-    list.querySelectorAll('.case').forEach(card => {
+    document.querySelectorAll('#cases .case, #school .case').forEach(card => {
       const v = card.querySelector('video');
       if (!v) return;
       card.addEventListener('mouseenter', () => {
@@ -942,17 +1041,36 @@ refDlg.addEventListener('close', () => { document.body.style.overflow = ''; if (
 const dlg = $('case-dialog');
 let current = 0, currentMedia = 0, lastFocus = null;
 
+function buildViewer(c){
+  const viewer = $('dlg-viewer');
+  viewer.classList.toggle('single', c.media.length < 2);
+  viewer.innerHTML = c.media.map((m,k) => `<div class="vslide" data-k="${k}">${m.type === 'video'
+    ? `<img src="${m.poster}" alt=""><span class="vplay">${ICON_PLAY}</span>`
+    : `<img src="${m.src}" alt="${esc(pick(m.cap))}" loading="lazy">`}</div>`).join('');
+  $('dlg-thumbs').innerHTML = c.media.length > 1 ? c.media.map((m,k) => `<button type="button" data-k="${k}" aria-label="${tr('dlg.slide')} ${k+1}: ${esc(pick(m.cap))}"></button>`).join('') : '';
+}
 function showMedia(c, idx){
-  currentMedia = idx;
-  const m = c.media[idx];
+  currentMedia = Math.max(0, Math.min(idx, c.media.length - 1));
   const viewer = $('dlg-viewer');
   viewer.querySelectorAll('video').forEach(v => v.pause());
-  viewer.innerHTML = m.type === 'video'
-    ? `<video src="${m.src}" poster="${m.poster||''}" controls playsinline preload="metadata"></video>`
-    : `<img src="${m.src}" alt="${esc(pick(m.cap))}">`;
-  $('dlg-cap').textContent = pick(m.cap) || '';
-  $('dlg-thumbs').querySelectorAll('.thumb').forEach((t,i) => t.setAttribute('aria-current', i === idx ? 'true' : 'false'));
+  viewer.querySelectorAll('.vslide').forEach((el,k) => {
+    const m = c.media[k];
+    el.classList.toggle('on', k === currentMedia);
+    el.classList.toggle('next', k === currentMedia + 1);
+    el.classList.toggle('prev', k === currentMedia - 1);
+    if (m.type === 'video') {
+      const hasVideo = !!el.querySelector('video');
+      if (k === currentMedia && !hasVideo) el.innerHTML = `<video src="${m.src}" poster="${m.poster||''}" controls playsinline preload="metadata"></video>`;
+      if (k !== currentMedia && hasVideo) el.innerHTML = `<img src="${m.poster}" alt=""><span class="vplay">${ICON_PLAY}</span>`;
+    }
+  });
+  $('dlg-cap').textContent = pick(c.media[currentMedia].cap) || '';
+  $('dlg-thumbs').querySelectorAll('button').forEach((b,k) => b.setAttribute('aria-current', k === currentMedia ? 'true' : 'false'));
 }
+$('dlg-viewer').addEventListener('click', e => {
+  const t = e.target.closest('.vslide'); if (!t || t.classList.contains('on')) return;
+  showMedia(CASES[current], +t.dataset.k);
+});
 
 function fillDialog(i, keepMedia){
   current = (i + CASES.length) % CASES.length;
@@ -967,17 +1085,13 @@ function fillDialog(i, keepMedia){
   $('dlg-metrics').innerHTML = x.metrics.map(([n,l]) => `<div><span class="metric-num">${esc(n)}</span><span class="metric-label">${esc(l)}</span></div>`).join('');
   $('dlg-list').innerHTML = x.bullets.map(b => `<li>${esc(b)}</li>`).join('');
   $('dlg-quote').innerHTML = c.quote ? `<blockquote class="quote"><p>${esc(pick(c.quote.text))}</p><footer>${esc(pick(c.quote.by))}</footer></blockquote>` : '';
-  const thumbs = $('dlg-thumbs');
-  thumbs.innerHTML = c.media.length > 1 ? c.media.map((m,k) => `
-    <button class="thumb" type="button" data-k="${k}" aria-label="${esc(pick(m.cap))}">
-      <img src="${m.type==='video' ? m.poster : m.src}" alt="" loading="lazy">
-      ${m.type==='video' ? `<span class="play">${ICON_PLAY}</span>` : ''}
-    </button>`).join('') : '';
-  thumbs.hidden = c.media.length < 2;
+  $('dlg-link').innerHTML = c.link ? `<a class="dlg-link" href="${c.link.href}" target="_blank" rel="noopener">${esc(pick(c.link.text))} ↗</a>` : '';
   if (keepMedia) {
+    $('dlg-thumbs').innerHTML = c.media.length > 1 ? c.media.map((m,k) => `<button type="button" data-k="${k}" aria-label="${tr('dlg.slide')} ${k+1}: ${esc(pick(m.cap))}"></button>`).join('') : '';
     $('dlg-cap').textContent = pick(c.media[currentMedia].cap) || '';
-    thumbs.querySelectorAll('.thumb').forEach((t,k) => t.setAttribute('aria-current', k === currentMedia ? 'true' : 'false'));
+    $('dlg-thumbs').querySelectorAll('button').forEach((b,k) => b.setAttribute('aria-current', k === currentMedia ? 'true' : 'false'));
   } else {
+    buildViewer(c);
     showMedia(c, 0);
     dlg.querySelector('.dlg-scroll').scrollTop = 0;
   }
@@ -1001,16 +1115,16 @@ dlg.addEventListener('close', () => {
   history.replaceState(null, '', location.pathname + location.search);
   if (lastFocus) lastFocus.focus({preventScroll:true});
 });
-list.addEventListener('click', e => { const b = e.target.closest('[data-open]'); if (b) openCase(+b.dataset.open); });
+[list, schoolList].forEach(l => l.addEventListener('click', e => { const b = e.target.closest('[data-open]'); if (b) openCase(+b.dataset.open); }));
 $('dlg-close').addEventListener('click', closeCase);
 $('dlg-prev').addEventListener('click', () => fillDialog(current - 1));
 $('dlg-next').addEventListener('click', () => fillDialog(current + 1));
-$('dlg-thumbs').addEventListener('click', e => { const t = e.target.closest('.thumb'); if (t) showMedia(CASES[current], +t.dataset.k); });
+$('dlg-thumbs').addEventListener('click', e => { const t = e.target.closest('button'); if (t) showMedia(CASES[current], +t.dataset.k); });
 dlg.addEventListener('click', e => { if (e.target === dlg) closeCase(); });
 dlg.addEventListener('keydown', e => {
   if (e.target.closest('video')) return;
-  if (e.key === 'ArrowRight') fillDialog(current + 1);
-  if (e.key === 'ArrowLeft') fillDialog(current - 1);
+  if (e.key === 'ArrowRight') { const c = CASES[current]; if (currentMedia < c.media.length - 1) showMedia(c, currentMedia + 1); else fillDialog(current + 1); }
+  if (e.key === 'ArrowLeft') { const c = CASES[current]; if (currentMedia > 0) showMedia(c, currentMedia - 1); else fillDialog(current - 1); }
 });
 
 /* ---------- Bytt språk ---------- */
@@ -1042,7 +1156,7 @@ function applyLang(next, save){
 document.querySelectorAll('.lang-btn').forEach(b => b.addEventListener('click', () => { if (b.dataset.lang !== lang) applyLang(b.dataset.lang, true); }));
 applyLang(lang, false);
 /* Kortene tegnes på nytt ved språkbytte, så de skal ikke animeres inn igjen */
-list.querySelectorAll('.case').forEach(el => el.classList.remove('in'));
+document.querySelectorAll('#cases .case, #school .case').forEach(el => el.classList.remove('in'));
 refList.querySelectorAll('.doc').forEach(el => el.classList.remove('in'));
 testiList.querySelectorAll('li').forEach(el => el.classList.remove('in'));
 
