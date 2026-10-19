@@ -194,7 +194,7 @@ section{position:relative}
 .facts dt{font-size:12px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);margin-bottom:6px}
 .facts dd{margin:0;font-size:14px;line-height:1.55;color:var(--text-soft)}
 
-.results-section{padding-top:clamp(56px,7vw,96px)}
+.work-stats{margin-bottom:clamp(48px,6vw,80px)}
 .stats-title{margin:0 0 18px;font-family:var(--font-display);font-stretch:118%;font-weight:800;font-size:clamp(17px,1.5vw,20px);color:var(--text)}
 .stats{container-type:inline-size;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));margin-top:0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
 .stat{padding:30px 24px 30px 0}
@@ -469,7 +469,7 @@ section{position:relative}
 </style>
 </head>
 <body>
-<a class="skip" href="#resultater" data-i18n="skip">Hopp til innhold</a>
+<a class="skip" href="#arbeid" data-i18n="skip">Hopp til innhold</a>
 
 <header class="site-header" id="top-bar">
   <div class="wrap">
@@ -511,24 +511,20 @@ section{position:relative}
     </div>
   </section>
 
-  <!-- ======== Resultater ======== -->
-  <section class="results-section" id="resultater" aria-labelledby="resultater-tittel">
+  <!-- ======== Arbeid ======== -->
+  <section class="section" id="arbeid" aria-labelledby="arbeid-tittel">
     <div class="wrap">
-      <h2 class="stats-title reveal" id="resultater-tittel" data-i18n="stats.title">Resultater</h2>
+      <div class="work-head">
+        <h2 class="display h-xl reveal" id="arbeid-tittel" data-i18n-html="work.title">Utvalgte<br>case</h2>
+      </div>
+      <div class="work-stats" id="resultater">
+      <h3 class="stats-title reveal" id="resultater-tittel" data-i18n="stats.title">Resultater</h3>
       <div class="stats" aria-label="Resultater i tall" data-i18n-aria="aria.stats">
         <div class="stat reveal"><span class="stat-num" data-count="863000" data-suffix="+">863 000+</span><span class="stat-label" data-i18n="stat.1">visninger på TikTok for Mufano</span></div>
         <div class="stat reveal" style="--d:.08s"><span class="stat-num"><span data-count="100000" data-suffix="+">100 000+</span><small data-i18n="stat.2.unit">kr</small></span><span class="stat-label" data-i18n="stat.2">i salg av studioleie for M40 Studios</span></div>
         <div class="stat reveal" style="--d:.16s"><span class="stat-num"><span data-count="46000">46 000</span><small>USD</small></span><span class="stat-label" data-i18n="stat.3">samlet inn til Make-A-Wish med NOT Management</span></div>
         <div class="stat reveal" style="--d:.24s"><span class="stat-num" data-count="25" data-suffix=" + 150">25 + 150</span><span class="stat-label" data-i18n="stat.4">videoer og bilder i innholdsbanken til Punkt Oslo</span></div>
       </div>
-    </div>
-  </section>
-
-  <!-- ======== Arbeid ======== -->
-  <section class="section" id="arbeid" aria-labelledby="arbeid-tittel">
-    <div class="wrap">
-      <div class="work-head">
-        <h2 class="display h-xl reveal" id="arbeid-tittel" data-i18n-html="work.title">Utvalgte<br>case</h2>
       </div>
       <ul class="cases" id="cases"></ul>
       <div class="more-wrap"><button type="button" class="more-btn" id="more-btn" aria-controls="cases" aria-expanded="false"><span data-i18n="work.more">Se mer</span></button></div>
@@ -1466,7 +1462,7 @@ const secObs = new IntersectionObserver(entries => {
     if (en.isIntersecting) navLinks.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + en.target.id));
   });
 }, {rootMargin:'-45% 0px -50% 0px'});
-['top','resultater','arbeid','verktoy','anbefalinger','attester','om-meg','kontakt'].forEach(id => secObs.observe($(id)));
+['top','arbeid','verktoy','anbefalinger','attester','om-meg','kontakt'].forEach(id => secObs.observe($(id)));
 
 /* ---------- Animasjon ved scroll ---------- */
 function countUp(el){
