@@ -10,7 +10,7 @@
 <meta property="og:description" content="SoMe-rådgiver og digital markedsfører. Utvalgte case fra idé til ferdig post.">
 <meta property="og:type" content="website">
 <meta property="og:image" content="assets/img/profil.webp">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cdefs%3E%3CradialGradient id='g' cx='35%25' cy='30%25' r='75%25'%3E%3Cstop offset='0' stop-color='%23ffe0bf'/%3E%3Cstop offset='.45' stop-color='%23ff8327'/%3E%3Cstop offset='1' stop-color='%23a8380a'/%3E%3C/radialGradient%3E%3C/defs%3E%3Ccircle cx='32' cy='32' r='30' fill='url(%23g)'/%3E%3C/svg%3E">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cdefs%3E%3CradialGradient id='g' cx='35%25' cy='30%25' r='75%25'%3E%3Cstop offset='0' stop-color='%23fff1eb'/%3E%3Cstop offset='.45' stop-color='%23FC8A67'/%3E%3Cstop offset='1' stop-color='%23cc5b3e'/%3E%3C/radialGradient%3E%3C/defs%3E%3Ccircle cx='32' cy='32' r='30' fill='url(%23g)'/%3E%3C/svg%3E">
 <link rel="preload" href="assets/fonts/archivo.woff2" as="font" type="font/woff2" crossorigin>
 <style>
 /* Fontene ligger lokalt i assets/fonts (SIL Open Font License), så siden fungerer uten nett */
@@ -26,9 +26,9 @@
   --faint:#6e665f;
   --line:rgba(243,237,230,.14);
   --line-strong:rgba(243,237,230,.28);
-  --accent:#ff7a1a;
-  --accent-soft:rgba(255,122,26,.12);
-  --accent-line:rgba(255,122,26,.45);
+  --accent:#FC8A67;
+  --accent-soft:rgba(252,138,103,.12);
+  --accent-line:rgba(252,138,103,.45);
   --ink:#130c07;
 
   --font-display:"Archivo","Arial Black",system-ui,sans-serif;
@@ -68,18 +68,18 @@ button{font:inherit;color:inherit}
 
 .pills{display:flex;flex-wrap:wrap;gap:8px;list-style:none;margin:0;padding:0}
 .pill{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--line-strong);border-radius:999px;padding:6px 14px;font-size:13px;line-height:1.3;color:var(--text);white-space:nowrap}
-.pill--accent{border-color:var(--accent-line);background:var(--accent-soft);color:#ffb27a}
-.pill--accent .dot{width:7px;height:7px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 0 rgba(255,122,26,.6);animation:pulse 2.4s infinite}
-@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(255,122,26,.55)}70%{box-shadow:0 0 0 9px rgba(255,122,26,0)}100%{box-shadow:0 0 0 0 rgba(255,122,26,0)}}
+.pill--accent{border-color:var(--accent-line);background:var(--accent-soft);color:var(--accent)}
+.pill--accent .dot{width:7px;height:7px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 0 rgba(252,138,103,.6);animation:pulse 2.4s infinite}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(252,138,103,.55)}70%{box-shadow:0 0 0 9px rgba(252,138,103,0)}100%{box-shadow:0 0 0 0 rgba(252,138,103,0)}}
 
 /* ---------- Kule ---------- */
 .orb{position:relative;aspect-ratio:1;border-radius:50%;isolation:isolate;
   --hx:34%;--hy:29%;
-  background:radial-gradient(circle at var(--hx) var(--hy),#ffe6cc 0%,#ffc58e 11%,#ffa24f 28%,#ff8125 50%,#ec6612 68%,#c24a0b 86%,#93330a 100%);
-  box-shadow:0 0 70px 6px rgba(255,115,25,.30),inset -26px -34px 70px rgba(110,30,0,.35)}
+  background:radial-gradient(circle at var(--hx) var(--hy),#fff1eb 0%,#ffd6c8 11%,#fdb29b 28%,#FC8A67 50%,#ec7351 68%,#cc5b3e 86%,#a24631 100%);
+  box-shadow:0 0 70px 6px rgba(252,138,103,.30),inset -26px -34px 70px rgba(120,45,25,.35)}
 .orb::before{content:"";position:absolute;inset:-42%;z-index:-1;border-radius:50%;
-  background:radial-gradient(circle,rgba(255,110,20,.20) 0%,rgba(255,105,20,.08) 38%,rgba(255,100,20,0) 66%);pointer-events:none}
-.brand-dot{width:14px;height:14px;border-radius:50%;flex:none;background:radial-gradient(circle at 35% 30%,#ffd2a6,#ff8327 55%,#b8420a);box-shadow:0 0 12px rgba(255,122,26,.45)}
+  background:radial-gradient(circle,rgba(252,138,103,.20) 0%,rgba(252,138,103,.08) 38%,rgba(252,138,103,0) 66%);pointer-events:none}
+.brand-dot{width:14px;height:14px;border-radius:50%;flex:none;background:radial-gradient(circle at 35% 30%,#ffe0d5,#FC8A67 55%,#cc5b3e);box-shadow:0 0 12px rgba(252,138,103,.45)}
 
 /* ---------- Header ---------- */
 .site-header{position:fixed;inset:0 0 auto 0;z-index:50;height:var(--header-h);display:flex;align-items:center;transition:background .3s var(--ease),border-color .3s var(--ease);border-bottom:1px solid transparent}
@@ -111,10 +111,10 @@ section{position:relative}
 .hero .orb{width:min(82vw,58vh,560px);container-type:inline-size;display:grid;place-items:center;text-align:center;animation:float 9s ease-in-out infinite}
 @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
 .hero-copy{padding:0 6cqi}
-.hero-kicker{display:block;font-size:max(10px,2.3cqi);font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:#3b2212;margin-bottom:2.2cqi}
+.hero-kicker{display:block;font-size:max(10px,2.3cqi);font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:#4a2516;margin-bottom:2.2cqi}
 .hero-title{font-family:var(--font-display);font-stretch:125%;font-weight:800;font-size:8.2cqi;line-height:1.02;letter-spacing:-.01em;color:var(--ink);margin:0}
 .hero-nav{display:flex;flex-wrap:wrap;justify-content:center;gap:clamp(14px,3vw,44px);list-style:none;margin:0;padding:0 var(--gutter)}
-.hero-nav a{font-family:var(--font-display);font-stretch:125%;font-weight:800;text-transform:uppercase;text-decoration:none;font-size:clamp(24px,3.4vw,50px);line-height:1;color:transparent;-webkit-text-stroke:1.2px rgba(243,237,230,.5);transition:color .3s var(--ease),-webkit-text-stroke-color .3s var(--ease)}
+.hero-nav a{font-family:var(--font-display);font-stretch:125%;font-weight:800;text-transform:uppercase;text-decoration:none;font-size:clamp(22px,2.85vw,44px);line-height:1;color:transparent;-webkit-text-stroke:1.2px rgba(243,237,230,.5);transition:color .3s var(--ease),-webkit-text-stroke-color .3s var(--ease)}
 .hero-nav a:hover,.hero-nav a:focus-visible{color:var(--accent);-webkit-text-stroke-color:var(--accent)}
 @supports not (-webkit-text-stroke:1px #000){.hero-nav a{color:var(--text)}}
 
@@ -227,30 +227,34 @@ section{position:relative}
 .js .reveal.in{opacity:1;transform:none}
 
 /* ---------- Responsivt ---------- */
-/* ---------- Attester ---------- */
+/* ---------- Anbefalinger ---------- */
+.testi{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(16px,1.8vw,24px);list-style:none;margin:0;padding:0}
+.testi-card{position:relative;display:flex;flex-direction:column;height:100%;margin:0;padding:clamp(28px,2.8vw,40px);background:var(--bg-card);border:1px solid var(--line);border-radius:16px;overflow:hidden}
+.testi-card::after{content:"";position:absolute;right:-90px;top:-90px;width:220px;height:220px;border-radius:50%;background:radial-gradient(circle,rgba(252,138,103,.16),rgba(252,138,103,0) 68%);pointer-events:none}
+.testi-mark{display:block;height:40px;font-family:var(--font-display);font-weight:900;font-size:76px;line-height:1;color:var(--accent);margin-bottom:18px}
+.testi-quote{flex:1;margin:0 0 30px;font-size:clamp(18px,1.5vw,21px);line-height:1.5;color:var(--text)}
+.testi-tr{display:block;margin-top:12px;font-size:12px;color:var(--faint)}
+.testi-by{display:flex;align-items:center;gap:14px;padding-top:22px;border-top:1px solid var(--line)}
+.testi-avatar{width:44px;height:44px;flex:none;border-radius:50%;display:grid;place-items:center;font-family:var(--font-display);font-stretch:118%;font-weight:800;font-size:15px;color:var(--ink);background:radial-gradient(circle at 35% 30%,#ffe0d5,#FC8A67 60%,#cc5b3e)}
+.testi-name{display:block;font-weight:600;font-size:15px;color:var(--text)}
+.testi-role{display:block;font-size:13px;line-height:1.45;color:var(--muted)}
+
+/* ---------- Attester (dokumenter) ---------- */
 .refs-head{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,420px);gap:32px;align-items:end;margin-bottom:clamp(40px,5vw,64px)}
 .refs-head .lead{text-align:right;color:var(--text-soft)}
 .refs-note{display:block;margin-top:14px;font-size:13px;color:var(--faint)}
-.refs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(16px,1.8vw,24px);list-style:none;margin:0;padding:0}
-.ref{position:relative;display:flex;flex-direction:column;padding:clamp(24px,2.4vw,32px);background:var(--bg-card);border:1px solid var(--line);border-radius:14px;transition:border-color .3s var(--ease),transform .3s var(--ease)}
-.ref.has-doc:hover{border-color:var(--accent-line);transform:translateY(-3px)}
-.ref-top{display:flex;justify-content:space-between;align-items:baseline;gap:12px}
-.ref-org{font-family:var(--font-display);font-stretch:125%;font-weight:800;font-size:clamp(17px,1.4vw,19px);line-height:1.2;margin:0}
-.ref-year{font-size:13px;color:var(--muted);flex:none}
-.ref-role{font-size:14px;color:var(--muted);margin:6px 0 22px}
-.ref-quote{position:relative;flex:1;margin:0 0 24px;padding-top:30px;font-size:16px;line-height:1.55;color:var(--text)}
-.ref-quote::before{content:"\201C";position:absolute;top:-14px;left:-2px;font-family:var(--font-display);font-weight:900;font-size:56px;line-height:1;color:var(--accent)}
-.ref-quote.plain{color:var(--text-soft);font-size:15px}
-.ref-quote.plain::before{content:none}
-.ref-quote.plain{padding-top:0}
-.ref-tr{display:block;margin-top:10px;font-size:12px;color:var(--faint);font-style:normal}
-.ref-foot{display:flex;justify-content:space-between;align-items:flex-end;gap:12px;padding-top:18px;border-top:1px solid var(--line)}
-.ref-by{font-size:13px;line-height:1.45;color:var(--text-soft)}
-.ref-by span{display:block;color:var(--muted)}
-.ref-open{display:inline-flex;align-items:center;gap:8px;flex:none;font-size:13px;font-weight:600;color:var(--accent);white-space:nowrap}
-.ref-open svg{width:14px;height:14px}
-.ref-src{font-size:12px;color:var(--faint);white-space:nowrap}
-.ref-link{position:absolute;inset:0;z-index:2;background:none;border:0;padding:0;cursor:pointer;border-radius:14px}
+.refs{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:clamp(14px,1.6vw,22px);list-style:none;margin:0;padding:0}
+.doc{position:relative}
+.doc-thumb{position:relative;aspect-ratio:3/4;border-radius:10px;overflow:hidden;background:#fff;border:1px solid var(--line);transition:transform .35s var(--ease),box-shadow .35s var(--ease)}
+.doc-thumb img{width:100%;height:100%;object-fit:cover;object-position:top center}
+.doc-thumb::after{content:"";position:absolute;inset:auto 0 0 0;height:40%;background:linear-gradient(to top,rgba(14,12,11,.55),rgba(14,12,11,0))}
+.doc-zoom{position:absolute;right:10px;bottom:10px;z-index:2;width:34px;height:34px;border-radius:50%;display:grid;place-items:center;background:var(--accent);color:var(--ink);transform:scale(.7);opacity:0;transition:transform .3s var(--ease),opacity .3s}
+.doc-zoom svg{width:14px;height:14px}
+.doc:hover .doc-thumb,.doc:focus-within .doc-thumb{transform:translateY(-4px);box-shadow:0 18px 40px rgba(0,0,0,.45)}
+.doc:hover .doc-zoom,.doc:focus-within .doc-zoom{transform:scale(1);opacity:1}
+.doc-org{font-family:var(--font-display);font-stretch:118%;font-weight:800;font-size:15px;line-height:1.25;margin:16px 0 4px}
+.doc-meta{font-size:13px;line-height:1.45;color:var(--muted);margin:0}
+.doc-link{position:absolute;inset:0;z-index:3;background:none;border:0;padding:0;cursor:pointer;border-radius:10px}
 .ref-dialog{width:min(860px,calc(100% - 32px));max-width:none;max-height:calc(100vh - 48px);max-height:calc(100dvh - 48px);padding:0;border:1px solid var(--line);border-radius:18px;background:var(--bg-raised);color:var(--text);overflow:hidden}
 .ref-dialog::backdrop{background:rgba(6,5,4,.78);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
 .ref-dialog[open]{animation:dlg .45s var(--ease)}
@@ -261,7 +265,8 @@ section{position:relative}
 .ref-dlg-scroll img{width:100%;height:auto;border-radius:6px;background:#fff;box-shadow:0 10px 40px rgba(0,0,0,.4)}
 
 @media (max-width:1000px){
-  .refs{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .refs{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .testi{grid-template-columns:1fr;max-width:760px}
   .cases{grid-template-columns:repeat(2,minmax(0,1fr))}
   .stats{grid-template-columns:repeat(2,minmax(0,1fr))}
   .stat:nth-child(3){padding-left:0;border-left:0}
@@ -293,7 +298,8 @@ section{position:relative}
 @media (max-width:600px){
   :root{--header-h:60px}
   .nav a .n{display:none}
-  .refs{grid-template-columns:1fr}
+  .refs{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .doc-zoom{opacity:1;transform:scale(1)}
   .lang-btn{padding:5px 6px}
   .lang-btn .code{display:none}
   .nav a{font-size:13px}
@@ -311,7 +317,7 @@ section{position:relative}
   .dlg-nav button .t{display:none}
   .section-foot{font-size:10px}
 }
-@media (max-width:480px){
+@media (max-width:760px){
   .nav{display:none}
 }
 @media (prefers-reduced-motion:reduce){
@@ -331,8 +337,9 @@ section{position:relative}
       <nav class="nav" aria-label="Hovedmeny" data-i18n-aria="aria.menu">
         <a href="#om-meg"><span class="n">01</span><span data-i18n="nav.about">Om meg</span></a>
         <a href="#arbeid"><span class="n">02</span><span data-i18n="nav.work">Arbeid</span></a>
-        <a href="#attester"><span class="n">03</span><span data-i18n="nav.refs">Attester</span></a>
-        <a href="#kontakt"><span class="n">04</span><span data-i18n="nav.contact">Kontakt</span></a>
+        <a href="#anbefalinger"><span class="n">03</span><span data-i18n="nav.testi">Anbefalinger</span></a>
+        <a href="#attester"><span class="n">04</span><span data-i18n="nav.refs">Attester</span></a>
+        <a href="#kontakt"><span class="n">05</span><span data-i18n="nav.contact">Kontakt</span></a>
       </nav>
       <div class="lang" role="group" aria-label="Velg språk" data-i18n-aria="aria.lang">
         <button class="lang-btn" type="button" data-lang="no" lang="no" aria-pressed="true" title="Norsk"><svg class="flag" viewBox="0 0 22 16" aria-hidden="true" preserveAspectRatio="xMidYMid slice"><rect width="22" height="16" fill="#BA0C2F"/><rect x="6" width="4" height="16" fill="#fff"/><rect y="6" width="22" height="4" fill="#fff"/><rect x="7" width="2" height="16" fill="#00205B"/><rect y="7" width="22" height="2" fill="#00205B"/></svg><span class="code">NO</span><span class="sr">Norsk</span></button>
@@ -355,12 +362,12 @@ section{position:relative}
       <ul class="hero-nav">
         <li><a href="#om-meg" data-i18n="nav.about">Om meg</a></li>
         <li><a href="#arbeid" data-i18n="nav.work">Arbeid</a></li>
-        <li><a href="#attester" data-i18n="nav.refs">Attester</a></li>
+        <li><a href="#anbefalinger" data-i18n="nav.testi">Anbefalinger</a></li>
         <li><a href="#kontakt" data-i18n="nav.contact">Kontakt</a></li>
       </ul>
     </div>
     <div class="wrap">
-      <div class="section-foot"><span data-i18n="foot.portfolio">Portefølje 2026</span><span>01 / 05</span></div>
+      <div class="section-foot"><span data-i18n="foot.portfolio">Portefølje 2026</span><span>01 / 06</span></div>
     </div>
   </section>
 
@@ -398,7 +405,7 @@ section{position:relative}
         <div class="stat reveal" style="--d:.24s"><span class="stat-num" data-count="25" data-suffix=" + 150">25 + 150</span><span class="stat-label" data-i18n="stat.4">videoer og bilder i innholdsbanken til Punkt Oslo</span></div>
       </div>
 
-      <div class="section-foot"><span>Daniel Ramslien</span><span>02 / 05</span></div>
+      <div class="section-foot"><span>Daniel Ramslien</span><span>02 / 06</span></div>
     </div>
   </section>
 
@@ -412,21 +419,34 @@ section{position:relative}
       </div>
       <ul class="cases" id="cases"></ul>
       <noscript><p class="body">Slå på JavaScript for å se casene. / Enable JavaScript to see the work.</p></noscript>
-      <div class="section-foot"><span>Daniel Ramslien</span><span>03 / 05</span></div>
+      <div class="section-foot"><span>Daniel Ramslien</span><span>03 / 06</span></div>
     </div>
   </section>
 
   <!-- ======== 03 Kontakt ======== -->
-  <!-- ======== 03 Attester ======== -->
+  <!-- ======== 03 Anbefalinger ======== -->
+  <section class="section" id="anbefalinger" aria-labelledby="anbefalinger-tittel">
+    <div class="wrap">
+      <div class="eyebrow reveal"><span class="num">03</span><span class="rule"></span><span class="label" data-i18n="nav.testi">Anbefalinger</span></div>
+      <div class="refs-head">
+        <h2 class="display h-xl reveal" id="anbefalinger-tittel" data-i18n-html="testi.title">Hva andre<br>sier</h2>
+        <p class="lead reveal" data-i18n="testi.lead">Utdrag fra attester og uttalelser fra folk jeg har jobbet med.</p>
+      </div>
+      <ul class="testi" id="testi"></ul>
+      <div class="section-foot"><span>Daniel Ramslien</span><span>04 / 06</span></div>
+    </div>
+  </section>
+
+  <!-- ======== 04 Attester ======== -->
   <section class="section" id="attester" aria-labelledby="attester-tittel">
     <div class="wrap">
-      <div class="eyebrow reveal"><span class="num">03</span><span class="rule"></span><span class="label" data-i18n="nav.refs">Attester</span></div>
+      <div class="eyebrow reveal"><span class="num">04</span><span class="rule"></span><span class="label" data-i18n="nav.refs">Attester</span></div>
       <div class="refs-head">
-        <h2 class="display h-xl reveal" id="attester-tittel" data-i18n-html="refs.title">Tidligere<br>attester</h2>
-        <p class="lead reveal"><span data-i18n="refs.lead">Hva tidligere arbeidsgivere og veiledere sier om meg. Trykk på en attest for å lese hele dokumentet.</span><span class="refs-note" data-i18n="refs.note">Fødselsdato og adresse er sladdet.</span></p>
+        <h2 class="display h-xl reveal" id="attester-tittel" data-i18n-html="refs.title">Attester</h2>
+        <p class="lead reveal"><span data-i18n="refs.lead">Hele dokumentene. Trykk på en attest for å lese den.</span><span class="refs-note" data-i18n="refs.note">Fødselsdato og adresse er sladdet.</span></p>
       </div>
       <ul class="refs" id="refs"></ul>
-      <div class="section-foot"><span>Daniel Ramslien</span><span>04 / 05</span></div>
+      <div class="section-foot"><span>Daniel Ramslien</span><span>05 / 06</span></div>
     </div>
   </section>
 
@@ -434,7 +454,7 @@ section{position:relative}
     <div class="wrap">
       <div class="contact-grid">
         <div class="contact-copy">
-          <div class="eyebrow reveal"><span class="num">04</span><span class="rule"></span><span class="label" data-i18n="nav.contact">Kontakt</span></div>
+          <div class="eyebrow reveal"><span class="num">05</span><span class="rule"></span><span class="label" data-i18n="nav.contact">Kontakt</span></div>
           <h2 class="display h-xl reveal" id="kontakt-tittel" data-i18n-html="contact.title">La oss ta<br>en prat</h2>
           <p class="lead reveal" data-i18n="contact.lead">Har du en ledig stilling, et prosjekt eller bare lyst på en kaffe? Send meg en melding, så svarer jeg innen to dager.</p>
           <a class="contact-email reveal" href="mailto:daniel@ramscreative.no">daniel@ramscreative.no</a>
@@ -448,7 +468,7 @@ section{position:relative}
         </div>
         <div class="contact-orb reveal" aria-hidden="true"><div class="orb"></div></div>
       </div>
-      <div class="section-foot"><span data-i18n="foot.thanks">Takk for at du tok deg tid</span><span>05 / 05</span></div>
+      <div class="section-foot"><span data-i18n="foot.thanks">Takk for at du tok deg tid</span><span>06 / 06</span></div>
       <p class="footer-note" data-i18n="foot.note">© 2026 Daniel Ramslien · Rams Creative (Ramslien Creative ENK) · Referanser oppgis på forespørsel</p>
     </div>
   </section>
@@ -531,8 +551,9 @@ const I18N = {
     'dlg.close':'Lukk case', 'dlg.did':'Hva jeg gjorde', 'dlg.thumbs':'Velg bilde eller video',
     'dlg.client':'Kunde', 'dlg.role':'Rolle', 'dlg.period':'Periode', 'dlg.tags':'Kanaler og fag',
     'card.video':'Video', 'card.images':'Bilder', 'card.view':'Se case', 'card.for':'for',
-    'nav.refs':'Attester', 'refs.title':'Tidligere<br>attester', 'refs.lead':'Hva tidligere arbeidsgivere og veiledere sier om meg. Trykk på en attest for å lese hele dokumentet.', 'refs.note':'Fødselsdato og adresse er sladdet.',
-    'refs.open':'Se attesten', 'refs.email':'Uttalelse på e-post', 'refs.close':'Lukk attest', 'refs.view':'Se attest fra', 'refs.tr':''
+    'nav.refs':'Attester', 'refs.title':'Attester', 'refs.lead':'Hele dokumentene. Trykk på en attest for å lese den.', 'refs.note':'Fødselsdato og adresse er sladdet.',
+    'refs.close':'Lukk attest', 'refs.view':'Se attest fra',
+    'nav.testi':'Anbefalinger', 'testi.title':'Hva andre<br>sier', 'testi.lead':'Utdrag fra attester og uttalelser fra folk jeg har jobbet med.', 'testi.tr':''
   },
   en: {
     'meta.title':'Daniel Ramslien – Social Media Advisor and Digital Marketer',
@@ -560,8 +581,9 @@ const I18N = {
     'dlg.close':'Close case', 'dlg.did':'What I did', 'dlg.thumbs':'Choose image or video',
     'dlg.client':'Client', 'dlg.role':'Role', 'dlg.period':'Period', 'dlg.tags':'Channels and skills',
     'card.video':'Video', 'card.images':'Images', 'card.view':'View case', 'card.for':'for',
-    'nav.refs':'References', 'refs.title':'Previous<br>references', 'refs.lead':'What former employers and supervisors say about me. Tap a reference to read the full document.', 'refs.note':'Date of birth and address have been redacted. The documents are in Norwegian, except Open iT.',
-    'refs.open':'View document', 'refs.email':'Statement by email', 'refs.close':'Close reference', 'refs.view':'View reference from', 'refs.tr':'Translated from Norwegian'
+    'nav.refs':'References', 'refs.title':'References', 'refs.lead':'The full documents. Tap a reference to read it.', 'refs.note':'Date of birth and address have been redacted. The documents are in Norwegian, except Open iT.',
+    'refs.close':'Close reference', 'refs.view':'View reference from',
+    'nav.testi':'Testimonials', 'testi.title':'What others<br>say', 'testi.lead':'Excerpts from references and statements by people I have worked with.', 'testi.tr':'Translated from Norwegian'
   }
 };
 
@@ -727,39 +749,31 @@ const CASES = [
    Attester. Sitatene er hentet ordrett fra dokumentene.
    ------------------------------------------------------------ */
 const AT = 'assets/img/attester/';
-const REFS = [
-  { org:'M40 Eiendom AS', year:'2026', by:'Kjartan Håvik', doc:null,
-    role:{no:'Marketing & Communication, M40 Studios', en:'Marketing & Communication, M40 Studios'},
-    title:{no:'Daglig leder', en:'CEO'},
+const TESTI = [
+  { name:'Merete Bolstad', initials:'MB',
+    role:{no:'Seniorrådgiver, Høyskolen Kristiania', en:'Senior Advisor, Kristiania University of Applied Sciences'},
+    quote:{no:'På bakgrunn av Daniels brede bidrag, faglige engasjement og personlige egenskaper gir jeg ham mine beste anbefalinger.',
+           en:'Based on Daniel’s broad contribution, professional commitment and personal qualities, I give him my highest recommendations.'} },
+  { name:'Kjartan Håvik', initials:'KH',
+    role:{no:'Daglig leder, M40 Eiendom AS', en:'CEO, M40 Eiendom AS'},
     quote:{no:'Daniel er en god og pålitelig rådgiver innen salg, kommunikasjon og markedsføring som jeg virkelig kan anbefale. Han vil det beste for de rundt seg og sette alltid kunden først.',
            en:'Daniel is a good and reliable advisor in sales, communication and marketing whom I can truly recommend. He wants the best for those around him and always puts the customer first.'} },
-  { org:'Høyskolen Kristiania', year:'2026', by:'Merete Bolstad', doc:AT+'attest-kristiania-praksisdag.webp',
-    orgEn:'Kristiania University of Applied Sciences',
-    role:{no:'Prosjektgruppen for praksisdagen for masterstudenter', en:'Project group, internship day for master’s students'},
-    title:{no:'Seniorrådgiver, arbeidsintegrert læring og praksis', en:'Senior Advisor, Work-Integrated Learning'},
-    quote:{no:'Han fremstod som positiv, pålitelig og løsningsorientert, og var en verdifull deltaker i forkant og under selve gjennomføringen av prosjektet.',
-           en:'He came across as positive, reliable and solution-oriented, and was a valuable participant both in the run-up to and during the project.'} },
-  { org:'Høyskolen Kristiania', year:'2026', by:'Annette Kallevig', doc:AT+'attest-kristiania-studentassistent.webp',
-    orgEn:'Kristiania University of Applied Sciences',
-    role:{no:'Studentassistent i emnet Innholdskommunikasjon', en:'Student assistant, Content Communication course'},
-    title:{no:'Emneansvarlig og studieprogramleder', en:'Course Leader and Head of Programme'},
-    quote:{no:'Han løste oppgaven på en utmerket måte med kunnskap, tilgjengelighet, positivitet og evne til å overføre læring.',
-           en:'He carried out the role excellently, with knowledge, availability, positivity and the ability to pass on learning.'} },
-  { org:'Bergen Caravan AS', year:'2023', by:'Robert Mellingen', doc:AT+'attest-bergen-caravan.webp',
-    role:{no:'Sesonghjelp, klargjøringsavdelingen', en:'Seasonal worker, vehicle preparation'},
-    title:{no:'Daglig leder', en:'CEO'},
-    quote:{no:'Daniel har stor tilpasningsevne, og han har med energi og dyktighet utført jobben på en meget tilfredsstillende måte. Han jobber strukturert og systematisk.',
-           en:'Daniel is highly adaptable, and he has done the job with energy and skill in a very satisfactory way. He works in a structured and systematic manner.'} },
-  { org:'Open iT Norge AS', year:'2023–2024', by:'Human Resources', doc:AT+'attest-open-it.webp', plain:true, noTr:true,
-    role:{no:'Admin Assistant', en:'Admin Assistant'},
-    title:{no:'Open iT', en:'Open iT'},
-    quote:{no:'Arbeidsbekreftelse for stillingen som Admin Assistant fra august 2023 til februar 2024.',
-           en:'Certificate of employment as Admin Assistant from August 2023 to February 2024.'} },
-  { org:'Biltema Åsane', year:'2021–2022', by:'Rune Steffensen', doc:AT+'attest-biltema.webp', plain:true,
-    role:{no:'Butikkmedarbeider', en:'Shop assistant'},
-    title:{no:'Varehussjef', en:'Store Manager'},
-    quote:{no:'Sluttattest for stillingen som butikkmedarbeider fra mai 2021 til august 2022.',
-           en:'Final reference for the role of shop assistant from May 2021 to August 2022.'} }
+  { name:'Annette Kallevig', initials:'AK',
+    role:{no:'Studieprogramleder, Bachelor i digital markedsføring, Høyskolen Kristiania', en:'Head of Programme, Bachelor in Digital Marketing, Kristiania University of Applied Sciences'},
+    quote:{no:'Daniel har vært en viktig bidragsyter til å skape et utviklende og trygt læringsmiljø for førsteårsstudentene, og kommer med mine varmeste anbefalinger.',
+           en:'Daniel has been an important contributor to creating a developing and safe learning environment for the first-year students, and comes with my warmest recommendations.'} }
+];
+const REFS = [
+  { org:'Høyskolen Kristiania', orgEn:'Kristiania University', year:'2026', doc:AT+'attest-kristiania-praksisdag.webp',
+    role:{no:'Praksisdagen for masterstudenter', en:'Internship day for master’s students'} },
+  { org:'Høyskolen Kristiania', orgEn:'Kristiania University', year:'2026', doc:AT+'attest-kristiania-studentassistent.webp',
+    role:{no:'Studentassistent, Innholdskommunikasjon', en:'Student assistant, Content Communication'} },
+  { org:'Open iT Norge AS', year:'2023–2024', doc:AT+'attest-open-it.webp',
+    role:{no:'Admin Assistant', en:'Admin Assistant'} },
+  { org:'Bergen Caravan AS', year:'2023', doc:AT+'attest-bergen-caravan.webp',
+    role:{no:'Sesonghjelp', en:'Seasonal worker'} },
+  { org:'Biltema Åsane', year:'2021–2022', doc:AT+'attest-biltema.webp',
+    role:{no:'Butikkmedarbeider', en:'Shop assistant'} }
 ];
 
 const esc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
@@ -820,25 +834,26 @@ function renderCards(){
   }
 }
 
-/* ---------- Attester ---------- */
-const refList = $('refs');
-const ICON_DOC = '<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M4 12L12 4M5.5 4H12v6.5"/></svg>';
+/* ---------- Anbefalinger og attester ---------- */
+const testiList = $('testi'), refList = $('refs');
+const ICON_ZOOM = '<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="7" cy="7" r="4.5"/><path d="M10.5 10.5L14 14"/></svg>';
 const refOrg = r => (lang === 'en' && r.orgEn) ? r.orgEn : r.org;
+function renderTesti(){
+  testiList.innerHTML = TESTI.map((t,i) => `
+    <li class="reveal in" style="--d:${i*0.08}s"><figure class="testi-card">
+      <span class="testi-mark" aria-hidden="true">“</span>
+      <blockquote class="testi-quote">${esc(pick(t.quote))}${lang === 'en' ? `<span class="testi-tr">${tr('testi.tr')}</span>` : ''}</blockquote>
+      <figcaption class="testi-by"><span class="testi-avatar" aria-hidden="true">${t.initials}</span><span><span class="testi-name">${esc(t.name)}</span><span class="testi-role">${esc(pick(t.role))}</span></span></figcaption>
+    </figure></li>`).join('');
+}
 function renderRefs(){
-  refList.innerHTML = REFS.map((r,i) => {
-    const showTr = lang === 'en' && !r.plain && !r.noTr;
-    return `
-    <li class="ref reveal in${r.doc ? ' has-doc' : ''}" style="--d:${(i%3)*0.08}s">
-      <div class="ref-top"><h3 class="ref-org">${esc(refOrg(r))}</h3><span class="ref-year">${r.year}</span></div>
-      <p class="ref-role">${esc(pick(r.role))}</p>
-      <blockquote class="ref-quote${r.plain ? ' plain' : ''}">${esc(pick(r.quote))}${showTr ? `<span class="ref-tr">${tr('refs.tr')}</span>` : ''}</blockquote>
-      <div class="ref-foot">
-        <div class="ref-by">${esc(r.by)}<span>${esc(pick(r.title))}</span></div>
-        ${r.doc ? `<span class="ref-open">${tr('refs.open')}${ICON_DOC}</span>` : `<span class="ref-src">${tr('refs.email')}</span>`}
-      </div>
-      ${r.doc ? `<button class="ref-link" type="button" data-ref="${i}" aria-label="${tr('refs.view')} ${esc(refOrg(r))}: ${esc(pick(r.role))}"></button>` : ''}
-    </li>`;
-  }).join('');
+  refList.innerHTML = REFS.map((r,i) => `
+    <li class="doc reveal in" style="--d:${(i%5)*0.06}s">
+      <div class="doc-thumb"><img src="${r.doc}" alt="" loading="lazy"><span class="doc-zoom" aria-hidden="true">${ICON_ZOOM}</span></div>
+      <h3 class="doc-org">${esc(refOrg(r))}</h3>
+      <p class="doc-meta">${esc(pick(r.role))} · ${r.year}</p>
+      <button class="doc-link" type="button" data-ref="${i}" aria-label="${tr('refs.view')} ${esc(refOrg(r))}: ${esc(pick(r.role))}"></button>
+    </li>`).join('');
 }
 const refDlg = $('ref-dialog');
 let refFocus = null;
@@ -946,6 +961,7 @@ function applyLang(next, save){
   document.querySelectorAll('[data-count].counted').forEach(el => { el.textContent = fmt(+el.dataset.count) + (el.dataset.suffix || ''); });
   document.querySelectorAll('.lang-btn').forEach(b => b.setAttribute('aria-pressed', b.dataset.lang === lang ? 'true' : 'false'));
   renderCards();
+  renderTesti();
   renderRefs();
   if (dlg.open) fillDialog(current, true);
   if (save) {
@@ -961,7 +977,8 @@ document.querySelectorAll('.lang-btn').forEach(b => b.addEventListener('click', 
 applyLang(lang, false);
 /* Kortene tegnes på nytt ved språkbytte, så de skal ikke animeres inn igjen */
 list.querySelectorAll('.case').forEach(el => el.classList.remove('in'));
-refList.querySelectorAll('.ref').forEach(el => el.classList.remove('in'));
+refList.querySelectorAll('.doc').forEach(el => el.classList.remove('in'));
+testiList.querySelectorAll('li').forEach(el => el.classList.remove('in'));
 
 const fromHash = CASES.findIndex(c => location.hash === '#case-' + c.id);
 if (fromHash > -1) openCase(fromHash);
@@ -977,7 +994,7 @@ const secObs = new IntersectionObserver(entries => {
     if (en.isIntersecting) navLinks.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + en.target.id));
   });
 }, {rootMargin:'-45% 0px -50% 0px'});
-['top','om-meg','arbeid','attester','kontakt'].forEach(id => secObs.observe($(id)));
+['top','om-meg','arbeid','anbefalinger','attester','kontakt'].forEach(id => secObs.observe($(id)));
 
 /* ---------- Animasjon ved scroll ---------- */
 function countUp(el){
