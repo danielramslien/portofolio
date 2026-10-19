@@ -180,7 +180,15 @@ section{position:relative}
 .slides-credit{font-size:12px;color:var(--faint)}
 .about-copy .display{margin-bottom:32px}
 .about-copy .lead{margin-bottom:22px}
-.about-copy .body + .body{margin-top:16px}
+.about-copy .body + .body,.about-more > .body:first-child{margin-top:16px}
+.about-toggle{display:none;align-items:center;gap:8px;margin:14px 0 0;padding:0;border:0;background:none;color:var(--accent);font-weight:600;font-size:15px;cursor:pointer}
+.about-toggle::after{content:"";width:7px;height:7px;border-right:2px solid currentColor;border-bottom:2px solid currentColor;transform:translateY(-2px) rotate(45deg);transition:transform .25s var(--ease)}
+.about-toggle[aria-expanded="true"]::after{transform:translateY(2px) rotate(-135deg)}
+@media (max-width:760px){
+  .about-toggle{display:inline-flex}
+  .about-more{display:none}
+  .about-more.open{display:block}
+}
 .about-copy > .label{display:block;margin:34px 0 14px}
 .facts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px 32px;margin:36px 0 0;padding:28px 0 0;border-top:1px solid var(--line)}
 .facts dt{font-size:12px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);margin-bottom:6px}
@@ -200,7 +208,7 @@ section{position:relative}
 .cases{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(40px,4vw,56px) clamp(18px,2vw,28px);list-style:none;margin:0;padding:0}
 .case{position:relative;display:flex;flex-direction:column}
 .cases:not(.expanded) > .case:nth-child(n+4){display:none}
-.refs:not(.expanded) > .doc:nth-child(n+3){display:none}
+.refs:not(.expanded) > .doc:nth-child(n+4){display:none}
 .more-wrap{display:flex;justify-content:center;margin-top:clamp(40px,5vw,64px)}
 .more-btn{display:inline-flex;align-items:center;gap:10px;padding:14px 30px;border:1px solid var(--accent-line);border-radius:999px;background:var(--accent-soft);color:var(--text);font-weight:600;font-size:15px;cursor:pointer;transition:background .2s,color .2s,transform .2s}
 .more-btn:hover{background:var(--accent);color:var(--ink);transform:translateY(-1px)}
@@ -224,6 +232,20 @@ section{position:relative}
 .case-result::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--accent);flex:none}
 .case-link{position:absolute;inset:0;z-index:3;background:none;border:0;padding:0;cursor:pointer;border-radius:4px}
 .case-link span{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+.case-link{touch-action:pan-y}
+.case-strip{position:absolute;inset:0;display:flex;transition:transform .45s var(--ease)}
+.case.swiping .case-strip{transition:none}
+.case-strip > .cs{position:relative;flex:0 0 100%;height:100%;overflow:hidden}
+.case-dots{position:absolute;right:14px;bottom:20px;z-index:2;display:flex;gap:5px;pointer-events:none}
+.case-dots i{width:6px;height:6px;border-radius:999px;background:rgba(243,237,230,.45);transition:width .3s var(--ease),background .3s}
+.case-dots i.on{width:16px;background:var(--accent)}
+.case-nav{position:absolute;top:50%;z-index:4;width:36px;height:36px;margin-top:-18px;border:0;border-radius:50%;display:grid;place-items:center;background:rgba(14,12,11,.6);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);color:var(--text);cursor:pointer;opacity:0;transition:opacity .25s,background .2s}
+.case-nav svg{width:14px;height:14px}
+.case-nav.prev{left:10px}.case-nav.next{right:10px}
+.case-nav.prev svg{transform:scaleX(-1)}
+.case-nav:hover{background:var(--accent);color:var(--ink)}
+.case:hover .case-nav:not([hidden]){opacity:1}
+@media (hover:none){.case-nav{display:none}}
 
 /* ---------- Kontakt ---------- */
 .contact-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(40px,6vw,96px);align-items:center}
@@ -403,6 +425,7 @@ section{position:relative}
 @media (max-width:600px){
   :root{--header-h:60px}
   .refs{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .refs:not(.expanded) > .doc:nth-child(3){display:none}
   .doc-zoom{opacity:1;transform:scale(1)}
   .lang-btn{padding:5px 6px}
   .lang-btn .code{display:none}
@@ -505,8 +528,11 @@ section{position:relative}
           <h2 class="display h-xl reveal" id="om-meg-tittel" data-i18n-html="about.title">Om meg</h2>
           <p class="lead reveal" data-i18n="about.lead">Jeg er digital markedsfører med hjertet i sosiale medier. Jeg liker å finne historien i en merkevare og fortelle den på en måte som passer feeden.</p>
           <p class="body reveal" data-i18n="about.p1">Enten det er en Reel på femten sekunder eller en kampanje over flere måneder, starter jeg med menneskene på andre siden av skjermen. Hva får dem til å stoppe opp, le, eller dele videre?</p>
+          <button type="button" class="about-toggle" id="about-toggle" aria-expanded="false" aria-controls="about-more"><span data-i18n="about.more">Les mer</span></button>
+          <div class="about-more" id="about-more">
           <p class="body reveal" data-i18n="about.p3">I hverdagen jobber jeg med alt fra innholdsproduksjon og videoredigering til kampanjer som konverterer, og jeg måler alltid hva som faktisk virker. Gjennom eget foretak har jeg også fått erfaring med merkevarebygging, salg, kunderelasjoner og regnskap. I bunn har jeg sju år med musikkproduksjon, som har gitt meg et øre for rytme, timing og hva som fanger oppmerksomhet.</p>
           <p class="body reveal" data-i18n="about.p2">Nå ser jeg etter en jobb som SoMe-rådgiver, der jeg kan jobbe tett med et team som bryr seg om både idé og resultat.</p>
+          </div>
           <span class="label reveal" data-i18n="about.skills">Det jeg jobber med</span>
           <ul class="pills reveal">
             <li class="pill" data-i18n="skill.1">Innholdsstrategi</li><li class="pill">Instagram</li><li class="pill">TikTok</li><li class="pill">LinkedIn</li><li class="pill" data-i18n="skill.5">Videoproduksjon</li><li class="pill" data-i18n="skill.7">Analyse</li><li class="pill" data-i18n="skill.8">Kampanjeplanlegging</li>
@@ -579,7 +605,7 @@ section{position:relative}
     <div class="wrap">
       <h3 class="work-sub reveal" id="attester-tittel" data-i18n-html="refs.title">Attester</h3>
       <ul class="refs" id="refs"></ul>
-      <div class="more-wrap"><button type="button" class="more-btn" id="refs-more" aria-controls="refs" aria-expanded="false"><span data-i18n="work.more">Se mer</span></button></div>
+      <div class="more-wrap"><button type="button" class="more-btn" id="refs-more" aria-controls="refs" aria-expanded="false"><span data-i18n="refs.more">Se flere</span></button></div>
     </div>
   </section>
 
@@ -588,7 +614,7 @@ section{position:relative}
       <div class="contact-grid">
         <div class="contact-copy">
           <h2 class="display h-xl reveal" id="kontakt-tittel" data-i18n-html="contact.title">La oss ta<br>en prat</h2>
-          <p class="lead reveal" data-i18n="contact.lead">Har du en ledig stilling, et prosjekt eller bare lyst på en kaffe? Send meg en melding, så svarer jeg så raskt som mulig.</p>
+          <p class="lead reveal" data-i18n="contact.lead">Har du en ledig stilling, et prosjekt eller bare lyst på en kaffe? Send meg en melding, så svarer jeg innen kort tid.</p>
           <a class="contact-email reveal" href="mailto:danielramslien@gmail.com">danielramslien@gmail.com</a>
           <ul class="contact-list reveal">
             <li><a href="tel:+4791168076"><span data-i18n="contact.phone">Telefon · </span>+47 911 68 076</a></li>
@@ -684,14 +710,14 @@ const I18N = {
     'stat.1':'visninger på TikTok for Mufano', 'stat.2':'i salg av studioleie for M40 Studios', 'stat.2.unit':'kr',
     'stat.3':'samlet inn til Make-A-Wish med NOT Management', 'stat.4':'videoer og bilder i innholdsbanken til Punkt Oslo', 'cookie.aria':'Om cookies', 'cookie.title':'Cookies', 'cookie.text':'Siden bruker ingen sporings- eller reklamecookies. Godtar du, huskes språkvalget ditt lokalt i nettleseren. Avviser du, lagres ingenting.', 'cookie.ok':'Godta alle', 'cookie.no':'Avvis alle',
     'work.title':'Utvalgte<br>case', 'work.lead':'Et utvalg av innhold og kampanjer jeg har laget, fra idé til ferdig post. Trykk på et case for å se video, tall og hva jeg gjorde.',
-    'contact.title':'La oss ta<br>en prat', 'contact.lead':'Har du en ledig stilling, et prosjekt eller bare lyst på en kaffe? Send meg en melding, så svarer jeg så raskt som mulig.',
+    'contact.title':'La oss ta<br>en prat', 'contact.lead':'Har du en ledig stilling, et prosjekt eller bare lyst på en kaffe? Send meg en melding, så svarer jeg innen kort tid.',
     'contact.phone':'Telefon · ', 'contact.portfolio':'Portefølje · ', 'contact.open':'Tilgjengelig for nye roller',
     'foot.thanks':'Takk for at du tok deg tid',
     'foot.note':'© 2026 Daniel Ramslien · Rams Creative (Ramslien Creative ENK) · Referanser oppgis på forespørsel',
     'dlg.close':'Lukk case', 'dlg.did':'Hva jeg gjorde', 'dlg.thumbs':'Velg bilde eller video',
     'dlg.client':'Kunde', 'dlg.role':'Rolle', 'dlg.period':'Periode', 'dlg.tags':'Kanaler og fag',
     'card.video':'Video', 'card.images':'Bilder', 'card.view':'Se case', 'card.for':'for',
-    'nav.refs':'Attester', 'refs.title':'Attester', 'refs.lead':'Hele dokumentene. Trykk på en attest for å lese den.', 'refs.note':'Fødselsdato og adresse er sladdet.',
+    'nav.refs':'Attester', 'refs.more':'Se flere', 'refs.less':'Se færre', 'about.more':'Les mer', 'about.less':'Les mindre', 'card.next':'Neste bilde', 'card.prev':'Forrige bilde', 'refs.title':'Attester', 'refs.lead':'Hele dokumentene. Trykk på en attest for å lese den.', 'refs.note':'Fødselsdato og adresse er sladdet.',
     'refs.close':'Lukk attest', 'refs.view':'Se attest fra',
     'nav.testi':'Anbefalinger', 'nav.tools':'Verktøy', 'tools.title':'Verktøy<br>jeg bruker', 'tools.lead':'Fra idé og opptak til klipp, publisering og måling.', 'tools.adv':'Avansert', 'tools.good':'God', 'tools.basic':'Grunnleggende', 'tools.skills':'Ferdigheter',
     'sk.1':'Kampanje og konvertering', 'sk.2':'Innholdsproduksjon', 'sk.3':'Videoredigering', 'sk.4':'Måling og analyse', 'sk.5':'Salg og kunderelasjoner', 'sk.6':'Merkevarebygging', 'sk.7':'Regnskapsføring', 'testi.title':'Hva andre<br>sier', 'testi.lead':'Utdrag fra attester og uttalelser fra folk jeg har jobbet med.', 'testi.tr':''
@@ -716,14 +742,14 @@ const I18N = {
     'stat.1':'views on TikTok for Mufano', 'stat.2':'in studio rental sales for M40 Studios', 'stat.2.unit':'NOK',
     'stat.3':'raised for Make-A-Wish with NOT Management', 'stat.4':'videos and photos in Punkt Oslo’s content bank', 'cookie.aria':'About cookies', 'cookie.title':'Cookies', 'cookie.text':'This site uses no tracking or advertising cookies. If you accept, your language choice is remembered locally in your browser. If you reject, nothing is stored.', 'cookie.ok':'Accept all', 'cookie.no':'Reject all',
     'work.title':'Selected<br>work', 'work.lead':'A selection of content and campaigns I’ve made, from idea to finished post. Tap a case to see video, numbers and what I did.',
-    'contact.title':'Let’s<br>talk', 'contact.lead':'Have an open position, a project, or just fancy a coffee? Send me a message and I’ll get back to you as soon as possible.',
+    'contact.title':'Let’s<br>talk', 'contact.lead':'Have an open position, a project, or just fancy a coffee? Send me a message and I’ll get back to you shortly.',
     'contact.phone':'Phone · ', 'contact.portfolio':'Portfolio · ', 'contact.open':'Open to new roles',
     'foot.thanks':'Thanks for your time',
     'foot.note':'© 2026 Daniel Ramslien · Rams Creative (Ramslien Creative ENK) · References available on request',
     'dlg.close':'Close case', 'dlg.did':'What I did', 'dlg.thumbs':'Choose image or video',
     'dlg.client':'Client', 'dlg.role':'Role', 'dlg.period':'Period', 'dlg.tags':'Channels and skills',
     'card.video':'Video', 'card.images':'Images', 'card.view':'View case', 'card.for':'for',
-    'nav.refs':'References', 'refs.title':'References', 'refs.lead':'The full documents. Tap a reference to read it.', 'refs.note':'Date of birth and address have been redacted. The documents are in Norwegian, except Open iT.',
+    'nav.refs':'References', 'refs.more':'See more', 'refs.less':'See fewer', 'about.more':'Read more', 'about.less':'Read less', 'card.next':'Next image', 'card.prev':'Previous image', 'refs.title':'References', 'refs.lead':'The full documents. Tap a reference to read it.', 'refs.note':'Date of birth and address have been redacted. The documents are in Norwegian, except Open iT.',
     'refs.close':'Close reference', 'refs.view':'View reference from',
     'nav.testi':'Testimonials', 'nav.tools':'Tools', 'tools.title':'Tools<br>I use', 'tools.lead':'From idea and shooting to editing, publishing and measuring.', 'tools.adv':'Advanced', 'tools.good':'Proficient', 'tools.basic':'Basic', 'tools.skills':'Skills',
     'sk.1':'Campaigns and conversion', 'sk.2':'Content production', 'sk.3':'Video editing', 'sk.4':'Measurement and analytics', 'sk.5':'Sales and client relations', 'sk.6':'Brand building', 'sk.7':'Bookkeeping', 'testi.title':'What others<br>say', 'testi.lead':'Excerpts from references and statements by people I have worked with.', 'testi.tr':'Translated from Norwegian'
@@ -996,8 +1022,8 @@ const TESTI = [
            en:'Daniel is a good and reliable advisor in sales, communication and marketing whom I can truly recommend. He wants the best for those around him and always puts the customer first.'} },
   { name:'Annette Kallevig', img:'assets/img/testimonials/annette-kallevig.webp',
     role:{no:'Studieprogramleder, Bachelor i digital markedsføring, Høyskolen Kristiania', en:'Head of Programme, Bachelor in Digital Marketing, Kristiania University of Applied Sciences'},
-    quote:{no:'Daniel har vært en viktig bidragsyter til å skape et utviklende og trygt læringsmiljø for førsteårsstudentene, og kommer med mine varmeste anbefalinger.',
-           en:'Daniel has been an important contributor to creating a developing and safe learning environment for the first-year students, and comes with my warmest recommendations.'} }
+    quote:{no:'Han har vært en viktig bidragsyter til å skape et utviklende og trygt læringsmiljø for førsteårsstudentene, og kommer med mine varmeste anbefalinger.',
+           en:'He has been an important contributor to creating a developing and safe learning environment for the first-year students, and comes with my warmest recommendations.'} }
 ];
 const REFS = [
   { org:'M40 Eiendom AS', year:'2026', doc:AT+'attest-m40.webp',
@@ -1036,15 +1062,68 @@ const fmt = n => Math.round(n).toLocaleString(lang === 'en' ? 'en-US' : 'nb-NO')
 
 /* ---------- Bygg kortene ---------- */
 const list = $('cases');
+const ICON_CHEV = '<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3l5 5-5 5"/></svg>';
+/* Bildene som kan blas i på kortet: forsiden, så resten av mediene (plakat for video) */
+function caseGallery(c){
+  const g = [{src:c.cover, m:0}], seen = new Set([c.cover]);
+  c.media.forEach((m,k) => { const s = m.type === 'video' ? m.poster : m.src; if (s && !seen.has(s)) { seen.add(s); g.push({src:s, m:k}); } });
+  return g;
+}
+function setCardSlide(card, k){
+  const c = CASES[+card.dataset.index], gal = caseGallery(c);
+  k = Math.max(0, Math.min(gal.length - 1, k));
+  card.dataset.k = k;
+  card.querySelector('.case-strip').style.transform = k ? `translateX(${-k * 100}%)` : '';
+  card.querySelectorAll('.case-dots i').forEach((d,j) => d.classList.toggle('on', j === k));
+  const p = card.querySelector('.case-nav.prev'), n = card.querySelector('.case-nav.next');
+  if (p) p.hidden = k === 0; if (n) n.hidden = k === gal.length - 1;
+  if (k) { const v = card.querySelector('video'); if (v) { v.pause(); card.classList.remove('playing'); } }
+}
+function bindCardSwipe(card){
+  if (caseGallery(CASES[+card.dataset.index]).length < 2) return;
+  const strip = card.querySelector('.case-strip'), media = card.querySelector('.case-media');
+  let x0 = null, y0 = 0, dx = 0, id = null, moved = false;
+  card.addEventListener('pointerdown', e => {
+    if (e.button !== 0 || e.target.closest('.case-nav')) return;
+    const r = media.getBoundingClientRect();
+    if (e.clientY > r.bottom) return;
+    x0 = e.clientX; y0 = e.clientY; dx = 0; id = e.pointerId; moved = false;
+  });
+  card.addEventListener('pointermove', e => {
+    if (x0 === null || e.pointerId !== id) return;
+    dx = e.clientX - x0;
+    if (!moved && Math.abs(dx) > 8 && Math.abs(dx) > Math.abs(e.clientY - y0)) { moved = true; card.classList.add('swiping'); try { card.setPointerCapture(id); } catch (_) {} }
+    if (moved) { const k = +(card.dataset.k || 0); strip.style.transform = `translateX(calc(${-k * 100}% + ${dx}px))`; }
+  });
+  const end = e => {
+    if (x0 === null || (e && e.pointerId !== id)) return;
+    card.classList.remove('swiping');
+    const k = +(card.dataset.k || 0);
+    if (moved) { setCardSlide(card, Math.abs(dx) > 40 ? k + (dx < 0 ? 1 : -1) : k); card.dataset.justSwiped = '1'; setTimeout(() => delete card.dataset.justSwiped, 60); }
+    x0 = null;
+  };
+  card.addEventListener('pointerup', end);
+  card.addEventListener('pointercancel', end);
+  card.addEventListener('click', e => {
+    if (card.dataset.justSwiped) { e.stopPropagation(); e.preventDefault(); return; }
+    const b = e.target.closest('.case-nav'); if (b) { e.stopPropagation(); setCardSlide(card, +(card.dataset.k || 0) + +b.dataset.step); }
+  }, true);
+}
+
 function renderCards(){
   const cardHtml = (c,i) => {
     const x = tc(c);
     const hasVideo = c.media.some(m => m.type === 'video');
+    const gal = caseGallery(c);
     return `
     <li class="case reveal in" style="--d:${(i%3)*0.08}s" data-index="${i}">
       <div class="case-media">
-        <img src="${c.cover}" alt="" loading="lazy"${c.coverPos ? ` style="object-position:${c.coverPos}"` : ''}>
-        ${c.preview ? `<video muted loop playsinline preload="none" data-src="${c.preview}"></video>` : ''}
+        <div class="case-strip">
+        <div class="cs"><img src="${c.cover}" alt="" loading="lazy"${c.coverPos ? ` style="object-position:${c.coverPos}"` : ''}>
+        ${c.preview ? `<video muted loop playsinline preload="none" data-src="${c.preview}"></video>` : ''}</div>
+        ${gal.slice(1).map(g => `<div class="cs"><img src="${g.src}" alt="" loading="lazy"></div>`).join('')}
+        </div>
+        ${gal.length > 1 ? `<span class="case-dots" aria-hidden="true">${gal.map((g,k) => `<i${k ? '' : ' class="on"'}></i>`).join('')}</span>` : ''}
         <span class="case-badge">${hasVideo ? ICON_PLAY + tr('card.video') : tr('card.images')}</span>
         <span class="case-open" aria-hidden="true">${ICON_ARROW}</span>
         ${c.logo ? `<img class="case-logo" src="${c.logo}" alt="">` : ''}
@@ -1056,9 +1135,11 @@ function renderCards(){
         <ul class="pills">${x.tags.map(t => `<li class="pill">${esc(t)}</li>`).join('')}</ul>
       </div>
       <button class="case-link" type="button" data-open="${i}"><span>${tr('card.view')}: ${esc(x.title)} ${tr('card.for')} ${esc(x.client)}</span></button>
+      ${gal.length > 1 ? `<button class="case-nav prev" type="button" data-step="-1" aria-label="${tr('card.prev')}" hidden>${ICON_CHEV}</button><button class="case-nav next" type="button" data-step="1" aria-label="${tr('card.next')}">${ICON_CHEV}</button>` : ''}
     </li>`;
   };
   list.innerHTML = CASES.map((c,i) => cardHtml(c,i)).join('');
+  list.querySelectorAll('.case').forEach(bindCardSwipe);
 
   /* Forhåndsvisning av video når man holder musepekeren over et kort */
   if (canHover) {
@@ -1066,6 +1147,7 @@ function renderCards(){
       const v = card.querySelector('video');
       if (!v) return;
       card.addEventListener('mouseenter', () => {
+        if (+(card.dataset.k || 0)) return;
         if (!v.src) v.src = v.dataset.src;
         v.play().then(() => card.classList.add('playing')).catch(() => {});
       });
@@ -1135,8 +1217,18 @@ moreBtn.addEventListener('click', () => {
     const open = !refList.classList.contains('expanded');
     refList.classList.toggle('expanded', open);
     rb.setAttribute('aria-expanded', open ? 'true' : 'false');
-    const sp = rb.querySelector('span'); sp.dataset.i18n = open ? 'work.less' : 'work.more'; sp.textContent = tr(sp.dataset.i18n);
+    const sp = rb.querySelector('span'); sp.dataset.i18n = open ? 'refs.less' : 'refs.more'; sp.textContent = tr(sp.dataset.i18n);
     if (!open) $('attester').scrollIntoView({behavior: reduce ? 'auto' : 'smooth'});
+  });
+}
+
+{
+  const at = $('about-toggle'), am = $('about-more');
+  at.addEventListener('click', () => {
+    const open = !am.classList.contains('open');
+    am.classList.toggle('open', open);
+    at.setAttribute('aria-expanded', open ? 'true' : 'false');
+    const sp = at.querySelector('span'); sp.dataset.i18n = open ? 'about.less' : 'about.more'; sp.textContent = tr(sp.dataset.i18n);
   });
 }
 
@@ -1267,7 +1359,12 @@ dlg.addEventListener('close', () => {
   history.replaceState(null, '', location.pathname + location.search);
   if (lastFocus) lastFocus.focus({preventScroll:true});
 });
-list.addEventListener('click', e => { const b = e.target.closest('[data-open]'); if (b) openCase(+b.dataset.open); });
+list.addEventListener('click', e => {
+  const b = e.target.closest('[data-open]'); if (!b) return;
+  const i = +b.dataset.open, card = b.closest('.case'), k = +(card.dataset.k || 0);
+  openCase(i);
+  if (k) showMedia(CASES[i], caseGallery(CASES[i])[k].m);
+});
 $('dlg-close').addEventListener('click', closeCase);
 $('dlg-prev').addEventListener('click', () => fillDialog(current - 1));
 $('dlg-next').addEventListener('click', () => fillDialog(current + 1));
