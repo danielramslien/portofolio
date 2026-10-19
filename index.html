@@ -104,6 +104,8 @@ button{font:inherit;color:inherit}
 .nav a.nav-cta{color:var(--ink);background:var(--accent);font-weight:600;padding:8px 18px;border-radius:999px;box-shadow:0 0 0 0 rgba(255,122,26,.5);transition:background .2s,box-shadow .3s,transform .2s}
 .nav a.nav-cta:hover,.nav a.nav-cta.active{color:var(--ink);background:#ff9447;box-shadow:0 6px 24px rgba(255,122,26,.35);transform:translateY(-1px)}
 .header-right{display:flex;align-items:center;gap:clamp(16px,2.6vw,36px)}
+.hdr-cta{display:none;align-items:center;height:40px;padding:0 16px;border-radius:999px;background:var(--accent);color:var(--ink);font-weight:600;font-size:14px;text-decoration:none;white-space:nowrap;box-shadow:0 6px 20px rgba(255,122,26,.3)}
+.hdr-cta:hover{background:#ff9447}
 .menu-btn{visibility:hidden;justify-self:start;width:44px;height:44px;padding:0 11px;border:1px solid var(--line-strong);border-radius:50%;background:rgba(14,12,11,.4);cursor:pointer;display:flex;flex-direction:column;justify-content:center;gap:5px}
 .menu-btn span{display:block;height:2px;border-radius:2px;background:var(--text);transition:transform .3s var(--ease),opacity .2s}
 .menu-open .menu-btn span:nth-child(1){transform:translateY(7px) rotate(45deg)}
@@ -397,9 +399,11 @@ section{position:relative}
 }
 @media (max-width:1080px){
   .menu-btn{visibility:visible}
-  .site-header .wrap{grid-template-columns:1fr auto auto}
+  .site-header .wrap{grid-template-columns:1fr auto auto auto;gap:10px}
   .site-header .lang{grid-column:2;grid-row:1}
-  .menu-btn{grid-column:3;grid-row:1;justify-self:end}
+  .hdr-cta{display:inline-flex;grid-column:3;grid-row:1}
+  .menu-btn{grid-column:4;grid-row:1;justify-self:end}
+  .nav a.nav-cta{display:none}
   .site-header .nav{grid-column:1/-1;grid-row:1;justify-self:stretch;width:100vw}
   .site-header.menu-open{background:rgba(14,12,11,.96);border-bottom-color:var(--line)}
   .nav{position:fixed;left:0;right:0;top:var(--header-h);z-index:49;flex-direction:column;align-items:stretch;gap:0;
@@ -422,6 +426,7 @@ section{position:relative}
 
 <header class="site-header" id="top-bar">
   <div class="wrap">
+    <a class="hdr-cta" href="#kontakt"><span data-i18n="nav.contact">Kontakt</span></a>
     <button class="menu-btn" id="menu-btn" type="button" aria-expanded="false" aria-controls="main-nav" aria-label="Meny" data-i18n-aria="aria.menuBtn"><span></span><span></span><span></span></button>
     <nav class="nav" id="main-nav" aria-label="Hovedmeny" data-i18n-aria="aria.menu">
         <a href="#om-meg"><span data-i18n="nav.about">Om meg</span></a>
