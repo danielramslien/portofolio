@@ -397,7 +397,9 @@ section{position:relative}
 }
 @media (max-width:1080px){
   .menu-btn{visibility:visible}
-  .site-header .lang{grid-column:3;grid-row:1}
+  .site-header .wrap{grid-template-columns:1fr auto auto}
+  .site-header .lang{grid-column:2;grid-row:1}
+  .menu-btn{grid-column:3;grid-row:1;justify-self:end}
   .site-header .nav{grid-column:1/-1;grid-row:1;justify-self:stretch;width:100vw}
   .site-header.menu-open{background:rgba(14,12,11,.96);border-bottom-color:var(--line)}
   .nav{position:fixed;left:0;right:0;top:var(--header-h);z-index:49;flex-direction:column;align-items:stretch;gap:0;
