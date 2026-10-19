@@ -292,9 +292,9 @@ section{position:relative}
 .tool-col{padding:clamp(24px,2.6vw,36px);background:var(--bg-card);border:1px solid var(--line);border-radius:16px}
 .tool-top{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:22px;padding-bottom:18px;border-bottom:1px solid var(--line)}
 .tool-level{font-family:var(--font-display);font-stretch:125%;font-weight:800;font-size:clamp(18px,1.6vw,22px);margin:0}
-.tool-dots{display:flex;gap:4px}
-.tool-dots i{width:18px;height:20px;background:var(--accent);-webkit-mask:var(--flame) center/contain no-repeat;mask:var(--flame) center/contain no-repeat;filter:drop-shadow(0 0 6px rgba(255,122,26,.45))}
-:root{--flame:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 1.5c.6 3.2-1 5.1-2.6 7C7.8 10.4 6 12.4 6 15.6 6 19.2 8.7 22.5 12 22.5s6-3.1 6-6.9c0-2.6-1.2-4.4-2.4-5.8-.2 1.6-.9 2.8-2 3.4.4-3.9-.7-8.4-1.6-11.7zm.4 12.6c1.5 1.5 2.6 2.9 2.6 4.6 0 1.7-1.3 3-3 3s-3-1.3-3-3c0-1.5.9-2.6 2-3.6.2.9.6 1.6 1.3 2 .1-1 .1-2-.1-3z'/%3E%3C/svg%3E")}
+.tool-dots{display:flex;gap:7px}
+.tool-dots i{width:12px;height:12px;border-radius:50%;background:var(--line-strong)}
+.tool-dots i.on{background:radial-gradient(circle at 35% 30%,#ffe6cc 0%,#ffa24f 35%,#ff8125 60%,#c24a0b 100%);box-shadow:0 0 12px 2px rgba(255,122,26,.55)}
 
 /* ---------- Anbefalinger ---------- */
 .testi{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(16px,1.8vw,24px);list-style:none;margin:0;padding:0}
@@ -491,15 +491,15 @@ section{position:relative}
       </div>
       <div class="tools">
         <div class="tool-col reveal">
-          <div class="tool-top"><h3 class="tool-level" data-i18n="tools.adv">Avansert</h3><span class="tool-dots" aria-hidden="true"><i></i><i></i><i></i></span></div>
+          <div class="tool-top"><h3 class="tool-level" data-i18n="tools.adv">Avansert</h3><span class="tool-dots" aria-hidden="true"><i class="on"></i><i class="on"></i><i class="on"></i></span></div>
           <ul class="pills"><li class="pill">Claude</li><li class="pill">CapCut</li><li class="pill">Canva</li><li class="pill">Premiere Pro</li><li class="pill">Meta &amp; TikTok Insights</li><li class="pill">Google Workspace</li></ul>
         </div>
         <div class="tool-col reveal" style="--d:.08s">
-          <div class="tool-top"><h3 class="tool-level" data-i18n="tools.good">God</h3><span class="tool-dots" aria-hidden="true"><i></i><i></i></span></div>
+          <div class="tool-top"><h3 class="tool-level" data-i18n="tools.good">God</h3><span class="tool-dots" aria-hidden="true"><i class="on"></i><i class="on"></i><i></i></span></div>
           <ul class="pills"><li class="pill">WordPress</li><li class="pill">Elementor</li><li class="pill">GA4</li><li class="pill">Hotjar</li><li class="pill">Looker Studio</li><li class="pill">Google Search Console</li><li class="pill">Meta Ads</li><li class="pill">SEO</li><li class="pill">Tripletex</li></ul>
         </div>
         <div class="tool-col reveal" style="--d:.16s">
-          <div class="tool-top"><h3 class="tool-level" data-i18n="tools.basic">Grunnleggende</h3><span class="tool-dots" aria-hidden="true"><i></i></span></div>
+          <div class="tool-top"><h3 class="tool-level" data-i18n="tools.basic">Grunnleggende</h3><span class="tool-dots" aria-hidden="true"><i class="on"></i><i></i><i></i></span></div>
           <ul class="pills"><li class="pill">DaVinci Resolve</li><li class="pill">Photoshop</li><li class="pill">Illustrator</li></ul>
         </div>
       </div>
