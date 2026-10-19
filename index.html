@@ -3,14 +3,15 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Daniel Ramslien – SoMe-rådgiver og digital markedsfører</title>
+<title>Daniel Ramslien Portefølje</title>
 <meta name="description" content="Portefølje 2026. Daniel Ramslien er digital markedsfører med hjertet i sosiale medier: kampanjer, innhold og analyse for Mufano, M40 Studios, Punkt Oslo, NOT Management og flere.">
 <meta name="theme-color" content="#0e0c0b">
-<meta property="og:title" content="Daniel Ramslien – Portefølje 2026">
+<meta property="og:title" content="Daniel Ramslien Portefølje">
 <meta property="og:description" content="SoMe-rådgiver og digital markedsfører. Utvalgte case fra idé til ferdig post.">
 <meta property="og:type" content="website">
 <meta property="og:image" content="assets/img/profil.webp">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cdefs%3E%3CradialGradient id='g' cx='35%25' cy='30%25' r='75%25'%3E%3Cstop offset='0' stop-color='%23ffe0bf'/%3E%3Cstop offset='.45' stop-color='%23ff8327'/%3E%3Cstop offset='1' stop-color='%23a8380a'/%3E%3C/radialGradient%3E%3C/defs%3E%3Ccircle cx='32' cy='32' r='30' fill='url(%23g)'/%3E%3C/svg%3E">
+<link rel="icon" type="image/png" href="assets/img/favicon.png">
+<link rel="apple-touch-icon" href="assets/img/favicon.png">
 <link rel="preload" href="assets/fonts/archivo.woff2" as="font" type="font/woff2" crossorigin>
 <style>
 /* Fontene ligger lokalt i assets/fonts (SIL Open Font License), så siden fungerer uten nett */
@@ -225,7 +226,8 @@ section{position:relative}
 .vdots button{width:9px;height:9px;padding:0;border:0;border-radius:50%;background:var(--line-strong);cursor:pointer;transition:background .3s,width .3s}
 .vdots button[aria-current="true"]{width:26px;border-radius:999px;background:var(--accent)}
 .case-media img.case-logo{position:absolute;inset:auto;left:14px;top:14px;z-index:2;width:64px;height:64px;object-fit:contain;transform:none!important;filter:drop-shadow(0 4px 14px rgba(0,0,0,.5))}
-.work-sub{margin:clamp(64px,8vw,104px) 0 clamp(24px,3vw,36px);font-family:var(--font-display);font-stretch:125%;font-weight:800;font-size:clamp(24px,2.6vw,36px);text-transform:uppercase;line-height:1}
+.refs-section{position:relative;padding-top:clamp(48px,6vw,80px)}
+.work-sub{margin:0 0 clamp(20px,2.4vw,30px);font-family:var(--font-display);font-stretch:125%;font-weight:800;font-size:clamp(24px,2.6vw,36px);text-transform:uppercase;line-height:1}
 .dlg-link{display:inline-flex;align-items:center;gap:8px;margin:0 0 32px;color:var(--accent);font-weight:600;font-size:14px;text-decoration:none}
 .dlg-link:hover{text-decoration:underline}
 .viewer-cap{font-size:13px;color:var(--muted);margin:0;min-height:1.4em}
@@ -427,8 +429,8 @@ section{position:relative}
       <div class="about-grid">
         <div class="slides reveal" id="slides" aria-roledescription="karusell" aria-label="Bilder av Daniel" data-i18n-aria="aria.slides">
           <div class="slides-frame">
-            <img class="slide on" src="assets/img/daniel/daniel-2.webp" alt="" data-credit="Jakob Kleppan">
-            <img class="slide" src="assets/img/daniel/daniel-5.webp" alt="" loading="lazy">
+            <img class="slide on" src="assets/img/daniel/daniel-5.webp" alt="">
+            <img class="slide" src="assets/img/daniel/daniel-2.webp" alt="" loading="lazy" data-credit="Jakob Kleppan">
             <img class="slide" src="assets/img/daniel/daniel-3.webp" alt="" loading="lazy" data-credit="Karin Bore (@photobykarin.yb)">
             <img class="slide" src="assets/img/daniel/daniel-1.webp" alt="" loading="lazy" data-credit="Simon Myklebost">
             <img class="slide" src="assets/img/daniel/daniel-4.webp" alt="" loading="lazy" data-credit="Simon Myklebost">
@@ -492,8 +494,6 @@ section{position:relative}
         <h2 class="display h-xl reveal" id="arbeid-tittel" data-i18n-html="work.title">Utvalgte<br>case</h2>
       </div>
       <ul class="cases" id="cases"></ul>
-      <h3 class="work-sub reveal" data-i18n="work.school">Skolearbeid</h3>
-      <ul class="cases" id="school"></ul>
       <noscript><p class="body">Slå på JavaScript for å se casene. / Enable JavaScript to see the work.</p></noscript>
     </div>
   </section>
@@ -510,11 +510,9 @@ section{position:relative}
   </section>
 
   <!-- ======== 04 Attester ======== -->
-  <section class="section" id="attester" aria-labelledby="attester-tittel">
+  <section class="refs-section" id="attester" aria-labelledby="attester-tittel">
     <div class="wrap">
-      <div class="refs-head">
-        <h2 class="display h-xl reveal" id="attester-tittel" data-i18n-html="refs.title">Attester</h2>
-      </div>
+      <h3 class="work-sub reveal" id="attester-tittel" data-i18n-html="refs.title">Attester</h3>
       <ul class="refs" id="refs"></ul>
     </div>
   </section>
@@ -594,7 +592,7 @@ document.documentElement.classList.add('js');
    ------------------------------------------------------------ */
 const I18N = {
   no: {
-    'meta.title':'Daniel Ramslien – SoMe-rådgiver og digital markedsfører',
+    'meta.title':'Daniel Ramslien Portefølje',
     'meta.desc':'Portefølje 2026. Daniel Ramslien er digital markedsfører med hjertet i sosiale medier: kampanjer, innhold og analyse for Mufano, M40 Studios, Punkt Oslo, NOT Management og flere.',
     'skip':'Hopp til innhold', 'aria.menu':'Hovedmeny', 'aria.intro':'Introduksjon', 'aria.stats':'Resultater i tall', 'aria.lang':'Velg språk',
     'nav.about':'Om meg', 'nav.work':'Arbeid', 'nav.contact':'Kontakt',
@@ -626,7 +624,7 @@ const I18N = {
     'sk.1':'Kampanje og konvertering', 'sk.2':'Innholdsproduksjon', 'sk.3':'Videoredigering', 'sk.4':'Måling og analyse', 'sk.5':'Salg og kunderelasjoner', 'sk.6':'Merkevarebygging', 'sk.7':'Regnskapsføring', 'testi.title':'Hva andre<br>sier', 'testi.lead':'Utdrag fra attester og uttalelser fra folk jeg har jobbet med.', 'testi.tr':''
   },
   en: {
-    'meta.title':'Daniel Ramslien – Social Media Advisor and Digital Marketer',
+    'meta.title':'Daniel Ramslien Portfolio',
     'meta.desc':'Portfolio 2026. Daniel Ramslien is a digital marketer with a heart for social media: campaigns, content and analytics for Mufano, M40 Studios, Punkt Oslo, NOT Management and more.',
     'skip':'Skip to content', 'aria.menu':'Main menu', 'aria.intro':'Introduction', 'aria.stats':'Results in numbers', 'aria.lang':'Choose language',
     'nav.about':'About', 'nav.work':'Work', 'nav.contact':'Contact',
@@ -664,28 +662,6 @@ const I18N = {
    ------------------------------------------------------------ */
 const V = 'assets/video/', I = 'assets/img/', P = 'assets/img/posters/';
 const CASES = [
-  {
-    id:'kraft', year:'2026', cover:P+'kraft.jpg', preview:V+'kraft.mp4', logo:'assets/img/kraft/kraft-logo.png',
-    link:{href:'https://kraftcollective.no/products/kraft-1-ar', text:{no:'Les om jubileet på kraftcollective.no',en:'Read about the anniversary on kraftcollective.no'}},
-    media:[{type:'video',src:V+'kraft.mp4',poster:P+'kraft.jpg',cap:{no:'Jubileumsvideo for KRAFT Collective',en:'Anniversary video for KRAFT Collective'}},
-      {type:'image',src:'assets/img/kraft/kraft-logo.png',cap:{no:'KRAFT Collective',en:'KRAFT Collective'}}],
-    t:{
-      no:{card:'KRAFT 1 år', title:'KRAFT Collective fyller 1 år', client:'KRAFT Collective', clientDesc:'Treningsfellesskap i Oslo', period:'2026',
-        role:'Filming og videoredigering (via Rams Creative)', tags:['Video','Event','Sosiale medier'], result:'Jubileumsvideo · 45 deltakere',
-        intro:'KRAFT Collective feiret ettårsjubileum med en signaturøkt for 45 deltakere i Frognerparken, der den aller første økten ble holdt, etterfulgt av kake, prat og drikke fra Ambijus. Jeg filmet og klippet jubileumsvideoen.',
-        metrics:[['45','deltakere på jubileumsøkten'],['1 år','siden første økt i Frognerparken'],['1 min','ferdig vertikal video']],
-        bullets:['Filmet signaturøkten og feiringen etterpå i Frognerparken.',
-          'Klippet en vertikal jubileumsvideo på rundt ett minutt.',
-          'Fanget det som gjør fellesskapet: høy energi, svette smil og både kjente og nye ansikter.']},
-      en:{card:'KRAFT 1 year', title:'KRAFT Collective turns 1', client:'KRAFT Collective', clientDesc:'Fitness community in Oslo', period:'2026',
-        role:'Filming and video editing (via Rams Creative)', tags:['Video','Event','Social media'], result:'Anniversary video · 45 participants',
-        intro:'KRAFT Collective celebrated its first anniversary with a signature session for 45 participants in Frognerparken, where the very first session was held, followed by cake, conversation and drinks from Ambijus. I filmed and edited the anniversary video.',
-        metrics:[['45','participants in the anniversary session'],['1 year','since the first session in Frognerparken'],['1 min','finished vertical video']],
-        bullets:['Filmed the signature session and the celebration afterwards in Frognerparken.',
-          'Edited a vertical anniversary video of about one minute.',
-          'Captured what makes the community: high energy, sweaty smiles and both familiar and new faces.']}
-    }
-  },
   {
     id:'mufano', year:'2026', cover:P+'mufano.jpg', preview:V+'mufano.mp4',
     media:[
@@ -799,6 +775,28 @@ const CASES = [
           'At Arendalsuka I filmed and edited 15 videos on location for their LinkedIn channel.',
           'Rigged and ran sound for 10 podcast recordings in the pavilion.',
           'Delivered a content bank of 25 videos and 150 selected photos covering their posting throughout the fall.']}
+    }
+  },
+  {
+    id:'kraft', year:'2026', cover:P+'kraft.jpg', preview:V+'kraft.mp4', logo:'assets/img/kraft/kraft-logo.png',
+    link:{href:'https://kraftcollective.no/products/kraft-1-ar', text:{no:'Les om jubileet på kraftcollective.no',en:'Read about the anniversary on kraftcollective.no'}},
+    media:[{type:'video',src:V+'kraft.mp4',poster:P+'kraft.jpg',cap:{no:'Jubileumsvideo for KRAFT Collective',en:'Anniversary video for KRAFT Collective'}},
+      {type:'image',src:'assets/img/kraft/kraft-logo.png',cap:{no:'KRAFT Collective',en:'KRAFT Collective'}}],
+    t:{
+      no:{card:'KRAFT 1 år', title:'KRAFT Collective fyller 1 år', client:'KRAFT Collective', clientDesc:'Treningsfellesskap i Oslo', period:'2026',
+        role:'Filming og videoredigering (via Rams Creative)', tags:['Video','Event','Sosiale medier'], result:'Jubileumsvideo · 45 deltakere',
+        intro:'KRAFT Collective feiret ettårsjubileum med en signaturøkt for 45 deltakere i Frognerparken, der den aller første økten ble holdt, etterfulgt av kake, prat og drikke fra Ambijus. Jeg filmet og klippet jubileumsvideoen.',
+        metrics:[['45','deltakere på jubileumsøkten'],['1 år','siden første økt i Frognerparken'],['1 min','ferdig vertikal video']],
+        bullets:['Filmet signaturøkten og feiringen etterpå i Frognerparken.',
+          'Klippet en vertikal jubileumsvideo på rundt ett minutt.',
+          'Fanget det som gjør fellesskapet: høy energi, svette smil og både kjente og nye ansikter.']},
+      en:{card:'KRAFT 1 year', title:'KRAFT Collective turns 1', client:'KRAFT Collective', clientDesc:'Fitness community in Oslo', period:'2026',
+        role:'Filming and video editing (via Rams Creative)', tags:['Video','Event','Social media'], result:'Anniversary video · 45 participants',
+        intro:'KRAFT Collective celebrated its first anniversary with a signature session for 45 participants in Frognerparken, where the very first session was held, followed by cake, conversation and drinks from Ambijus. I filmed and edited the anniversary video.',
+        metrics:[['45','participants in the anniversary session'],['1 year','since the first session in Frognerparken'],['1 min','finished vertical video']],
+        bullets:['Filmed the signature session and the celebration afterwards in Frognerparken.',
+          'Edited a vertical anniversary video of about one minute.',
+          'Captured what makes the community: high energy, sweaty smiles and both familiar and new faces.']}
     }
   },
   {
@@ -958,7 +956,7 @@ const pick = v => (v && typeof v === 'object') ? (v[lang] || v.no) : v;
 const fmt = n => Math.round(n).toLocaleString(lang === 'en' ? 'en-US' : 'nb-NO');
 
 /* ---------- Bygg kortene ---------- */
-const list = $('cases'), schoolList = $('school');
+const list = $('cases');
 function renderCards(){
   const cardHtml = (c,i) => {
     const x = tc(c);
@@ -981,12 +979,11 @@ function renderCards(){
       <button class="case-link" type="button" data-open="${i}"><span>${tr('card.view')}: ${esc(x.title)} ${tr('card.for')} ${esc(x.client)}</span></button>
     </li>`;
   };
-  list.innerHTML = CASES.map((c,i) => c.group === 'school' ? '' : cardHtml(c,i)).join('');
-  schoolList.innerHTML = CASES.map((c,i) => c.group === 'school' ? cardHtml(c,i) : '').join('');
+  list.innerHTML = CASES.map((c,i) => cardHtml(c,i)).join('');
 
   /* Forhåndsvisning av video når man holder musepekeren over et kort */
   if (canHover) {
-    document.querySelectorAll('#cases .case, #school .case').forEach(card => {
+    document.querySelectorAll('#cases .case').forEach(card => {
       const v = card.querySelector('video');
       if (!v) return;
       card.addEventListener('mouseenter', () => {
@@ -1115,7 +1112,7 @@ dlg.addEventListener('close', () => {
   history.replaceState(null, '', location.pathname + location.search);
   if (lastFocus) lastFocus.focus({preventScroll:true});
 });
-[list, schoolList].forEach(l => l.addEventListener('click', e => { const b = e.target.closest('[data-open]'); if (b) openCase(+b.dataset.open); }));
+list.addEventListener('click', e => { const b = e.target.closest('[data-open]'); if (b) openCase(+b.dataset.open); });
 $('dlg-close').addEventListener('click', closeCase);
 $('dlg-prev').addEventListener('click', () => fillDialog(current - 1));
 $('dlg-next').addEventListener('click', () => fillDialog(current + 1));
@@ -1156,7 +1153,7 @@ function applyLang(next, save){
 document.querySelectorAll('.lang-btn').forEach(b => b.addEventListener('click', () => { if (b.dataset.lang !== lang) applyLang(b.dataset.lang, true); }));
 applyLang(lang, false);
 /* Kortene tegnes på nytt ved språkbytte, så de skal ikke animeres inn igjen */
-document.querySelectorAll('#cases .case, #school .case').forEach(el => el.classList.remove('in'));
+document.querySelectorAll('#cases .case').forEach(el => el.classList.remove('in'));
 refList.querySelectorAll('.doc').forEach(el => el.classList.remove('in'));
 testiList.querySelectorAll('li').forEach(el => el.classList.remove('in'));
 
