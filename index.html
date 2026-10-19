@@ -65,7 +65,11 @@ button{font:inherit;color:inherit}
 .cookie-pop.open{opacity:1;transform:none;pointer-events:auto}
 .cookie-pop h3{margin:0 0 6px;font-family:var(--font-display);font-stretch:118%;font-weight:800;font-size:16px;color:var(--text)}
 .cookie-pop p{margin:0 0 14px;font-size:14px;line-height:1.5;color:var(--text-soft)}
-.cookie-ok{border:0;border-radius:999px;padding:8px 18px;background:var(--accent);color:var(--ink);font-weight:600;font-size:14px;cursor:pointer}
+.cookie-actions{display:flex;gap:8px;flex-wrap:wrap}
+.cookie-no{border:1px solid var(--line-strong);border-radius:999px;padding:7px 17px;background:transparent;color:var(--text);font-weight:600;font-size:14px;cursor:pointer}
+.cookie-no:hover{border-color:var(--text)}
+.cookie-actions [aria-pressed="true"]{box-shadow:0 0 0 2px var(--bg),0 0 0 3px var(--accent)}
+.cookie-ok{border:1px solid var(--accent);border-radius:999px;padding:8px 18px;background:var(--accent);color:var(--ink);font-weight:600;font-size:14px;cursor:pointer}
 @media (max-width:640px){.cookie-btn{left:14px;bottom:14px;width:46px;height:46px}.cookie-btn svg{width:23px;height:23px}.cookie-pop{left:14px;bottom:72px}}
 .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 .skip{position:absolute;left:12px;top:-60px;z-index:100;background:var(--accent);color:var(--ink);padding:10px 16px;border-radius:999px;font-weight:600;text-decoration:none}
@@ -196,6 +200,7 @@ section{position:relative}
 .cases{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(40px,4vw,56px) clamp(18px,2vw,28px);list-style:none;margin:0;padding:0}
 .case{position:relative;display:flex;flex-direction:column}
 .cases:not(.expanded) > .case:nth-child(n+4){display:none}
+.refs:not(.expanded) > .doc:nth-child(n+3){display:none}
 .more-wrap{display:flex;justify-content:center;margin-top:clamp(40px,5vw,64px)}
 .more-btn{display:inline-flex;align-items:center;gap:10px;padding:14px 30px;border:1px solid var(--accent-line);border-radius:999px;background:var(--accent-soft);color:var(--text);font-weight:600;font-size:15px;cursor:pointer;transition:background .2s,color .2s,transform .2s}
 .more-btn:hover{background:var(--accent);color:var(--ink);transform:translateY(-1px)}
@@ -305,6 +310,7 @@ section{position:relative}
 .quote{margin:0 0 32px;padding:20px 22px;border-left:2px solid var(--accent);background:var(--accent-soft);border-radius:0 10px 10px 0}
 .quote p{margin:0 0 10px;font-style:italic;color:var(--text)}
 .quote footer{font-size:13px;color:var(--muted)}
+.quote + .quote{margin-top:-18px}
 .dlg-nav{display:flex;justify-content:space-between;gap:12px;padding-top:24px;border-top:1px solid var(--line)}
 .dlg-nav button{display:inline-flex;align-items:center;gap:10px;background:none;border:1px solid var(--line-strong);border-radius:999px;padding:10px 18px;cursor:pointer;font-size:14px;transition:border-color .2s,color .2s}
 .dlg-nav button:hover{border-color:var(--accent);color:var(--accent)}
@@ -326,13 +332,13 @@ section{position:relative}
 
 /* ---------- Anbefalinger ---------- */
 .testi{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(16px,1.8vw,24px);list-style:none;margin:0;padding:0}
-.testi-card{position:relative;display:flex;flex-direction:column;height:100%;margin:0;padding:clamp(28px,2.8vw,40px);background:var(--bg-card);border:1px solid var(--line);border-radius:16px;overflow:hidden}
+.testi-card{position:relative;display:flex;flex-direction:column;height:100%;margin:0;padding:clamp(20px,2vw,28px);background:var(--bg-card);border:1px solid var(--line);border-radius:16px;overflow:hidden}
 .testi-card::after{content:"";position:absolute;right:-90px;top:-90px;width:220px;height:220px;border-radius:50%;background:radial-gradient(circle,rgba(255,122,26,.16),rgba(255,122,26,0) 68%);pointer-events:none}
-.testi-mark{display:block;height:40px;font-family:var(--font-display);font-weight:900;font-size:76px;line-height:1;color:var(--accent);margin-bottom:18px}
-.testi-quote{flex:1;margin:0 0 30px;font-size:clamp(18px,1.5vw,21px);line-height:1.5;color:var(--text)}
+.testi-mark{display:block;height:26px;font-family:var(--font-display);font-weight:900;font-size:52px;line-height:1;color:var(--accent);margin-bottom:10px}
+.testi-quote{flex:1;margin:0 0 18px;font-size:clamp(15px,1.15vw,17px);line-height:1.5;color:var(--text)}
 .testi-tr{display:block;margin-top:12px;font-size:12px;color:var(--faint)}
-.testi-by{display:flex;align-items:center;gap:14px;padding-top:22px;border-top:1px solid var(--line)}
-.testi-avatar{width:56px;height:56px;flex:none;border-radius:50%;object-fit:cover;box-shadow:0 0 0 2px var(--bg-card),0 0 0 3px var(--accent)}
+.testi-by{display:flex;align-items:center;gap:12px;padding-top:14px;border-top:1px solid var(--line)}
+.testi-avatar{width:44px;height:44px;flex:none;border-radius:50%;object-fit:cover;box-shadow:0 0 0 2px var(--bg-card),0 0 0 3px var(--accent)}
 .testi-name{display:block;font-weight:600;font-size:15px;color:var(--text)}
 .testi-role{display:block;font-size:13px;line-height:1.45;color:var(--muted)}
 
@@ -363,7 +369,9 @@ section{position:relative}
 
 @media (max-width:1000px){
   .refs{grid-template-columns:repeat(3,minmax(0,1fr))}
-  .testi{grid-template-columns:1fr;max-width:760px}
+  .testi{display:flex;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;margin:0 calc(-1 * var(--gutter));padding:0 var(--gutter) 4px;scroll-padding:0 var(--gutter)}
+  .testi::-webkit-scrollbar{display:none}
+  .testi > li{flex:0 0 min(82%,420px);scroll-snap-align:start}
   .tools{grid-template-columns:1fr}
   .cases{grid-template-columns:repeat(2,minmax(0,1fr))}
   .stats{grid-template-columns:repeat(2,minmax(0,1fr))}
@@ -571,6 +579,7 @@ section{position:relative}
     <div class="wrap">
       <h3 class="work-sub reveal" id="attester-tittel" data-i18n-html="refs.title">Attester</h3>
       <ul class="refs" id="refs"></ul>
+      <div class="more-wrap"><button type="button" class="more-btn" id="refs-more" aria-controls="refs" aria-expanded="false"><span data-i18n="work.more">Se mer</span></button></div>
     </div>
   </section>
 
@@ -644,8 +653,8 @@ section{position:relative}
 </button>
 <div class="cookie-pop" id="cookie-pop" role="dialog" aria-labelledby="cookie-h">
   <h3 id="cookie-h" data-i18n="cookie.title">Cookies</h3>
-  <p data-i18n="cookie.text">Denne siden bruker ingen sporings- eller reklamecookies. Bare språkvalget ditt lagres lokalt i nettleseren.</p>
-  <button class="cookie-ok" type="button" id="cookie-ok" data-i18n="cookie.ok">Skjønner</button>
+  <p data-i18n="cookie.text">Siden bruker ingen sporings- eller reklamecookies. Godtar du, huskes språkvalget ditt lokalt i nettleseren. Avviser du, lagres ingenting.</p>
+  <div class="cookie-actions"><button class="cookie-ok" type="button" id="cookie-ok" data-i18n="cookie.ok">Godta alle</button><button class="cookie-no" type="button" id="cookie-no" data-i18n="cookie.no">Avvis alle</button></div>
 </div>
 <script>
 document.documentElement.classList.add('js');
@@ -673,7 +682,7 @@ const I18N = {
     'stats.title':'Resultater', 'aria.menuBtn':'Meny', 'work.more':'Se mer', 'work.less':'Se mindre', 'dlg.full':'Fullskjerm', 'dlg.previmg':'Forrige bilde', 'dlg.nextimg':'Neste bilde', 'brand.sub':'Portefølje', 'work.school':'Skolearbeid', 'dlg.slide':'Vis', 'facts.biz':'Eget foretak', 'facts.biz.v':'Rams Creative, frilans markedsføring og videoredigering',
     'facts.tools':'Verktøy', 'facts.web':'Analyse og web',
     'stat.1':'visninger på TikTok for Mufano', 'stat.2':'i salg av studioleie for M40 Studios', 'stat.2.unit':'kr',
-    'stat.3':'samlet inn til Make-A-Wish med NOT Management', 'stat.4':'videoer og bilder i innholdsbanken til Punkt Oslo', 'cookie.aria':'Om cookies', 'cookie.title':'Cookies', 'cookie.text':'Denne siden bruker ingen sporings- eller reklamecookies. Bare språkvalget ditt lagres lokalt i nettleseren.', 'cookie.ok':'Skjønner',
+    'stat.3':'samlet inn til Make-A-Wish med NOT Management', 'stat.4':'videoer og bilder i innholdsbanken til Punkt Oslo', 'cookie.aria':'Om cookies', 'cookie.title':'Cookies', 'cookie.text':'Siden bruker ingen sporings- eller reklamecookies. Godtar du, huskes språkvalget ditt lokalt i nettleseren. Avviser du, lagres ingenting.', 'cookie.ok':'Godta alle', 'cookie.no':'Avvis alle',
     'work.title':'Utvalgte<br>case', 'work.lead':'Et utvalg av innhold og kampanjer jeg har laget, fra idé til ferdig post. Trykk på et case for å se video, tall og hva jeg gjorde.',
     'contact.title':'La oss ta<br>en prat', 'contact.lead':'Har du en ledig stilling, et prosjekt eller bare lyst på en kaffe? Send meg en melding, så svarer jeg så raskt som mulig.',
     'contact.phone':'Telefon · ', 'contact.portfolio':'Portefølje · ', 'contact.open':'Tilgjengelig for nye roller',
@@ -705,7 +714,7 @@ const I18N = {
     'stats.title':'Results', 'aria.menuBtn':'Menu', 'work.more':'See more', 'work.less':'See less', 'dlg.full':'Fullscreen', 'dlg.previmg':'Previous image', 'dlg.nextimg':'Next image', 'brand.sub':'Portfolio', 'work.school':'Coursework', 'dlg.slide':'Show', 'facts.biz':'Own business', 'facts.biz.v':'Rams Creative, freelance marketing and video editing',
     'facts.tools':'Tools', 'facts.web':'Analytics and web',
     'stat.1':'views on TikTok for Mufano', 'stat.2':'in studio rental sales for M40 Studios', 'stat.2.unit':'NOK',
-    'stat.3':'raised for Make-A-Wish with NOT Management', 'stat.4':'videos and photos in Punkt Oslo’s content bank', 'cookie.aria':'About cookies', 'cookie.title':'Cookies', 'cookie.text':'This site uses no tracking or advertising cookies. Only your language choice is stored locally in your browser.', 'cookie.ok':'Got it',
+    'stat.3':'raised for Make-A-Wish with NOT Management', 'stat.4':'videos and photos in Punkt Oslo’s content bank', 'cookie.aria':'About cookies', 'cookie.title':'Cookies', 'cookie.text':'This site uses no tracking or advertising cookies. If you accept, your language choice is remembered locally in your browser. If you reject, nothing is stored.', 'cookie.ok':'Accept all', 'cookie.no':'Reject all',
     'work.title':'Selected<br>work', 'work.lead':'A selection of content and campaigns I’ve made, from idea to finished post. Tap a case to see video, numbers and what I did.',
     'contact.title':'Let’s<br>talk', 'contact.lead':'Have an open position, a project, or just fancy a coffee? Send me a message and I’ll get back to you as soon as possible.',
     'contact.phone':'Phone · ', 'contact.portfolio':'Portfolio · ', 'contact.open':'Open to new roles',
@@ -910,29 +919,34 @@ const CASES = [
   },
   {
     id:'kristiania', year:'2026', cover:P+'kristiania.jpg', preview:V+'kristiania.mp4',
-    quote:{text:{no:'Han filmet arrangementet til bruk i markedsføring og publisering på sosiale medier, LinkedIn og fanget samhandlingen mellom studenter og virksomheter på en god og profesjonell måte.',
+    quote:[{text:{no:'Han filmet arrangementet til bruk i markedsføring og publisering på sosiale medier, LinkedIn og fanget samhandlingen mellom studenter og virksomheter på en god og profesjonell måte.',
                  en:'He filmed the event for use in marketing and publishing on social media and LinkedIn, and captured the interaction between students and companies in a good and professional way.'},
       by:{no:'Merete Bolstad, seniorrådgiver ved Høyskolen Kristiania, i attesten',en:'Merete Bolstad, Senior Advisor at Kristiania, in her reference (translated from Norwegian)'}},
-    media:[{type:'video',src:V+'kristiania.mp4',poster:P+'kristiania.jpg',cap:{no:'Workshop, 16. april',en:'Workshop, April 16'}}],
+      {text:{no:'Han løste oppgaven på en utmerket måte med kunnskap, tilgjengelighet, positivitet og evne til å overføre læring.',
+                 en:'He carried out the role in an excellent way, with knowledge, availability, positivity and the ability to pass on learning.'},
+      by:{no:'Annette Kallevig, emneansvarlig og studieprogramleder, i attesten',en:'Annette Kallevig, course leader and Head of Programme, in her reference (translated from Norwegian)'}}],
+    media:[{type:'video',src:V+'kristiania.mp4',poster:P+'kristiania.jpg',cap:{no:'Workshop, 16. april',en:'Workshop, April 16'}},
+      {type:'video',src:V+'kristiania-ail.mp4',poster:P+'kristiania-ail.jpg',cap:{no:'AIL-forelesning, 5. mai',en:'AIL lecture, May 5'}},
+      {type:'video',src:V+'kristiania-qna.mp4',poster:P+'kristiania-qna.jpg',cap:{no:'Q&A med studenter',en:'Q&A with students'}}],
     t:{
-      no:{card:'Eventinnhold', title:'Eventinnhold for Høyskolen Kristiania', client:'Høyskolen Kristiania', clientDesc:'Praksis', period:'Apr. 2026',
-        role:'Innholdsprodusent (praksisstudent)', tags:['LinkedIn','Instagram','Video'], result:'10 videoer fra 3 arrangementer',
-        intro:'Jeg var med i prosjektgruppen som planla og gjennomførte speed-date-/praksisdagen for masterstudenter 9. april 2026, med særskilt ansvar for filming og teknikk. I tillegg laget jeg video og foto fra to andre arrangementer til skolens kanaler.',
-        metrics:[['10','videoer'],['3','arrangementer'],['20','bedrifter på praksisdagen'],['ca. 85','deltakere']],
-        bullets:['Var med i prosjektgruppen som planla og gjennomførte praksisdagen, en møteplass der masterstudenter kunne knytte kontakt med potensielle arbeidsgivere.',
-          'Filmet arrangementet til bruk i markedsføring og på skolens sosiale medier, og fanget samhandlingen mellom studenter og bedrifter.',
-          'Hadde dedikert ansvar for at skjermer og scenepresentasjon fungerte teknisk gjennom hele dagen, med 20 bedrifter og ca. 85 deltakere.',
-          'Arrangementet ble svært vellykket, og flere av studentene fikk i etterkant praksisplass hos bedriftene som deltok.',
-          'Filmet, fotograferte og klippet totalt 10 videoer fra 3 arrangementer, publisert på skolens LinkedIn og Instagram.']},
-      en:{card:'Event content', title:'Event content for Kristiania University', client:'Kristiania University of Applied Sciences', clientDesc:'Internship', period:'Apr 2026',
-        role:'Content producer (intern)', tags:['LinkedIn','Instagram','Video'], result:'10 videos from 3 events',
-        intro:'I was part of the project group that planned and ran the speed-date/internship day for master’s students on April 9, 2026, with special responsibility for filming and tech. I also made video and photo from two other events for the school’s channels.',
-        metrics:[['10','videos'],['3','events'],['20','companies at the internship day'],['approx. 85','participants']],
-        bullets:['Part of the project group that planned and ran the internship day, a meeting place where master’s students could connect with potential employers.',
-          'Filmed the event for marketing and the school’s social media, capturing the interaction between students and companies.',
-          'Was responsible for screens and stage presentations running smoothly throughout the day, with 20 companies and approx. 85 participants.',
-          'The event was a great success, and several of the students later got internships at the participating companies.',
-          'Filmed, photographed and edited a total of 10 videos from 3 events, published on the school’s LinkedIn and Instagram.']}
+      no:{card:'Innhold og læring', title:'Høyskolen Kristiania: innholds\u00ADproduksjon og læring', client:'Høyskolen Kristiania', clientDesc:'Praksis og studentassistent', period:'Vår 2026',
+        role:'Innholdsprodusent (praksis) · studentassistent', tags:['Video','LinkedIn','Undervisning'], result:'10 videoer · 70 studenter veiledet',
+        intro:'Ved Høyskolen Kristiania har jeg både laget innhold og hjulpet andre å lære. Som praksisstudent filmet og klippet jeg video fra arrangementer, og som studentassistent i Innholdskommunikasjon veiledet jeg førsteårsstudentene.',
+        metrics:[['10','videoer fra 3 arrangementer'],['70','førsteårsstudenter veiledet'],['20','bedrifter på praksisdagen'],['ca. 85','deltakere på praksisdagen']],
+        bullets:['Filmet, fotograferte og klippet 10 videoer fra 3 arrangementer, publisert på skolens LinkedIn og Instagram.',
+          'Var med i prosjektgruppen for praksisdagen for masterstudenter 9. april, med ansvar for filming, skjermer og scenepresentasjon. Flere av studentene fikk praksisplass hos bedriftene etterpå.',
+          'Ble valgt ut som studentassistent i emnet Innholdskommunikasjon, som faglig sterk student fra året før.',
+          'Veiledet 70 førsteårsstudenter løpende via Discord og holdt workshop før arbeidskrav og eksamen.',
+          'Delte egne erfaringer og tips til gode studierutiner, og bisto hovedlærer og gjesteforelesere i undervisningen og under gruppearbeid.']},
+      en:{card:'Content and learning', title:'Kristiania University: content production and learning', client:'Kristiania University of Applied Sciences', clientDesc:'Internship and student assistant', period:'Spring 2026',
+        role:'Content producer (intern) · student assistant', tags:['Video','LinkedIn','Teaching'], result:'10 videos · 70 students supervised',
+        intro:'At Kristiania I have both created content and helped others learn. As an intern I filmed and edited video from events, and as a student assistant in Content Communication I supervised the first-year students.',
+        metrics:[['10','videos from 3 events'],['70','first-year students supervised'],['20','companies at the internship day'],['approx. 85','participants at the internship day']],
+        bullets:['Filmed, photographed and edited 10 videos from 3 events, published on the school’s LinkedIn and Instagram.',
+          'Part of the project group for the internship day for master’s students on April 9, responsible for filming, screens and stage presentations. Several of the students later got internships at the participating companies.',
+          'Selected as student assistant in the course Content Communication, as a high-performing student from the year before.',
+          'Supervised 70 first-year students on an ongoing basis via Discord and ran a workshop ahead of assignments and the exam.',
+          'Shared my own experience and tips for good study routines, and assisted the lecturer and guest lecturers in class and during group work.']}
     }
   },
   {
@@ -1115,6 +1129,17 @@ moreBtn.addEventListener('click', () => {
   if (!open) $('arbeid').scrollIntoView({behavior: reduce ? 'auto' : 'smooth'});
 });
 
+{
+  const rb = $('refs-more');
+  rb.addEventListener('click', () => {
+    const open = !refList.classList.contains('expanded');
+    refList.classList.toggle('expanded', open);
+    rb.setAttribute('aria-expanded', open ? 'true' : 'false');
+    const sp = rb.querySelector('span'); sp.dataset.i18n = open ? 'work.less' : 'work.more'; sp.textContent = tr(sp.dataset.i18n);
+    if (!open) $('attester').scrollIntoView({behavior: reduce ? 'auto' : 'smooth'});
+  });
+}
+
 /* ---------- Dialog ---------- */
 const dlg = $('case-dialog');
 let current = 0, currentMedia = 0, lastFocus = null;
@@ -1210,7 +1235,7 @@ function fillDialog(i, keepMedia){
   ].map(([k,v]) => `<div><dt>${k}</dt><dd>${esc(v)}</dd></div>`).join('');
   $('dlg-metrics').innerHTML = x.metrics.map(([n,l]) => `<div><span class="metric-num">${esc(n)}</span><span class="metric-label">${esc(l)}</span></div>`).join('');
   $('dlg-list').innerHTML = x.bullets.map(b => `<li>${esc(b)}</li>`).join('');
-  $('dlg-quote').innerHTML = c.quote ? `<blockquote class="quote"><p>${esc(pick(c.quote.text))}</p><footer>${esc(pick(c.quote.by))}</footer></blockquote>` : '';
+  $('dlg-quote').innerHTML = c.quote ? [].concat(c.quote).map(q => `<blockquote class="quote"><p>${esc(pick(q.text))}</p><footer>${esc(pick(q.by))}</footer></blockquote>`).join('') : '';
   $('dlg-link').innerHTML = c.link ? `<a class="dlg-link" href="${c.link.href}" target="_blank" rel="noopener">${esc(pick(c.link.text))} ↗</a>` : '';
   if (keepMedia) {
     $('dlg-thumbs').innerHTML = c.media.length > 1 ? c.media.map((m,k) => `<button type="button" data-k="${k}" aria-label="${tr('dlg.slide')} ${k+1}: ${esc(pick(m.cap))}"></button>`).join('') : '';
@@ -1272,7 +1297,7 @@ function applyLang(next, save){
   renderRefs();
   if (dlg.open) fillDialog(current, true);
   if (save) {
-    try { localStorage.setItem('lang', lang); } catch (e) {}
+    try { if (localStorage.getItem('cookies') !== 'rejected') localStorage.setItem('lang', lang); } catch (e) {}
     try {
       const u = new URL(location.href);
       if (lang === 'en') u.searchParams.set('lang','en'); else u.searchParams.delete('lang');
@@ -1370,7 +1395,18 @@ document.querySelectorAll('.reveal').forEach(el => revObs.observe(el));
   const cb = document.getElementById('cookie-btn'), cp = document.getElementById('cookie-pop');
   const setCookie = open => { cp.classList.toggle('open', open); cb.setAttribute('aria-expanded', open); if (open) document.getElementById('cookie-ok').focus({preventScroll:true}); };
   cb.addEventListener('click', () => setCookie(!cp.classList.contains('open')));
-  document.getElementById('cookie-ok').addEventListener('click', () => { setCookie(false); cb.focus({preventScroll:true}); });
+  const ok = document.getElementById('cookie-ok'), no = document.getElementById('cookie-no');
+  const mark = v => { ok.setAttribute('aria-pressed', v === 'accepted'); no.setAttribute('aria-pressed', v === 'rejected'); };
+  try { mark(localStorage.getItem('cookies')); } catch (e) {}
+  const choose = v => {
+    try {
+      if (v === 'rejected') { localStorage.removeItem('lang'); localStorage.setItem('cookies', 'rejected'); }
+      else { localStorage.setItem('cookies', 'accepted'); localStorage.setItem('lang', document.documentElement.lang === 'en' ? 'en' : 'no'); }
+    } catch (e) {}
+    mark(v); setCookie(false); cb.focus({preventScroll:true});
+  };
+  ok.addEventListener('click', () => choose('accepted'));
+  no.addEventListener('click', () => choose('rejected'));
   document.addEventListener('keydown', e => { if (e.key === 'Escape' && cp.classList.contains('open')) setCookie(false); });
   document.addEventListener('click', e => { if (cp.classList.contains('open') && !cp.contains(e.target) && !cb.contains(e.target)) setCookie(false); });
 }
