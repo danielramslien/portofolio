@@ -194,7 +194,8 @@ section{position:relative}
 .facts dt{font-size:12px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);margin-bottom:6px}
 .facts dd{margin:0;font-size:14px;line-height:1.55;color:var(--text-soft)}
 
-.stats-title{margin:clamp(72px,9vw,120px) 0 18px;font-family:var(--font-display);font-stretch:118%;font-weight:800;font-size:clamp(17px,1.5vw,20px);color:var(--text)}
+.results-section{padding-top:clamp(56px,7vw,96px)}
+.stats-title{margin:0 0 18px;font-family:var(--font-display);font-stretch:118%;font-weight:800;font-size:clamp(17px,1.5vw,20px);color:var(--text)}
 .stats{container-type:inline-size;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));margin-top:0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
 .stat{padding:30px 24px 30px 0}
 .stat + .stat{padding-left:24px;border-left:1px solid var(--line)}
@@ -468,17 +469,17 @@ section{position:relative}
 </style>
 </head>
 <body>
-<a class="skip" href="#om-meg" data-i18n="skip">Hopp til innhold</a>
+<a class="skip" href="#resultater" data-i18n="skip">Hopp til innhold</a>
 
 <header class="site-header" id="top-bar">
   <div class="wrap">
     <a class="hdr-cta" href="#kontakt"><span data-i18n="nav.contact">Kontakt</span></a>
     <button class="menu-btn" id="menu-btn" type="button" aria-expanded="false" aria-controls="main-nav" aria-label="Meny" data-i18n-aria="aria.menuBtn"><span></span><span></span><span></span></button>
     <nav class="nav" id="main-nav" aria-label="Hovedmeny" data-i18n-aria="aria.menu">
-        <a href="#om-meg"><span data-i18n="nav.about">Om meg</span></a>
-        <a href="#verktoy"><span data-i18n="nav.tools">Verktøy</span></a>
         <a href="#arbeid"><span data-i18n="nav.work">Arbeid</span></a>
+        <a href="#verktoy"><span data-i18n="nav.tools">Verktøy</span></a>
         <a href="#anbefalinger"><span data-i18n="nav.testi">Anbefalinger</span></a>
+        <a href="#om-meg"><span data-i18n="nav.about">Om meg</span></a>
         <a href="#kontakt" class="nav-cta"><span data-i18n="nav.contact">Kontakt</span></a>
       </nav>
       <div class="lang" role="group" aria-label="Velg språk" data-i18n-aria="aria.lang">
@@ -501,16 +502,83 @@ section{position:relative}
         <div class="hero-clip"><img class="hero-photo" src="assets/img/profil.webp" width="933" height="1400" alt="Portrett av Daniel Ramslien" data-i18n-alt="about.alt" fetchpriority="high"></div>
       </div>
       <ul class="hero-nav">
-        <li><a href="#om-meg" data-i18n="nav.about">Om meg</a></li>
-        <li><a href="#verktoy" data-i18n="nav.tools">Verktøy</a></li>
         <li><a href="#arbeid" data-i18n="nav.work">Arbeid</a></li>
+        <li><a href="#verktoy" data-i18n="nav.tools">Verktøy</a></li>
         <li><a href="#anbefalinger" data-i18n="nav.testi">Anbefalinger</a></li>
+        <li><a href="#om-meg" data-i18n="nav.about">Om meg</a></li>
         <li><a href="#kontakt" class="hero-cta" data-i18n="nav.contact">Kontakt</a></li>
       </ul>
     </div>
   </section>
 
-  <!-- ======== 01 Om meg ======== -->
+  <!-- ======== Resultater ======== -->
+  <section class="results-section" id="resultater" aria-labelledby="resultater-tittel">
+    <div class="wrap">
+      <h2 class="stats-title reveal" id="resultater-tittel" data-i18n="stats.title">Resultater</h2>
+      <div class="stats" aria-label="Resultater i tall" data-i18n-aria="aria.stats">
+        <div class="stat reveal"><span class="stat-num" data-count="863000" data-suffix="+">863 000+</span><span class="stat-label" data-i18n="stat.1">visninger på TikTok for Mufano</span></div>
+        <div class="stat reveal" style="--d:.08s"><span class="stat-num"><span data-count="100000" data-suffix="+">100 000+</span><small data-i18n="stat.2.unit">kr</small></span><span class="stat-label" data-i18n="stat.2">i salg av studioleie for M40 Studios</span></div>
+        <div class="stat reveal" style="--d:.16s"><span class="stat-num"><span data-count="46000">46 000</span><small>USD</small></span><span class="stat-label" data-i18n="stat.3">samlet inn til Make-A-Wish med NOT Management</span></div>
+        <div class="stat reveal" style="--d:.24s"><span class="stat-num" data-count="25" data-suffix=" + 150">25 + 150</span><span class="stat-label" data-i18n="stat.4">videoer og bilder i innholdsbanken til Punkt Oslo</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======== Arbeid ======== -->
+  <section class="section" id="arbeid" aria-labelledby="arbeid-tittel">
+    <div class="wrap">
+      <div class="work-head">
+        <h2 class="display h-xl reveal" id="arbeid-tittel" data-i18n-html="work.title">Utvalgte<br>case</h2>
+      </div>
+      <ul class="cases" id="cases"></ul>
+      <div class="more-wrap"><button type="button" class="more-btn" id="more-btn" aria-controls="cases" aria-expanded="false"><span data-i18n="work.more">Se mer</span></button></div>
+      <noscript><p class="body">Slå på JavaScript for å se casene. / Enable JavaScript to see the work.</p></noscript>
+    </div>
+  </section>
+
+  <!-- ======== Verktøy ======== -->
+  <section class="section" id="verktoy" aria-labelledby="verktoy-tittel">
+    <div class="wrap">
+      <div class="refs-head">
+        <h2 class="display h-xl reveal" id="verktoy-tittel" data-i18n-html="tools.title">Verktøy<br>jeg bruker</h2>
+      </div>
+      <div class="tools">
+        <div class="tool-col reveal">
+          <div class="tool-top"><h3 class="tool-level" data-i18n="tools.adv">Avansert</h3><span class="tool-dots" aria-hidden="true"><i class="on"></i><i class="on"></i><i class="on"></i></span></div>
+          <ul class="pills"><li class="pill">Claude</li><li class="pill">CapCut</li><li class="pill">Canva</li><li class="pill">Premiere Pro</li><li class="pill">Meta &amp; TikTok Insights</li><li class="pill">Google Workspace</li></ul>
+        </div>
+        <div class="tool-col reveal" style="--d:.08s">
+          <div class="tool-top"><h3 class="tool-level" data-i18n="tools.good">God</h3><span class="tool-dots" aria-hidden="true"><i class="on"></i><i class="on"></i><i></i></span></div>
+          <ul class="pills"><li class="pill">GA4</li><li class="pill">Hotjar</li><li class="pill">Looker Studio</li><li class="pill">Google Search Console</li><li class="pill">Meta Ads</li><li class="pill">SEO</li><li class="pill">Tripletex</li></ul>
+        </div>
+        <div class="tool-col reveal" style="--d:.16s">
+          <div class="tool-top"><h3 class="tool-level" data-i18n="tools.basic">Grunnleggende</h3><span class="tool-dots" aria-hidden="true"><i class="on"></i><i></i><i></i></span></div>
+          <ul class="pills"><li class="pill">DaVinci Resolve</li><li class="pill">Photoshop</li><li class="pill">Illustrator</li></ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======== Anbefalinger ======== -->
+  <section class="section" id="anbefalinger" aria-labelledby="anbefalinger-tittel">
+    <div class="wrap">
+      <div class="refs-head">
+        <h2 class="display h-xl reveal" id="anbefalinger-tittel" data-i18n-html="testi.title">Hva andre<br>sier</h2>
+      </div>
+      <ul class="testi" id="testi"></ul>
+    </div>
+  </section>
+
+  <!-- ======== 04 Attester ======== -->
+  <section class="refs-section" id="attester" aria-labelledby="attester-tittel">
+    <div class="wrap">
+      <h3 class="work-sub reveal" id="attester-tittel" data-i18n-html="refs.title">Attester</h3>
+      <ul class="refs" id="refs"></ul>
+      <div class="more-wrap"><button type="button" class="more-btn" id="refs-more" aria-controls="refs" aria-expanded="false"><span data-i18n="refs.more">Se flere</span></button></div>
+    </div>
+  </section>
+
+  <!-- ======== Om meg ======== -->
   <section class="section" id="om-meg" aria-labelledby="om-meg-tittel">
     <div class="wrap">
       <div class="about-grid">
@@ -543,69 +611,6 @@ section{position:relative}
           </dl>
         </div>
       </div>
-
-      <h3 class="stats-title reveal" data-i18n="stats.title">Resultater</h3>
-      <div class="stats" aria-label="Resultater i tall" data-i18n-aria="aria.stats">
-        <div class="stat reveal"><span class="stat-num" data-count="863000" data-suffix="+">863 000+</span><span class="stat-label" data-i18n="stat.1">visninger på TikTok for Mufano</span></div>
-        <div class="stat reveal" style="--d:.08s"><span class="stat-num"><span data-count="100000" data-suffix="+">100 000+</span><small data-i18n="stat.2.unit">kr</small></span><span class="stat-label" data-i18n="stat.2">i salg av studioleie for M40 Studios</span></div>
-        <div class="stat reveal" style="--d:.16s"><span class="stat-num"><span data-count="46000">46 000</span><small>USD</small></span><span class="stat-label" data-i18n="stat.3">samlet inn til Make-A-Wish med NOT Management</span></div>
-        <div class="stat reveal" style="--d:.24s"><span class="stat-num" data-count="25" data-suffix=" + 150">25 + 150</span><span class="stat-label" data-i18n="stat.4">videoer og bilder i innholdsbanken til Punkt Oslo</span></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ======== Verktøy ======== -->
-  <section class="section" id="verktoy" aria-labelledby="verktoy-tittel">
-    <div class="wrap">
-      <div class="refs-head">
-        <h2 class="display h-xl reveal" id="verktoy-tittel" data-i18n-html="tools.title">Verktøy<br>jeg bruker</h2>
-      </div>
-      <div class="tools">
-        <div class="tool-col reveal">
-          <div class="tool-top"><h3 class="tool-level" data-i18n="tools.adv">Avansert</h3><span class="tool-dots" aria-hidden="true"><i class="on"></i><i class="on"></i><i class="on"></i></span></div>
-          <ul class="pills"><li class="pill">Claude</li><li class="pill">CapCut</li><li class="pill">Canva</li><li class="pill">Premiere Pro</li><li class="pill">Meta &amp; TikTok Insights</li><li class="pill">Google Workspace</li></ul>
-        </div>
-        <div class="tool-col reveal" style="--d:.08s">
-          <div class="tool-top"><h3 class="tool-level" data-i18n="tools.good">God</h3><span class="tool-dots" aria-hidden="true"><i class="on"></i><i class="on"></i><i></i></span></div>
-          <ul class="pills"><li class="pill">GA4</li><li class="pill">Hotjar</li><li class="pill">Looker Studio</li><li class="pill">Google Search Console</li><li class="pill">Meta Ads</li><li class="pill">SEO</li><li class="pill">Tripletex</li></ul>
-        </div>
-        <div class="tool-col reveal" style="--d:.16s">
-          <div class="tool-top"><h3 class="tool-level" data-i18n="tools.basic">Grunnleggende</h3><span class="tool-dots" aria-hidden="true"><i class="on"></i><i></i><i></i></span></div>
-          <ul class="pills"><li class="pill">DaVinci Resolve</li><li class="pill">Photoshop</li><li class="pill">Illustrator</li></ul>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ======== 02 Arbeid ======== -->
-  <section class="section" id="arbeid" aria-labelledby="arbeid-tittel">
-    <div class="wrap">
-      <div class="work-head">
-        <h2 class="display h-xl reveal" id="arbeid-tittel" data-i18n-html="work.title">Utvalgte<br>case</h2>
-      </div>
-      <ul class="cases" id="cases"></ul>
-      <div class="more-wrap"><button type="button" class="more-btn" id="more-btn" aria-controls="cases" aria-expanded="false"><span data-i18n="work.more">Se mer</span></button></div>
-      <noscript><p class="body">Slå på JavaScript for å se casene. / Enable JavaScript to see the work.</p></noscript>
-    </div>
-  </section>
-
-  <!-- ======== 03 Kontakt ======== -->
-  <!-- ======== 03 Anbefalinger ======== -->
-  <section class="section" id="anbefalinger" aria-labelledby="anbefalinger-tittel">
-    <div class="wrap">
-      <div class="refs-head">
-        <h2 class="display h-xl reveal" id="anbefalinger-tittel" data-i18n-html="testi.title">Hva andre<br>sier</h2>
-      </div>
-      <ul class="testi" id="testi"></ul>
-    </div>
-  </section>
-
-  <!-- ======== 04 Attester ======== -->
-  <section class="refs-section" id="attester" aria-labelledby="attester-tittel">
-    <div class="wrap">
-      <h3 class="work-sub reveal" id="attester-tittel" data-i18n-html="refs.title">Attester</h3>
-      <ul class="refs" id="refs"></ul>
-      <div class="more-wrap"><button type="button" class="more-btn" id="refs-more" aria-controls="refs" aria-expanded="false"><span data-i18n="refs.more">Se flere</span></button></div>
     </div>
   </section>
 
@@ -1461,7 +1466,7 @@ const secObs = new IntersectionObserver(entries => {
     if (en.isIntersecting) navLinks.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + en.target.id));
   });
 }, {rootMargin:'-45% 0px -50% 0px'});
-['top','om-meg','verktoy','arbeid','anbefalinger','attester','kontakt'].forEach(id => secObs.observe($(id)));
+['top','resultater','arbeid','verktoy','anbefalinger','attester','om-meg','kontakt'].forEach(id => secObs.observe($(id)));
 
 /* ---------- Animasjon ved scroll ---------- */
 function countUp(el){
