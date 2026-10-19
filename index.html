@@ -243,7 +243,8 @@ section{position:relative}
 .dlg-close{width:44px;height:44px;border-radius:50%;border:1px solid var(--line-strong);background:transparent;cursor:pointer;display:grid;place-items:center;flex:none;transition:background .2s,border-color .2s}
 .dlg-close:hover{background:var(--accent);border-color:var(--accent);color:var(--ink)}
 .dlg-close svg{width:16px;height:16px}
-.dlg-title{font-size:clamp(30px,3.6vw,48px);margin-bottom:22px}
+.dlg-title{font-size:clamp(26px,3.2vw,44px);margin-bottom:22px;overflow-wrap:break-word;hyphens:auto;-webkit-hyphens:auto}
+.dlg-body{min-width:0}
 .dlg-intro{margin:0 0 28px;color:var(--text-soft);font-size:17px}
 .dlg-meta{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px 28px;margin:0 0 32px;padding:22px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
 .dlg-meta dt{font-size:11px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);margin-bottom:4px}
@@ -566,7 +567,7 @@ section{position:relative}
             <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M2 2l12 12M14 2L2 14"/></svg>
           </button>
         </div>
-        <h2 class="display dlg-title" id="dlg-title"></h2>
+        <h2 class="display dlg-title" id="dlg-title" lang="no"></h2>
         <p class="dlg-intro" id="dlg-intro"></p>
         <dl class="dlg-meta" id="dlg-meta"></dl>
         <div class="metrics" id="dlg-metrics"></div>
@@ -752,6 +753,27 @@ const CASES = [
     }
   },
   {
+    id:'iko', group:'school', year:'2025', cover:P+'iko.jpg', preview:V+'iko.mp4',
+    link:{href:'https://youtu.be/aBOuIqYqrRg', text:{no:'Se hele pitchdecket på YouTube',en:'Watch the full pitch deck on YouTube'}},
+    media:[{type:'video',src:V+'iko.mp4',poster:P+'iko.jpg',cap:{no:'Kampanjevideoen',en:'The campaign video'}}],
+    t:{
+      no:{card:'Kampanjevideo', title:'Kampanjevideo pitch', client:'Høyskolen Kristiania', clientDesc:'Innholdskommunikasjon', period:'Vår 2025',
+        role:'Ansvarlig for kampanjevideoen i gruppen', tags:['Kampanje','Video','Skolearbeid'], result:'Karakter A',
+        intro:'I gruppeeksamen i Innholdskommunikasjon startet vi vårt eget mediebyrå, Ung Media, som tilpasser markedsføring til yngre målgrupper. Jeg hadde ansvaret for kampanjevideoen.',
+        metrics:[['A','karakter i emnet'],['16 timer','arbeid med kampanjevideoen']],
+        bullets:['Planla kampanjen sammen med gruppen, med felles moodboard i Milanote.',
+          'Hentet klipp og satte dem sammen til en tydelig fortelling som skulle fange oppmerksomhet og skape engasjement.',
+          'Klippet og ferdigstilte videoen selv, et arbeid på rundt 16 timer.']},
+      en:{card:'Campaign video', title:'Campaign video pitch', client:'Kristiania University of Applied Sciences', clientDesc:'Content Communication', period:'Spring 2025',
+        role:'Responsible for the group’s campaign video', tags:['Campaign','Video','Coursework'], result:'Grade A',
+        intro:'For the group exam in Content Communication we started our own media agency, Ung Media, tailoring marketing to younger audiences. I was responsible for the campaign video.',
+        metrics:[['A','grade in the course'],['16 hours','spent on the campaign video']],
+        bullets:['Planned the campaign with the group, using a shared moodboard in Milanote.',
+          'Gathered clips and built them into a clear story designed to grab attention and drive engagement.',
+          'Edited and finished the video myself, about 16 hours of work.']}
+    }
+  },
+  {
     id:'punkt-oslo', year:'2026', cover:P+'arendalsuka.jpg', preview:V+'arendalsuka.mp4',
     media:[
       {type:'video',src:V+'arendalsuka.mp4',poster:P+'arendalsuka.jpg',cap:{no:'Arendalsuka, 11. august',en:'Arendalsuka, August 11'}},
@@ -861,39 +883,25 @@ const CASES = [
     }
   },
   {
-    id:'iko', group:'school', year:'2025', cover:P+'iko.jpg', preview:V+'iko.mp4',
-    media:[{type:'video',src:V+'iko.mp4',poster:P+'iko.jpg',cap:{no:'Kampanjevideoen',en:'The campaign video'}}],
-    t:{
-      no:{card:'Kampanjevideo', title:'Kampanjevideo i Innholdskommunikasjon', client:'Høyskolen Kristiania', clientDesc:'Innholdskommunikasjon', period:'Vår 2025',
-        role:'Ansvarlig for kampanjevideoen i gruppen', tags:['Kampanje','Video','Skolearbeid'], result:'Karakter A',
-        intro:'I gruppeeksamen i Innholdskommunikasjon startet vi vårt eget mediebyrå, Ung Media, som tilpasser markedsføring til yngre målgrupper. Jeg hadde ansvaret for kampanjevideoen.',
-        metrics:[['A','karakter i emnet'],['16 timer','arbeid med kampanjevideoen']],
-        bullets:['Planla kampanjen sammen med gruppen, med felles moodboard i Milanote.',
-          'Hentet klipp og satte dem sammen til en tydelig fortelling som skulle fange oppmerksomhet og skape engasjement.',
-          'Klippet og ferdigstilte videoen selv, et arbeid på rundt 16 timer.']},
-      en:{card:'Campaign video', title:'Campaign video in Content Communication', client:'Kristiania University of Applied Sciences', clientDesc:'Content Communication', period:'Spring 2025',
-        role:'Responsible for the group’s campaign video', tags:['Campaign','Video','Coursework'], result:'Grade A',
-        intro:'For the group exam in Content Communication we started our own media agency, Ung Media, tailoring marketing to younger audiences. I was responsible for the campaign video.',
-        metrics:[['A','grade in the course'],['16 hours','spent on the campaign video']],
-        bullets:['Planned the campaign with the group, using a shared moodboard in Milanote.',
-          'Gathered clips and built them into a clear story designed to grab attention and drive engagement.',
-          'Edited and finished the video myself, about 16 hours of work.']}
-    }
-  },
-  {
     id:'div', group:'school', year:'2025', cover:P+'div-eksamen.jpg', coverPos:'0% 50%', preview:V+'div-eksamen.mp4',
-    media:[{type:'video',src:V+'div-eksamen.mp4',poster:P+'div-eksamen.jpg',cap:{no:'Eksamensvideo i Digitale verktøy',en:'Exam video in Digital Tools'}}],
+    media:[{type:'video',src:V+'div-eksamen.mp4',poster:P+'div-eksamen.jpg',cap:{no:'Eksamensvideo i Digitale verktøy',en:'Exam video in Digital Tools'}},
+      {type:'image',src:I+'knytt-landing.webp',cap:{no:'Landingssiden på knytt.org',en:'Landing page on knytt.org'}},
+      {type:'image',src:I+'knytt-serp.webp',cap:{no:'Knytt i Google-søk',en:'Knytt in Google search'}},
+      {type:'image',src:I+'knytt-pagespeed.webp',cap:{no:'PageSpeed på mobil, med SEO-score 100',en:'PageSpeed on mobile, with an SEO score of 100'}},
+      {type:'image',src:I+'knytt-heatmap.webp',cap:{no:'Heatmap av landingssiden',en:'Heatmap of the landing page'}},
+      {type:'image',src:I+'knytt-hotjar.webp',cap:{no:'Brukeratferd målt i Hotjar',en:'User behavior tracked in Hotjar'}},
+      {type:'image',src:I+'knytt-looker.webp',cap:{no:'Trafikk i Looker Studio',en:'Traffic in Looker Studio'}}],
     t:{
-      no:{card:'Digital strategi', title:'Eksamensvideo i Digitale verktøy', client:'Høyskolen Kristiania', clientDesc:'Digitale verktøy', period:'2025',
+      no:{card:'Digitale verktøy, SEO', title:'Digitale verktøy, SEO', client:'Høyskolen Kristiania', clientDesc:'Digitale verktøy · Knytt', period:'2025',
         role:'Individuell eksamen', tags:['Nettside','Analyse','Skolearbeid'], result:'Karakter A',
-        intro:'En videopresentasjon på rundt tolv minutter der jeg går gjennom en digital markedsføringsstrategi, fra kundereisen og nettsiden til ytelse og hvor brukerne klikker.',
+        intro:'En videopresentasjon på rundt tolv minutter der jeg går gjennom den digitale markedsføringsstrategien til studentbedriften Knytt, fra kundereisen og nettsiden til SEO, ytelse og hvor brukerne klikker.',
         metrics:[['A','karakter i emnet'],['12 min','videopresentasjon']],
         bullets:['Kartla kundereisen og hvilke kanaler og verktøy som brukes i hvert steg.',
           'Presenterte nettsiden bygget i WordPress og målte ytelsen på PC og mobil.',
           'Analyserte hvor brukerne klikker og hvordan det henger sammen med konvertering.']},
-      en:{card:'Digital strategy', title:'Exam video in Digital Tools', client:'Kristiania University of Applied Sciences', clientDesc:'Digital Tools', period:'2025',
+      en:{card:'Digital tools, SEO', title:'Digital tools, SEO', client:'Kristiania University of Applied Sciences', clientDesc:'Digital Tools · Knytt', period:'2025',
         role:'Individual exam', tags:['Website','Analytics','Coursework'], result:'Grade A',
-        intro:'A video presentation of about twelve minutes walking through a digital marketing strategy, from the customer journey and the website to performance and where users click.',
+        intro:'A video presentation of about twelve minutes walking through the digital marketing strategy for the student company Knytt, from the customer journey and the website to SEO, performance and where users click.',
         metrics:[['A','grade in the course'],['12 min','video presentation']],
         bullets:['Mapped the customer journey and the channels and tools used at each step.',
           'Presented the website built in WordPress and measured its performance on desktop and mobile.',
@@ -1074,6 +1082,7 @@ function fillDialog(i, keepMedia){
   const c = CASES[current], x = tc(c);
   $('dlg-count').textContent = `Case ${String(current+1).padStart(2,'0')} / ${String(CASES.length).padStart(2,'0')} · ${c.year}`;
   $('dlg-title').textContent = x.title;
+  $('dlg-title').lang = lang === 'en' ? 'en' : 'no';
   $('dlg-intro').textContent = x.intro;
   $('dlg-meta').innerHTML = [
     [tr('dlg.client'), x.client + (x.clientDesc ? ` · ${x.clientDesc}` : '')],
