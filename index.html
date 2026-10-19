@@ -145,6 +145,10 @@ section{position:relative}
 /* ---------- Om meg ---------- */
 .about-grid{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:clamp(40px,6vw,96px);align-items:center}
 .slides{position:relative;max-width:460px;width:100%;margin:0 auto}
+.slides-frame,.viewer{touch-action:pan-y;-webkit-user-select:none;user-select:none}
+.slides-frame img,.viewer img{-webkit-user-drag:none;user-drag:none}
+.slides-frame.dragging,.viewer.dragging{cursor:grabbing}
+.slides-frame.dragging .slide.on,.viewer.dragging .vslide.on{transition:none}
 .slides-frame{position:relative;width:74%;margin:0 auto;aspect-ratio:4/5;isolation:isolate}
 .slides-frame::before{content:"";position:absolute;inset:-35%;z-index:-1;background:radial-gradient(circle,rgba(255,122,26,.2),rgba(255,122,26,0) 60%);pointer-events:none}
 .slide{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;border-radius:18px;opacity:0;z-index:0;pointer-events:none;
@@ -1138,6 +1142,36 @@ function toggleFull(){
   const req = target.requestFullscreen || target.webkitRequestFullscreen || target.webkitEnterFullscreen;
   if (req) req.call(target);
 }
+/* ---------- Sveip / dra mellom bilder ---------- */
+function addSwipe(el, onSwipe, activeSel){
+  let x0 = null, y0 = 0, dx = 0, id = null, moved = false;
+  el.addEventListener('pointerdown', e => {
+    if (e.button !== 0) return;
+    if (e.target.closest('button')) return;
+    const v = e.target.closest('video');
+    if (v) { const r = v.getBoundingClientRect(); if (e.clientY > r.bottom - 64) return; }
+    x0 = e.clientX; y0 = e.clientY; dx = 0; id = e.pointerId; moved = false;
+  });
+  el.addEventListener('pointermove', e => {
+    if (x0 === null || e.pointerId !== id) return;
+    dx = e.clientX - x0;
+    if (!moved && Math.abs(dx) > 8 && Math.abs(dx) > Math.abs(e.clientY - y0)) { moved = true; el.classList.add('dragging'); try { el.setPointerCapture(id); } catch (_) {} }
+    if (moved) { const a = el.querySelector(activeSel); if (a) a.style.transform = `translateX(${dx * 0.6}px) rotate(${dx * 0.012}deg)`; }
+  });
+  const end = e => {
+    if (x0 === null || (e && e.pointerId !== id)) return;
+    const a = el.querySelector(activeSel); if (a) a.style.transform = '';
+    el.classList.remove('dragging');
+    if (moved && Math.abs(dx) > 50) onSwipe(dx < 0 ? 1 : -1);
+    if (moved) { el.dataset.justSwiped = '1'; setTimeout(() => delete el.dataset.justSwiped, 50); }
+    x0 = null;
+  };
+  el.addEventListener('pointerup', end);
+  el.addEventListener('pointercancel', end);
+  el.addEventListener('click', e => { if (el.dataset.justSwiped) { e.stopPropagation(); e.preventDefault(); } }, true);
+}
+addSwipe($('dlg-viewer'), dir => { const c = CASES[current]; const n = currentMedia + dir; if (n >= 0 && n < c.media.length) showMedia(c, n); }, '.vslide.on');
+
 $('dlg-viewer').addEventListener('click', e => {
   if (e.target.closest('.vfull') || (e.target.tagName === 'IMG' && e.target.closest('.vslide.on'))) { toggleFull(); return; }
   if (e.target.closest('.vprev')) { showMedia(CASES[current], currentMedia - 1); return; }
@@ -1267,6 +1301,7 @@ $('slides').querySelector('.slides-frame').addEventListener('click', e => {
 dotsWrap.addEventListener('click', e => { const b = e.target.closest('button'); if (!b) return; showSlide([...dotsWrap.children].indexOf(b)); startSlides(); });
 $('slides').addEventListener('mouseenter', () => clearInterval(slideTimer));
 $('slides').addEventListener('mouseleave', startSlides);
+addSwipe($('slides').querySelector('.slides-frame'), dir => { const n = slideIdx + dir; if (n >= 0 && n < slides.length) { showSlide(n); startSlides(); } }, '.slide.on');
 renderDots(); showSlide(0); startSlides();
 
 /* ---------- Header og aktiv seksjon ---------- */
