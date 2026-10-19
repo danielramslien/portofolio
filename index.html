@@ -79,7 +79,8 @@ button{font:inherit;color:inherit}
 
 /* ---------- Typografi ---------- */
 .display{font-family:var(--font-display);font-stretch:125%;font-weight:900;text-transform:uppercase;line-height:.92;letter-spacing:-.005em;margin:0}
-.h-xl{font-size:clamp(40px,5.6vw,80px)}
+.h-xl{font-size:clamp(22px,3.1vw,44px)}
+.work-head,.refs-head{grid-template-columns:1fr!important}
 .lead{font-size:clamp(18px,1.6vw,20px);line-height:1.5;color:var(--text);margin:0}
 .body{color:var(--text-soft);margin:0}
 .label{font-size:12px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--muted)}
@@ -137,11 +138,12 @@ button{font:inherit;color:inherit}
 /* ---------- Seksjoner ---------- */
 section{position:relative}
 .section{padding:clamp(96px,12vw,150px) 0 0}
+@media (min-width:1081px){#arbeid{padding-top:clamp(48px,6vw,75px)}}
 .thanks{margin:clamp(80px,10vw,140px) 0 18px;text-align:center;font-family:var(--font-display);font-stretch:118%;font-weight:800;font-size:clamp(18px,1.8vw,24px);letter-spacing:.02em;color:var(--text)}
 
 /* ---------- Hero ---------- */
 .hero{min-height:100vh;min-height:100svh;display:flex;flex-direction:column;overflow:hidden}
-.hero-main{flex:1;padding-bottom:48px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:clamp(22px,3.6vh,40px);padding-top:calc(var(--header-h) + 20px)}
+.hero-main{flex:1;padding-bottom:24px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:clamp(22px,3.6vh,40px);padding-top:calc(var(--header-h) + 20px)}
 .hero-copy{text-align:center;padding:0 var(--gutter)}
 .hero-kicker{display:block;font-size:12px;font-weight:600;letter-spacing:.24em;text-transform:uppercase;color:var(--accent);margin-bottom:12px}
 .hero-title{font-family:var(--font-display);font-stretch:125%;font-weight:800;font-size:clamp(30px,4.4vw,62px);line-height:1.02;letter-spacing:-.01em;color:var(--text);margin:0}
@@ -301,7 +303,7 @@ section{position:relative}
 .vdots button[aria-current="true"]{width:26px;border-radius:999px;background:var(--accent)}
 .case-media img.case-logo{position:absolute;inset:auto;left:14px;top:14px;z-index:2;width:64px;height:64px;object-fit:contain;transform:none!important;filter:drop-shadow(0 4px 14px rgba(0,0,0,.5))}
 .refs-section{position:relative;padding-top:clamp(48px,6vw,80px)}
-.work-sub{margin:0 0 clamp(20px,2.4vw,30px);font-family:var(--font-display);font-stretch:125%;font-weight:800;font-size:clamp(24px,2.6vw,36px);text-transform:uppercase;line-height:1}
+.work-sub{margin:0 0 clamp(20px,2.4vw,30px);font-family:var(--font-display);font-stretch:125%;font-weight:800;font-size:clamp(18px,2.1vw,30px);text-transform:uppercase;line-height:1}
 .dlg-link{display:inline-flex;align-items:center;gap:8px;margin:0 0 32px;color:var(--accent);font-weight:600;font-size:14px;text-decoration:none}
 .dlg-link:hover{text-decoration:underline}
 .viewer-cap{font-size:13px;color:var(--muted);margin:0;min-height:1.4em}
@@ -425,6 +427,7 @@ section{position:relative}
 }
 @media (max-width:600px){
   :root{--header-h:60px}
+  .h-xl{font-size:clamp(20px,5.8vw,26px)}
   .refs{grid-template-columns:repeat(2,minmax(0,1fr))}
   .refs:not(.expanded) > .doc:nth-child(3){display:none}
   .doc-zoom{opacity:1;transform:scale(1)}
@@ -515,7 +518,7 @@ section{position:relative}
   <section class="section" id="arbeid" aria-labelledby="arbeid-tittel">
     <div class="wrap">
       <div class="work-head">
-        <h2 class="display h-xl reveal" id="arbeid-tittel" data-i18n-html="work.title">Utvalgte<br>case</h2>
+        <h2 class="display h-xl reveal" id="arbeid-tittel" data-i18n-html="work.title">Utvalgte case</h2>
       </div>
       <div class="work-stats" id="resultater">
       <h3 class="stats-title reveal" id="resultater-tittel" data-i18n="stats.title">Resultater</h3>
@@ -536,7 +539,7 @@ section{position:relative}
   <section class="section" id="verktoy" aria-labelledby="verktoy-tittel">
     <div class="wrap">
       <div class="refs-head">
-        <h2 class="display h-xl reveal" id="verktoy-tittel" data-i18n-html="tools.title">Verktøy<br>jeg bruker</h2>
+        <h2 class="display h-xl reveal" id="verktoy-tittel" data-i18n-html="tools.title">Verktøy jeg bruker</h2>
       </div>
       <div class="tools">
         <div class="tool-col reveal">
@@ -559,7 +562,7 @@ section{position:relative}
   <section class="section" id="anbefalinger" aria-labelledby="anbefalinger-tittel">
     <div class="wrap">
       <div class="refs-head">
-        <h2 class="display h-xl reveal" id="anbefalinger-tittel" data-i18n-html="testi.title">Hva andre<br>sier</h2>
+        <h2 class="display h-xl reveal" id="anbefalinger-tittel" data-i18n-html="testi.title">Hva andre sier</h2>
       </div>
       <ul class="testi" id="testi"></ul>
     </div>
@@ -614,7 +617,7 @@ section{position:relative}
     <div class="wrap">
       <div class="contact-grid">
         <div class="contact-copy">
-          <h2 class="display h-xl reveal" id="kontakt-tittel" data-i18n-html="contact.title">La oss ta<br>en prat</h2>
+          <h2 class="display h-xl reveal" id="kontakt-tittel" data-i18n-html="contact.title">La oss ta en prat</h2>
           <p class="lead reveal" data-i18n="contact.lead">Har du en ledig stilling, et prosjekt eller bare lyst på en kaffe? Send meg en melding, så svarer jeg innen kort tid.</p>
           <a class="contact-email reveal" href="mailto:danielramslien@gmail.com">danielramslien@gmail.com</a>
           <ul class="contact-list reveal">
@@ -710,8 +713,8 @@ const I18N = {
     'facts.tools':'Verktøy', 'facts.web':'Analyse og web',
     'stat.1':'visninger på TikTok for Mufano', 'stat.2':'i salg av studioleie for M40 Studios', 'stat.2.unit':'kr',
     'stat.3':'samlet inn til Make-A-Wish med NOT Management', 'stat.4':'videoer og bilder i innholdsbanken til Punkt Oslo', 'cookie.aria':'Om cookies', 'cookie.title':'Cookies', 'cookie.text':'Siden bruker ingen sporings- eller reklamecookies. Godtar du, huskes språkvalget ditt lokalt i nettleseren. Avviser du, lagres ingenting.', 'cookie.ok':'Godta alle', 'cookie.no':'Avvis alle',
-    'work.title':'Utvalgte<br>case', 'work.lead':'Et utvalg av innhold og kampanjer jeg har laget, fra idé til ferdig post. Trykk på et case for å se video, tall og hva jeg gjorde.',
-    'contact.title':'La oss ta<br>en prat', 'contact.lead':'Har du en ledig stilling, et prosjekt eller bare lyst på en kaffe? Send meg en melding, så svarer jeg innen kort tid.',
+    'work.title':'Utvalgte case', 'work.lead':'Et utvalg av innhold og kampanjer jeg har laget, fra idé til ferdig post. Trykk på et case for å se video, tall og hva jeg gjorde.',
+    'contact.title':'La oss ta en prat', 'contact.lead':'Har du en ledig stilling, et prosjekt eller bare lyst på en kaffe? Send meg en melding, så svarer jeg innen kort tid.',
     'contact.phone':'Telefon · ', 'contact.portfolio':'Portefølje · ', 'contact.open':'Tilgjengelig for nye roller',
     'foot.thanks':'Takk for at du tok deg tid',
     'foot.note':'© 2026 Daniel Ramslien · Rams Creative (Ramslien Creative ENK) · Referanser oppgis på forespørsel',
@@ -720,8 +723,8 @@ const I18N = {
     'card.video':'Video', 'card.images':'Bilder', 'card.view':'Se case', 'card.for':'for',
     'nav.refs':'Attester', 'refs.more':'Se flere', 'refs.less':'Se færre', 'about.more':'Les mer', 'about.less':'Les mindre', 'card.next':'Neste bilde', 'card.prev':'Forrige bilde', 'refs.title':'Attester', 'refs.lead':'Hele dokumentene. Trykk på en attest for å lese den.', 'refs.note':'Fødselsdato og adresse er sladdet.',
     'refs.close':'Lukk attest', 'refs.view':'Se attest fra',
-    'nav.testi':'Anbefalinger', 'nav.tools':'Verktøy', 'tools.title':'Verktøy<br>jeg bruker', 'tools.lead':'Fra idé og opptak til klipp, publisering og måling.', 'tools.adv':'Avansert', 'tools.good':'God', 'tools.basic':'Grunnleggende', 'tools.skills':'Ferdigheter',
-    'sk.1':'Kampanje og konvertering', 'sk.2':'Innholdsproduksjon', 'sk.3':'Videoredigering', 'sk.4':'Måling og analyse', 'sk.5':'Salg og kunderelasjoner', 'sk.6':'Merkevarebygging', 'sk.7':'Regnskapsføring', 'testi.title':'Hva andre<br>sier', 'testi.lead':'Utdrag fra attester og uttalelser fra folk jeg har jobbet med.', 'testi.tr':''
+    'nav.testi':'Anbefalinger', 'nav.tools':'Verktøy', 'tools.title':'Verktøy jeg bruker', 'tools.lead':'Fra idé og opptak til klipp, publisering og måling.', 'tools.adv':'Avansert', 'tools.good':'God', 'tools.basic':'Grunnleggende', 'tools.skills':'Ferdigheter',
+    'sk.1':'Kampanje og konvertering', 'sk.2':'Innholdsproduksjon', 'sk.3':'Videoredigering', 'sk.4':'Måling og analyse', 'sk.5':'Salg og kunderelasjoner', 'sk.6':'Merkevarebygging', 'sk.7':'Regnskapsføring', 'testi.title':'Hva andre sier', 'testi.lead':'Utdrag fra attester og uttalelser fra folk jeg har jobbet med.', 'testi.tr':''
   },
   en: {
     'meta.title':'Daniel Ramslien Portfolio',
@@ -742,8 +745,8 @@ const I18N = {
     'facts.tools':'Tools', 'facts.web':'Analytics and web',
     'stat.1':'views on TikTok for Mufano', 'stat.2':'in studio rental sales for M40 Studios', 'stat.2.unit':'NOK',
     'stat.3':'raised for Make-A-Wish with NOT Management', 'stat.4':'videos and photos in Punkt Oslo’s content bank', 'cookie.aria':'About cookies', 'cookie.title':'Cookies', 'cookie.text':'This site uses no tracking or advertising cookies. If you accept, your language choice is remembered locally in your browser. If you reject, nothing is stored.', 'cookie.ok':'Accept all', 'cookie.no':'Reject all',
-    'work.title':'Selected<br>work', 'work.lead':'A selection of content and campaigns I’ve made, from idea to finished post. Tap a case to see video, numbers and what I did.',
-    'contact.title':'Let’s<br>talk', 'contact.lead':'Have an open position, a project, or just fancy a coffee? Send me a message and I’ll get back to you shortly.',
+    'work.title':'Selected work', 'work.lead':'A selection of content and campaigns I’ve made, from idea to finished post. Tap a case to see video, numbers and what I did.',
+    'contact.title':'Let’s talk', 'contact.lead':'Have an open position, a project, or just fancy a coffee? Send me a message and I’ll get back to you shortly.',
     'contact.phone':'Phone · ', 'contact.portfolio':'Portfolio · ', 'contact.open':'Open to new roles',
     'foot.thanks':'Thanks for your time',
     'foot.note':'© 2026 Daniel Ramslien · Rams Creative (Ramslien Creative ENK) · References available on request',
@@ -752,8 +755,8 @@ const I18N = {
     'card.video':'Video', 'card.images':'Images', 'card.view':'View case', 'card.for':'for',
     'nav.refs':'References', 'refs.more':'See more', 'refs.less':'See fewer', 'about.more':'Read more', 'about.less':'Read less', 'card.next':'Next image', 'card.prev':'Previous image', 'refs.title':'References', 'refs.lead':'The full documents. Tap a reference to read it.', 'refs.note':'Date of birth and address have been redacted. The documents are in Norwegian, except Open iT.',
     'refs.close':'Close reference', 'refs.view':'View reference from',
-    'nav.testi':'Testimonials', 'nav.tools':'Tools', 'tools.title':'Tools<br>I use', 'tools.lead':'From idea and shooting to editing, publishing and measuring.', 'tools.adv':'Advanced', 'tools.good':'Proficient', 'tools.basic':'Basic', 'tools.skills':'Skills',
-    'sk.1':'Campaigns and conversion', 'sk.2':'Content production', 'sk.3':'Video editing', 'sk.4':'Measurement and analytics', 'sk.5':'Sales and client relations', 'sk.6':'Brand building', 'sk.7':'Bookkeeping', 'testi.title':'What others<br>say', 'testi.lead':'Excerpts from references and statements by people I have worked with.', 'testi.tr':'Translated from Norwegian'
+    'nav.testi':'Testimonials', 'nav.tools':'Tools', 'tools.title':'Tools I use', 'tools.lead':'From idea and shooting to editing, publishing and measuring.', 'tools.adv':'Advanced', 'tools.good':'Proficient', 'tools.basic':'Basic', 'tools.skills':'Skills',
+    'sk.1':'Campaigns and conversion', 'sk.2':'Content production', 'sk.3':'Video editing', 'sk.4':'Measurement and analytics', 'sk.5':'Sales and client relations', 'sk.6':'Brand building', 'sk.7':'Bookkeeping', 'testi.title':'What others say', 'testi.lead':'Excerpts from references and statements by people I have worked with.', 'testi.tr':'Translated from Norwegian'
   }
 };
 
