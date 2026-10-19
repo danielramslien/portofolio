@@ -62,9 +62,9 @@ button{font:inherit;color:inherit}
 .body{color:var(--text-soft);margin:0}
 .label{font-size:12px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--muted)}
 
-.eyebrow{display:flex;align-items:center;gap:14px;margin-bottom:26px}
+.eyebrow{display:flex;align-items:center;gap:12px;margin-bottom:26px}
 .eyebrow .num{color:var(--accent);font-size:13px;font-weight:700;letter-spacing:.14em}
-.eyebrow .rule{width:28px;height:1px;background:var(--accent)}
+.eyebrow .rule{width:7px;height:7px;border-radius:50%;background:var(--accent)}
 
 .pills{display:flex;flex-wrap:wrap;gap:8px;list-style:none;margin:0;padding:0}
 .pill{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--line-strong);border-radius:999px;padding:6px 14px;font-size:13px;line-height:1.3;color:var(--text);white-space:nowrap}
@@ -105,11 +105,11 @@ button{font:inherit;color:inherit}
 /* ---------- Seksjoner ---------- */
 section{position:relative}
 .section{padding:clamp(96px,12vw,150px) 0 0}
-.section-foot{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:clamp(56px,7vw,96px) 0 28px;font-size:11px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--faint)}
+.thanks{margin:clamp(80px,10vw,140px) 0 18px;text-align:center;font-family:var(--font-display);font-stretch:118%;font-weight:800;font-size:clamp(18px,1.8vw,24px);letter-spacing:.02em;color:var(--text)}
 
 /* ---------- Hero ---------- */
 .hero{min-height:100vh;min-height:100svh;display:flex;flex-direction:column;overflow:hidden}
-.hero-main{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:clamp(36px,6vh,64px);padding-top:calc(var(--header-h) + 24px)}
+.hero-main{flex:1;padding-bottom:48px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:clamp(36px,6vh,64px);padding-top:calc(var(--header-h) + 24px)}
 .hero .orb{width:min(82vw,58vh,560px);container-type:inline-size;display:grid;place-items:center;text-align:center;animation:float 9s ease-in-out infinite}
 @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
 .hero-copy{padding:0 6cqi}
@@ -165,7 +165,7 @@ section{position:relative}
 .case-year{font-size:13px;color:var(--muted);flex:none}
 .case-client{font-size:14px;color:var(--muted);margin:6px 0 0}
 .case-result{display:flex;align-items:center;gap:8px;font-size:15px;font-weight:600;color:var(--accent);margin:14px 0 16px}
-.case-result::before{content:"";width:16px;height:1px;background:var(--accent)}
+.case-result::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--accent);flex:none}
 .case-link{position:absolute;inset:0;z-index:3;background:none;border:0;padding:0;cursor:pointer;border-radius:4px}
 .case-link span{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
 
@@ -181,7 +181,7 @@ section{position:relative}
 .contact-list a:hover{color:var(--accent)}
 .contact-orb{display:grid;place-items:center}
 .contact-orb .orb{width:min(100%,460px);animation:float 10s ease-in-out infinite}
-.footer-note{color:var(--faint);font-size:13px;padding:0 0 32px;margin:0}
+.footer-note{color:var(--faint);font-size:13px;padding:0 0 32px;margin:0;text-align:center}
 
 /* ---------- Case-dialog ---------- */
 .case-dialog{width:min(1180px,calc(100% - 32px));max-width:none;max-height:calc(100vh - 48px);max-height:calc(100dvh - 48px);padding:0;border:1px solid var(--line);border-radius:18px;background:var(--bg-raised);color:var(--text);overflow:hidden}
@@ -216,8 +216,8 @@ section{position:relative}
 .metric-label{display:block;font-size:14px;color:var(--text-soft);margin-top:6px;line-height:1.4}
 .dlg-sub{display:block;margin:0 0 14px}
 .dlg-list{margin:0 0 32px;padding:0;list-style:none;display:grid;gap:12px}
-.dlg-list li{position:relative;padding-left:26px;color:var(--text-soft)}
-.dlg-list li::before{content:"";position:absolute;left:0;top:.78em;width:14px;height:1px;background:var(--accent)}
+.dlg-list li{position:relative;padding-left:24px;color:var(--text-soft)}
+.dlg-list li::before{content:"";position:absolute;left:4px;top:.62em;width:6px;height:6px;border-radius:50%;background:var(--accent)}
 .quote{margin:0 0 32px;padding:20px 22px;border-left:2px solid var(--accent);background:var(--accent-soft);border-radius:0 10px 10px 0}
 .quote p{margin:0 0 10px;font-style:italic;color:var(--text)}
 .quote footer{font-size:13px;color:var(--muted)}
@@ -231,6 +231,20 @@ section{position:relative}
 .js .reveal.in{opacity:1;transform:none}
 
 /* ---------- Responsivt ---------- */
+/* ---------- Verktøy ---------- */
+.tools{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(16px,1.8vw,24px)}
+.tool-col{padding:clamp(24px,2.6vw,36px);background:var(--bg-card);border:1px solid var(--line);border-radius:16px}
+.tool-top{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:22px;padding-bottom:18px;border-bottom:1px solid var(--line)}
+.tool-level{font-family:var(--font-display);font-stretch:125%;font-weight:800;font-size:clamp(18px,1.6vw,22px);margin:0}
+.tool-dots{display:flex;gap:6px}
+.tool-dots i{width:9px;height:9px;border-radius:50%;background:var(--line-strong)}
+.tool-dots i.on{background:var(--accent);box-shadow:0 0 10px rgba(255,122,26,.5)}
+.skills{margin-top:clamp(40px,5vw,64px)}
+.skills .label{display:block;margin-bottom:16px}
+.skill-list{display:flex;flex-wrap:wrap;gap:10px 28px;list-style:none;margin:0;padding:0}
+.skill-list li{display:flex;align-items:center;gap:10px;font-family:var(--font-display);font-stretch:112%;font-weight:700;font-size:clamp(16px,1.5vw,20px);color:var(--text)}
+.skill-list li::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--accent)}
+
 /* ---------- Anbefalinger ---------- */
 .testi{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(16px,1.8vw,24px);list-style:none;margin:0;padding:0}
 .testi-card{position:relative;display:flex;flex-direction:column;height:100%;margin:0;padding:clamp(28px,2.8vw,40px);background:var(--bg-card);border:1px solid var(--line);border-radius:16px;overflow:hidden}
@@ -246,7 +260,6 @@ section{position:relative}
 /* ---------- Attester (dokumenter) ---------- */
 .refs-head{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,420px);gap:32px;align-items:end;margin-bottom:clamp(40px,5vw,64px)}
 .refs-head .lead{text-align:right;color:var(--text-soft)}
-.refs-note{display:block;margin-top:14px;font-size:13px;color:var(--faint)}
 .refs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(14px,1.6vw,22px);list-style:none;margin:0;padding:0}
 .doc{position:relative}
 .doc-thumb{position:relative;aspect-ratio:3/4;border-radius:10px;overflow:hidden;background:#fff;border:1px solid var(--line);transition:transform .35s var(--ease),box-shadow .35s var(--ease)}
@@ -272,6 +285,7 @@ section{position:relative}
 @media (max-width:1000px){
   .refs{grid-template-columns:repeat(3,minmax(0,1fr))}
   .testi{grid-template-columns:1fr;max-width:760px}
+  .tools{grid-template-columns:1fr}
   .cases{grid-template-columns:repeat(2,minmax(0,1fr))}
   .stats{grid-template-columns:repeat(2,minmax(0,1fr))}
   .stat:nth-child(3){padding-left:0;border-left:0}
@@ -318,10 +332,11 @@ section{position:relative}
   .stat-num{font-size:26px;font-stretch:108%}
   .dlg-meta,.metrics{grid-template-columns:1fr 1fr}
   .dlg-nav button .t{display:none}
-  .section-foot{font-size:10px}
+}
+@media (max-width:1080px){
+  .nav a:not(.nav-cta){display:none}
 }
 @media (max-width:760px){
-  .nav a:not(.nav-cta){display:none}
   .nav a.nav-cta{padding:7px 13px;font-size:13px}
 }
 @media (prefers-reduced-motion:reduce){
@@ -340,6 +355,7 @@ section{position:relative}
     <div class="header-right">
       <nav class="nav" aria-label="Hovedmeny" data-i18n-aria="aria.menu">
         <a href="#om-meg"><span data-i18n="nav.about">Om meg</span></a>
+        <a href="#verktoy"><span data-i18n="nav.tools">Verktøy</span></a>
         <a href="#arbeid"><span data-i18n="nav.work">Arbeid</span></a>
         <a href="#anbefalinger"><span data-i18n="nav.testi">Anbefalinger</span></a>
         <a href="#attester"><span data-i18n="nav.refs">Attester</span></a>
@@ -370,9 +386,6 @@ section{position:relative}
         <li><a href="#kontakt" class="hero-cta" data-i18n="nav.contact">Kontakt</a></li>
       </ul>
     </div>
-    <div class="wrap">
-      <div class="section-foot"><span data-i18n="foot.portfolio">Portefølje 2026</span><span>01 / 06</span></div>
-    </div>
   </section>
 
   <!-- ======== 01 Om meg ======== -->
@@ -396,8 +409,6 @@ section{position:relative}
           <dl class="facts reveal">
             <div><dt data-i18n="facts.edu">Utdanning</dt><dd data-i18n="facts.edu.v">Bachelor i digital markedsføring, Høyskolen Kristiania (2024–2027)</dd></div>
             <div><dt data-i18n="facts.biz">Eget foretak</dt><dd data-i18n="facts.biz.v">Rams Creative, frilans med fire faste kunder</dd></div>
-            <div><dt data-i18n="facts.tools">Verktøy</dt><dd>Claude, CapCut, Canva, Premiere Pro, Meta &amp; TikTok Insights, Google Workspace</dd></div>
-            <div><dt data-i18n="facts.web">Analyse og web</dt><dd>GA4, Hotjar, Looker Studio, Search Console, WordPress, Elementor, Meta Ads</dd></div>
           </dl>
         </div>
       </div>
@@ -408,8 +419,37 @@ section{position:relative}
         <div class="stat reveal" style="--d:.16s"><span class="stat-num"><span data-count="46000">46 000</span><small>USD</small></span><span class="stat-label" data-i18n="stat.3">samlet inn til Make-A-Wish med NOT Management</span></div>
         <div class="stat reveal" style="--d:.24s"><span class="stat-num" data-count="25" data-suffix=" + 150">25 + 150</span><span class="stat-label" data-i18n="stat.4">videoer og bilder i innholdsbanken til Punkt Oslo</span></div>
       </div>
+    </div>
+  </section>
 
-      <div class="section-foot"><span>Daniel Ramslien</span><span>02 / 06</span></div>
+  <!-- ======== Verktøy ======== -->
+  <section class="section" id="verktoy" aria-labelledby="verktoy-tittel">
+    <div class="wrap">
+      <div class="eyebrow reveal"><span class="rule"></span><span class="label" data-i18n="nav.tools">Verktøy</span></div>
+      <div class="refs-head">
+        <h2 class="display h-xl reveal" id="verktoy-tittel" data-i18n-html="tools.title">Verktøy<br>jeg bruker</h2>
+        <p class="lead reveal" data-i18n="tools.lead">Fra idé og opptak til klipp, publisering og måling.</p>
+      </div>
+      <div class="tools">
+        <div class="tool-col reveal">
+          <div class="tool-top"><h3 class="tool-level" data-i18n="tools.adv">Avansert</h3><span class="tool-dots" aria-hidden="true"><i class="on"></i><i class="on"></i><i class="on"></i></span></div>
+          <ul class="pills"><li class="pill">Claude</li><li class="pill">CapCut</li><li class="pill">Canva</li><li class="pill">Premiere Pro</li><li class="pill">Meta &amp; TikTok Insights</li><li class="pill">Google Workspace</li></ul>
+        </div>
+        <div class="tool-col reveal" style="--d:.08s">
+          <div class="tool-top"><h3 class="tool-level" data-i18n="tools.good">God</h3><span class="tool-dots" aria-hidden="true"><i class="on"></i><i class="on"></i><i></i></span></div>
+          <ul class="pills"><li class="pill">WordPress</li><li class="pill">Elementor</li><li class="pill">GA4</li><li class="pill">Hotjar</li><li class="pill">Looker Studio</li><li class="pill">Google Search Console</li><li class="pill">Meta Ads</li><li class="pill">SEO</li><li class="pill">Tripletex</li></ul>
+        </div>
+        <div class="tool-col reveal" style="--d:.16s">
+          <div class="tool-top"><h3 class="tool-level" data-i18n="tools.basic">Grunnleggende</h3><span class="tool-dots" aria-hidden="true"><i class="on"></i><i></i><i></i></span></div>
+          <ul class="pills"><li class="pill">DaVinci Resolve</li><li class="pill">Photoshop</li><li class="pill">Illustrator</li></ul>
+        </div>
+      </div>
+      <div class="skills reveal">
+        <span class="label" data-i18n="tools.skills">Ferdigheter</span>
+        <ul class="skill-list">
+          <li data-i18n="sk.1">Kampanje og konvertering</li><li data-i18n="sk.2">Innholdsproduksjon</li><li data-i18n="sk.3">Videoredigering</li><li data-i18n="sk.4">Måling og analyse</li><li data-i18n="sk.5">Salg og kunderelasjoner</li><li data-i18n="sk.6">Merkevarebygging</li><li data-i18n="sk.7">Regnskapsføring</li>
+        </ul>
+      </div>
     </div>
   </section>
 
@@ -423,7 +463,6 @@ section{position:relative}
       </div>
       <ul class="cases" id="cases"></ul>
       <noscript><p class="body">Slå på JavaScript for å se casene. / Enable JavaScript to see the work.</p></noscript>
-      <div class="section-foot"><span>Daniel Ramslien</span><span>03 / 06</span></div>
     </div>
   </section>
 
@@ -437,7 +476,6 @@ section{position:relative}
         <p class="lead reveal" data-i18n="testi.lead">Utdrag fra attester og uttalelser fra folk jeg har jobbet med.</p>
       </div>
       <ul class="testi" id="testi"></ul>
-      <div class="section-foot"><span>Daniel Ramslien</span><span>04 / 06</span></div>
     </div>
   </section>
 
@@ -447,10 +485,9 @@ section{position:relative}
       <div class="eyebrow reveal"><span class="rule"></span><span class="label" data-i18n="nav.refs">Attester</span></div>
       <div class="refs-head">
         <h2 class="display h-xl reveal" id="attester-tittel" data-i18n-html="refs.title">Attester</h2>
-        <p class="lead reveal"><span data-i18n="refs.lead">Hele dokumentene. Trykk på en attest for å lese den.</span><span class="refs-note" data-i18n="refs.note">Fødselsdato og adresse er sladdet.</span></p>
+        <p class="lead reveal"><span data-i18n="refs.lead">Hele dokumentene. Trykk på en attest for å lese den.</span></p>
       </div>
       <ul class="refs" id="refs"></ul>
-      <div class="section-foot"><span>Daniel Ramslien</span><span>05 / 06</span></div>
     </div>
   </section>
 
@@ -463,16 +500,16 @@ section{position:relative}
           <p class="lead reveal" data-i18n="contact.lead">Har du en ledig stilling, et prosjekt eller bare lyst på en kaffe? Send meg en melding, så svarer jeg så raskt som mulig.</p>
           <a class="contact-email reveal" href="mailto:daniel@ramscreative.no">daniel@ramscreative.no</a>
           <ul class="contact-list reveal">
-            <li><a href="tel:+4791168076"><span data-i18n="contact.phone">Telefon — </span>+47 911 68 076</a></li>
+            <li><a href="tel:+4791168076"><span data-i18n="contact.phone">Telefon · </span>+47 911 68 076</a></li>
             <!-- Bytt ut lenken under med den nøyaktige adressen til LinkedIn-profilen din -->
-            <li><a href="https://www.linkedin.com/search/results/people/?keywords=Daniel%20Ramslien" target="_blank" rel="noopener"><span>LinkedIn — </span>Daniel Ramslien</a></li>
-            <li><a href="https://beacons.ai/ramscreative" target="_blank" rel="noopener"><span data-i18n="contact.portfolio">Portefølje — </span>beacons.ai/ramscreative</a></li>
+            <li><a href="https://www.linkedin.com/search/results/people/?keywords=Daniel%20Ramslien" target="_blank" rel="noopener"><span>LinkedIn · </span>Daniel Ramslien</a></li>
+            <li><a href="https://beacons.ai/ramscreative" target="_blank" rel="noopener"><span data-i18n="contact.portfolio">Portefølje · </span>beacons.ai/ramscreative</a></li>
           </ul>
           <span class="pill pill--accent reveal"><span class="dot" aria-hidden="true"></span><span data-i18n="contact.open">Tilgjengelig for nye roller</span></span>
         </div>
         <div class="contact-orb reveal" aria-hidden="true"><div class="orb"></div></div>
       </div>
-      <div class="section-foot"><span data-i18n="foot.thanks">Takk for at du tok deg tid</span><span>06 / 06</span></div>
+      <p class="thanks reveal" data-i18n="foot.thanks">Takk for at du tok deg tid</p>
       <p class="footer-note" data-i18n="foot.note">© 2026 Daniel Ramslien · Rams Creative (Ramslien Creative ENK) · Referanser oppgis på forespørsel</p>
     </div>
   </section>
@@ -549,7 +586,7 @@ const I18N = {
     'stat.3':'samlet inn til Make-A-Wish med NOT Management', 'stat.4':'videoer og bilder i innholdsbanken til Punkt Oslo',
     'work.title':'Utvalgte<br>case', 'work.lead':'Et utvalg av innhold og kampanjer jeg har laget, fra idé til ferdig post. Trykk på et case for å se video, tall og hva jeg gjorde.',
     'contact.title':'La oss ta<br>en prat', 'contact.lead':'Har du en ledig stilling, et prosjekt eller bare lyst på en kaffe? Send meg en melding, så svarer jeg så raskt som mulig.',
-    'contact.phone':'Telefon — ', 'contact.portfolio':'Portefølje — ', 'contact.open':'Tilgjengelig for nye roller',
+    'contact.phone':'Telefon · ', 'contact.portfolio':'Portefølje · ', 'contact.open':'Tilgjengelig for nye roller',
     'foot.thanks':'Takk for at du tok deg tid',
     'foot.note':'© 2026 Daniel Ramslien · Rams Creative (Ramslien Creative ENK) · Referanser oppgis på forespørsel',
     'dlg.close':'Lukk case', 'dlg.did':'Hva jeg gjorde', 'dlg.thumbs':'Velg bilde eller video',
@@ -557,7 +594,8 @@ const I18N = {
     'card.video':'Video', 'card.images':'Bilder', 'card.view':'Se case', 'card.for':'for',
     'nav.refs':'Attester', 'refs.title':'Attester', 'refs.lead':'Hele dokumentene. Trykk på en attest for å lese den.', 'refs.note':'Fødselsdato og adresse er sladdet.',
     'refs.close':'Lukk attest', 'refs.view':'Se attest fra',
-    'nav.testi':'Anbefalinger', 'testi.title':'Hva andre<br>sier', 'testi.lead':'Utdrag fra attester og uttalelser fra folk jeg har jobbet med.', 'testi.tr':''
+    'nav.testi':'Anbefalinger', 'nav.tools':'Verktøy', 'tools.title':'Verktøy<br>jeg bruker', 'tools.lead':'Fra idé og opptak til klipp, publisering og måling.', 'tools.adv':'Avansert', 'tools.good':'God', 'tools.basic':'Grunnleggende', 'tools.skills':'Ferdigheter',
+    'sk.1':'Kampanje og konvertering', 'sk.2':'Innholdsproduksjon', 'sk.3':'Videoredigering', 'sk.4':'Måling og analyse', 'sk.5':'Salg og kunderelasjoner', 'sk.6':'Merkevarebygging', 'sk.7':'Regnskapsføring', 'testi.title':'Hva andre<br>sier', 'testi.lead':'Utdrag fra attester og uttalelser fra folk jeg har jobbet med.', 'testi.tr':''
   },
   en: {
     'meta.title':'Daniel Ramslien – Social Media Advisor and Digital Marketer',
@@ -579,7 +617,7 @@ const I18N = {
     'stat.3':'raised for Make-A-Wish with NOT Management', 'stat.4':'videos and photos in Punkt Oslo’s content bank',
     'work.title':'Selected<br>work', 'work.lead':'A selection of content and campaigns I’ve made, from idea to finished post. Tap a case to see video, numbers and what I did.',
     'contact.title':'Let’s<br>talk', 'contact.lead':'Have an open position, a project, or just fancy a coffee? Send me a message and I’ll get back to you as soon as possible.',
-    'contact.phone':'Phone — ', 'contact.portfolio':'Portfolio — ', 'contact.open':'Open to new roles',
+    'contact.phone':'Phone · ', 'contact.portfolio':'Portfolio · ', 'contact.open':'Open to new roles',
     'foot.thanks':'Thanks for your time',
     'foot.note':'© 2026 Daniel Ramslien · Rams Creative (Ramslien Creative ENK) · References available on request',
     'dlg.close':'Close case', 'dlg.did':'What I did', 'dlg.thumbs':'Choose image or video',
@@ -587,7 +625,8 @@ const I18N = {
     'card.video':'Video', 'card.images':'Images', 'card.view':'View case', 'card.for':'for',
     'nav.refs':'References', 'refs.title':'References', 'refs.lead':'The full documents. Tap a reference to read it.', 'refs.note':'Date of birth and address have been redacted. The documents are in Norwegian, except Open iT.',
     'refs.close':'Close reference', 'refs.view':'View reference from',
-    'nav.testi':'Testimonials', 'testi.title':'What others<br>say', 'testi.lead':'Excerpts from references and statements by people I have worked with.', 'testi.tr':'Translated from Norwegian'
+    'nav.testi':'Testimonials', 'nav.tools':'Tools', 'tools.title':'Tools<br>I use', 'tools.lead':'From idea and shooting to editing, publishing and measuring.', 'tools.adv':'Advanced', 'tools.good':'Proficient', 'tools.basic':'Basic', 'tools.skills':'Skills',
+    'sk.1':'Campaigns and conversion', 'sk.2':'Content production', 'sk.3':'Video editing', 'sk.4':'Measurement and analytics', 'sk.5':'Sales and client relations', 'sk.6':'Brand building', 'sk.7':'Bookkeeping', 'testi.title':'What others<br>say', 'testi.lead':'Excerpts from references and statements by people I have worked with.', 'testi.tr':'Translated from Norwegian'
   }
 };
 
@@ -1014,7 +1053,7 @@ const secObs = new IntersectionObserver(entries => {
     if (en.isIntersecting) navLinks.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + en.target.id));
   });
 }, {rootMargin:'-45% 0px -50% 0px'});
-['top','om-meg','arbeid','anbefalinger','attester','kontakt'].forEach(id => secObs.observe($(id)));
+['top','om-meg','verktoy','arbeid','anbefalinger','attester','kontakt'].forEach(id => secObs.observe($(id)));
 
 /* ---------- Animasjon ved scroll ---------- */
 function countUp(el){
