@@ -1149,7 +1149,7 @@ $('dlg-viewer').addEventListener('click', e => {
 function fillDialog(i, keepMedia){
   current = (i + CASES.length) % CASES.length;
   const c = CASES[current], x = tc(c);
-  $('dlg-count').textContent = `Case ${String(current+1).padStart(2,'0')} / ${String(CASES.length).padStart(2,'0')} · ${c.year}`;
+  $('dlg-count').textContent = c.year;
   $('dlg-title').textContent = x.title;
   $('dlg-title').lang = lang === 'en' ? 'en' : 'no';
   $('dlg-intro').textContent = x.intro;
