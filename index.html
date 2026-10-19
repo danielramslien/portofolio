@@ -407,9 +407,9 @@ section{position:relative}
       <div class="about-grid">
         <div class="slides reveal" id="slides" aria-roledescription="karusell" aria-label="Bilder av Daniel" data-i18n-aria="aria.slides">
           <div class="slides-frame">
-            <img class="slide on" src="assets/img/daniel/daniel-3.webp" alt="" data-credit="Karin Bore (@photobykarin.yb)">
+            <img class="slide on" src="assets/img/daniel/daniel-2.webp" alt="" data-credit="Jakob Kleppan">
             <img class="slide" src="assets/img/daniel/daniel-5.webp" alt="" loading="lazy">
-            <img class="slide" src="assets/img/daniel/daniel-2.webp" alt="" loading="lazy" data-credit="Jakob Kleppan">
+            <img class="slide" src="assets/img/daniel/daniel-3.webp" alt="" loading="lazy" data-credit="Karin Bore (@photobykarin.yb)">
             <img class="slide" src="assets/img/daniel/daniel-1.webp" alt="" loading="lazy" data-credit="Simon Myklebost">
             <img class="slide" src="assets/img/daniel/daniel-4.webp" alt="" loading="lazy" data-credit="Simon Myklebost">
           </div>
@@ -510,7 +510,6 @@ section{position:relative}
             <li><a href="https://www.linkedin.com/search/results/people/?keywords=Daniel%20Ramslien" target="_blank" rel="noopener"><span>LinkedIn · </span>Daniel Ramslien</a></li>
             <li><a href="https://beacons.ai/ramscreative" target="_blank" rel="noopener"><span data-i18n="contact.portfolio">Portefølje · </span>beacons.ai/ramscreative</a></li>
           </ul>
-          <span class="pill pill--accent reveal"><span class="dot" aria-hidden="true"></span><span data-i18n="contact.open">Tilgjengelig for nye roller</span></span>
         </div>
         <div class="contact-orb reveal" aria-hidden="true"><div class="orb"></div></div>
       </div>
@@ -1059,7 +1058,7 @@ function renderDots(){
 }
 function showSlide(i){
   slideIdx = (i + slides.length) % slides.length;
-  const n = slides.length, nx = (slideIdx + 1) % n, pv = (slideIdx - 1 + n) % n;
+  const nx = slideIdx + 1, pv = slideIdx - 1; /* ingen omløp: første bilde har ingen forrige, siste har ingen neste */
   slides.forEach((s,k) => {
     s.classList.toggle('on', k === slideIdx);
     s.classList.toggle('next', k === nx);
