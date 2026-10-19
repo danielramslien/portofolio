@@ -10,7 +10,7 @@
 <meta property="og:description" content="SoMe-rådgiver og digital markedsfører. Utvalgte case fra idé til ferdig post.">
 <meta property="og:type" content="website">
 <meta property="og:image" content="assets/img/profil.webp">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cdefs%3E%3CradialGradient id='g' cx='35%25' cy='30%25' r='75%25'%3E%3Cstop offset='0' stop-color='%23fff1eb'/%3E%3Cstop offset='.45' stop-color='%23FC8A67'/%3E%3Cstop offset='1' stop-color='%23cc5b3e'/%3E%3C/radialGradient%3E%3C/defs%3E%3Ccircle cx='32' cy='32' r='30' fill='url(%23g)'/%3E%3C/svg%3E">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cdefs%3E%3CradialGradient id='g' cx='35%25' cy='30%25' r='75%25'%3E%3Cstop offset='0' stop-color='%23ffe0bf'/%3E%3Cstop offset='.45' stop-color='%23ff8327'/%3E%3Cstop offset='1' stop-color='%23a8380a'/%3E%3C/radialGradient%3E%3C/defs%3E%3Ccircle cx='32' cy='32' r='30' fill='url(%23g)'/%3E%3C/svg%3E">
 <link rel="preload" href="assets/fonts/archivo.woff2" as="font" type="font/woff2" crossorigin>
 <style>
 /* Fontene ligger lokalt i assets/fonts (SIL Open Font License), så siden fungerer uten nett */
@@ -26,9 +26,9 @@
   --faint:#6e665f;
   --line:rgba(243,237,230,.14);
   --line-strong:rgba(243,237,230,.28);
-  --accent:#FC8A67;
-  --accent-soft:rgba(252,138,103,.12);
-  --accent-line:rgba(252,138,103,.45);
+  --accent:#ff7a1a;
+  --accent-soft:rgba(255,122,26,.12);
+  --accent-line:rgba(255,122,26,.45);
   --ink:#130c07;
 
   --font-display:"Archivo","Arial Black",system-ui,sans-serif;
@@ -64,22 +64,22 @@ button{font:inherit;color:inherit}
 
 .eyebrow{display:flex;align-items:center;gap:14px;margin-bottom:26px}
 .eyebrow .num{color:var(--accent);font-size:13px;font-weight:700;letter-spacing:.14em}
-.eyebrow .rule{width:28px;height:1px;background:var(--faint)}
+.eyebrow .rule{width:28px;height:1px;background:var(--accent)}
 
 .pills{display:flex;flex-wrap:wrap;gap:8px;list-style:none;margin:0;padding:0}
 .pill{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--line-strong);border-radius:999px;padding:6px 14px;font-size:13px;line-height:1.3;color:var(--text);white-space:nowrap}
-.pill--accent{border-color:var(--accent-line);background:var(--accent-soft);color:var(--accent)}
-.pill--accent .dot{width:7px;height:7px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 0 rgba(252,138,103,.6);animation:pulse 2.4s infinite}
-@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(252,138,103,.55)}70%{box-shadow:0 0 0 9px rgba(252,138,103,0)}100%{box-shadow:0 0 0 0 rgba(252,138,103,0)}}
+.pill--accent{border-color:var(--accent-line);background:var(--accent-soft);color:#ffb27a}
+.pill--accent .dot{width:7px;height:7px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 0 rgba(255,122,26,.6);animation:pulse 2.4s infinite}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(255,122,26,.55)}70%{box-shadow:0 0 0 9px rgba(255,122,26,0)}100%{box-shadow:0 0 0 0 rgba(255,122,26,0)}}
 
 /* ---------- Kule ---------- */
 .orb{position:relative;aspect-ratio:1;border-radius:50%;isolation:isolate;
   --hx:34%;--hy:29%;
-  background:radial-gradient(circle at var(--hx) var(--hy),#fff1eb 0%,#ffd6c8 11%,#fdb29b 28%,#FC8A67 50%,#ec7351 68%,#cc5b3e 86%,#a24631 100%);
-  box-shadow:0 0 70px 6px rgba(252,138,103,.30),inset -26px -34px 70px rgba(120,45,25,.35)}
+  background:radial-gradient(circle at var(--hx) var(--hy),#ffe6cc 0%,#ffc58e 11%,#ffa24f 28%,#ff8125 50%,#ec6612 68%,#c24a0b 86%,#93330a 100%);
+  box-shadow:0 0 70px 6px rgba(255,115,25,.30),inset -26px -34px 70px rgba(110,30,0,.35)}
 .orb::before{content:"";position:absolute;inset:-42%;z-index:-1;border-radius:50%;
-  background:radial-gradient(circle,rgba(252,138,103,.20) 0%,rgba(252,138,103,.08) 38%,rgba(252,138,103,0) 66%);pointer-events:none}
-.brand-dot{width:14px;height:14px;border-radius:50%;flex:none;background:radial-gradient(circle at 35% 30%,#ffe0d5,#FC8A67 55%,#cc5b3e);box-shadow:0 0 12px rgba(252,138,103,.45)}
+  background:radial-gradient(circle,rgba(255,110,20,.20) 0%,rgba(255,105,20,.08) 38%,rgba(255,100,20,0) 66%);pointer-events:none}
+.brand-dot{width:14px;height:14px;border-radius:50%;flex:none;background:radial-gradient(circle at 35% 30%,#ffd2a6,#ff8327 55%,#b8420a);box-shadow:0 0 12px rgba(255,122,26,.45)}
 
 /* ---------- Header ---------- */
 .site-header{position:fixed;inset:0 0 auto 0;z-index:50;height:var(--header-h);display:flex;align-items:center;transition:background .3s var(--ease),border-color .3s var(--ease);border-bottom:1px solid transparent}
@@ -90,7 +90,9 @@ button{font:inherit;color:inherit}
 .nav a{text-decoration:none;font-size:14px;color:var(--muted);transition:color .2s;white-space:nowrap}
 .nav a .n{color:var(--faint);margin-right:6px;transition:color .2s}
 .nav a:hover,.nav a.active{color:var(--text)}
-.nav a.active .n{color:var(--accent)}
+.nav{align-items:center}
+.nav a.nav-cta{color:var(--ink);background:var(--accent);font-weight:600;padding:8px 18px;border-radius:999px;box-shadow:0 0 0 0 rgba(255,122,26,.5);transition:background .2s,box-shadow .3s,transform .2s}
+.nav a.nav-cta:hover,.nav a.nav-cta.active{color:var(--ink);background:#ff9447;box-shadow:0 6px 24px rgba(255,122,26,.35);transform:translateY(-1px)}
 .header-right{display:flex;align-items:center;gap:clamp(16px,2.6vw,36px)}
 .lang{display:inline-flex;align-items:center;gap:2px;padding:3px;border:1px solid var(--line-strong);border-radius:999px;background:rgba(14,12,11,.4)}
 .lang-btn{display:inline-flex;align-items:center;gap:7px;padding:5px 10px 5px 6px;border:0;border-radius:999px;background:transparent;cursor:pointer;font-size:12px;font-weight:600;letter-spacing:.08em;color:var(--muted);transition:background .2s,color .2s}
@@ -111,12 +113,14 @@ section{position:relative}
 .hero .orb{width:min(82vw,58vh,560px);container-type:inline-size;display:grid;place-items:center;text-align:center;animation:float 9s ease-in-out infinite}
 @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
 .hero-copy{padding:0 6cqi}
-.hero-kicker{display:block;font-size:max(10px,2.3cqi);font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:#4a2516;margin-bottom:2.2cqi}
+.hero-kicker{display:block;font-size:max(10px,2.3cqi);font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:#3b2212;margin-bottom:2.2cqi}
 .hero-title{font-family:var(--font-display);font-stretch:125%;font-weight:800;font-size:8.2cqi;line-height:1.02;letter-spacing:-.01em;color:var(--ink);margin:0}
 .hero-nav{display:flex;flex-wrap:wrap;justify-content:center;gap:clamp(14px,3vw,44px);list-style:none;margin:0;padding:0 var(--gutter)}
 .hero-nav a{font-family:var(--font-display);font-stretch:125%;font-weight:800;text-transform:uppercase;text-decoration:none;font-size:clamp(22px,2.85vw,44px);line-height:1;color:transparent;-webkit-text-stroke:1.2px rgba(243,237,230,.5);transition:color .3s var(--ease),-webkit-text-stroke-color .3s var(--ease)}
 .hero-nav a:hover,.hero-nav a:focus-visible{color:var(--accent);-webkit-text-stroke-color:var(--accent)}
 @supports not (-webkit-text-stroke:1px #000){.hero-nav a{color:var(--text)}}
+.hero-nav a.hero-cta{color:var(--accent);-webkit-text-stroke-color:var(--accent);text-shadow:0 0 40px rgba(255,122,26,.35)}
+.hero-nav a.hero-cta:hover,.hero-nav a.hero-cta:focus-visible{color:var(--text);-webkit-text-stroke-color:var(--text)}
 
 /* ---------- Om meg ---------- */
 .about-grid{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:clamp(40px,6vw,96px);align-items:center}
@@ -230,12 +234,12 @@ section{position:relative}
 /* ---------- Anbefalinger ---------- */
 .testi{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(16px,1.8vw,24px);list-style:none;margin:0;padding:0}
 .testi-card{position:relative;display:flex;flex-direction:column;height:100%;margin:0;padding:clamp(28px,2.8vw,40px);background:var(--bg-card);border:1px solid var(--line);border-radius:16px;overflow:hidden}
-.testi-card::after{content:"";position:absolute;right:-90px;top:-90px;width:220px;height:220px;border-radius:50%;background:radial-gradient(circle,rgba(252,138,103,.16),rgba(252,138,103,0) 68%);pointer-events:none}
+.testi-card::after{content:"";position:absolute;right:-90px;top:-90px;width:220px;height:220px;border-radius:50%;background:radial-gradient(circle,rgba(255,122,26,.16),rgba(255,122,26,0) 68%);pointer-events:none}
 .testi-mark{display:block;height:40px;font-family:var(--font-display);font-weight:900;font-size:76px;line-height:1;color:var(--accent);margin-bottom:18px}
 .testi-quote{flex:1;margin:0 0 30px;font-size:clamp(18px,1.5vw,21px);line-height:1.5;color:var(--text)}
 .testi-tr{display:block;margin-top:12px;font-size:12px;color:var(--faint)}
 .testi-by{display:flex;align-items:center;gap:14px;padding-top:22px;border-top:1px solid var(--line)}
-.testi-avatar{width:44px;height:44px;flex:none;border-radius:50%;display:grid;place-items:center;font-family:var(--font-display);font-stretch:118%;font-weight:800;font-size:15px;color:var(--ink);background:radial-gradient(circle at 35% 30%,#ffe0d5,#FC8A67 60%,#cc5b3e)}
+.testi-avatar{width:56px;height:56px;flex:none;border-radius:50%;object-fit:cover;box-shadow:0 0 0 2px var(--bg-card),0 0 0 3px var(--accent)}
 .testi-name{display:block;font-weight:600;font-size:15px;color:var(--text)}
 .testi-role{display:block;font-size:13px;line-height:1.45;color:var(--muted)}
 
@@ -243,10 +247,11 @@ section{position:relative}
 .refs-head{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,420px);gap:32px;align-items:end;margin-bottom:clamp(40px,5vw,64px)}
 .refs-head .lead{text-align:right;color:var(--text-soft)}
 .refs-note{display:block;margin-top:14px;font-size:13px;color:var(--faint)}
-.refs{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:clamp(14px,1.6vw,22px);list-style:none;margin:0;padding:0}
+.refs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(14px,1.6vw,22px);list-style:none;margin:0;padding:0}
 .doc{position:relative}
 .doc-thumb{position:relative;aspect-ratio:3/4;border-radius:10px;overflow:hidden;background:#fff;border:1px solid var(--line);transition:transform .35s var(--ease),box-shadow .35s var(--ease)}
-.doc-thumb img{width:100%;height:100%;object-fit:cover;object-position:top center}
+.doc-thumb{aspect-ratio:4/3}
+.doc-thumb img{width:100%;height:100%;object-fit:cover;object-position:left top}
 .doc-thumb::after{content:"";position:absolute;inset:auto 0 0 0;height:40%;background:linear-gradient(to top,rgba(14,12,11,.55),rgba(14,12,11,0))}
 .doc-zoom{position:absolute;right:10px;bottom:10px;z-index:2;width:34px;height:34px;border-radius:50%;display:grid;place-items:center;background:var(--accent);color:var(--ink);transform:scale(.7);opacity:0;transition:transform .3s var(--ease),opacity .3s}
 .doc-zoom svg{width:14px;height:14px}
@@ -273,7 +278,6 @@ section{position:relative}
   .stat:nth-child(n+3){border-top:1px solid var(--line)}
 }
 @media (max-width:960px){
-  .nav a .n{display:none}
 }
 @media (max-width:860px){
   .about-grid,.contact-grid{grid-template-columns:1fr}
@@ -297,7 +301,6 @@ section{position:relative}
 }
 @media (max-width:600px){
   :root{--header-h:60px}
-  .nav a .n{display:none}
   .refs{grid-template-columns:repeat(2,minmax(0,1fr))}
   .doc-zoom{opacity:1;transform:scale(1)}
   .lang-btn{padding:5px 6px}
@@ -318,7 +321,8 @@ section{position:relative}
   .section-foot{font-size:10px}
 }
 @media (max-width:760px){
-  .nav{display:none}
+  .nav a:not(.nav-cta){display:none}
+  .nav a.nav-cta{padding:7px 13px;font-size:13px}
 }
 @media (prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
@@ -335,11 +339,11 @@ section{position:relative}
     <a class="brand" href="#top"><span class="brand-dot" aria-hidden="true"></span>Daniel Ramslien</a>
     <div class="header-right">
       <nav class="nav" aria-label="Hovedmeny" data-i18n-aria="aria.menu">
-        <a href="#om-meg"><span class="n">01</span><span data-i18n="nav.about">Om meg</span></a>
-        <a href="#arbeid"><span class="n">02</span><span data-i18n="nav.work">Arbeid</span></a>
-        <a href="#anbefalinger"><span class="n">03</span><span data-i18n="nav.testi">Anbefalinger</span></a>
-        <a href="#attester"><span class="n">04</span><span data-i18n="nav.refs">Attester</span></a>
-        <a href="#kontakt"><span class="n">05</span><span data-i18n="nav.contact">Kontakt</span></a>
+        <a href="#om-meg"><span data-i18n="nav.about">Om meg</span></a>
+        <a href="#arbeid"><span data-i18n="nav.work">Arbeid</span></a>
+        <a href="#anbefalinger"><span data-i18n="nav.testi">Anbefalinger</span></a>
+        <a href="#attester"><span data-i18n="nav.refs">Attester</span></a>
+        <a href="#kontakt" class="nav-cta"><span data-i18n="nav.contact">Kontakt</span></a>
       </nav>
       <div class="lang" role="group" aria-label="Velg språk" data-i18n-aria="aria.lang">
         <button class="lang-btn" type="button" data-lang="no" lang="no" aria-pressed="true" title="Norsk"><svg class="flag" viewBox="0 0 22 16" aria-hidden="true" preserveAspectRatio="xMidYMid slice"><rect width="22" height="16" fill="#BA0C2F"/><rect x="6" width="4" height="16" fill="#fff"/><rect y="6" width="22" height="4" fill="#fff"/><rect x="7" width="2" height="16" fill="#00205B"/><rect y="7" width="22" height="2" fill="#00205B"/></svg><span class="code">NO</span><span class="sr">Norsk</span></button>
@@ -363,7 +367,7 @@ section{position:relative}
         <li><a href="#om-meg" data-i18n="nav.about">Om meg</a></li>
         <li><a href="#arbeid" data-i18n="nav.work">Arbeid</a></li>
         <li><a href="#anbefalinger" data-i18n="nav.testi">Anbefalinger</a></li>
-        <li><a href="#kontakt" data-i18n="nav.contact">Kontakt</a></li>
+        <li><a href="#kontakt" class="hero-cta" data-i18n="nav.contact">Kontakt</a></li>
       </ul>
     </div>
     <div class="wrap">
@@ -380,7 +384,7 @@ section{position:relative}
           <img src="assets/img/profil.webp" width="933" height="1400" alt="Portrett av Daniel Ramslien" data-i18n-alt="about.alt" loading="lazy">
         </div>
         <div class="about-copy">
-          <div class="eyebrow reveal"><span class="num">01</span><span class="rule"></span><span class="label" data-i18n="nav.about">Om meg</span></div>
+          <div class="eyebrow reveal"><span class="rule"></span><span class="label" data-i18n="nav.about">Om meg</span></div>
           <h2 class="display h-xl reveal" id="om-meg-tittel" data-i18n-html="about.title">Hei, jeg<br>er Daniel</h2>
           <p class="lead reveal" data-i18n="about.lead">Jeg er digital markedsfører med hjertet i sosiale medier. Jeg liker å finne historien i en merkevare og fortelle den på en måte som passer feeden.</p>
           <p class="body reveal" data-i18n="about.p1">Enten det er en Reel på femten sekunder eller en kampanje over flere måneder, starter jeg med menneskene på andre siden av skjermen. Hva får dem til å stoppe opp, le, eller dele videre?</p>
@@ -412,7 +416,7 @@ section{position:relative}
   <!-- ======== 02 Arbeid ======== -->
   <section class="section" id="arbeid" aria-labelledby="arbeid-tittel">
     <div class="wrap">
-      <div class="eyebrow reveal"><span class="num">02</span><span class="rule"></span><span class="label" data-i18n="nav.work">Arbeid</span></div>
+      <div class="eyebrow reveal"><span class="rule"></span><span class="label" data-i18n="nav.work">Arbeid</span></div>
       <div class="work-head">
         <h2 class="display h-xl reveal" id="arbeid-tittel" data-i18n-html="work.title">Utvalgte<br>case</h2>
         <p class="lead reveal" data-i18n="work.lead">Et utvalg av innhold og kampanjer jeg har laget, fra idé til ferdig post. Trykk på et case for å se video, tall og hva jeg gjorde.</p>
@@ -427,7 +431,7 @@ section{position:relative}
   <!-- ======== 03 Anbefalinger ======== -->
   <section class="section" id="anbefalinger" aria-labelledby="anbefalinger-tittel">
     <div class="wrap">
-      <div class="eyebrow reveal"><span class="num">03</span><span class="rule"></span><span class="label" data-i18n="nav.testi">Anbefalinger</span></div>
+      <div class="eyebrow reveal"><span class="rule"></span><span class="label" data-i18n="nav.testi">Anbefalinger</span></div>
       <div class="refs-head">
         <h2 class="display h-xl reveal" id="anbefalinger-tittel" data-i18n-html="testi.title">Hva andre<br>sier</h2>
         <p class="lead reveal" data-i18n="testi.lead">Utdrag fra attester og uttalelser fra folk jeg har jobbet med.</p>
@@ -440,7 +444,7 @@ section{position:relative}
   <!-- ======== 04 Attester ======== -->
   <section class="section" id="attester" aria-labelledby="attester-tittel">
     <div class="wrap">
-      <div class="eyebrow reveal"><span class="num">04</span><span class="rule"></span><span class="label" data-i18n="nav.refs">Attester</span></div>
+      <div class="eyebrow reveal"><span class="rule"></span><span class="label" data-i18n="nav.refs">Attester</span></div>
       <div class="refs-head">
         <h2 class="display h-xl reveal" id="attester-tittel" data-i18n-html="refs.title">Attester</h2>
         <p class="lead reveal"><span data-i18n="refs.lead">Hele dokumentene. Trykk på en attest for å lese den.</span><span class="refs-note" data-i18n="refs.note">Fødselsdato og adresse er sladdet.</span></p>
@@ -454,9 +458,9 @@ section{position:relative}
     <div class="wrap">
       <div class="contact-grid">
         <div class="contact-copy">
-          <div class="eyebrow reveal"><span class="num">05</span><span class="rule"></span><span class="label" data-i18n="nav.contact">Kontakt</span></div>
+          <div class="eyebrow reveal"><span class="rule"></span><span class="label" data-i18n="nav.contact">Kontakt</span></div>
           <h2 class="display h-xl reveal" id="kontakt-tittel" data-i18n-html="contact.title">La oss ta<br>en prat</h2>
-          <p class="lead reveal" data-i18n="contact.lead">Har du en ledig stilling, et prosjekt eller bare lyst på en kaffe? Send meg en melding, så svarer jeg innen to dager.</p>
+          <p class="lead reveal" data-i18n="contact.lead">Har du en ledig stilling, et prosjekt eller bare lyst på en kaffe? Send meg en melding, så svarer jeg så raskt som mulig.</p>
           <a class="contact-email reveal" href="mailto:daniel@ramscreative.no">daniel@ramscreative.no</a>
           <ul class="contact-list reveal">
             <li><a href="tel:+4791168076"><span data-i18n="contact.phone">Telefon — </span>+47 911 68 076</a></li>
@@ -544,7 +548,7 @@ const I18N = {
     'stat.1':'visninger på TikTok for Mufano', 'stat.2':'i salg av studioleie for M40 Studios', 'stat.2.unit':'kr',
     'stat.3':'samlet inn til Make-A-Wish med NOT Management', 'stat.4':'videoer og bilder i innholdsbanken til Punkt Oslo',
     'work.title':'Utvalgte<br>case', 'work.lead':'Et utvalg av innhold og kampanjer jeg har laget, fra idé til ferdig post. Trykk på et case for å se video, tall og hva jeg gjorde.',
-    'contact.title':'La oss ta<br>en prat', 'contact.lead':'Har du en ledig stilling, et prosjekt eller bare lyst på en kaffe? Send meg en melding, så svarer jeg innen to dager.',
+    'contact.title':'La oss ta<br>en prat', 'contact.lead':'Har du en ledig stilling, et prosjekt eller bare lyst på en kaffe? Send meg en melding, så svarer jeg så raskt som mulig.',
     'contact.phone':'Telefon — ', 'contact.portfolio':'Portefølje — ', 'contact.open':'Tilgjengelig for nye roller',
     'foot.thanks':'Takk for at du tok deg tid',
     'foot.note':'© 2026 Daniel Ramslien · Rams Creative (Ramslien Creative ENK) · Referanser oppgis på forespørsel',
@@ -574,7 +578,7 @@ const I18N = {
     'stat.1':'views on TikTok for Mufano', 'stat.2':'in studio rental sales for M40 Studios', 'stat.2.unit':'NOK',
     'stat.3':'raised for Make-A-Wish with NOT Management', 'stat.4':'videos and photos in Punkt Oslo’s content bank',
     'work.title':'Selected<br>work', 'work.lead':'A selection of content and campaigns I’ve made, from idea to finished post. Tap a case to see video, numbers and what I did.',
-    'contact.title':'Let’s<br>talk', 'contact.lead':'Have an open position, a project, or just fancy a coffee? Send me a message and I’ll reply within two days.',
+    'contact.title':'Let’s<br>talk', 'contact.lead':'Have an open position, a project, or just fancy a coffee? Send me a message and I’ll get back to you as soon as possible.',
     'contact.phone':'Phone — ', 'contact.portfolio':'Portfolio — ', 'contact.open':'Open to new roles',
     'foot.thanks':'Thanks for your time',
     'foot.note':'© 2026 Daniel Ramslien · Rams Creative (Ramslien Creative ENK) · References available on request',
@@ -619,7 +623,11 @@ const CASES = [
   },
   {
     id:'m40', year:'2026', cover:P+'m40.jpg', preview:V+'m40.mp4',
-    media:[{type:'video',src:V+'m40.mp4',poster:P+'m40.jpg',cap:{no:'Video for M40 Studios',en:'Video for M40 Studios'}}],
+    quote:{text:{no:'Daniel er en god og pålitelig rådgiver innen salg, kommunikasjon og markedsføring som jeg virkelig kan anbefale. Han vil det beste for de rundt seg og sette alltid kunden først.',
+                 en:'Daniel is a good and reliable advisor in sales, communication and marketing whom I can truly recommend. He wants the best for those around him and always puts the customer first.'},
+      by:{no:'Kjartan Håvik, daglig leder i M40 Eiendom AS',en:'Kjartan Håvik, CEO of M40 Eiendom AS (translated from Norwegian)'}},
+    media:[{type:'video',src:V+'m40.mp4',poster:P+'m40.jpg',cap:{no:'Video for M40 Studios',en:'Video for M40 Studios'}},
+      {type:'image',src:'assets/img/attester/attest-m40.webp',cap:{no:'Uttalelse fra daglig leder Kjartan Håvik',en:'Statement from CEO Kjartan Håvik'}}],
     t:{
       no:{card:'Studiokampanje', title:'Fra null til 20 faste kunder', client:'M40 Studios', clientDesc:'M40 Eiendom AS', period:'Jan. – sep. 2026',
         role:'Marketing & Communication (via Rams Creative)', tags:['Sosiale medier','Kampanje','Video'], result:'100 000 kr+ i salg',
@@ -727,20 +735,30 @@ const CASES = [
   },
   {
     id:'kristiania', year:'2026', cover:P+'kristiania.jpg', preview:V+'kristiania.mp4',
-    media:[{type:'video',src:V+'kristiania.mp4',poster:P+'kristiania.jpg',cap:{no:'Workshop, 16. april',en:'Workshop, April 16'}}],
+    quote:{text:{no:'Han filmet arrangementet til bruk i markedsføring og publisering på sosiale medier, LinkedIn og fanget samhandlingen mellom studenter og virksomheter på en god og profesjonell måte.',
+                 en:'He filmed the event for use in marketing and publishing on social media and LinkedIn, and captured the interaction between students and companies in a good and professional way.'},
+      by:{no:'Merete Bolstad, seniorrådgiver ved Høyskolen Kristiania, i attesten',en:'Merete Bolstad, Senior Advisor at Kristiania, in her reference (translated from Norwegian)'}},
+    media:[{type:'video',src:V+'kristiania.mp4',poster:P+'kristiania.jpg',cap:{no:'Workshop, 16. april',en:'Workshop, April 16'}},
+      {type:'image',src:'assets/img/attester/attest-kristiania-praksisdag.webp',cap:{no:'Attest fra Merete Bolstad',en:'Reference from Merete Bolstad'}}],
     t:{
       no:{card:'Eventinnhold', title:'Eventinnhold for Høyskolen Kristiania', client:'Høyskolen Kristiania', clientDesc:'Praksis', period:'Apr. 2026',
         role:'Innholdsprodusent (praksisstudent)', tags:['LinkedIn','Instagram','Video'], result:'10 videoer fra 3 arrangementer',
-        intro:'Video og foto fra tre arrangementer til skolens egne kanaler, og teknisk ansvar under praksisdagen for masterstudenter.',
+        intro:'Jeg var med i prosjektgruppen som planla og gjennomførte speed-date-/praksisdagen for masterstudenter 9. april 2026, med særskilt ansvar for filming og teknikk. I tillegg laget jeg video og foto fra to andre arrangementer til skolens kanaler.',
         metrics:[['10','videoer'],['3','arrangementer'],['20','bedrifter på praksisdagen'],['ca. 85','deltakere']],
-        bullets:['Filmet, fotograferte og klippet 10 videoer fra 3 arrangementer, publisert på skolens LinkedIn og Instagram.',
-          'Hadde dedikert ansvar for at skjermer og scenepresentasjon fungerte teknisk under praksisdagen for masterstudenter, med 20 bedrifter og ca. 85 deltakere.']},
+        bullets:['Var med i prosjektgruppen som planla og gjennomførte praksisdagen, en møteplass der masterstudenter kunne knytte kontakt med potensielle arbeidsgivere.',
+          'Filmet arrangementet til bruk i markedsføring og på skolens sosiale medier, og fanget samhandlingen mellom studenter og bedrifter.',
+          'Hadde dedikert ansvar for at skjermer og scenepresentasjon fungerte teknisk gjennom hele dagen, med 20 bedrifter og ca. 85 deltakere.',
+          'Arrangementet ble svært vellykket, og flere av studentene fikk i etterkant praksisplass hos bedriftene som deltok.',
+          'Filmet, fotograferte og klippet totalt 10 videoer fra 3 arrangementer, publisert på skolens LinkedIn og Instagram.']},
       en:{card:'Event content', title:'Event content for Kristiania University', client:'Kristiania University of Applied Sciences', clientDesc:'Internship', period:'Apr 2026',
         role:'Content producer (intern)', tags:['LinkedIn','Instagram','Video'], result:'10 videos from 3 events',
-        intro:'Video and photo from three events for the school’s own channels, plus technical responsibility during the internship day for master’s students.',
+        intro:'I was part of the project group that planned and ran the speed-date/internship day for master’s students on April 9, 2026, with special responsibility for filming and tech. I also made video and photo from two other events for the school’s channels.',
         metrics:[['10','videos'],['3','events'],['20','companies at the internship day'],['approx. 85','participants']],
-        bullets:['Filmed, photographed and edited 10 videos from 3 events, published on the school’s LinkedIn and Instagram.',
-          'Was responsible for screens and stage presentations running smoothly during the internship day for master’s students, with 20 companies and approx. 85 participants.']}
+        bullets:['Part of the project group that planned and ran the internship day, a meeting place where master’s students could connect with potential employers.',
+          'Filmed the event for marketing and the school’s social media, capturing the interaction between students and companies.',
+          'Was responsible for screens and stage presentations running smoothly throughout the day, with 20 companies and approx. 85 participants.',
+          'The event was a great success, and several of the students later got internships at the participating companies.',
+          'Filmed, photographed and edited a total of 10 videos from 3 events, published on the school’s LinkedIn and Instagram.']}
     }
   }
 ];
@@ -750,20 +768,22 @@ const CASES = [
    ------------------------------------------------------------ */
 const AT = 'assets/img/attester/';
 const TESTI = [
-  { name:'Merete Bolstad', initials:'MB',
+  { name:'Merete Bolstad', img:'assets/img/testimonials/merete-bolstad.webp',
     role:{no:'Seniorrådgiver, Høyskolen Kristiania', en:'Senior Advisor, Kristiania University of Applied Sciences'},
     quote:{no:'På bakgrunn av Daniels brede bidrag, faglige engasjement og personlige egenskaper gir jeg ham mine beste anbefalinger.',
            en:'Based on Daniel’s broad contribution, professional commitment and personal qualities, I give him my highest recommendations.'} },
-  { name:'Kjartan Håvik', initials:'KH',
+  { name:'Kjartan Håvik', img:'assets/img/testimonials/kjartan-havik.webp',
     role:{no:'Daglig leder, M40 Eiendom AS', en:'CEO, M40 Eiendom AS'},
     quote:{no:'Daniel er en god og pålitelig rådgiver innen salg, kommunikasjon og markedsføring som jeg virkelig kan anbefale. Han vil det beste for de rundt seg og sette alltid kunden først.',
            en:'Daniel is a good and reliable advisor in sales, communication and marketing whom I can truly recommend. He wants the best for those around him and always puts the customer first.'} },
-  { name:'Annette Kallevig', initials:'AK',
+  { name:'Annette Kallevig', img:'assets/img/testimonials/annette-kallevig.webp',
     role:{no:'Studieprogramleder, Bachelor i digital markedsføring, Høyskolen Kristiania', en:'Head of Programme, Bachelor in Digital Marketing, Kristiania University of Applied Sciences'},
     quote:{no:'Daniel har vært en viktig bidragsyter til å skape et utviklende og trygt læringsmiljø for førsteårsstudentene, og kommer med mine varmeste anbefalinger.',
            en:'Daniel has been an important contributor to creating a developing and safe learning environment for the first-year students, and comes with my warmest recommendations.'} }
 ];
 const REFS = [
+  { org:'M40 Eiendom AS', year:'2026', doc:AT+'attest-m40.webp',
+    role:{no:'Uttalelse på e-post fra daglig leder', en:'Statement by email from the CEO'} },
   { org:'Høyskolen Kristiania', orgEn:'Kristiania University', year:'2026', doc:AT+'attest-kristiania-praksisdag.webp',
     role:{no:'Praksisdagen for masterstudenter', en:'Internship day for master’s students'} },
   { org:'Høyskolen Kristiania', orgEn:'Kristiania University', year:'2026', doc:AT+'attest-kristiania-studentassistent.webp',
@@ -843,12 +863,12 @@ function renderTesti(){
     <li class="reveal in" style="--d:${i*0.08}s"><figure class="testi-card">
       <span class="testi-mark" aria-hidden="true">“</span>
       <blockquote class="testi-quote">${esc(pick(t.quote))}${lang === 'en' ? `<span class="testi-tr">${tr('testi.tr')}</span>` : ''}</blockquote>
-      <figcaption class="testi-by"><span class="testi-avatar" aria-hidden="true">${t.initials}</span><span><span class="testi-name">${esc(t.name)}</span><span class="testi-role">${esc(pick(t.role))}</span></span></figcaption>
+      <figcaption class="testi-by"><img class="testi-avatar" src="${t.img}" alt="" width="56" height="56" loading="lazy"><span><span class="testi-name">${esc(t.name)}</span><span class="testi-role">${esc(pick(t.role))}</span></span></figcaption>
     </figure></li>`).join('');
 }
 function renderRefs(){
   refList.innerHTML = REFS.map((r,i) => `
-    <li class="doc reveal in" style="--d:${(i%5)*0.06}s">
+    <li class="doc reveal in" style="--d:${(i%3)*0.06}s">
       <div class="doc-thumb"><img src="${r.doc}" alt="" loading="lazy"><span class="doc-zoom" aria-hidden="true">${ICON_ZOOM}</span></div>
       <h3 class="doc-org">${esc(refOrg(r))}</h3>
       <p class="doc-meta">${esc(pick(r.role))} · ${r.year}</p>
@@ -901,7 +921,7 @@ function fillDialog(i, keepMedia){
   ].map(([k,v]) => `<div><dt>${k}</dt><dd>${esc(v)}</dd></div>`).join('');
   $('dlg-metrics').innerHTML = x.metrics.map(([n,l]) => `<div><span class="metric-num">${esc(n)}</span><span class="metric-label">${esc(l)}</span></div>`).join('');
   $('dlg-list').innerHTML = x.bullets.map(b => `<li>${esc(b)}</li>`).join('');
-  $('dlg-quote').innerHTML = c.quote ? `<blockquote class="quote"><p>${esc(c.quote.text)}</p><footer>${esc(pick(c.quote.by))}</footer></blockquote>` : '';
+  $('dlg-quote').innerHTML = c.quote ? `<blockquote class="quote"><p>${esc(pick(c.quote.text))}</p><footer>${esc(pick(c.quote.by))}</footer></blockquote>` : '';
   const thumbs = $('dlg-thumbs');
   thumbs.innerHTML = c.media.length > 1 ? c.media.map((m,k) => `
     <button class="thumb" type="button" data-k="${k}" aria-label="${esc(pick(m.cap))}">
