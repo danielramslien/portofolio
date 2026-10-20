@@ -1386,8 +1386,8 @@ $('dlg-thumbs').addEventListener('click', e => { const t = e.target.closest('but
 dlg.addEventListener('click', e => { if (e.target === dlg) closeCase(); });
 dlg.addEventListener('keydown', e => {
   if (e.target.closest('video')) return;
-  if (e.key === 'ArrowRight') { const c = CASES[current]; if (currentMedia < c.media.length - 1) showMedia(c, currentMedia + 1); else fillDialog(current + 1); }
-  if (e.key === 'ArrowLeft') { const c = CASES[current]; if (currentMedia > 0) showMedia(c, currentMedia - 1); else fillDialog(current - 1); }
+  if (e.key === 'ArrowRight') { const c = CASES[current]; if (currentMedia < c.media.length - 1) showMedia(c, currentMedia + 1); }
+  if (e.key === 'ArrowLeft') { const c = CASES[current]; if (currentMedia > 0) showMedia(c, currentMedia - 1); }
 });
 
 /* ---------- Bytt språk ---------- */
