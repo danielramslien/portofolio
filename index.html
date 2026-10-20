@@ -239,7 +239,8 @@ section{position:relative}
 .case-title{font-family:var(--font-display);font-stretch:125%;font-weight:800;font-size:clamp(19px,1.7vw,22px);line-height:1.15;margin:0}
 .case-year{font-size:13px;color:var(--muted);flex:none}
 .case-client{font-size:14px;color:var(--muted);margin:6px 0 0}
-.case-result{display:flex;align-items:center;gap:8px;font-size:15px;font-weight:600;color:var(--accent);margin:14px 0 16px}
+.case-results{display:flex;flex-direction:column;gap:4px;margin:14px 0 16px}
+.case-result{display:flex;align-items:center;gap:8px;font-size:15px;font-weight:600;color:var(--accent);margin:0}
 .case-result::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--accent);flex:none}
 .case-link{position:absolute;inset:0;z-index:3;background:none;border:0;padding:0;cursor:pointer;border-radius:4px}
 .case-link span{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
@@ -1144,7 +1145,7 @@ function renderCards(){
       <div class="case-body">
         <div class="case-title-row"><h3 class="case-title">${esc(x.card)}</h3><span class="case-year">${c.year}</span></div>
         <p class="case-client">${esc(x.client)}</p>
-        <p class="case-result">${esc(x.result)}</p>
+        <div class="case-results">${x.result.split(' · ').map(t => `<p class="case-result">${esc(t)}</p>`).join('')}</div>
         <ul class="pills">${x.tags.map(t => `<li class="pill">${esc(t)}</li>`).join('')}</ul>
       </div>
       <button class="case-link" type="button" data-open="${i}"><span>${tr('card.view')}: ${esc(x.title)} ${tr('card.for')} ${esc(x.client)}</span></button>
