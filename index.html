@@ -106,6 +106,8 @@ button{font:inherit;color:inherit}
 .eyebrow .rule{width:7px;height:7px;border-radius:50%;background:var(--accent)}
 
 .pills{display:flex;flex-wrap:wrap;gap:8px;list-style:none;margin:0;padding:0}
+.tool-pills{margin-top:8px}
+.tool-pills .pill{border-color:var(--accent-line);background:var(--accent-soft);color:var(--text-soft);font-size:12px;padding:5px 12px}
 .pill{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--line-strong);border-radius:999px;padding:6px 14px;font-size:13px;line-height:1.3;color:var(--text);white-space:nowrap}
 .pill--accent{border-color:var(--accent-line);background:var(--accent-soft);color:#ffb27a}
 .pill--accent .dot{width:7px;height:7px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 0 rgba(255,122,26,.6);animation:pulse 2.4s infinite}
@@ -744,7 +746,7 @@ const I18N = {
     'foot.thanks':'Takk for at du tok deg tid',
     'foot.note':'© 2026 Daniel Ramslien · Rams Creative (Ramslien Creative ENK) · Org.nr. 935 128 986 · Referanser oppgis på forespørsel',
     'dlg.close':'Lukk case', 'dlg.did':'Hva jeg gjorde', 'dlg.thumbs':'Velg bilde eller video',
-    'dlg.client':'Kunde', 'dlg.role':'Rolle', 'dlg.period':'Periode', 'dlg.tags':'Kanaler og fag',
+    'dlg.client':'Kunde', 'dlg.role':'Rolle', 'dlg.period':'Periode', 'dlg.tags':'Kanaler og fag', 'dlg.tools':'Verktøy',
     'card.video':'Video', 'card.images':'Bilder', 'card.view':'Se case', 'card.for':'for',
     'nav.refs':'Attester', 'refs.more':'Se flere', 'refs.less':'Se færre', 'about.more':'Les mer', 'about.less':'Les mindre', 'card.next':'Neste bilde', 'card.prev':'Forrige bilde', 'refs.title':'Attester', 'refs.lead':'Hele dokumentene. Trykk på en attest for å lese den.', 'refs.note':'Fødselsdato og adresse er sladdet.',
     'refs.close':'Lukk attest', 'refs.view':'Se attest fra',
@@ -776,7 +778,7 @@ const I18N = {
     'foot.thanks':'Thanks for your time',
     'foot.note':'© 2026 Daniel Ramslien · Rams Creative (Ramslien Creative ENK) · Org. no. 935 128 986 · References available on request',
     'dlg.close':'Close case', 'dlg.did':'What I did', 'dlg.thumbs':'Choose image or video',
-    'dlg.client':'Client', 'dlg.role':'Role', 'dlg.period':'Period', 'dlg.tags':'Channels and skills',
+    'dlg.client':'Client', 'dlg.role':'Role', 'dlg.period':'Period', 'dlg.tags':'Channels and skills', 'dlg.tools':'Tools',
     'card.video':'Video', 'card.images':'Images', 'card.view':'View case', 'card.for':'for',
     'nav.refs':'References', 'refs.more':'See more', 'refs.less':'See fewer', 'about.more':'Read more', 'about.less':'Read less', 'card.next':'Next image', 'card.prev':'Previous image', 'refs.title':'References', 'refs.lead':'The full documents. Tap a reference to read it.', 'refs.note':'Date of birth and address have been redacted. The documents are in Norwegian, except Open iT.',
     'refs.close':'Close reference', 'refs.view':'View reference from',
@@ -791,7 +793,7 @@ const I18N = {
 const V = 'assets/video/', I = 'assets/img/', P = 'assets/img/posters/';
 const CASES = [
   {
-    id:'mufano', year:'2026', cover:P+'mufano-start.jpg', preview:V+'mufano.mp4',
+    id:'mufano', tools:['CapCut', 'TikTok Insights'], year:'2026', cover:P+'mufano-start.jpg', preview:V+'mufano.mp4',
     media:[
       {type:'video',src:V+'mufano.mp4',poster:P+'mufano-start.jpg',cap:{no:'Promovideo for låtlanseringen',en:'Promo video for the song launch'}},
       {type:'image',src:I+'mufano-views.webp',cap:{no:'Visninger på TikTok-videoene',en:'Views on the TikTok videos'}}
@@ -816,7 +818,7 @@ const CASES = [
     }
   },
   {
-    id:'m40', year:'2026', cover:P+'m40-studiorom.jpg', preview:V+'m40.mp4',
+    id:'m40', tools:['Canva', 'Photoshop', 'Illustrator', 'CapCut'], year:'2026', cover:P+'m40-studiorom.jpg', preview:V+'m40.mp4',
     quote:{text:{no:'Daniel er en god og pålitelig rådgiver innen salg, kommunikasjon og markedsføring som jeg virkelig kan anbefale. Han vil det beste for de rundt seg og sette alltid kunden først.',
                  en:'Daniel is a good and reliable advisor in sales, communication and marketing whom I can truly recommend. He wants the best for those around him and always puts the customer first.'},
       by:{no:'Kjartan Håvik, daglig leder i M40 Eiendom AS',en:'Kjartan Håvik, CEO of M40 Eiendom AS (translated from Norwegian)'}},
@@ -849,7 +851,7 @@ const CASES = [
     }
   },
   {
-    id:'ride-for-wishes', year:'2026', cover:I+'ride-for-wishes.webp', coverPos:'0% 50%',
+    id:'ride-for-wishes', tools:['Google Workspace', 'Canva'], year:'2026', cover:I+'ride-for-wishes.webp', coverPos:'0% 50%',
     quote:{text:'… our interns (Simon Brusdal, Kathalina Nunez-Garate, Daniel Ramslien) researching every detail of the trip …',
       by:{no:'Lynn, NOT Management, i LinkedIn-innlegget om turen',en:'Lynn, NOT Management, in her LinkedIn post about the ride'}},
     media:[
@@ -876,7 +878,7 @@ const CASES = [
     }
   },
   {
-    id:'kristiania', year:'2026', cover:P+'kristiania.jpg', preview:V+'kristiania.mp4',
+    id:'kristiania', tools:['CapCut', 'Premiere Pro', 'Canva'], year:'2026', cover:P+'kristiania.jpg', preview:V+'kristiania.mp4',
     quote:[{text:{no:'Han filmet arrangementet til bruk i markedsføring og publisering på sosiale medier, LinkedIn og fanget samhandlingen mellom studenter og virksomheter på en god og profesjonell måte.',
                  en:'He filmed the event for use in marketing and publishing on social media and LinkedIn, and captured the interaction between students and companies in a good and professional way.'},
       by:{no:'Merete Bolstad, seniorrådgiver ved Høyskolen Kristiania, i attesten',en:'Merete Bolstad, Senior Advisor at Kristiania, in her reference (translated from Norwegian)'}},
@@ -908,7 +910,7 @@ const CASES = [
     }
   },
   {
-    id:'kraft', year:'2026', cover:P+'kraft.jpg', preview:V+'kraft.mp4', logo:'assets/img/kraft/kraft-logo.png',
+    id:'kraft', tools:['CapCut'], year:'2026', cover:P+'kraft.jpg', preview:V+'kraft.mp4', logo:'assets/img/kraft/kraft-logo.png',
     link:{href:'https://kraftcollective.no/products/kraft-1-ar', text:{no:'Les om jubileet på kraftcollective.no',en:'Read about the anniversary on kraftcollective.no'}},
     media:[{type:'video',src:V+'kraft.mp4',poster:P+'kraft.jpg',cap:{no:'Event recap-video for KRAFT Collective',en:'Event recap video for KRAFT Collective'}},
       {type:'image',src:'assets/img/kraft/kraft-logo.png',cap:{no:'KRAFT Collective',en:'KRAFT Collective'}}],
@@ -928,7 +930,7 @@ const CASES = [
     }
   },
   {
-    id:'punkt-oslo', year:'2026', cover:P+'arendalsuka.jpg', preview:V+'arendalsuka.mp4',
+    id:'punkt-oslo', tools:['CapCut', 'Google Workspace'], year:'2026', cover:P+'arendalsuka.jpg', preview:V+'arendalsuka.mp4',
     media:[
       {type:'video',src:V+'arendalsuka.mp4',poster:P+'arendalsuka.jpg',cap:{no:'Arendalsuka, 11. august',en:'Arendalsuka, August 11'}},
       {type:'video',src:V+'punkt-oslo-2.mp4',poster:P+'punkt-oslo-2.jpg',cap:{no:'Sommerfest hos Punkt Oslo',en:'Summer party at Punkt Oslo'}},
@@ -954,7 +956,7 @@ const CASES = [
     }
   },
   {
-    id:'knytt', year:'2025', cover:P+'knytt-paolo.jpg', preview:V+'knytt.mp4',
+    id:'knytt', tools:['CapCut', 'Canva'], year:'2025', cover:P+'knytt-paolo.jpg', preview:V+'knytt.mp4',
     media:[
       {type:'video',src:V+'knytt.mp4',poster:P+'knytt.jpg',cap:{no:'Video for Knytt, klippet av meg',en:'Video for Knytt, edited by me'}},
       {type:'image',src:I+'knytt-landing.webp',cap:{no:'Landingssiden på knytt.org',en:'Landing page on knytt.org'}},
@@ -968,7 +970,7 @@ const CASES = [
         intro:'Knytt er en studentbedrift som arrangerer lavterskel events for studenter og unge voksne i Oslo. Jeg ledet kommunikasjonen og bygget nettsiden med nettbutikk.',
         metrics:[['3','arrangementer'],['5','partnere']],
         bullets:['Ledet kommunikasjonen for studentbedriften, som arrangerte 3 events.',
-          'Bygget knytt.org med nettbutikk i WordPress og Elementor. Siden er nå tatt ned.',
+          'Bygget knytt.org med nettbutikk. Siden er nå tatt ned.',
           'Klippet video for Knytt til sosiale medier.',
           'Sikret samarbeid med 5 partnere: NoHo Norway, Anker Studentbolig, Mesh Oslo, Punkt Oslo og SiO.']},
       en:{card:'Knytt.org', title:'Knytt: website building and communication', client:'Knytt SB', clientDesc:'Student company', period:'Sep – Dec 2025',
@@ -976,13 +978,13 @@ const CASES = [
         intro:'Knytt is a student company hosting low-threshold events for students and young adults in Oslo. I led communications and built the website with an online store.',
         metrics:[['3','events'],['5','partners']],
         bullets:['Led communications for the student company, which hosted 3 events.',
-          'Built knytt.org with an online store in WordPress and Elementor. The site has since been taken down.',
+          'Built knytt.org with an online store. The site has since been taken down.',
           'Edited video for Knytt’s social media.',
           'Secured partnerships with 5 partners: NoHo Norway, Anker Studentbolig, Mesh Oslo, Punkt Oslo and SiO.']}
     }
   },
   {
-    id:'iko', group:'school', year:'2025', cover:P+'iko.jpg', preview:V+'iko.mp4',
+    id:'iko', tools:['Premiere Pro'], group:'school', year:'2025', cover:P+'iko.jpg', preview:V+'iko.mp4',
     link:{href:'https://youtu.be/_SuTFtps6bY', text:{no:'Se hele kampanjevideoen på YouTube',en:'Watch the full campaign video on YouTube'}},
     media:[{type:'video',src:V+'iko.mp4',poster:P+'iko.jpg',cap:{no:'Kampanjevideoen',en:'The campaign video'}}],
     t:{
@@ -1003,7 +1005,7 @@ const CASES = [
     }
   },
   {
-    id:'div', group:'school', year:'2025',
+    id:'div', tools:['WordPress', 'Elementor', 'GA4', 'Google Search Console'], group:'school', year:'2025',
     link:{href:'https://youtu.be/aBOuIqYqrRg', text:{no:'Se hele pitchdecket på YouTube',en:'Watch the full pitch deck on YouTube'}}, cover:P+'div-eksamen.jpg', coverPos:'0% 50%', preview:V+'div-eksamen.mp4',
     media:[{type:'video',src:V+'div-eksamen.mp4',poster:P+'div-eksamen.jpg',cap:{no:'Eksamensvideo i Digitale verktøy',en:'Exam video in Digital Tools'}},
       {type:'image',src:I+'knytt-landing.webp',cap:{no:'Landingssiden på knytt.org',en:'Landing page on knytt.org'}},
@@ -1160,6 +1162,7 @@ function renderCards(){
         <p class="case-client">${esc(x.client)}</p>
         <div class="case-results">${x.result.split(' · ').map(t => `<p class="case-result">${esc(t)}</p>`).join('')}</div>
         <ul class="pills">${x.tags.map(t => `<li class="pill">${esc(t)}</li>`).join('')}</ul>
+        ${c.tools ? `<ul class="pills tool-pills" aria-label="${tr('dlg.tools')}">${c.tools.map(t => `<li class="pill">${esc(t)}</li>`).join('')}</ul>` : ''}
       </div>
       <button class="case-link" type="button" data-open="${i}"><span>${tr('card.view')}: ${esc(x.title)} ${tr('card.for')} ${esc(x.client)}</span></button>
       ${gal.length > 1 ? `<button class="case-nav prev" type="button" data-step="-1" aria-label="${tr('card.prev')}" hidden>${ICON_CHEV}</button><button class="case-nav next" type="button" data-step="1" aria-label="${tr('card.next')}">${ICON_CHEV}</button>` : ''}
@@ -1351,7 +1354,7 @@ function fillDialog(i, keepMedia){
   $('dlg-meta').innerHTML = [
     [tr('dlg.client'), x.client + (x.clientDesc ? ` · ${x.clientDesc}` : '')],
     [tr('dlg.role'), x.role], [tr('dlg.period'), x.period], [tr('dlg.tags'), x.tags.join(', ')]
-  ].map(([k,v]) => `<div><dt>${k}</dt><dd>${esc(v)}</dd></div>`).join('');
+  ].concat(c.tools ? [[tr('dlg.tools'), c.tools.join(', ')]] : []).map(([k,v]) => `<div><dt>${k}</dt><dd>${esc(v)}</dd></div>`).join('');
   $('dlg-metrics').hidden = !(x.metrics && x.metrics.length);
   $('dlg-metrics').innerHTML = (x.metrics || []).map(([n,l]) => `<div><span class="metric-num">${esc(n)}</span><span class="metric-label">${esc(l)}</span></div>`).join('');
   $('dlg-list').innerHTML = x.bullets.map(b => `<li>${esc(b)}</li>`).join('');
