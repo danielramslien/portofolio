@@ -140,12 +140,8 @@ html[data-page="refs"] #attester{padding-top:calc(var(--header-h) + clamp(20px,3
 html[data-page="refs"] #attester-tittel{font-family:var(--font-display);font-weight:900;text-transform:uppercase;line-height:.92;font-size:clamp(22px,4vw,58px);margin-bottom:clamp(28px,3.5vw,48px)}
 html[data-page="refs"] #attester .more-wrap{display:none}
 html[data-page="refs"] .refs > .doc{display:block!important}
-html[data-page="refs"] .refs{grid-template-columns:repeat(6,minmax(0,1fr))}
-html[data-page="refs"] .doc-org{font-size:13px;margin-top:10px}
-html[data-page="refs"] .doc-meta{font-size:12px;overflow-wrap:anywhere}
 html[data-page="refs"] .nav a[href="attester.html"]{color:var(--text)}
-@media (max-width:1000px){html[data-page="refs"] .refs{grid-template-columns:repeat(4,minmax(0,1fr))}}
-@media (max-width:600px){html[data-page="refs"] .refs{grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}}
+
 html[data-page="about"] .hero,html[data-page="about"] #arbeid,html[data-page="about"] #verktoy,html[data-page="about"] #anbefalinger,html[data-page="about"] #attester{display:none}
 html[data-page="about"] #om-meg{padding-top:calc(var(--header-h) + clamp(20px,3vw,40px))}
 html[data-page="about"] .about-more{display:block}
@@ -554,8 +550,8 @@ section{position:relative}
         <a href="#arbeid"><span data-i18n="nav.work">Arbeid</span></a>
         <a href="#verktoy"><span data-i18n="nav.tools">Verktøy</span></a>
         <a href="#anbefalinger"><span data-i18n="nav.testi">Anbefalinger</span></a>
-        <a href="om-meg.html"><span data-i18n="nav.about">Om meg</span></a>
         <a href="attester.html"><span data-i18n="nav.refs">Attester</span></a>
+        <a href="om-meg.html"><span data-i18n="nav.about">Om meg</span></a>
         <a href="#kontakt" class="nav-cta"><span data-i18n="nav.contact">Kontakt</span></a>
         <button type="button" class="nav-lang lang-toggle" id="nav-lang" aria-label="Bytt språk" data-i18n-aria="aria.switchLang"></button>
       </nav>
@@ -1517,6 +1513,14 @@ function showSlide(i){
   const c = slides[slideIdx].dataset.credit;
   $('slides-credit').textContent = c ? `${tr('photo.credit')} ${c}` : '';
 }
+/* Piltaster blar i bildene på Om meg når ingen dialog er åpen */
+document.addEventListener('keydown', e => {
+  if (e.key !== 'ArrowLeft' && e.key !== 'ArrowRight') return;
+  if (document.querySelector('dialog[open]') || e.target.closest('input,textarea,video')) return;
+  const box = document.getElementById('slides'); if (!box || !box.getClientRects().length) return;
+  const r = box.getBoundingClientRect(); if (r.bottom < 0 || r.top > innerHeight) return;
+  showSlide(slideIdx + (e.key === 'ArrowRight' ? 1 : -1)); startSlides();
+});
 function startSlides(){ if (!reduce) { clearInterval(slideTimer); slideTimer = setInterval(() => showSlide(slideIdx + 1), 2000); } }
 $('slides').querySelector('.slides-frame').addEventListener('click', e => {
   const t = e.target.closest('.slide'); if (!t) return;
