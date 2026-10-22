@@ -288,8 +288,9 @@ section{position:relative}
 .doc-card:hover .doc-card-thumb{transform:translateY(-3px);box-shadow:0 14px 30px rgba(0,0,0,.45)}
 .doc-card-t{display:block;margin-top:8px;font-family:var(--font-display);font-weight:800;font-size:14px;line-height:1.25}
 .doc-card-m{display:block;font-size:12px;color:var(--muted)}
-.tt-row{display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;margin:0 0 30px;padding-bottom:6px}
-.tt-item{flex:0 0 min(260px,72%);aspect-ratio:9/16;border-radius:12px;overflow:hidden;background:#000;scroll-snap-align:start}
+.dlg-tt .label{display:block;margin:10px 0 10px}
+.tt-row{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin:0}
+.tt-item{aspect-ratio:9/16;border-radius:12px;overflow:hidden;background:#000;scroll-snap-align:start}
 .tt-item iframe{width:100%;height:100%;border:0;display:block}
 .case-body{padding-top:14px}
 .case-body > :not(.case-title-row),.case-year,.case-badge{display:none!important}
@@ -358,7 +359,7 @@ section{position:relative}
 @keyframes dlg{from{opacity:0;transform:translateY(18px) scale(.985)}to{opacity:1;transform:none}}
 .dlg-scroll{max-height:inherit;overflow:auto;overscroll-behavior:contain}
 .dlg-grid{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr)}
-.dlg-media{position:sticky;top:0;align-self:start;padding:24px;display:flex;flex-direction:column;gap:14px}
+.dlg-media{position:relative;top:0;align-self:start;padding:24px;display:flex;flex-direction:column;gap:14px}
 .viewer{position:relative;height:min(70vh,640px);height:min(70dvh,640px);isolation:isolate}
 .viewer::before{content:"";position:absolute;inset:-10%;z-index:-1;background:radial-gradient(circle,rgba(255,122,26,.14),rgba(255,122,26,0) 62%);pointer-events:none}
 .vslide{position:absolute;top:0;bottom:0;left:15%;right:15%;border-radius:14px;overflow:hidden;background:#0a0807;opacity:0;z-index:0;pointer-events:none;
@@ -793,6 +794,7 @@ section{position:relative}
         <p class="viewer-cap" id="dlg-cap"></p>
         <div class="vdots" id="dlg-thumbs" role="group" aria-label="Velg bilde eller video" data-i18n-aria="dlg.thumbs"></div>
         <div class="dlg-docs" id="dlg-docs"></div>
+        <div class="dlg-tt" id="dlg-tt"></div>
       </div>
       <div class="dlg-body">
         <div class="dlg-top">
@@ -807,7 +809,6 @@ section{position:relative}
         <div class="metrics" id="dlg-metrics"></div>
         <span class="label dlg-sub" data-i18n="dlg.did">Hva jeg gjorde</span>
         <ul class="dlg-list" id="dlg-list"></ul>
-        <div class="dlg-tt" id="dlg-tt"></div>
         <div id="dlg-quote"></div>
         <div id="dlg-link"></div>
         <div class="dlg-nav">
@@ -907,7 +908,7 @@ const I18N = {
 const V = 'assets/video/', I = 'assets/img/', P = 'assets/img/posters/';
 const CASES = [
   {
-    id:'mufano', tiktok:['7606959268209675542','7597986210790919446','7596553573861821718','7594312696271473942'], tools:['CapCut', 'TikTok Insights'], year:'2026', cover:P+'mufano-start.jpg', preview:V+'mufano.mp4',
+    id:'mufano', tiktok:['7589815758230719766','7597986210790919446','7596553573861821718','7594312696271473942','7607353046934375702'], tools:['CapCut', 'TikTok Insights'], year:'2026', cover:P+'mufano-start.jpg', preview:V+'mufano.mp4',
     media:[
       {type:'video',src:V+'mufano.mp4',poster:P+'mufano-start.jpg',cap:{no:'Promovideo for låtlanseringen',en:'Promo video for the song launch'}},
       {type:'image',src:I+'mufano-views-1.webp',cap:{no:'579,7K visninger på TikTok',en:'579.7K views on TikTok'}},
@@ -1485,7 +1486,7 @@ function fillDialog(i, keepMedia){
   $('dlg-list').innerHTML = x.bullets.map(b => `<li>${esc(b)}</li>`).join('');
   $('dlg-quote').innerHTML = c.quote ? [].concat(c.quote).map(q => `<blockquote class="quote"><p>${esc(pick(q.text))}</p><footer>${esc(pick(q.by))}</footer></blockquote>`).join('') : '';
   $('dlg-docs').innerHTML = c.docs ? `<span class="label">${tr('dlg.docs')}</span><ul class="doc-grid">${c.docs.map(d => `<li><a class="doc-card" href="${d.src}" target="_blank" rel="noopener"><span class="doc-card-thumb"><img src="${d.thumb}" alt="" loading="lazy"></span><span class="doc-card-t">${esc(pick(d.title))}</span><span class="doc-card-m">${esc(pick(d.meta))} ↗</span></a></li>`).join('')}</ul>` : '';
-  $('dlg-tt').innerHTML = c.tiktok ? `<span class="label dlg-sub">${tr('dlg.tiktok')}</span><div class="tt-row">${c.tiktok.map(id => `<div class="tt-item"><iframe data-src="https://www.tiktok.com/player/v1/${id}?music_info=1&description=1&rel=0" title="TikTok" allow="encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe></div>`).join('')}</div>` : '';
+  $('dlg-tt').innerHTML = c.tiktok ? `<span class="label">${tr('dlg.tiktok')}</span><div class="tt-row">${c.tiktok.map(id => `<div class="tt-item"><iframe data-src="https://www.tiktok.com/player/v1/${id}?music_info=1&description=1&rel=0" title="TikTok" allow="encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe></div>`).join('')}</div>` : '';
   $('dlg-tt').querySelectorAll('iframe').forEach(f => { f.src = f.dataset.src; });
   $('dlg-link').innerHTML = c.link ? `<a class="dlg-link" href="${c.link.href}" target="_blank" rel="noopener">${esc(pick(c.link.text))} ↗</a>` : '';
   if (keepMedia) {
