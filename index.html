@@ -260,20 +260,6 @@ section{position:relative}
 .case-result::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--accent);flex:none}
 .case-link{position:absolute;inset:0;z-index:3;background:none;border:0;padding:0;cursor:pointer;border-radius:4px}
 .case-link span{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
-.case-link{touch-action:pan-y}
-.case-strip{position:absolute;inset:0;display:flex;transition:transform .45s var(--ease)}
-.case.swiping .case-strip{transition:none}
-.case-strip > .cs{position:relative;flex:0 0 100%;height:100%;overflow:hidden}
-.case-dots{position:absolute;right:14px;bottom:20px;z-index:2;display:flex;gap:5px;pointer-events:none}
-.case-dots i{width:6px;height:6px;border-radius:999px;background:rgba(243,237,230,.45);transition:width .3s var(--ease),background .3s}
-.case-dots i.on{width:16px;background:var(--accent)}
-.case-nav{position:absolute;top:50%;z-index:4;width:36px;height:36px;margin-top:-18px;border:0;border-radius:50%;display:grid;place-items:center;background:rgba(14,12,11,.6);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);color:var(--text);cursor:pointer;opacity:0;transition:opacity .25s,background .2s}
-.case-nav svg{width:14px;height:14px}
-.case-nav.prev{left:10px}.case-nav.next{right:10px}
-.case-nav.prev svg{transform:scaleX(-1)}
-.case-nav:hover{background:var(--accent);color:var(--ink)}
-.case:hover .case-nav:not([hidden]){opacity:1}
-@media (hover:none){.case-nav{display:none}}
 
 /* ---------- Kontakt ---------- */
 .contact-grid{display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,1fr);gap:clamp(40px,6vw,96px);align-items:center}
@@ -818,7 +804,7 @@ const CASES = [
     }
   },
   {
-    id:'m40', tools:['Canva', 'Photoshop', 'Illustrator', 'CapCut', 'Meta Insights'], year:'2026', cover:P+'m40-studiorom.jpg', preview:V+'m40.mp4',
+    id:'m40', tools:['Canva', 'Photoshop', 'Illustrator', 'CapCut', 'Meta Insights'], year:'2026', cover:P+'m40-smil.jpg', preview:V+'m40.mp4',
     quote:{text:{no:'Daniel er en god og pålitelig rådgiver innen salg, kommunikasjon og markedsføring som jeg virkelig kan anbefale. Han vil det beste for de rundt seg og sette alltid kunden først.',
                  en:'Daniel is a good and reliable advisor in sales, communication and marketing whom I can truly recommend. He wants the best for those around him and always puts the customer first.'},
       by:{no:'Kjartan Håvik, daglig leder i M40 Eiendom AS',en:'Kjartan Håvik, CEO of M40 Eiendom AS (translated from Norwegian)'}},
@@ -1091,68 +1077,15 @@ const fmt = n => Math.round(n).toLocaleString(lang === 'en' ? 'en-US' : 'nb-NO')
 
 /* ---------- Bygg kortene ---------- */
 const list = $('cases');
-const ICON_CHEV = '<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3l5 5-5 5"/></svg>';
-/* Bildene som kan blas i på kortet: forsiden, så resten av mediene (plakat for video) */
-function caseGallery(c){
-  const g = [{src:c.cover, m:0}], seen = new Set([c.cover]);
-  c.media.forEach((m,k) => { const s = m.type === 'video' ? m.poster : m.src; if (s && !seen.has(s)) { seen.add(s); g.push({src:s, m:k}); } });
-  return g;
-}
-function setCardSlide(card, k){
-  const c = CASES[+card.dataset.index], gal = caseGallery(c);
-  k = Math.max(0, Math.min(gal.length - 1, k));
-  card.dataset.k = k;
-  card.querySelector('.case-strip').style.transform = k ? `translateX(${-k * 100}%)` : '';
-  card.querySelectorAll('.case-dots i').forEach((d,j) => d.classList.toggle('on', j === k));
-  const p = card.querySelector('.case-nav.prev'), n = card.querySelector('.case-nav.next');
-  if (p) p.hidden = k === 0; if (n) n.hidden = k === gal.length - 1;
-  if (k) { const v = card.querySelector('video'); if (v) { v.pause(); card.classList.remove('playing'); } }
-}
-function bindCardSwipe(card){
-  if (caseGallery(CASES[+card.dataset.index]).length < 2) return;
-  const strip = card.querySelector('.case-strip'), media = card.querySelector('.case-media');
-  let x0 = null, y0 = 0, dx = 0, id = null, moved = false;
-  card.addEventListener('pointerdown', e => {
-    if (e.button !== 0 || e.target.closest('.case-nav')) return;
-    const r = media.getBoundingClientRect();
-    if (e.clientY > r.bottom) return;
-    x0 = e.clientX; y0 = e.clientY; dx = 0; id = e.pointerId; moved = false;
-  });
-  card.addEventListener('pointermove', e => {
-    if (x0 === null || e.pointerId !== id) return;
-    dx = e.clientX - x0;
-    if (!moved && Math.abs(dx) > 8 && Math.abs(dx) > Math.abs(e.clientY - y0)) { moved = true; card.classList.add('swiping'); try { card.setPointerCapture(id); } catch (_) {} }
-    if (moved) { const k = +(card.dataset.k || 0); strip.style.transform = `translateX(calc(${-k * 100}% + ${dx}px))`; }
-  });
-  const end = e => {
-    if (x0 === null || (e && e.pointerId !== id)) return;
-    card.classList.remove('swiping');
-    const k = +(card.dataset.k || 0);
-    if (moved) { setCardSlide(card, Math.abs(dx) > 40 ? k + (dx < 0 ? 1 : -1) : k); card.dataset.justSwiped = '1'; setTimeout(() => delete card.dataset.justSwiped, 60); }
-    x0 = null;
-  };
-  card.addEventListener('pointerup', end);
-  card.addEventListener('pointercancel', end);
-  card.addEventListener('click', e => {
-    if (card.dataset.justSwiped) { e.stopPropagation(); e.preventDefault(); return; }
-    const b = e.target.closest('.case-nav'); if (b) { e.stopPropagation(); setCardSlide(card, +(card.dataset.k || 0) + +b.dataset.step); }
-  }, true);
-}
-
 function renderCards(){
   const cardHtml = (c,i) => {
     const x = tc(c);
     const hasVideo = c.media.some(m => m.type === 'video');
-    const gal = caseGallery(c);
     return `
     <li class="case reveal in" style="--d:${(i%3)*0.08}s" data-index="${i}">
       <div class="case-media">
-        <div class="case-strip">
-        <div class="cs"><img src="${c.cover}" alt="" loading="lazy"${c.coverPos ? ` style="object-position:${c.coverPos}"` : ''}>
-        ${c.preview ? `<video muted loop playsinline preload="none" data-src="${c.preview}"></video>` : ''}</div>
-        ${gal.slice(1).map(g => `<div class="cs"><img src="${g.src}" alt="" loading="lazy"></div>`).join('')}
-        </div>
-        ${gal.length > 1 ? `<span class="case-dots" aria-hidden="true">${gal.map((g,k) => `<i${k ? '' : ' class="on"'}></i>`).join('')}</span>` : ''}
+        <img src="${c.cover}" alt="" loading="lazy"${c.coverPos ? ` style="object-position:${c.coverPos}"` : ''}>
+        ${c.preview ? `<video muted loop playsinline preload="none" data-src="${c.preview}"></video>` : ''}
         <span class="case-badge">${hasVideo ? ICON_PLAY + tr('card.video') : tr('card.images')}</span>
         <span class="case-open" aria-hidden="true">${ICON_ARROW}</span>
         ${c.logo ? `<img class="case-logo" src="${c.logo}" alt="">` : ''}
@@ -1165,11 +1098,9 @@ function renderCards(){
         ${c.tools ? `<ul class="pills tool-pills" aria-label="${tr('dlg.tools')}">${c.tools.map(t => `<li class="pill">${esc(t)}</li>`).join('')}</ul>` : ''}
       </div>
       <button class="case-link" type="button" data-open="${i}"><span>${tr('card.view')}: ${esc(x.title)} ${tr('card.for')} ${esc(x.client)}</span></button>
-      ${gal.length > 1 ? `<button class="case-nav prev" type="button" data-step="-1" aria-label="${tr('card.prev')}" hidden>${ICON_CHEV}</button><button class="case-nav next" type="button" data-step="1" aria-label="${tr('card.next')}">${ICON_CHEV}</button>` : ''}
     </li>`;
   };
   list.innerHTML = CASES.map((c,i) => cardHtml(c,i)).join('');
-  list.querySelectorAll('.case').forEach(bindCardSwipe);
 
   /* Forhåndsvisning av video når man holder musepekeren over et kort */
   if (canHover) {
@@ -1177,7 +1108,6 @@ function renderCards(){
       const v = card.querySelector('video');
       if (!v) return;
       card.addEventListener('mouseenter', () => {
-        if (+(card.dataset.k || 0)) return;
         if (!v.src) v.src = v.dataset.src;
         v.play().then(() => card.classList.add('playing')).catch(() => {});
       });
@@ -1392,9 +1322,7 @@ dlg.addEventListener('close', () => {
 });
 list.addEventListener('click', e => {
   const b = e.target.closest('[data-open]'); if (!b) return;
-  const i = +b.dataset.open, card = b.closest('.case'), k = +(card.dataset.k || 0);
-  openCase(i);
-  if (k) showMedia(CASES[i], caseGallery(CASES[i])[k].m);
+  openCase(+b.dataset.open);
 });
 $('dlg-close').addEventListener('click', closeCase);
 $('dlg-prev').addEventListener('click', () => fillDialog(current - 1));
