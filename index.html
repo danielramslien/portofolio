@@ -280,7 +280,25 @@ section{position:relative}
 .contact-list a span{color:var(--muted)}
 .contact-list a:hover{color:var(--accent)}
 .contact-orb{display:grid;place-items:center}
-.contact-orb .orb{width:min(100%,460px);animation:float 10s ease-in-out infinite}
+.egg{position:relative;display:block;width:min(100%,460px);aspect-ratio:1;padding:0;border:0;background:none;border-radius:50%;cursor:pointer;animation:float 10s ease-in-out infinite;-webkit-tap-highlight-color:transparent}
+.egg:focus-visible{outline-offset:8px}
+.egg .orb{position:absolute;inset:0;display:block}
+.egg-photo{position:absolute;inset:0;z-index:1;border-radius:50%;overflow:hidden;-webkit-mask-image:-webkit-radial-gradient(white,black);opacity:0;transform:scale(.82);transition:opacity .5s .25s var(--ease),transform .7s .2s var(--ease)}
+.egg-photo img{position:absolute;left:13%;bottom:-6%;width:74%;max-width:none;height:auto}
+.egg-shell{position:absolute;inset:0;z-index:2;transition:transform .9s cubic-bezier(.3,.6,.2,1),opacity .7s var(--ease)}
+.egg-shell .orb::before{display:none}
+.egg-top{clip-path:polygon(0 0,100% 0,100% 52%,88% 46%,76% 55%,64% 47%,52% 56%,40% 46%,28% 55%,16% 47%,0 53%)}
+.egg-bot{clip-path:polygon(0 53%,16% 47%,28% 55%,40% 46%,52% 56%,64% 47%,76% 55%,88% 46%,100% 52%,100% 100%,0 100%)}
+.egg-cracks{position:absolute;inset:0;z-index:3;width:100%;height:100%;stroke:rgba(70,18,0,.85);stroke-width:1.1;pointer-events:none;transition:opacity .3s}
+.egg-cracks path{stroke-dasharray:120;stroke-dashoffset:120;transition:stroke-dashoffset .45s var(--ease)}
+.egg[data-stage="1"] .c1,.egg[data-stage="2"] .c1,.egg[data-stage="3"] .c1,.egg[data-stage="2"] .c2,.egg[data-stage="3"] .c2,.egg[data-stage="3"] .c3{stroke-dashoffset:0}
+.egg.wobble{animation:eggWobble .45s var(--ease)}
+@keyframes eggWobble{0%,100%{transform:rotate(0)}20%{transform:rotate(-6deg) scale(.97)}45%{transform:rotate(5deg)}70%{transform:rotate(-3deg)}85%{transform:rotate(1.5deg)}}
+.egg.hatched .egg-top{transform:translate(-8%,-42%) rotate(-22deg);opacity:0}
+.egg.hatched .egg-bot{transform:translate(6%,34%) rotate(12deg);opacity:0}
+.egg.hatched .egg-cracks{opacity:0}
+.egg.hatched .egg-photo{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){.egg,.egg.wobble{animation:none}}
 .footer-note{color:var(--faint);font-size:13px;padding:0 0 32px;margin:0;text-align:center}
 
 /* ---------- Case-dialog ---------- */
@@ -445,7 +463,7 @@ section{position:relative}
   .ref-dialog{width:100%;max-height:100dvh;height:100dvh;border-radius:0;border:0;margin:0}
   .ref-dlg-scroll{max-height:calc(100dvh - 78px);padding:12px}
   .contact-orb{order:-1}
-  .contact-orb .orb{width:min(62vw,300px)}
+  .egg{width:min(62vw,300px)}
   .dlg-grid{grid-template-columns:1fr}
   .dlg-media{position:relative;padding:16px}
   .dlg-body{border-left:0;border-top:1px solid var(--line)}
@@ -659,7 +677,18 @@ section{position:relative}
             <li><a href="https://www.linkedin.com/search/results/people/?keywords=Daniel%20Ramslien" target="_blank" rel="noopener"><span>LinkedIn · </span>Daniel Ramslien</a></li>
           </ul>
         </div>
-        <div class="contact-orb reveal" aria-hidden="true"><div class="orb"></div></div>
+        <div class="contact-orb reveal">
+          <button type="button" class="egg" id="egg" aria-label="Trykk på ballen" data-i18n-aria="egg.label" data-stage="0">
+            <span class="orb egg-core"><span class="egg-photo"><img src="assets/img/profil.webp" alt="" loading="lazy" width="933" height="1400"></span></span>
+            <span class="egg-shell egg-top"><span class="orb"></span></span>
+            <span class="egg-shell egg-bot"><span class="orb"></span></span>
+            <svg class="egg-cracks" viewBox="0 0 100 100" aria-hidden="true" fill="none" stroke-linecap="round" stroke-linejoin="round">
+              <path class="c1" d="M40 46 L52 56 L58 50"/>
+              <path class="c2" d="M28 55 L40 46 M58 50 L64 47 L70 52 M52 56 L50 64 M40 46 L37 38"/>
+              <path class="c3" d="M0 53 L16 47 L28 55 M70 52 L76 55 L88 46 L100 52 M64 47 L66 39 M16 47 L13 41 M76 55 L79 63"/>
+            </svg>
+          </button>
+        </div>
       </div>
       <p class="thanks reveal" data-i18n="foot.thanks">Takk for at du tok deg tid</p>
       <p class="footer-note" data-i18n="foot.note">© 2026 Daniel Ramslien · Rams Creative (Ramslien Creative ENK) · Org.nr. 935 128 986 · Referanser oppgis på forespørsel</p>
@@ -731,7 +760,7 @@ const I18N = {
   no: {
     'meta.title':'Daniel Ramslien Portefølje',
     'meta.desc':'Portefølje 2026. Daniel Ramslien er digital markedsfører med hjertet i sosiale medier: kampanjer, innhold og analyse for Mufano, M40 Studios, Punkt Oslo, NOT Management og flere.',
-    'skip':'Hopp til innhold', 'aria.menu':'Hovedmeny', 'aria.scroll':'Bla ned', 'aria.intro':'Introduksjon', 'aria.stats':'Resultater i tall', 'aria.lang':'Velg språk', 'aria.switchLang':'Bytt språk',
+    'skip':'Hopp til innhold', 'aria.menu':'Hovedmeny', 'aria.scroll':'Bla ned', 'aria.intro':'Introduksjon', 'aria.stats':'Resultater i tall', 'aria.lang':'Velg språk', 'aria.switchLang':'Bytt språk', 'egg.label':'Trykk på ballen noen ganger',
     'nav.about':'Om meg', 'nav.work':'Arbeid', 'nav.contact':'Kontakt',
     'hero.kicker':'Digital markedsfører', 'hero.title':'Hei, jeg er Daniel.',
     'foot.portfolio':'Portefølje 2026',
@@ -763,7 +792,7 @@ const I18N = {
   en: {
     'meta.title':'Daniel Ramslien Portfolio',
     'meta.desc':'Portfolio 2026. Daniel Ramslien is a digital marketer with a heart for social media: campaigns, content and analytics for Mufano, M40 Studios, Punkt Oslo, NOT Management and more.',
-    'skip':'Skip to content', 'aria.menu':'Main menu', 'aria.scroll':'Scroll down', 'aria.intro':'Introduction', 'aria.stats':'Results in numbers', 'aria.lang':'Choose language', 'aria.switchLang':'Switch language',
+    'skip':'Skip to content', 'aria.menu':'Main menu', 'aria.scroll':'Scroll down', 'aria.intro':'Introduction', 'aria.stats':'Results in numbers', 'aria.lang':'Choose language', 'aria.switchLang':'Switch language', 'egg.label':'Tap the ball a few times',
     'nav.about':'About', 'nav.work':'Work', 'nav.contact':'Contact',
     'hero.kicker':'Digital marketer', 'hero.title':'Hi, I’m Daniel.',
     'foot.portfolio':'Portfolio 2026',
@@ -1515,6 +1544,19 @@ const revObs = new IntersectionObserver(entries => {
   });
 }, {threshold:.15, rootMargin:'0px 0px -6% 0px'});
 document.querySelectorAll('.reveal').forEach(el => revObs.observe(el));
+
+/* ---------- Ballen ved Kontakt klekkes etter noen trykk ---------- */
+{
+  const egg = document.getElementById('egg');
+  egg.addEventListener('click', () => {
+    if (egg.classList.contains('hatched')) { egg.classList.remove('hatched'); egg.dataset.stage = '0'; return; }
+    const n = +egg.dataset.stage + 1;
+    if (n >= 4) { egg.classList.add('hatched'); return; }
+    egg.dataset.stage = n;
+    egg.classList.remove('wobble'); void egg.offsetWidth; egg.classList.add('wobble');
+  });
+  egg.addEventListener('animationend', e => { if (e.animationName === 'eggWobble') egg.classList.remove('wobble'); });
+}
 
 /* ---------- Cookies ---------- */
 {
