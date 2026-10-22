@@ -93,6 +93,7 @@ button{font:inherit;color:inherit}
 
 /* ---------- Typografi ---------- */
 .display{font-family:var(--font-display);font-stretch:100%;font-weight:900;text-transform:uppercase;line-height:.92;letter-spacing:-.005em;margin:0}
+.title-ico{display:inline-block;width:.78em;height:.78em;margin-right:.28em;vertical-align:-.04em;color:#fff}
 .h-xl{font-size:clamp(22px,4vw,58px)}
 .contact-copy{container-type:inline-size}
 .contact-copy .h-xl{font-size:clamp(22px,min(4vw,7.6cqi),58px)}
@@ -678,7 +679,7 @@ section{position:relative}
   <section class="section" id="verktoy" aria-labelledby="verktoy-tittel">
     <div class="wrap">
       <div class="refs-head">
-        <h2 class="display h-xl reveal" id="verktoy-tittel" data-i18n-html="tools.title">Verktøy jeg bruker</h2>
+        <h2 class="display h-xl reveal" id="verktoy-tittel" data-i18n-html="tools.title"><svg class="title-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>Verktøy</h2>
       </div>
       <div class="tools">
         <div class="tool-col reveal">
@@ -879,7 +880,7 @@ const I18N = {
     'card.video':'Video', 'card.images':'Bilder', 'card.view':'Se case', 'card.for':'for',
     'nav.refs':'Attester', 'refs.more':'Se flere', 'refs.less':'Se færre', 'about.more':'Les mer', 'about.less':'Les mindre', 'card.next':'Neste bilde', 'card.prev':'Forrige bilde', 'refs.title':'Attester', 'refs.lead':'Hele dokumentene. Trykk på en attest for å lese den.', 'refs.note':'Fødselsdato og adresse er sladdet.',
     'refs.close':'Lukk attest', 'refs.view':'Se attest fra',
-    'nav.testi':'Erfaringer', 'nav.tools':'Verktøy', 'tools.title':'Verktøy jeg bruker', 'tools.lead':'Fra idé og opptak til klipp, publisering og måling.', 'tools.adv':'Avansert kompetanse', 'tools.good':'God kompetanse', 'tools.basic':'Grunnleggende kompetanse', 'tools.skills':'Ferdigheter',
+    'nav.testi':'Erfaringer', 'nav.tools':'Verktøy', 'tools.title':'<svg class="title-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>Verktøy', 'tools.lead':'Fra idé og opptak til klipp, publisering og måling.', 'tools.adv':'Avansert kompetanse', 'tools.good':'God kompetanse', 'tools.basic':'Grunnleggende kompetanse', 'tools.skills':'Ferdigheter',
     'sk.1':'Kampanje og konvertering', 'sk.2':'Innholdsproduksjon', 'sk.3':'Videoredigering', 'sk.4':'Måling og analyse', 'sk.5':'Salg og kunderelasjoner', 'sk.6':'Merkevarebygging', 'sk.7':'Regnskapsføring', 'testi.title':'Hva andre sier', 'testi.lead':'Utdrag fra attester og uttalelser fra folk jeg har jobbet med.', 'testi.tr':''
   },
   en: {
@@ -911,7 +912,7 @@ const I18N = {
     'card.video':'Video', 'card.images':'Images', 'card.view':'View case', 'card.for':'for',
     'nav.refs':'References', 'refs.more':'See more', 'refs.less':'See fewer', 'about.more':'Read more', 'about.less':'Read less', 'card.next':'Next image', 'card.prev':'Previous image', 'refs.title':'References', 'refs.lead':'The full documents. Tap a reference to read it.', 'refs.note':'Date of birth and address have been redacted. The documents are in Norwegian, except Open iT.',
     'refs.close':'Close reference', 'refs.view':'View reference from',
-    'nav.testi':'Experience', 'nav.tools':'Tools', 'tools.title':'Tools I use', 'tools.lead':'From idea and shooting to editing, publishing and measuring.', 'tools.adv':'Advanced skills', 'tools.good':'Solid skills', 'tools.basic':'Basic skills', 'tools.skills':'Skills',
+    'nav.testi':'Experience', 'nav.tools':'Tools', 'tools.title':'<svg class="title-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>Tools', 'tools.lead':'From idea and shooting to editing, publishing and measuring.', 'tools.adv':'Advanced skills', 'tools.good':'Solid skills', 'tools.basic':'Basic skills', 'tools.skills':'Skills',
     'sk.1':'Campaigns and conversion', 'sk.2':'Content production', 'sk.3':'Video editing', 'sk.4':'Measurement and analytics', 'sk.5':'Sales and client relations', 'sk.6':'Brand building', 'sk.7':'Bookkeeping', 'testi.title':'What others say', 'testi.lead':'Excerpts from references and statements by people I have worked with.', 'testi.tr':'Translated from Norwegian'
   }
 };
