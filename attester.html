@@ -142,6 +142,9 @@ button{font:inherit;color:inherit}
 .nav a .n{color:var(--faint);margin-right:6px;transition:color .2s}
 .nav a:hover,.nav a.active{color:var(--text)}
 .site-header .nav,.site-header .menu-btn,.site-header .hdr-cta,.site-header .lang{transition:opacity .35s var(--ease),transform .35s var(--ease),visibility 0s 0s}
+.hero-menu .site-header{position:absolute;background:transparent!important;border-bottom-color:transparent!important;-webkit-backdrop-filter:none!important;backdrop-filter:none!important}
+html.hdr-in .site-header{animation:hdrIn .35s var(--ease)}
+@keyframes hdrIn{from{transform:translateY(-100%)}to{transform:none}}
 html.hero-menu .site-header .nav,html.hero-menu .site-header .menu-btn,html.hero-menu .site-header .hdr-cta{opacity:0;transform:translateY(-8px);pointer-events:none;visibility:hidden;transition:opacity .35s var(--ease),transform .35s var(--ease),visibility 0s .35s}
 html[data-page="home"] #om-meg,html[data-page="home"] #attester{display:none}
 html[data-page="refs"] main > section:not(#attester):not(#anbefalinger):not(#kontakt){display:none}
@@ -1662,7 +1665,10 @@ const onScroll = () => bar.classList.toggle('scrolled', window.scrollY > 24);
 {
   const hn = document.querySelector('.hero-nav'), root = document.documentElement;
   if (hn && root.dataset.page === 'home') {
-    const upd = () => { const hh = bar.offsetHeight || 68; root.classList.toggle('hero-menu', hn.getBoundingClientRect().bottom > hh); };
+    const upd = () => { const hh = bar.offsetHeight || 68, was = root.classList.contains('hero-menu'), now = hn.getBoundingClientRect().bottom > hh;
+      if (was === now) return; root.classList.toggle('hero-menu', now);
+      if (!now) { root.classList.remove('hdr-in'); void bar.offsetWidth; root.classList.add('hdr-in'); } };
+    root.classList.add('hero-menu');
     upd(); window.addEventListener('scroll', upd, {passive:true}); window.addEventListener('resize', upd);
     window.addEventListener('load', upd); setTimeout(upd, 300);
   }
