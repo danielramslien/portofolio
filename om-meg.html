@@ -147,8 +147,7 @@ button{font:inherit;color:inherit}
 .nav-home-txt{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 .site-header .nav,.site-header .menu-btn,.site-header .hdr-cta,.site-header .lang{transition:opacity .35s var(--ease),transform .35s var(--ease),visibility 0s 0s}
 .hero-menu .site-header{position:absolute;background:transparent!important;border-bottom-color:transparent!important;-webkit-backdrop-filter:none!important;backdrop-filter:none!important}
-html.hdr-in .site-header{animation:hdrIn .6s cubic-bezier(.22,1,.36,1) both}
-html.hdr-in .site-header .nav,html.hdr-in .site-header .menu-btn,html.hdr-in .site-header .hdr-cta{transition:none}
+html:not(.hero-menu) .site-header .nav,html:not(.hero-menu) .site-header .menu-btn,html:not(.hero-menu) .site-header .hdr-cta{transition:none}
 @keyframes hdrIn{from{transform:translateY(-110%)}to{transform:none}}
 html.hero-menu .site-header .nav,html.hero-menu .site-header .menu-btn,html.hero-menu .site-header .hdr-cta{opacity:0;transform:translateY(-8px);pointer-events:none;visibility:hidden;transition:opacity .35s var(--ease),transform .35s var(--ease),visibility 0s .35s}
 html[data-page="home"] #om-meg,html[data-page="home"] #attester{display:none}
@@ -1714,9 +1713,12 @@ const onScroll = () => bar.classList.toggle('scrolled', window.scrollY > 24);
 {
   const hn = document.querySelector('.hero-nav'), root = document.documentElement;
   if (hn && root.dataset.page === 'home') {
-    const upd = () => { const hh = bar.offsetHeight || 68, was = root.classList.contains('hero-menu'), now = hn.getBoundingClientRect().bottom > hh;
-      if (was === now) return; root.classList.toggle('hero-menu', now);
-      if (!now) { root.classList.remove('hdr-in'); void bar.offsetWidth; root.classList.add('hdr-in'); } };
+    /* Menyen sklir ned i takt med scrollingen: den følger siden piksel for piksel til den står helt fremme */
+    let raf = 0;
+    const calc = () => { raf = 0; const hh = bar.offsetHeight || 68, d = hh - hn.getBoundingClientRect().bottom, now = d < 0;
+      root.classList.toggle('hero-menu', now);
+      bar.style.transform = (now || d >= hh || bar.classList.contains('menu-open')) ? '' : `translateY(${d - hh}px)`; };
+    const upd = () => { if (!raf) raf = requestAnimationFrame(calc); };
     root.classList.add('hero-menu');
     upd(); window.addEventListener('scroll', upd, {passive:true}); window.addEventListener('resize', upd);
     window.addEventListener('load', upd); setTimeout(upd, 300);
@@ -1726,7 +1728,7 @@ onScroll(); window.addEventListener('scroll', onScroll, {passive:true});
 
 /* ---------- Hamburgermeny ---------- */
 const menuBtn = $('menu-btn');
-function setMenu(open){ bar.classList.toggle('menu-open', open); menuBtn.setAttribute('aria-expanded', open ? 'true' : 'false'); }
+function setMenu(open){ if (open) bar.style.transform = ''; bar.classList.toggle('menu-open', open); menuBtn.setAttribute('aria-expanded', open ? 'true' : 'false'); }
 menuBtn.addEventListener('click', () => setMenu(!bar.classList.contains('menu-open')));
 $('main-nav').addEventListener('click', e => { if (e.target.closest('a')) setMenu(false); });
 document.addEventListener('keydown', e => { if (e.key === 'Escape' && bar.classList.contains('menu-open')) { setMenu(false); menuBtn.focus(); } });
