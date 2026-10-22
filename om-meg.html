@@ -494,6 +494,7 @@ section{position:relative}
 /* ---------- Attester (dokumenter) ---------- */
 html[data-page="refs"] #anbefalinger .refs-head{display:none}
 .refs-head{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,420px);gap:32px;align-items:end;margin-bottom:clamp(40px,5vw,64px)}
+#verktoy .refs-head,#anbefalinger .refs-head{margin-bottom:28px!important}
 .refs-head .lead{text-align:right;color:var(--text-soft)}
 .refs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(14px,1.6vw,22px);list-style:none;margin:0;padding:0}
 .doc{position:relative}
@@ -757,7 +758,7 @@ html[data-page="refs"] #anbefalinger .refs-head{display:none}
           <button type="button" class="about-toggle" id="about-toggle" aria-expanded="false" aria-controls="about-more"><span data-i18n="about.more">Les mer</span></button>
           <span class="label reveal" data-i18n="about.skills">Det jeg jobber med</span>
           <ul class="pills reveal">
-            <li class="pill" data-i18n="skill.1">Innholdsstrategi</li><li class="pill">Instagram</li><li class="pill">TikTok</li><li class="pill">LinkedIn</li><li class="pill" data-i18n="skill.5">Videoproduksjon</li><li class="pill" data-i18n="skill.7">Analyse</li><li class="pill" data-i18n="skill.8">Kampanjeplanlegging</li>
+            <li class="pill" data-i18n="skill.1">Innholdsstrategi</li><li class="pill" data-i18n="skill.2">Sosiale medier</li><li class="pill" data-i18n="skill.5">Videoproduksjon</li><li class="pill" data-i18n="skill.7">Analyse</li><li class="pill" data-i18n="skill.8">Kampanjeplanlegging</li>
           </ul>
           <dl class="facts reveal">
             <div><dt data-i18n="facts.edu">Utdanning</dt><dd data-i18n="facts.edu.v">Bachelor i digital markedsføring, Høyskolen Kristiania (2024–2027)</dd></div>
@@ -881,7 +882,7 @@ const I18N = {
     'about.p2':'Nå ser jeg etter en jobb som SoMe-rådgiver, der jeg kan jobbe tett med et team som bryr seg om både idé og resultat.',
     'about.skills':'Det jeg jobber med',
     'about.p3':'I hverdagen jobber jeg med alt fra innholdsproduksjon og videoredigering til kampanjer som konverterer, og jeg måler alltid hva som faktisk virker. Gjennom eget foretak har jeg også fått erfaring med merkevarebygging, salg, kunderelasjoner og regnskap. I bunn har jeg sju år med musikkproduksjon, som har gitt meg et øre for rytme, timing og hva som fanger oppmerksomhet.',
-    'skill.1':'Innholdsstrategi','skill.5':'Videoproduksjon','skill.6':'Copy','skill.7':'Analyse','skill.8':'Kampanjeplanlegging',
+    'skill.1':'Innholdsstrategi','skill.2':'Sosiale medier','skill.5':'Videoproduksjon','skill.6':'Copy','skill.7':'Analyse','skill.8':'Kampanjeplanlegging',
     'facts.edu':'Utdanning', 'facts.edu.v':'Bachelor i digital markedsføring, Høyskolen Kristiania (2024–2027)',
     'stats.title':'Resultater', 'aria.menuBtn':'Meny', 'work.more':'Se mer', 'work.less':'Se mindre', 'dlg.full':'Fullskjerm', 'zoom.close':'Lukk', 'zoom.hint':'Klyp, dobbelttrykk eller klikk for å zoome', 'dlg.previmg':'Forrige bilde', 'dlg.nextimg':'Neste bilde', 'brand.sub':'Portefølje', 'work.school':'Skolearbeid', 'dlg.slide':'Vis', 'facts.biz':'Eget foretak', 'facts.biz.v':'Rams Creative, frilans markedsføring og videoredigering',
     'facts.tools':'Verktøy', 'facts.web':'Analyse og web',
@@ -913,7 +914,7 @@ const I18N = {
     'about.p2':'Right now I’m looking for a role as a social media advisor, working closely with a team that cares about both the idea and the results.',
     'about.skills':'What I work with',
     'about.p3':'Day to day I work on everything from content production and video editing to campaigns that convert, and I always measure what actually works. Running my own business has also given me experience with brand building, sales, client relations and bookkeeping. At the core I have seven years of music production behind me, which has given me an ear for rhythm, timing and what grabs attention.',
-    'skill.1':'Content strategy','skill.5':'Video production','skill.6':'Copywriting','skill.7':'Analytics','skill.8':'Campaign planning',
+    'skill.1':'Content strategy','skill.2':'Social media','skill.5':'Video production','skill.6':'Copywriting','skill.7':'Analytics','skill.8':'Campaign planning',
     'facts.edu':'Education', 'facts.edu.v':'Bachelor’s in Digital Marketing, Kristiania University of Applied Sciences (2024–2027)',
     'stats.title':'Results', 'aria.menuBtn':'Menu', 'work.more':'See more', 'work.less':'See less', 'dlg.full':'Fullscreen', 'zoom.close':'Close', 'zoom.hint':'Pinch, double-tap or click to zoom', 'dlg.previmg':'Previous image', 'dlg.nextimg':'Next image', 'brand.sub':'Portfolio', 'work.school':'Coursework', 'dlg.slide':'Show', 'facts.biz':'Own business', 'facts.biz.v':'Rams Creative, freelance marketing and video editing',
     'facts.tools':'Tools', 'facts.web':'Analytics and web',
