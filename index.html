@@ -175,16 +175,17 @@ html[data-page="about"] .nav a[href="om-meg.html"]{color:var(--text)}
 /* ---------- Seksjoner ---------- */
 section{position:relative}
 .section{padding:clamp(96px,12vw,150px) 0 0}
-@media (min-width:1081px){#arbeid{padding-top:clamp(48px,6vw,75px)}}
+#arbeid{padding-top:clamp(18px,2.4vw,32px)}
+#arbeid .work-head{margin-bottom:clamp(18px,2vw,28px)}
 .thanks{margin:clamp(80px,10vw,140px) 0 18px;text-align:center;font-family:var(--font-display);font-stretch:100%;font-weight:800;font-size:clamp(18px,1.8vw,24px);letter-spacing:.02em;color:var(--text)}
 
 /* ---------- Hero ---------- */
-.hero{min-height:100vh;min-height:100svh;display:flex;flex-direction:column;overflow:hidden}
-.hero-main{flex:1;padding-bottom:24px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:clamp(22px,3.6vh,40px);padding-top:calc(var(--header-h) + 20px)}
+.hero{display:flex;flex-direction:column;overflow:hidden}
+.hero-main{flex:1;padding-bottom:8px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:clamp(16px,2.6vh,30px);padding-top:calc(var(--header-h) + clamp(12px,2.5vh,28px))}
 .hero-copy{text-align:center;padding:0 var(--gutter)}
 .hero-kicker{display:block;font-size:12px;font-weight:600;letter-spacing:.24em;text-transform:uppercase;color:var(--accent);margin-bottom:12px}
 .hero-title{font-family:var(--font-display);font-stretch:100%;font-weight:800;font-size:clamp(30px,4.4vw,62px);line-height:1.02;letter-spacing:-.01em;color:var(--text);margin:0}
-.hero-visual{position:relative;width:min(74vw,46vh,470px);aspect-ratio:1;animation:float 9s ease-in-out infinite}
+.hero-visual{position:relative;width:min(66vw,34vh,400px);aspect-ratio:1;animation:float 9s ease-in-out infinite}
 .hero-visual .orb{position:absolute;inset:0}
 .hero-clip{position:absolute;inset:0;z-index:1;border-radius:50%;overflow:hidden;-webkit-mask-image:-webkit-radial-gradient(white,black)}
 .hero-photo{position:absolute;left:50%;bottom:-6%;transform:translateX(-50%);width:74%;height:auto}
@@ -239,7 +240,7 @@ section{position:relative}
 .facts dt{font-size:12px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);margin-bottom:6px}
 .facts dd{margin:0;font-size:14px;line-height:1.55;color:var(--text-soft)}
 
-.work-stats{margin-bottom:clamp(48px,6vw,80px)}
+.work-stats{margin-top:clamp(56px,7vw,96px)}
 .stats-title{margin:0 0 18px;font-family:var(--font-display);font-stretch:100%;font-weight:800;font-size:clamp(17px,1.5vw,20px);color:var(--text)}
 .stats{container-type:inline-size;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));margin-top:0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
 .stat{padding:30px 24px 30px 0}
@@ -324,8 +325,8 @@ section{position:relative}
 .egg.hatched .egg-core{background:transparent;box-shadow:none}
 .egg.hatched .egg-photo{opacity:1;transform:none}
 .egg.hatched ~ .egg-glow,.egg-wrap:has(.egg.hatched) .egg-glow{opacity:.5}
-.egg-hint{display:block;margin-top:clamp(14px,2vw,22px);text-align:center;font-size:13px;letter-spacing:.06em;color:var(--faint);transition:opacity .4s}
-.contact-orb:has(.egg.hatched) .egg-hint{opacity:0}
+.egg-hint{position:absolute;left:0;right:0;top:50%;z-index:6;transform:translateY(-50%);text-align:center;font-size:clamp(12px,1.1vw,15px);letter-spacing:.08em;color:rgba(255,244,232,.6);pointer-events:none;transition:opacity .4s}
+.egg-wrap.tapped .egg-hint{opacity:0}
 @media (prefers-reduced-motion:reduce){.egg-wrap,.egg.wobble{animation:none}}
 .footer-note{color:var(--faint);font-size:13px;padding:0 0 32px;margin:0;text-align:center}
 
@@ -563,7 +564,7 @@ section{position:relative}
     <nav class="nav" id="main-nav" aria-label="Hovedmeny" data-i18n-aria="aria.menu">
         <a href="#arbeid"><span data-i18n="nav.work">Arbeid</span></a>
         <a href="#verktoy"><span data-i18n="nav.tools">Verktøy</span></a>
-        <a href="#anbefalinger"><span data-i18n="nav.testi">Anbefalinger</span></a>
+        <a href="#anbefalinger"><span data-i18n="nav.testi">Erfaringer</span></a>
         <a href="attester.html"><span data-i18n="nav.refs">Attester</span></a>
         <a href="om-meg.html"><span data-i18n="nav.about">Om meg</span></a>
         <a href="#kontakt" class="nav-cta"><span data-i18n="nav.contact">Kontakt</span></a>
@@ -592,7 +593,7 @@ section{position:relative}
       <ul class="hero-nav">
         <li><a href="#arbeid" data-i18n="nav.work">Arbeid</a></li>
         <li><a href="#verktoy" data-i18n="nav.tools">Verktøy</a></li>
-        <li><a href="#anbefalinger" data-i18n="nav.testi">Anbefalinger</a></li>
+        <li><a href="#anbefalinger" data-i18n="nav.testi">Erfaringer</a></li>
         <li><a href="om-meg.html" data-i18n="nav.about">Om meg</a></li>
         <li><a href="#kontakt" class="hero-cta" data-i18n="nav.contact">Kontakt</a></li>
       </ul>
@@ -606,6 +607,7 @@ section{position:relative}
       <div class="work-head">
         <h2 class="display h-xl reveal" id="arbeid-tittel" data-i18n-html="work.title">Utvalgte case</h2>
       </div>
+      <ul class="cases" id="cases"></ul>
       <div class="work-stats" id="resultater">
       <h3 class="stats-title reveal" id="resultater-tittel" data-i18n="stats.title">Resultater</h3>
       <div class="stats" aria-label="Resultater i tall" data-i18n-aria="aria.stats">
@@ -615,7 +617,6 @@ section{position:relative}
         <div class="stat reveal" style="--d:.24s"><span class="stat-num" data-count="25" data-suffix=" + 150">25 + 150</span><span class="stat-label" data-i18n="stat.4">videoer og bilder i innholdsbanken til Punkt Oslo</span></div>
       </div>
       </div>
-      <ul class="cases" id="cases"></ul>
       <div class="more-wrap"><button type="button" class="more-btn" id="more-btn" aria-controls="cases" aria-expanded="false"><span data-i18n="work.more">Se mer</span></button></div>
       <noscript><p class="body">Slå på JavaScript for å se casene. / Enable JavaScript to see the work.</p></noscript>
     </div>
@@ -725,8 +726,8 @@ section{position:relative}
               <path class="c3" d="M0 53 L16 47 L28 55 M70 52 L76 55 L88 46 L100 52 M64 47 L66 39 M16 47 L13 41 M76 55 L79 63"/>
             </svg>
           </button>
+            <span class="egg-hint" data-i18n="egg.hint">(trykk på meg)</span>
           </div>
-          <span class="egg-hint" data-i18n="egg.hint">(trykk på meg)</span>
         </div>
       </div>
       <p class="thanks reveal" data-i18n="foot.thanks">Takk for at du tok deg tid</p>
@@ -825,7 +826,7 @@ const I18N = {
     'card.video':'Video', 'card.images':'Bilder', 'card.view':'Se case', 'card.for':'for',
     'nav.refs':'Attester', 'refs.more':'Se flere', 'refs.less':'Se færre', 'about.more':'Les mer', 'about.less':'Les mindre', 'card.next':'Neste bilde', 'card.prev':'Forrige bilde', 'refs.title':'Attester', 'refs.lead':'Hele dokumentene. Trykk på en attest for å lese den.', 'refs.note':'Fødselsdato og adresse er sladdet.',
     'refs.close':'Lukk attest', 'refs.view':'Se attest fra',
-    'nav.testi':'Anbefalinger', 'nav.tools':'Verktøy', 'tools.title':'Verktøy jeg bruker', 'tools.lead':'Fra idé og opptak til klipp, publisering og måling.', 'tools.adv':'Avansert kompetanse', 'tools.good':'God kompetanse', 'tools.basic':'Grunnleggende kompetanse', 'tools.skills':'Ferdigheter',
+    'nav.testi':'Erfaringer', 'nav.tools':'Verktøy', 'tools.title':'Verktøy jeg bruker', 'tools.lead':'Fra idé og opptak til klipp, publisering og måling.', 'tools.adv':'Avansert kompetanse', 'tools.good':'God kompetanse', 'tools.basic':'Grunnleggende kompetanse', 'tools.skills':'Ferdigheter',
     'sk.1':'Kampanje og konvertering', 'sk.2':'Innholdsproduksjon', 'sk.3':'Videoredigering', 'sk.4':'Måling og analyse', 'sk.5':'Salg og kunderelasjoner', 'sk.6':'Merkevarebygging', 'sk.7':'Regnskapsføring', 'testi.title':'Hva andre sier', 'testi.lead':'Utdrag fra attester og uttalelser fra folk jeg har jobbet med.', 'testi.tr':''
   },
   en: {
@@ -857,7 +858,7 @@ const I18N = {
     'card.video':'Video', 'card.images':'Images', 'card.view':'View case', 'card.for':'for',
     'nav.refs':'References', 'refs.more':'See more', 'refs.less':'See fewer', 'about.more':'Read more', 'about.less':'Read less', 'card.next':'Next image', 'card.prev':'Previous image', 'refs.title':'References', 'refs.lead':'The full documents. Tap a reference to read it.', 'refs.note':'Date of birth and address have been redacted. The documents are in Norwegian, except Open iT.',
     'refs.close':'Close reference', 'refs.view':'View reference from',
-    'nav.testi':'Testimonials', 'nav.tools':'Tools', 'tools.title':'Tools I use', 'tools.lead':'From idea and shooting to editing, publishing and measuring.', 'tools.adv':'Advanced skills', 'tools.good':'Solid skills', 'tools.basic':'Basic skills', 'tools.skills':'Skills',
+    'nav.testi':'Experience', 'nav.tools':'Tools', 'tools.title':'Tools I use', 'tools.lead':'From idea and shooting to editing, publishing and measuring.', 'tools.adv':'Advanced skills', 'tools.good':'Solid skills', 'tools.basic':'Basic skills', 'tools.skills':'Skills',
     'sk.1':'Campaigns and conversion', 'sk.2':'Content production', 'sk.3':'Video editing', 'sk.4':'Measurement and analytics', 'sk.5':'Sales and client relations', 'sk.6':'Brand building', 'sk.7':'Bookkeeping', 'testi.title':'What others say', 'testi.lead':'Excerpts from references and statements by people I have worked with.', 'testi.tr':'Translated from Norwegian'
   }
 };
@@ -1031,7 +1032,7 @@ const CASES = [
     }
   },
   {
-    id:'knytt', tools:['CapCut', 'Canva'], year:'2025', cover:P+'knytt-paolo.jpg', preview:V+'knytt.mp4',
+    id:'knytt', tools:['CapCut', 'Canva'], year:'2025', cover:P+'knytt-paolo.jpg', preview:V+'knytt-preview.mp4',
     media:[
       {type:'video',src:V+'knytt.mp4',poster:P+'knytt.jpg',cap:{no:'Video for Knytt, klippet av meg',en:'Video for Knytt, edited by me'}},
       {type:'image',src:I+'knytt-landing.webp',cap:{no:'Landingssiden på knytt.org',en:'Landing page on knytt.org'}},
@@ -1081,7 +1082,7 @@ const CASES = [
   },
   {
     id:'div', tools:['WordPress', 'Elementor', 'GA4', 'Google Search Console'], group:'school', year:'2025',
-    link:{href:'https://youtu.be/aBOuIqYqrRg', text:{no:'Se hele pitchdecket på YouTube',en:'Watch the full pitch deck on YouTube'}}, cover:P+'div-eksamen.jpg', coverPos:'0% 50%', preview:V+'div-eksamen.mp4',
+    link:{href:'https://youtu.be/aBOuIqYqrRg', text:{no:'Se hele pitchdecket på YouTube',en:'Watch the full pitch deck on YouTube'}}, cover:P+'div-eksamen.jpg', coverPos:'0% 50%', preview:V+'div-preview.mp4',
     media:[{type:'video',src:V+'div-eksamen.mp4',poster:P+'div-eksamen.jpg',cap:{no:'Eksamensvideo i Digitale verktøy',en:'Exam video in Digital Tools'}},
       {type:'image',src:I+'knytt-landing.webp',cap:{no:'Landingssiden på knytt.org',en:'Landing page on knytt.org'}},
       {type:'image',src:I+'knytt-serp.webp',cap:{no:'Knytt i Google-søk',en:'Knytt in Google search'}},
@@ -1174,7 +1175,7 @@ function renderCards(){
     <li class="case reveal in" style="--d:${(i%3)*0.08}s" data-index="${i}">
       <div class="case-media">
         <img src="${c.cover}" alt="" loading="lazy"${c.coverPos ? ` style="object-position:${c.coverPos}"` : ''}>
-        ${c.preview ? `<video muted loop playsinline preload="none" data-src="${c.preview}"></video>` : ''}
+        ${c.preview ? `<video muted loop playsinline preload="none" data-src="${c.preview}"${c.coverPos ? ` style="object-position:${c.coverPos}"` : ''}></video>` : ''}
         <span class="case-badge">${hasVideo ? ICON_PLAY + tr('card.video') : tr('card.images')}</span>
         <span class="case-open" aria-hidden="true">${ICON_ARROW}</span>
         ${c.logo ? `<img class="case-logo" src="${c.logo}" alt="">` : ''}
@@ -1596,7 +1597,8 @@ document.querySelectorAll('.reveal').forEach(el => revObs.observe(el));
 {
   const egg = document.getElementById('egg');
   egg.addEventListener('click', () => {
-    if (egg.classList.contains('hatched')) { egg.classList.remove('hatched'); egg.dataset.stage = '0'; egg.dataset.taps = 0; return; }
+    if (egg.classList.contains('hatched')) return;
+    egg.parentNode.classList.add('tapped');
     const n = (+egg.dataset.taps || 0) + 1;
     egg.dataset.taps = n;
     if (n >= 8) { egg.classList.add('hatched'); egg.dataset.taps = 0; return; }
