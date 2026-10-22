@@ -141,6 +141,9 @@ button{font:inherit;color:inherit}
 .nav a{text-decoration:none;font-size:14px;color:var(--muted);transition:color .2s;white-space:nowrap}
 .nav a .n{color:var(--faint);margin-right:6px;transition:color .2s}
 .nav a:hover,.nav a.active{color:var(--text)}
+.nav a.nav-home{display:inline-flex;align-items:center}
+.nav-home svg{width:18px;height:18px;display:block}
+.nav-home-txt{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 .site-header .nav,.site-header .menu-btn,.site-header .hdr-cta,.site-header .lang{transition:opacity .35s var(--ease),transform .35s var(--ease),visibility 0s 0s}
 .hero-menu .site-header{position:absolute;background:transparent!important;border-bottom-color:transparent!important;-webkit-backdrop-filter:none!important;backdrop-filter:none!important}
 html.hdr-in .site-header{animation:hdrIn .35s var(--ease)}
@@ -160,6 +163,8 @@ html[data-page="refs"] .refs > .doc{display:block!important}
 html[data-page="refs"] .nav a[href="attester.html"]{color:var(--text)}
 
 html[data-page="about"] .hero,html[data-page="about"] #arbeid,html[data-page="about"] #verktoy,html[data-page="about"] #anbefalinger,html[data-page="about"] #attester{display:none}
+html[data-page="home"] #kontakt{padding-top:42px}
+@media (max-width:900px){html[data-page="home"] #kontakt{padding-top:48px}}
 html[data-page="about"] #om-meg{padding-top:calc(var(--header-h) + clamp(8px,1.4vw,20px));padding-bottom:clamp(20px,2.4vw,32px)}
 html[data-page="about"] #kontakt{padding-top:clamp(20px,2.4vw,32px)}
 html[data-page="about"] .about-grid{align-items:start}
@@ -615,6 +620,9 @@ html[data-page="refs"] #anbefalinger .refs-head{display:none}
     opacity:0;transform:translateY(-10px);pointer-events:none;visibility:hidden;transition:opacity .3s var(--ease),transform .3s var(--ease),visibility 0s .3s}
   .menu-open .nav{opacity:1;transform:none;pointer-events:auto;visibility:visible;transition:opacity .3s var(--ease),transform .3s var(--ease)}
   .nav a{display:block;padding:16px 0;border-bottom:1px solid var(--line);font-family:var(--font-display);font-stretch:100%;font-weight:800;font-size:22px;text-transform:uppercase;color:var(--text)}
+  .nav a.nav-home{display:flex;gap:12px}
+  .nav-home svg{width:22px;height:22px}
+  .nav-home-txt{position:static;width:auto;height:auto;clip:auto;overflow:visible}
   .nav a.nav-cta{margin-top:20px;padding:14px 22px;border-bottom:0;text-align:center;font-family:var(--font-body);font-stretch:100%;font-size:16px;text-transform:none}
 }
 
@@ -633,6 +641,7 @@ html[data-page="refs"] #anbefalinger .refs-head{display:none}
     <a class="hdr-cta" href="#kontakt"><span data-i18n="nav.contact">Kontakt</span></a>
     <button class="menu-btn" id="menu-btn" type="button" aria-expanded="false" aria-controls="main-nav" aria-label="Meny" data-i18n-aria="aria.menuBtn"><span></span><span></span><span></span></button>
     <nav class="nav" id="main-nav" aria-label="Hovedmeny" data-i18n-aria="aria.menu">
+        <a class="nav-home" href="index.html" aria-label="Hjem" data-i18n-aria="nav.home"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3.5 10.5 12 3.5l8.5 7"/><path d="M5.5 9v11h4.5v-6h4v6h4.5V9"/></svg><span class="nav-home-txt" data-i18n="nav.home">Hjem</span></a>
         <a href="#arbeid"><span data-i18n="nav.work">Arbeid</span></a>
         <a href="#verktoy"><span data-i18n="nav.tools">Verktøy</span></a>
         <a href="#anbefalinger"><span data-i18n="nav.testi">Erfaringer</span></a>
@@ -878,7 +887,7 @@ const I18N = {
     'meta.title':'Daniel Ramslien Portefølje',
     'meta.desc':'Portefølje 2026. Daniel Ramslien er digital markedsfører med hjertet i sosiale medier: kampanjer, innhold og analyse for Mufano, M40 Studios, Punkt Oslo, NOT Management og flere.',
     'skip':'Hopp til innhold', 'aria.menu':'Hovedmeny', 'aria.scroll':'Bla ned', 'aria.intro':'Introduksjon', 'aria.stats':'Resultater i tall', 'aria.lang':'Velg språk', 'aria.switchLang':'Bytt språk', 'totop':'Til toppen', 'egg.label':'Trykk på ballen noen ganger', 'egg.hint':'(trykk på meg)',
-    'nav.about':'Om meg', 'nav.work':'Arbeid', 'nav.contact':'Kontakt',
+    'nav.about':'Om meg', 'nav.home':'Hjem', 'nav.work':'Arbeid', 'nav.contact':'Kontakt',
     'hero.kicker':'Digital markedsfører', 'hero.title':'Hei, jeg er Daniel.',
     'foot.portfolio':'Portefølje 2026',
     'about.title':'Om meg', 'photo.credit':'Foto:', 'aria.slides':'Bilder av Daniel', 'slides.go':'Vis bilde', 'about.alt':'Portrett av Daniel Ramslien',
@@ -910,7 +919,7 @@ const I18N = {
     'meta.title':'Daniel Ramslien Portfolio',
     'meta.desc':'Portfolio 2026. Daniel Ramslien is a digital marketer with a heart for social media: campaigns, content and analytics for Mufano, M40 Studios, Punkt Oslo, NOT Management and more.',
     'skip':'Skip to content', 'aria.menu':'Main menu', 'aria.scroll':'Scroll down', 'aria.intro':'Introduction', 'aria.stats':'Results in numbers', 'aria.lang':'Choose language', 'aria.switchLang':'Switch language', 'totop':'Back to top', 'egg.label':'Tap the ball a few times', 'egg.hint':'(tap me)',
-    'nav.about':'About', 'nav.work':'Work', 'nav.contact':'Contact',
+    'nav.about':'About', 'nav.home':'Home', 'nav.work':'Work', 'nav.contact':'Contact',
     'hero.kicker':'Digital marketer', 'hero.title':'Hi, I’m Daniel.',
     'foot.portfolio':'Portfolio 2026',
     'about.title':'About me', 'photo.credit':'Photo:', 'aria.slides':'Photos of Daniel', 'slides.go':'Show photo', 'about.alt':'Portrait of Daniel Ramslien',
@@ -1689,6 +1698,7 @@ menuBtn.addEventListener('click', () => setMenu(!bar.classList.contains('menu-op
 $('main-nav').addEventListener('click', e => { if (e.target.closest('a')) setMenu(false); });
 document.addEventListener('keydown', e => { if (e.key === 'Escape' && bar.classList.contains('menu-open')) { setMenu(false); menuBtn.focus(); } });
 
+document.querySelector('.nav-home').addEventListener('click', e => { if (document.documentElement.dataset.page === 'home') { e.preventDefault(); scrollTo({top:0, behavior: reduce ? 'auto' : 'smooth'}); } });
 const navLinks = [...document.querySelectorAll('.nav a')];
 const secObs = new IntersectionObserver(entries => {
   entries.forEach(en => {
