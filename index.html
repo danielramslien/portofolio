@@ -136,7 +136,7 @@ button{font:inherit;color:inherit}
 .nav a:hover,.nav a.active{color:var(--text)}
 html[data-page="home"] #om-meg{display:none}
 html[data-page="about"] .hero,html[data-page="about"] #arbeid,html[data-page="about"] #verktoy,html[data-page="about"] #anbefalinger,html[data-page="about"] #attester{display:none}
-html[data-page="about"] #om-meg{padding-top:calc(var(--header-h) + clamp(48px,7vw,96px))}
+html[data-page="about"] #om-meg{padding-top:calc(var(--header-h) + clamp(20px,3vw,40px))}
 html[data-page="about"] .about-more{display:block}
 html[data-page="about"] .about-toggle{display:none!important}
 html[data-page="about"] .nav a[href="om-meg.html"]{color:var(--text)}
@@ -1112,8 +1112,8 @@ function renderCards(){
         ${c.logo ? `<img class="case-logo" src="${c.logo}" alt="">` : ''}
       </div>
       <div class="case-body">
-        <div class="case-title-row"><h3 class="case-title">${esc(x.card)}</h3><span class="case-year">${c.year}</span></div>
-        <p class="case-client">${esc(x.client)}</p>
+        <div class="case-title-row"><h3 class="case-title">${esc(x.client)}</h3><span class="case-year">${c.year}</span></div>
+        <p class="case-client">${esc(x.card)}</p>
         <div class="case-results">${x.result.split(' · ').map(t => `<p class="case-result">${esc(t)}</p>`).join('')}</div>
         <ul class="pills">${x.tags.map(t => `<li class="pill">${esc(t)}</li>`).join('')}</ul>
         ${c.tools ? `<ul class="pills tool-pills" aria-label="${tr('dlg.tools')}">${c.tools.map(t => `<li class="pill">${esc(t)}</li>`).join('')}</ul>` : ''}
