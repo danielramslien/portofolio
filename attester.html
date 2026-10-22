@@ -412,6 +412,8 @@ section{position:relative}
 .case-media img.case-logo{position:absolute;inset:auto;left:clamp(8px,5%,14px);top:clamp(8px,5%,14px);z-index:2;width:clamp(30px,20%,64px);height:auto;aspect-ratio:1;object-fit:contain;transform:none!important;filter:drop-shadow(0 4px 14px rgba(0,0,0,.5))}
 .refs-section{position:relative;padding-top:clamp(48px,6vw,80px)}
 .work-sub{margin:0 0 clamp(20px,2.4vw,30px);font-family:var(--font-display);font-stretch:100%;font-weight:800;font-size:clamp(18px,2.1vw,30px);text-transform:uppercase;line-height:1}
+.dlg-media .dlg-link{margin:4px 0 6px}
+#dlg-vlink:empty{display:none}
 .dlg-link{display:inline-flex;align-items:center;gap:8px;margin:0 0 32px;color:var(--accent);font-weight:600;font-size:14px;text-decoration:none}
 .dlg-link:hover{text-decoration:underline}
 .viewer-cap{font-size:13px;color:var(--muted);margin:0;min-height:1.4em}
@@ -808,6 +810,7 @@ section{position:relative}
         <div class="viewer" id="dlg-viewer"></div>
         <p class="viewer-cap" id="dlg-cap"></p>
         <div class="vdots" id="dlg-thumbs" role="group" aria-label="Velg bilde eller video" data-i18n-aria="dlg.thumbs"></div>
+        <div id="dlg-vlink"></div>
         <div class="dlg-docs" id="dlg-docs"></div>
         <div class="dlg-tt" id="dlg-tt"></div>
       </div>
@@ -1076,17 +1079,17 @@ const CASES = [
       {type:'image',src:I+'knytt-serp.webp',cap:{no:'Knytt øverst i Google-søk',en:'Knytt at the top of Google search'}}
     ],
     t:{
-      no:{card:'Knytt.org', title:'Knytt: nettsidebygging og kommunikasjon', client:'Knytt SB', clientDesc:'Studentbedrift', period:'Sep. – des. 2025',
+      no:{card:'Knytt.org', title:'Knytt: nettsidebygging og kommunikasjon', client:'Knytt SB', clientDesc:'Tidligere studentbedrift', period:'Sep. – des. 2025',
         role:'Kommunikasjonsleder og gründer', tags:['Nettside','Video','Partnerskap'], result:'3 events · 5 partnere',
-        intro:'Knytt er en studentbedrift som arrangerer lavterskel events for studenter og unge voksne i Oslo. Jeg ledet kommunikasjonen og bygget nettsiden med nettbutikk.',
+        intro:'Knytt var en studentbedrift som arrangerte lavterskel events for studenter og unge voksne i Oslo. Jeg ledet kommunikasjonen og bygget nettsiden med nettbutikk.',
         metrics:[['3','arrangementer'],['5','partnere']],
         bullets:['Ledet kommunikasjonen for studentbedriften, som arrangerte 3 events.',
           'Bygget knytt.org med nettbutikk. Siden er nå tatt ned.',
           'Klippet video for Knytt til sosiale medier.',
           'Sikret samarbeid med 5 partnere: NoHo Norway, Anker Studentbolig, Mesh Oslo, Punkt Oslo og SiO.']},
-      en:{card:'Knytt.org', title:'Knytt: website building and communication', client:'Knytt SB', clientDesc:'Student company', period:'Sep – Dec 2025',
+      en:{card:'Knytt.org', title:'Knytt: website building and communication', client:'Knytt SB', clientDesc:'Former student company', period:'Sep – Dec 2025',
         role:'Head of communications and founder', tags:['Website','Video','Partnerships'], result:'3 events · 5 partners',
-        intro:'Knytt is a student company hosting low-threshold events for students and young adults in Oslo. I led communications and built the website with an online store.',
+        intro:'Knytt was a student company hosting low-threshold events for students and young adults in Oslo. I led communications and built the website with an online store.',
         metrics:[['3','events'],['5','partners']],
         bullets:['Led communications for the student company, which hosted 3 events.',
           'Built knytt.org with an online store. The site has since been taken down.',
@@ -1101,7 +1104,7 @@ const CASES = [
     t:{
       no:{brand:'Kampanjevideo', card:'Kampanjevideo', title:'Kampanjevideo pitch', client:'Høyskolen Kristiania', clientDesc:'Innholdskommunikasjon', period:'Vår 2025',
         role:'Ansvarlig for kampanjevideoen i gruppen', tags:['Kampanje','Video','Skolearbeid'], result:'Karakter A',
-        intro:'I gruppeeksamen i Innholdskommunikasjon startet vi vårt eget mediebyrå, Ung Media, som tilpasser markedsføring til yngre målgrupper. Jeg hadde ansvaret for kampanjevideoen og laget kampanjepitchen. I den individuelle eksamenen designet jeg en personlig prosessjournal med musikktema i Photoshop og Illustrator.',
+        intro:'Skoleoppgave i Innholdskommunikasjon. I gruppen startet vi mediebyrået Ung Media, der jeg laget kampanjevideoen og kampanjepitchen. Alene designet jeg en personlig journal med musikktema i Photoshop og Illustrator.',
         metrics:[['A','karakter i emnet'],['16 timer','arbeid med kampanjevideoen']],
         bullets:['Planla kampanjen sammen med gruppen, med felles moodboard i Milanote.',
           'Hentet klipp og satte dem sammen til en tydelig fortelling som skulle fange oppmerksomhet og skape engasjement.',
@@ -1110,7 +1113,7 @@ const CASES = [
           'Designet en personlig prosessjournal, «Rams», med musikktema i Photoshop og Illustrator.']},
       en:{brand:'Campaign video', card:'Campaign video', title:'Campaign video pitch', client:'Kristiania University of Applied Sciences', clientDesc:'Content Communication', period:'Spring 2025',
         role:'Responsible for the group’s campaign video', tags:['Campaign','Video','Coursework'], result:'Grade A',
-        intro:'For the group exam in Content Communication we started our own media agency, Ung Media, tailoring marketing to younger audiences. I was responsible for the campaign video and made the campaign pitch. For the individual exam I designed a personal, music-themed process journal in Photoshop and Illustrator.',
+        intro:'Coursework in Content Communication. In the group we started the media agency Ung Media, where I made the campaign video and the campaign pitch. On my own I designed a personal, music-themed journal in Photoshop and Illustrator.',
         metrics:[['A','grade in the course'],['16 hours','spent on the campaign video']],
         bullets:['Planned the campaign with the group, using a shared moodboard in Milanote.',
           'Gathered clips and built them into a clear story designed to grab attention and drive engagement.',
@@ -1120,7 +1123,7 @@ const CASES = [
     }
   },
   {
-    id:'ride-for-wishes', logo:'assets/img/not-logo.png', tools:['Google Workspace', 'Canva'], year:'2026', cover:I+'ride-for-wishes.webp', coverPos:'0% 50%',
+    id:'ride-for-wishes', link:{href:'https://lnkd.in/p/eenSYSqv', text:{no:'Les mer om eventet på LinkedIn',en:'Read more about the event on LinkedIn'}}, logo:'assets/img/not-logo.png', tools:['Google Workspace', 'Canva'], year:'2026', cover:I+'ride-for-wishes.webp', coverPos:'0% 50%',
     quote:{text:'… our interns (Simon Brusdal, Kathalina Nunez-Garate, Daniel Ramslien) researching every detail of the trip …',
       by:{no:'Lynn, NOT Management, i LinkedIn-innlegget om turen',en:'Lynn, NOT Management, in her LinkedIn post about the ride'}},
     media:[
@@ -1513,7 +1516,8 @@ function fillDialog(i, keepMedia){
   $('dlg-docs').innerHTML = c.docs ? `<span class="label">${tr('dlg.docs')}</span><ul class="doc-grid">${c.docs.map(d => `<li><a class="doc-card" href="${d.src}" target="_blank" rel="noopener"><span class="doc-card-thumb"><img src="${d.thumb}" alt="" loading="lazy"></span><span class="doc-card-t">${esc(pick(d.title))}</span><span class="doc-card-m">${esc(pick(d.meta))} ↗</span></a></li>`).join('')}</ul>` : '';
   $('dlg-tt').innerHTML = c.tiktok ? `<span class="label">${tr('dlg.tiktok')}</span><div class="tt-row">${c.tiktok.map(id => `<div class="tt-item"><iframe data-src="https://www.tiktok.com/player/v1/${id}?music_info=1&description=1&rel=0" title="TikTok" allow="encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe></div>`).join('')}</div>` : '';
   $('dlg-tt').querySelectorAll('iframe').forEach(f => { f.src = f.dataset.src; });
-  $('dlg-link').innerHTML = c.link ? `<a class="dlg-link" href="${c.link.href}" target="_blank" rel="noopener">${esc(pick(c.link.text))} ↗</a>` : '';
+  { const lk = c.link ? `<a class="dlg-link" href="${c.link.href}" target="_blank" rel="noopener">${esc(pick(c.link.text))} ↗</a>` : '', yt = c.link && /youtu/.test(c.link.href);
+    $('dlg-link').innerHTML = yt ? '' : lk; $('dlg-vlink').innerHTML = yt ? lk : ''; }
   if (keepMedia) {
     $('dlg-thumbs').innerHTML = c.media.length > 1 ? c.media.map((m,k) => `<button type="button" data-k="${k}" aria-label="${tr('dlg.slide')} ${k+1}: ${esc(pick(m.cap))}"></button>`).join('') : '';
     $('dlg-cap').textContent = pick(c.media[currentMedia].cap) || '';
