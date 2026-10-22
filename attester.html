@@ -270,6 +270,29 @@ section{position:relative}
 .case-open{position:absolute;right:14px;top:14px;z-index:2;width:40px;height:40px;border-radius:50%;display:grid;place-items:center;background:var(--accent);color:var(--ink);transform:scale(.6);opacity:0;transition:transform .35s var(--ease),opacity .35s}
 .case:hover .case-open,.case:focus-within .case-open{transform:scale(1);opacity:1}
 .case-open svg{width:16px;height:16px}
+.logos{position:relative;overflow:hidden;margin:0 0 clamp(22px,2.6vw,36px);padding:clamp(10px,1.2vw,16px) 0;-webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)}
+.logos-track{display:flex;width:max-content;animation:logos 36s linear infinite}
+.logos:hover .logos-track{animation-play-state:paused}
+.logos ul{display:flex;align-items:center;gap:clamp(40px,5vw,72px);list-style:none;margin:0;padding:0 clamp(20px,2.5vw,36px)}
+.logos li{flex:none;display:flex;align-items:center;height:clamp(30px,3.2vw,44px);opacity:.6;transition:opacity .25s}
+.logos li:hover{opacity:1}
+.logos img{height:100%;width:auto;display:block}
+.logos li.lg-big{height:clamp(44px,4.6vw,64px)}
+.logo-word{font-family:var(--font-display);font-weight:800;font-size:clamp(17px,1.7vw,23px);letter-spacing:-.01em;color:#fff;white-space:nowrap}
+@keyframes logos{to{transform:translateX(-50%)}}
+@media (prefers-reduced-motion:reduce){.logos-track{animation:none}}
+.dlg-docs:empty,.dlg-tt:empty{display:none}
+.dlg-docs .label{display:block;margin:10px 0 10px}
+.doc-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;list-style:none;margin:0;padding:0}
+.doc-card{display:block;text-decoration:none;color:var(--text)}
+.doc-card-thumb{display:block;aspect-ratio:16/10;border-radius:10px;overflow:hidden;background:#fff;border:1px solid var(--line);transition:transform .3s var(--ease),box-shadow .3s var(--ease)}
+.doc-card-thumb img{width:100%;height:100%;object-fit:cover;object-position:top}
+.doc-card:hover .doc-card-thumb{transform:translateY(-3px);box-shadow:0 14px 30px rgba(0,0,0,.45)}
+.doc-card-t{display:block;margin-top:8px;font-family:var(--font-display);font-weight:800;font-size:14px;line-height:1.25}
+.doc-card-m{display:block;font-size:12px;color:var(--muted)}
+.tt-row{display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;margin:0 0 30px;padding-bottom:6px}
+.tt-item{flex:0 0 min(260px,72%);aspect-ratio:9/16;border-radius:12px;overflow:hidden;background:#000;scroll-snap-align:start}
+.tt-item iframe{width:100%;height:100%;border:0;display:block}
 .case-body{padding-top:14px}
 .case-body > :not(.case-title-row),.case-year,.case-badge{display:none!important}
 #arbeid .more-wrap{display:none}
@@ -332,7 +355,7 @@ section{position:relative}
 
 /* ---------- Case-dialog ---------- */
 .case-dialog{width:min(1180px,calc(100% - 32px));max-width:none;max-height:calc(100vh - 48px);max-height:calc(100dvh - 48px);padding:0;border:1px solid var(--line);border-radius:18px;background:var(--bg-raised);color:var(--text);overflow:hidden}
-.case-dialog::backdrop{background:rgba(6,5,4,.78);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
+.case-dialog::backdrop{background:rgba(6,5,4,.55);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
 .case-dialog[open]{animation:dlg .45s var(--ease)}
 @keyframes dlg{from{opacity:0;transform:translateY(18px) scale(.985)}to{opacity:1;transform:none}}
 .dlg-scroll{max-height:inherit;overflow:auto;overscroll-behavior:contain}
@@ -460,7 +483,12 @@ section{position:relative}
 .doc-org{font-family:var(--font-display);font-stretch:100%;font-weight:800;font-size:15px;line-height:1.25;margin:16px 0 4px}
 .doc-meta{font-size:13px;line-height:1.45;color:var(--muted);margin:0}
 .doc-link{position:absolute;inset:0;z-index:3;background:none;border:0;padding:0;cursor:pointer;border-radius:10px}
-.ref-dialog{width:min(860px,calc(100% - 32px));max-width:none;max-height:calc(100vh - 48px);max-height:calc(100dvh - 48px);padding:0;border:1px solid var(--line);border-radius:18px;background:var(--bg-raised);color:var(--text);overflow:hidden}
+.ref-zoom{display:inline-flex;gap:2px;padding:3px;margin-left:auto;border:1px solid var(--line-strong);border-radius:999px}
+.ref-zoom button{border:0;border-radius:999px;padding:6px 10px;background:transparent;color:var(--muted);font:inherit;font-size:12px;font-weight:600;cursor:pointer}
+.ref-zoom button:hover{color:var(--text)}
+.ref-zoom button[aria-pressed="true"]{background:var(--accent);color:var(--ink)}
+.ref-dlg-scroll img{display:block;margin:0 auto;max-width:none}
+.ref-dialog{width:calc(100% - 32px);max-width:none;height:calc(100vh - 48px);height:calc(100dvh - 48px);max-height:calc(100vh - 48px);max-height:calc(100dvh - 48px);padding:0;border:1px solid var(--line);border-radius:18px;background:var(--bg-raised);color:var(--text);overflow:hidden}
 .ref-dialog::backdrop{background:rgba(6,5,4,.78);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
 .ref-dialog[open]{animation:dlg .45s var(--ease)}
 .ref-dlg-bar{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:16px 16px 16px 24px;border-bottom:1px solid var(--line)}
@@ -490,17 +518,25 @@ section{position:relative}
   .refs-head{grid-template-columns:1fr;gap:18px}
   .refs-head .lead{text-align:left}
   .ref-dialog{width:100%;max-height:100dvh;height:100dvh;border-radius:0;border:0;margin:0}
-  .ref-dlg-scroll{max-height:calc(100dvh - 78px);padding:12px}
+  .ref-dlg-scroll{max-height:none;flex:1;padding:12px}
+  .ref-dialog[open]{display:flex;flex-direction:column}
+  .ref-dlg-bar{flex-wrap:wrap;padding:14px 14px 12px 18px}
+  .ref-dlg-bar > div:first-child{flex:1;min-width:0}
+  .ref-zoom{order:3;margin:0;flex:0 0 auto}
+  .ref-dlg-bar::after{content:"";order:2;flex-basis:100%;height:0}
+  .ref-dialog .dlg-close{position:static;background:transparent}
   .contact-orb{order:-1}
   .egg-wrap{width:min(62vw,300px)}
   .dlg-grid{grid-template-columns:1fr}
   .dlg-media{position:relative;padding:16px}
   .dlg-body{border-left:0;border-top:1px solid var(--line)}
   .viewer{height:min(62vh,560px);height:min(62dvh,560px)}
-  .case-dialog{width:100%;max-height:100dvh;height:100dvh;border-radius:0;border:0;margin:0}
-  .dlg-scroll{max-height:100dvh;height:100%}
-  .dlg-close{position:fixed;top:14px;right:14px;z-index:5;background:rgba(14,12,11,.72);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
+  .case-dialog{width:calc(100% - 24px);max-height:calc(100dvh - 32px);height:auto;border-radius:16px;margin:auto}
+  .dlg-scroll{max-height:calc(100dvh - 32px)}
+  .dlg-close{position:fixed;top:24px;right:24px;z-index:5;background:rgba(14,12,11,.72);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
   .dlg-top{padding-right:56px}
+  .vfull{right:auto;left:calc(15% + 10px)}
+  .viewer.single .vfull{left:10px}
 }
 @media (max-width:600px){
   :root{--header-h:60px}
@@ -597,7 +633,6 @@ section{position:relative}
         <li><a href="om-meg.html" data-i18n="nav.about">Om meg</a></li>
         <li><a href="#kontakt" class="hero-cta" data-i18n="nav.contact">Kontakt</a></li>
       </ul>
-      <a class="hero-scroll" href="index.html#arbeid" aria-label="Bla ned" data-i18n-aria="aria.scroll"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 7l7 6 7-6"/><path d="M5 13l7 6 7-6"/></svg></a>
     </div>
   </section>
 
@@ -606,6 +641,9 @@ section{position:relative}
     <div class="wrap">
       <div class="work-head">
         <h2 class="sr" id="arbeid-tittel" data-i18n-html="work.title">Utvalgte case</h2>
+      </div>
+      <div class="logos" aria-label="Har samarbeidet med" data-i18n-aria="logos.label">
+        <div class="logos-track"><ul><li class="lg-big"><img src="assets/img/logos/m40.png" alt="M40 Studios" loading="lazy"></li><li><img src="assets/img/logos/make-a-wish.png" alt="Make-A-Wish" loading="lazy"></li><li><span class="logo-word">NOT Management</span></li><li class="lg-big"><img src="assets/img/logos/kristiania.png" alt="Høyskolen Kristiania" loading="lazy"></li><li class="lg-big"><img src="assets/img/logos/kraft.png" alt="KRAFT Collective" loading="lazy"></li><li class="lg-big"><img src="assets/img/logos/punkt-oslo.png" alt="Punkt Oslo" loading="lazy"></li><li><span class="logo-word">Knytt</span></li><li><span class="logo-word">Mufano</span></li></ul><ul aria-hidden="true"><li class="lg-big"><img src="assets/img/logos/m40.png" alt="" loading="lazy"></li><li><img src="assets/img/logos/make-a-wish.png" alt="" loading="lazy"></li><li><span class="logo-word">NOT Management</span></li><li class="lg-big"><img src="assets/img/logos/kristiania.png" alt="" loading="lazy"></li><li class="lg-big"><img src="assets/img/logos/kraft.png" alt="" loading="lazy"></li><li class="lg-big"><img src="assets/img/logos/punkt-oslo.png" alt="" loading="lazy"></li><li><span class="logo-word">Knytt</span></li><li><span class="logo-word">Mufano</span></li></ul></div>
       </div>
       <ul class="cases" id="cases"></ul>
       <div class="work-stats" id="resultater">
@@ -730,7 +768,6 @@ section{position:relative}
           </div>
         </div>
       </div>
-      <p class="thanks reveal" data-i18n="foot.thanks">Takk for at du tok deg tid</p>
       <p class="footer-note" data-i18n="foot.note">© 2026 Daniel Ramslien · Rams Creative (Ramslien Creative ENK) · Org.nr. 935 128 986 · Referanser oppgis på forespørsel</p>
     </div>
   </section>
@@ -740,6 +777,7 @@ section{position:relative}
 <dialog class="ref-dialog" id="ref-dialog" aria-labelledby="ref-dlg-title">
   <div class="ref-dlg-bar">
     <div><h2 id="ref-dlg-title"></h2><p id="ref-dlg-sub"></p></div>
+    <div class="ref-zoom" role="group" aria-label="Zoom" id="ref-zoom"><button type="button" data-z="50">50%</button><button type="button" data-z="75">75%</button><button type="button" data-z="100" aria-pressed="true">100%</button><button type="button" data-z="150">150%</button></div>
     <button class="dlg-close" id="ref-dlg-close" type="button" aria-label="Lukk attest" data-i18n-aria="refs.close">
       <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M2 2l12 12M14 2L2 14"/></svg>
     </button>
@@ -756,6 +794,7 @@ section{position:relative}
         <div class="viewer" id="dlg-viewer"></div>
         <p class="viewer-cap" id="dlg-cap"></p>
         <div class="vdots" id="dlg-thumbs" role="group" aria-label="Velg bilde eller video" data-i18n-aria="dlg.thumbs"></div>
+        <div class="dlg-docs" id="dlg-docs"></div>
       </div>
       <div class="dlg-body">
         <div class="dlg-top">
@@ -770,6 +809,7 @@ section{position:relative}
         <div class="metrics" id="dlg-metrics"></div>
         <span class="label dlg-sub" data-i18n="dlg.did">Hva jeg gjorde</span>
         <ul class="dlg-list" id="dlg-list"></ul>
+        <div class="dlg-tt" id="dlg-tt"></div>
         <div id="dlg-quote"></div>
         <div id="dlg-link"></div>
         <div class="dlg-nav">
@@ -822,7 +862,7 @@ const I18N = {
     'foot.thanks':'Takk for at du tok deg tid',
     'foot.note':'© 2026 Daniel Ramslien · Rams Creative (Ramslien Creative ENK) · Org.nr. 935 128 986 · Referanser oppgis på forespørsel',
     'dlg.close':'Lukk case', 'dlg.did':'Hva jeg gjorde', 'dlg.thumbs':'Velg bilde eller video',
-    'dlg.client':'Kunde', 'dlg.role':'Rolle', 'dlg.period':'Periode', 'dlg.tags':'Kanaler og fag', 'dlg.tools':'Verktøy',
+    'dlg.client':'Kunde', 'dlg.role':'Rolle', 'dlg.period':'Periode', 'dlg.tags':'Kanaler og fag', 'dlg.docs':'Dokumenter', 'dlg.tiktok':'TikTok-videoene', 'logos.label':'Har samarbeidet med', 'dlg.tools':'Verktøy',
     'card.video':'Video', 'card.images':'Bilder', 'card.view':'Se case', 'card.for':'for',
     'nav.refs':'Attester', 'refs.more':'Se flere', 'refs.less':'Se færre', 'about.more':'Les mer', 'about.less':'Les mindre', 'card.next':'Neste bilde', 'card.prev':'Forrige bilde', 'refs.title':'Attester', 'refs.lead':'Hele dokumentene. Trykk på en attest for å lese den.', 'refs.note':'Fødselsdato og adresse er sladdet.',
     'refs.close':'Lukk attest', 'refs.view':'Se attest fra',
@@ -854,7 +894,7 @@ const I18N = {
     'foot.thanks':'Thanks for your time',
     'foot.note':'© 2026 Daniel Ramslien · Rams Creative (Ramslien Creative ENK) · Org. no. 935 128 986 · References available on request',
     'dlg.close':'Close case', 'dlg.did':'What I did', 'dlg.thumbs':'Choose image or video',
-    'dlg.client':'Client', 'dlg.role':'Role', 'dlg.period':'Period', 'dlg.tags':'Channels and skills', 'dlg.tools':'Tools',
+    'dlg.client':'Client', 'dlg.role':'Role', 'dlg.period':'Period', 'dlg.tags':'Channels and skills', 'dlg.docs':'Documents', 'dlg.tiktok':'The TikTok videos', 'logos.label':'Worked with', 'dlg.tools':'Tools',
     'card.video':'Video', 'card.images':'Images', 'card.view':'View case', 'card.for':'for',
     'nav.refs':'References', 'refs.more':'See more', 'refs.less':'See fewer', 'about.more':'Read more', 'about.less':'Read less', 'card.next':'Next image', 'card.prev':'Previous image', 'refs.title':'References', 'refs.lead':'The full documents. Tap a reference to read it.', 'refs.note':'Date of birth and address have been redacted. The documents are in Norwegian, except Open iT.',
     'refs.close':'Close reference', 'refs.view':'View reference from',
@@ -869,10 +909,10 @@ const I18N = {
 const V = 'assets/video/', I = 'assets/img/', P = 'assets/img/posters/';
 const CASES = [
   {
-    id:'mufano', tools:['CapCut', 'TikTok Insights'], year:'2026', cover:P+'mufano-start.jpg', preview:V+'mufano.mp4',
+    id:'mufano', tiktok:['7606959268209675542','7597986210790919446','7596553573861821718','7594312696271473942'], tools:['CapCut', 'TikTok Insights'], year:'2026', cover:P+'mufano-start.jpg', preview:V+'mufano.mp4',
     media:[
       {type:'video',src:V+'mufano.mp4',poster:P+'mufano-start.jpg',cap:{no:'Promovideo for låtlanseringen',en:'Promo video for the song launch'}},
-      {type:'image',src:I+'mufano-views.webp',cap:{no:'Visninger på TikTok-videoene',en:'Views on the TikTok videos'}}
+      {type:'image',src:I+'mufano-views-tiktok.webp',cap:{no:'Visninger på TikTok: 579,7K, 146,8K, 103,3K, 37,5K og 17K',en:'TikTok views: 579.7K, 146.8K, 103.3K, 37.5K and 17K'}}
     ],
     t:{
       no:{card:'Innholdsstrategi for låtlansering', title:'Innholdsstrategi for låtlansering på TikTok', client:'Mufano', clientDesc:'TikToker og influenser', period:'Jan. 2026 – nå',
@@ -894,7 +934,7 @@ const CASES = [
     }
   },
   {
-    id:'m40', tools:['Canva', 'Photoshop', 'Illustrator', 'CapCut', 'Meta Insights'], year:'2026', cover:P+'m40-start.jpg', preview:V+'m40.mp4',
+    id:'m40', tools:['Canva', 'Photoshop', 'Illustrator', 'CapCut', 'Meta Insights'], year:'2026', cover:P+'m40-start.jpg', preview:V+'m40-preview.mp4',
     quote:{text:{no:'Daniel er en god og pålitelig rådgiver innen salg, kommunikasjon og markedsføring som jeg virkelig kan anbefale. Han vil det beste for de rundt seg og sette alltid kunden først.',
                  en:'Daniel is a good and reliable advisor in sales, communication and marketing whom I can truly recommend. He wants the best for those around him and always puts the customer first.'},
       by:{no:'Kjartan Håvik, daglig leder i M40 Eiendom AS',en:'Kjartan Håvik, CEO of M40 Eiendom AS (translated from Norwegian)'}},
@@ -924,33 +964,6 @@ const CASES = [
           'Produced a conversion video that brought in 8 new paying regular clients from 16,000 views.',
           'Built the M40 Studios brand from scratch to 20 regular clients through social media.',
           'Responsible for sales, client relations, campaign building and content production, including graphic design in Canva, Photoshop and Illustrator.']}
-    }
-  },
-  {
-    id:'ride-for-wishes', tools:['Google Workspace', 'Canva'], year:'2026', cover:I+'ride-for-wishes.webp', coverPos:'0% 50%',
-    quote:{text:'… our interns (Simon Brusdal, Kathalina Nunez-Garate, Daniel Ramslien) researching every detail of the trip …',
-      by:{no:'Lynn, NOT Management, i LinkedIn-innlegget om turen',en:'Lynn, NOT Management, in her LinkedIn post about the ride'}},
-    media:[
-      {type:'image',src:I+'ride-for-wishes.webp',cap:{no:'Ride for Wishes – Portugal Edition med Hitch',en:'Ride for Wishes – Portugal Edition with Hitch'}},
-      {type:'image',src:I+'daniel-not.webp',cap:{no:'Praksisstudent hos NOT Management',en:'Intern at NOT Management'}}
-    ],
-    t:{
-      no:{card:'Make-A-Wish-kampanje', title:'Make-A-Wish-kampanje: Ride for Wishes', client:'NOT Management', clientDesc:'Til inntekt for Make-A-Wish', period:'Mars – apr. 2026',
-        role:'Praksisstudent / marketing intern', tags:['Livestream','Innhold','Planlegging'], result:'46 000 USD samlet inn',
-        intro:'Streameren Hitch, en av talentene til NOT Management, er kjent for å ta haiking til Twitch. Idéen hans var «Random Tandem»: å ta med andre creators ut av komfortsonen på en tandemsykkel. Sammen med Make-A-Wish ble det til Ride for Wishes, en veldedighetstur langs kysten av Portugal som ble livestreamet hele veien.',
-        metrics:[['46 000 USD','samlet inn til Make-A-Wish'],['32,7 mill.','watch hours'],['11 000','samtidige seere på det meste'],['1 000+ km','på 26 dager med 12 creators']],
-        bullets:['Bidro med innholdsideer til en tur der 12 creators syklet 1 000+ km over 26 dager.',
-          'Researchet og detaljplanla rute, gjester, sponsorer og medieoppfølging sammen med et team på 10+ personer.',
-          'Livestreamen gikk på 3 plattformer og fikk 32,7 mill. watch hours og opptil 11 000 samtidige seere.',
-          'Kampanjen samlet inn 46 000 USD for å oppfylle ønsker for alvorlig syke barn.']},
-      en:{card:'Make-A-Wish campaign', title:'Make-A-Wish campaign: Ride for Wishes', client:'NOT Management', clientDesc:'In support of Make-A-Wish', period:'Mar – Apr 2026',
-        role:'Marketing intern', tags:['Livestream','Content','Planning'], result:'USD 46,000 raised',
-        intro:'Streamer Hitch, one of NOT Management’s talents, is known for bringing hitchhiking to Twitch. His idea was “Random Tandem”: taking other creators out of their comfort zone on a tandem bike. Together with Make-A-Wish it became Ride for Wishes, a charity ride along the coast of Portugal, livestreamed all the way.',
-        metrics:[['USD 46,000','raised for Make-A-Wish'],['32.7M','watch hours'],['11,000','peak concurrent viewers'],['1,000+ km','in 26 days with 12 creators']],
-        bullets:['Contributed content ideas for a ride where 12 creators cycled 1,000+ km over 26 days.',
-          'Researched and planned the route, guests, sponsors and media follow-up in detail with a team of 10+ people.',
-          'The livestream ran on 3 platforms and reached 32.7M watch hours and up to 11,000 concurrent viewers.',
-          'The campaign raised USD 46,000 to grant wishes for critically ill children.']}
     }
   },
   {
@@ -1060,24 +1073,51 @@ const CASES = [
     }
   },
   {
-    id:'iko', tools:['Premiere Pro'], group:'school', year:'2025', cover:P+'iko-start.jpg', coverPos:'80% center', preview:V+'iko.mp4',
+    id:'iko', docs:[{src:'assets/docs/iko-kampanjepitch.pdf',thumb:'assets/img/docs/iko-kampanjepitch-01.jpg',title:{no:'Kampanjepitch (gruppeeksamen)',en:'Campaign pitch (group exam)'},meta:{no:'PDF · 28 sider',en:'PDF · 28 pages'}},{src:'assets/docs/iko-journal.pdf',thumb:'assets/img/docs/iko-journal-01.jpg',title:{no:'Journal (individuell eksamen)',en:'Journal (individual exam)'},meta:{no:'PDF · 17 sider',en:'PDF · 17 pages'}}], tools:['Premiere Pro'], group:'school', year:'2025', cover:P+'iko-start.jpg', preview:V+'iko.mp4',
     link:{href:'https://youtu.be/_SuTFtps6bY', text:{no:'Se hele kampanjevideoen på YouTube',en:'Watch the full campaign video on YouTube'}},
     media:[{type:'video',src:V+'iko.mp4',poster:P+'iko-start.jpg',cap:{no:'Kampanjevideoen',en:'The campaign video'}}],
     t:{
-      no:{card:'Kampanjevideo', title:'Kampanjevideo pitch', client:'Høyskolen Kristiania', clientDesc:'Innholdskommunikasjon', period:'Vår 2025',
+      no:{brand:'Kampanjevideo', card:'Kampanjevideo', title:'Kampanjevideo pitch', client:'Høyskolen Kristiania', clientDesc:'Innholdskommunikasjon', period:'Vår 2025',
         role:'Ansvarlig for kampanjevideoen i gruppen', tags:['Kampanje','Video','Skolearbeid'], result:'Karakter A',
         intro:'I gruppeeksamen i Innholdskommunikasjon startet vi vårt eget mediebyrå, Ung Media, som tilpasser markedsføring til yngre målgrupper. Jeg hadde ansvaret for kampanjevideoen.',
         metrics:[['A','karakter i emnet'],['16 timer','arbeid med kampanjevideoen']],
         bullets:['Planla kampanjen sammen med gruppen, med felles moodboard i Milanote.',
           'Hentet klipp og satte dem sammen til en tydelig fortelling som skulle fange oppmerksomhet og skape engasjement.',
           'Klippet og ferdigstilte videoen selv, et arbeid på rundt 16 timer.']},
-      en:{card:'Campaign video', title:'Campaign video pitch', client:'Kristiania University of Applied Sciences', clientDesc:'Content Communication', period:'Spring 2025',
+      en:{brand:'Campaign video', card:'Campaign video', title:'Campaign video pitch', client:'Kristiania University of Applied Sciences', clientDesc:'Content Communication', period:'Spring 2025',
         role:'Responsible for the group’s campaign video', tags:['Campaign','Video','Coursework'], result:'Grade A',
         intro:'For the group exam in Content Communication we started our own media agency, Ung Media, tailoring marketing to younger audiences. I was responsible for the campaign video.',
         metrics:[['A','grade in the course'],['16 hours','spent on the campaign video']],
         bullets:['Planned the campaign with the group, using a shared moodboard in Milanote.',
           'Gathered clips and built them into a clear story designed to grab attention and drive engagement.',
           'Edited and finished the video myself, about 16 hours of work.']}
+    }
+  },
+  {
+    id:'ride-for-wishes', tools:['Google Workspace', 'Canva'], year:'2026', cover:I+'ride-for-wishes.webp', coverPos:'0% 50%',
+    quote:{text:'… our interns (Simon Brusdal, Kathalina Nunez-Garate, Daniel Ramslien) researching every detail of the trip …',
+      by:{no:'Lynn, NOT Management, i LinkedIn-innlegget om turen',en:'Lynn, NOT Management, in her LinkedIn post about the ride'}},
+    media:[
+      {type:'image',src:I+'ride-for-wishes.webp',cap:{no:'Ride for Wishes – Portugal Edition med Hitch',en:'Ride for Wishes – Portugal Edition with Hitch'}},
+      {type:'image',src:I+'daniel-not.webp',cap:{no:'Praksisstudent hos NOT Management',en:'Intern at NOT Management'}}
+    ],
+    t:{
+      no:{brand:'NOT x Make-A-Wish', card:'Make-A-Wish-kampanje', title:'Make-A-Wish-kampanje: Ride for Wishes', client:'NOT Management', clientDesc:'Til inntekt for Make-A-Wish', period:'Mars – apr. 2026',
+        role:'Praksisstudent / marketing intern', tags:['Livestream','Innhold','Planlegging'], result:'46 000 USD samlet inn',
+        intro:'Streameren Hitch, en av talentene til NOT Management, er kjent for å ta haiking til Twitch. Idéen hans var «Random Tandem»: å ta med andre creators ut av komfortsonen på en tandemsykkel. Sammen med Make-A-Wish ble det til Ride for Wishes, en veldedighetstur langs kysten av Portugal som ble livestreamet hele veien.',
+        metrics:[['46 000 USD','samlet inn til Make-A-Wish'],['32,7 mill.','watch hours'],['11 000','samtidige seere på det meste'],['1 000+ km','på 26 dager med 12 creators']],
+        bullets:['Bidro med innholdsideer til en tur der 12 creators syklet 1 000+ km over 26 dager.',
+          'Researchet og detaljplanla rute, gjester, sponsorer og medieoppfølging sammen med et team på 10+ personer.',
+          'Livestreamen gikk på 3 plattformer og fikk 32,7 mill. watch hours og opptil 11 000 samtidige seere.',
+          'Kampanjen samlet inn 46 000 USD for å oppfylle ønsker for alvorlig syke barn.']},
+      en:{brand:'NOT x Make-A-Wish', card:'Make-A-Wish campaign', title:'Make-A-Wish campaign: Ride for Wishes', client:'NOT Management', clientDesc:'In support of Make-A-Wish', period:'Mar – Apr 2026',
+        role:'Marketing intern', tags:['Livestream','Content','Planning'], result:'USD 46,000 raised',
+        intro:'Streamer Hitch, one of NOT Management’s talents, is known for bringing hitchhiking to Twitch. His idea was “Random Tandem”: taking other creators out of their comfort zone on a tandem bike. Together with Make-A-Wish it became Ride for Wishes, a charity ride along the coast of Portugal, livestreamed all the way.',
+        metrics:[['USD 46,000','raised for Make-A-Wish'],['32.7M','watch hours'],['11,000','peak concurrent viewers'],['1,000+ km','in 26 days with 12 creators']],
+        bullets:['Contributed content ideas for a ride where 12 creators cycled 1,000+ km over 26 days.',
+          'Researched and planned the route, guests, sponsors and media follow-up in detail with a team of 10+ people.',
+          'The livestream ran on 3 platforms and reached 32.7M watch hours and up to 11,000 concurrent viewers.',
+          'The campaign raised USD 46,000 to grant wishes for critically ill children.']}
     }
   },
   {
@@ -1092,7 +1132,7 @@ const CASES = [
       {type:'image',src:I+'knytt-looker.webp',cap:{no:'Trafikk i Looker Studio',en:'Traffic in Looker Studio'}},
       {type:'image',src:I+'knytt-alder.webp',cap:{no:'Aldersfordeling i publikum',en:'Audience age distribution'}}],
     t:{
-      no:{card:'Digitale verktøy, SEO', title:'Digitale verktøy, SEO', client:'Høyskolen Kristiania', clientDesc:'Digitale verktøy · Knytt', period:'2025',
+      no:{brand:'Digitale verktøy', card:'Digitale verktøy, SEO', title:'Digitale verktøy, SEO', client:'Høyskolen Kristiania', clientDesc:'Digitale verktøy · Knytt', period:'2025',
         role:'Individuell eksamen', tags:['SEO','Analyse','Skolearbeid'], result:'Karakter A · SEO-score 100',
         intro:'En videopresentasjon på rundt tolv minutter der jeg går gjennom den digitale markedsføringsstrategien til studentbedriften Knytt, fra kundereisen og nettsiden til SEO, ytelse og hvor brukerne klikker.',
         metrics:[['A','karakter i emnet'],['100','i SEO-score'],['62 %','returnerende brukere'],['82 %','scroll depth']],
@@ -1100,7 +1140,7 @@ const CASES = [
           'Presenterte nettsiden bygget i WordPress og målte ytelsen på PC og mobil.',
           'Målte trafikk, brukeratferd og konvertering i GA4, Hotjar og Looker Studio. Nettsiden endte på 62 % returnerende brukere, 82 % scroll depth og 100 i SEO-score.',
           'Analyserte hvor brukerne klikker og hvordan det henger sammen med konvertering.']},
-      en:{card:'Digital tools, SEO', title:'Digital tools, SEO', client:'Kristiania University of Applied Sciences', clientDesc:'Digital Tools · Knytt', period:'2025',
+      en:{brand:'Digital tools', card:'Digital tools, SEO', title:'Digital tools, SEO', client:'Kristiania University of Applied Sciences', clientDesc:'Digital Tools · Knytt', period:'2025',
         role:'Individual exam', tags:['SEO','Analytics','Coursework'], result:'Grade A · SEO score 100',
         intro:'A video presentation of about twelve minutes walking through the digital marketing strategy for the student company Knytt, from the customer journey and the website to SEO, performance and where users click.',
         metrics:[['A','grade in the course'],['100','SEO score'],['62%','returning users'],['82%','scroll depth']],
@@ -1181,7 +1221,7 @@ function renderCards(){
         ${c.logo ? `<img class="case-logo" src="${c.logo}" alt="">` : ''}
       </div>
       <div class="case-body">
-        <div class="case-title-row"><h3 class="case-title">${esc(x.client)}</h3><span class="case-year">${c.year}</span></div>
+        <div class="case-title-row"><h3 class="case-title">${esc(x.brand || x.client)}</h3><span class="case-year">${c.year}</span></div>
         <p class="case-client">${esc(x.card)}</p>
         <div class="case-results">${x.result.split(' · ').map(t => `<p class="case-result">${esc(t)}</p>`).join('')}</div>
         <ul class="pills">${x.tags.map(t => `<li class="pill">${esc(t)}</li>`).join('')}</ul>
@@ -1237,9 +1277,15 @@ refList.addEventListener('click', e => {
   $('ref-dlg-img').src = r.doc;
   $('ref-dlg-img').alt = `${tr('refs.view')} ${refOrg(r)}`;
   refDlg.querySelector('.ref-dlg-scroll').scrollTop = 0;
+  setRefZoom(100);
   refDlg.showModal();
   document.body.style.overflow = 'hidden';
 });
+function setRefZoom(z){
+  $('ref-dlg-img').style.width = z + '%';
+  $('ref-zoom').querySelectorAll('button').forEach(b => b.setAttribute('aria-pressed', +b.dataset.z === z ? 'true' : 'false'));
+}
+$('ref-zoom').addEventListener('click', e => { const b = e.target.closest('[data-z]'); if (b) setRefZoom(+b.dataset.z); });
 $('ref-dlg-close').addEventListener('click', () => refDlg.close());
 refDlg.addEventListener('click', e => { if (e.target === refDlg) refDlg.close(); });
 refDlg.addEventListener('close', () => { document.body.style.overflow = ''; if (refFocus) refFocus.focus({preventScroll:true}); });
@@ -1424,6 +1470,9 @@ function fillDialog(i, keepMedia){
   $('dlg-metrics').innerHTML = (x.metrics || []).map(([n,l]) => `<div><span class="metric-num">${esc(n)}</span><span class="metric-label">${esc(l)}</span></div>`).join('');
   $('dlg-list').innerHTML = x.bullets.map(b => `<li>${esc(b)}</li>`).join('');
   $('dlg-quote').innerHTML = c.quote ? [].concat(c.quote).map(q => `<blockquote class="quote"><p>${esc(pick(q.text))}</p><footer>${esc(pick(q.by))}</footer></blockquote>`).join('') : '';
+  $('dlg-docs').innerHTML = c.docs ? `<span class="label">${tr('dlg.docs')}</span><ul class="doc-grid">${c.docs.map(d => `<li><a class="doc-card" href="${d.src}" target="_blank" rel="noopener"><span class="doc-card-thumb"><img src="${d.thumb}" alt="" loading="lazy"></span><span class="doc-card-t">${esc(pick(d.title))}</span><span class="doc-card-m">${esc(pick(d.meta))} ↗</span></a></li>`).join('')}</ul>` : '';
+  $('dlg-tt').innerHTML = c.tiktok ? `<span class="label dlg-sub">${tr('dlg.tiktok')}</span><div class="tt-row">${c.tiktok.map(id => `<div class="tt-item"><iframe data-src="https://www.tiktok.com/player/v1/${id}?music_info=1&description=1&rel=0" title="TikTok" allow="encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe></div>`).join('')}</div>` : '';
+  $('dlg-tt').querySelectorAll('iframe').forEach(f => { f.src = f.dataset.src; });
   $('dlg-link').innerHTML = c.link ? `<a class="dlg-link" href="${c.link.href}" target="_blank" rel="noopener">${esc(pick(c.link.text))} ↗</a>` : '';
   if (keepMedia) {
     $('dlg-thumbs').innerHTML = c.media.length > 1 ? c.media.map((m,k) => `<button type="button" data-k="${k}" aria-label="${tr('dlg.slide')} ${k+1}: ${esc(pick(m.cap))}"></button>`).join('') : '';
@@ -1452,6 +1501,7 @@ function closeCase(){ dlg.close(); }
 
 dlg.addEventListener('close', () => {
   dlg.querySelectorAll('video').forEach(v => v.pause());
+  $('dlg-tt').innerHTML = '';
   document.body.style.overflow = '';
   history.replaceState(null, '', location.pathname + location.search);
   if (lastFocus) lastFocus.focus({preventScroll:true});
