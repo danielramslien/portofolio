@@ -289,7 +289,7 @@ section{position:relative}
 .doc-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;list-style:none;margin:0;padding:0}
 .doc-card{display:block;text-decoration:none;color:var(--text)}
 .doc-card-thumb{display:block;aspect-ratio:16/10;border-radius:10px;overflow:hidden;background:#fff;border:1px solid var(--line);transition:transform .3s var(--ease),box-shadow .3s var(--ease)}
-.doc-card-thumb img{width:100%;height:100%;object-fit:cover;object-position:top}
+.doc-card-thumb img{width:100%;height:100%;object-fit:cover;object-position:center 30%}
 .doc-card:hover .doc-card-thumb{transform:translateY(-3px);box-shadow:0 14px 30px rgba(0,0,0,.45)}
 .doc-card-t{display:block;margin-top:8px;font-family:var(--font-display);font-weight:800;font-size:14px;line-height:1.25}
 .doc-card-m{display:block;font-size:12px;color:var(--muted)}
@@ -359,7 +359,8 @@ section{position:relative}
 .egg-hint{position:absolute;left:0;right:0;top:50%;z-index:6;transform:translateY(-50%);text-align:center;font-size:clamp(12px,1.1vw,15px);letter-spacing:.08em;color:rgba(255,244,232,.6);pointer-events:none;transition:opacity .4s}
 .egg-wrap.tapped .egg-hint{opacity:0}
 @media (prefers-reduced-motion:reduce){.egg-wrap,.egg.wobble{animation:none}}
-.footer-note{color:var(--faint);font-size:13px;padding:0 0 32px;margin:0;text-align:center}
+.footer-note{color:var(--faint);font-size:13px;padding:0 0 28px;margin:clamp(56px,7vw,96px) 0 0;text-align:center}
+#kontakt{overflow:hidden;overflow:clip}
 
 /* ---------- Case-dialog ---------- */
 .case-dialog{width:min(1180px,calc(100% - 32px));max-width:none;max-height:calc(100vh - 48px);max-height:calc(100dvh - 48px);padding:0;border:1px solid var(--line);border-radius:18px;background:var(--bg-raised);color:var(--text);overflow:hidden}
@@ -1093,24 +1094,28 @@ const CASES = [
     }
   },
   {
-    id:'iko', docs:[{src:'assets/docs/iko-kampanjepitch.pdf',thumb:'assets/img/docs/iko-kampanjepitch-01.jpg',title:{no:'Kampanjepitch (gruppeeksamen)',en:'Campaign pitch (group exam)'},meta:{no:'PDF · 28 sider',en:'PDF · 28 pages'}},{src:'assets/docs/iko-journal.pdf',thumb:'assets/img/docs/iko-journal-01.jpg',title:{no:'Journal (individuell eksamen)',en:'Journal (individual exam)'},meta:{no:'PDF · 17 sider',en:'PDF · 17 pages'}}], tools:['Premiere Pro'], group:'school', year:'2025', cover:P+'iko-start.jpg', preview:V+'iko.mp4',
+    id:'iko', docs:[{src:'assets/docs/iko-kampanjepitch.pdf',thumb:'assets/img/docs/iko-kampanjepitch-01.jpg',title:{no:'Kampanjepitch (gruppeeksamen)',en:'Campaign pitch (group exam)'},meta:{no:'PDF · 28 sider',en:'PDF · 28 pages'}},{src:'assets/docs/iko-journal.pdf',thumb:'assets/img/docs/iko-journal-02.jpg',title:{no:'Journal (individuell eksamen)',en:'Journal (individual exam)'},meta:{no:'PDF · 17 sider',en:'PDF · 17 pages'}}], tools:['Premiere Pro', 'Photoshop', 'Illustrator'], group:'school', year:'2025', cover:P+'iko-start.jpg', preview:V+'iko.mp4',
     link:{href:'https://youtu.be/_SuTFtps6bY', text:{no:'Se hele kampanjevideoen på YouTube',en:'Watch the full campaign video on YouTube'}},
     media:[{type:'video',src:V+'iko.mp4',poster:P+'iko-start.jpg',cap:{no:'Kampanjevideoen',en:'The campaign video'}}],
     t:{
       no:{brand:'Kampanjevideo', card:'Kampanjevideo', title:'Kampanjevideo pitch', client:'Høyskolen Kristiania', clientDesc:'Innholdskommunikasjon', period:'Vår 2025',
         role:'Ansvarlig for kampanjevideoen i gruppen', tags:['Kampanje','Video','Skolearbeid'], result:'Karakter A',
-        intro:'I gruppeeksamen i Innholdskommunikasjon startet vi vårt eget mediebyrå, Ung Media, som tilpasser markedsføring til yngre målgrupper. Jeg hadde ansvaret for kampanjevideoen.',
+        intro:'I gruppeeksamen i Innholdskommunikasjon startet vi vårt eget mediebyrå, Ung Media, som tilpasser markedsføring til yngre målgrupper. Jeg hadde ansvaret for kampanjevideoen og laget kampanjepitchen. I den individuelle eksamenen designet jeg en personlig prosessjournal med musikktema i Photoshop og Illustrator.',
         metrics:[['A','karakter i emnet'],['16 timer','arbeid med kampanjevideoen']],
         bullets:['Planla kampanjen sammen med gruppen, med felles moodboard i Milanote.',
           'Hentet klipp og satte dem sammen til en tydelig fortelling som skulle fange oppmerksomhet og skape engasjement.',
-          'Klippet og ferdigstilte videoen selv, et arbeid på rundt 16 timer.']},
+          'Klippet og ferdigstilte videoen selv, et arbeid på rundt 16 timer.',
+          'Laget kampanjepitchen som gruppen presenterte.',
+          'Designet en personlig prosessjournal, «Rams», med musikktema i Photoshop og Illustrator.']},
       en:{brand:'Campaign video', card:'Campaign video', title:'Campaign video pitch', client:'Kristiania University of Applied Sciences', clientDesc:'Content Communication', period:'Spring 2025',
         role:'Responsible for the group’s campaign video', tags:['Campaign','Video','Coursework'], result:'Grade A',
-        intro:'For the group exam in Content Communication we started our own media agency, Ung Media, tailoring marketing to younger audiences. I was responsible for the campaign video.',
+        intro:'For the group exam in Content Communication we started our own media agency, Ung Media, tailoring marketing to younger audiences. I was responsible for the campaign video and made the campaign pitch. For the individual exam I designed a personal, music-themed process journal in Photoshop and Illustrator.',
         metrics:[['A','grade in the course'],['16 hours','spent on the campaign video']],
         bullets:['Planned the campaign with the group, using a shared moodboard in Milanote.',
           'Gathered clips and built them into a clear story designed to grab attention and drive engagement.',
-          'Edited and finished the video myself, about 16 hours of work.']}
+          'Edited and finished the video myself, about 16 hours of work.',
+          'Made the campaign pitch the group presented.',
+          'Designed a personal, music-themed process journal, “Rams”, in Photoshop and Illustrator.']}
     }
   },
   {
