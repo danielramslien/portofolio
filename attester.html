@@ -70,6 +70,12 @@ button{font:inherit;color:inherit}
 ::selection{background:var(--accent);color:var(--ink)}
 :focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:4px}
 
+.to-top{position:fixed;right:18px;bottom:18px;z-index:60;display:inline-flex;align-items:center;gap:8px;height:46px;padding:0 18px 0 14px;border:1px solid var(--accent-line);border-radius:999px;background:rgba(14,12,11,.78);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);color:var(--text);font:inherit;font-size:14px;font-weight:600;cursor:pointer;box-shadow:0 0 22px rgba(255,122,26,.25);opacity:0;transform:translateY(12px);pointer-events:none;transition:opacity .3s var(--ease),transform .3s var(--ease),background .2s,color .2s}
+.to-top svg{width:16px;height:16px;color:var(--accent)}
+.to-top.show{opacity:1;transform:none;pointer-events:auto}
+.to-top:hover{background:var(--accent);color:var(--ink)}
+.to-top:hover svg{color:var(--ink)}
+@media (max-width:640px){.to-top{right:14px;bottom:14px;height:46px}.footer-note{padding-bottom:84px!important}}
 .cookie-btn{position:fixed;left:18px;bottom:18px;z-index:60;width:52px;height:52px;border-radius:50%;display:grid;place-items:center;padding:0;cursor:pointer;background:rgba(14,12,11,.78);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border:1px solid var(--accent-line);color:var(--accent);box-shadow:0 0 0 1px rgba(255,122,26,.08),0 0 22px rgba(255,122,26,.35);transition:transform .25s var(--ease),box-shadow .25s var(--ease)}
 .cookie-btn svg{width:26px;height:26px;filter:drop-shadow(0 0 6px rgba(255,122,26,.85)) drop-shadow(0 0 14px rgba(255,122,26,.45));animation:cookieGlow 3.2s ease-in-out infinite}
 .cookie-btn:hover{transform:scale(1.07) rotate(-8deg);box-shadow:0 0 0 1px rgba(255,122,26,.2),0 0 34px rgba(255,122,26,.55)}
@@ -841,6 +847,7 @@ section{position:relative}
   </div>
 </dialog>
 
+<button class="to-top" type="button" id="to-top"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 13V3M3.5 7.5L8 3l4.5 4.5"/></svg><span data-i18n="totop">Til toppen</span></button>
 <button class="cookie-btn" type="button" id="cookie-btn" aria-expanded="false" aria-controls="cookie-pop" aria-label="Cookies" data-i18n-aria="cookie.aria">
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.3A9 9 0 1 1 11.7 3a3 3 0 0 0 3.6 3.6 3 3 0 0 0 3.6 3.6 3 3 0 0 0 2.1 2.1Z"/><circle cx="8.5" cy="9.5" r="1" fill="currentColor"/><circle cx="15.5" cy="14.5" r="1" fill="currentColor"/><circle cx="9.5" cy="15.5" r="1" fill="currentColor"/><circle cx="12.5" cy="11.5" r=".6" fill="currentColor"/></svg>
 </button>
@@ -860,7 +867,7 @@ const I18N = {
   no: {
     'meta.title':'Daniel Ramslien Portefølje',
     'meta.desc':'Portefølje 2026. Daniel Ramslien er digital markedsfører med hjertet i sosiale medier: kampanjer, innhold og analyse for Mufano, M40 Studios, Punkt Oslo, NOT Management og flere.',
-    'skip':'Hopp til innhold', 'aria.menu':'Hovedmeny', 'aria.scroll':'Bla ned', 'aria.intro':'Introduksjon', 'aria.stats':'Resultater i tall', 'aria.lang':'Velg språk', 'aria.switchLang':'Bytt språk', 'egg.label':'Trykk på ballen noen ganger', 'egg.hint':'(trykk på meg)',
+    'skip':'Hopp til innhold', 'aria.menu':'Hovedmeny', 'aria.scroll':'Bla ned', 'aria.intro':'Introduksjon', 'aria.stats':'Resultater i tall', 'aria.lang':'Velg språk', 'aria.switchLang':'Bytt språk', 'totop':'Til toppen', 'egg.label':'Trykk på ballen noen ganger', 'egg.hint':'(trykk på meg)',
     'nav.about':'Om meg', 'nav.work':'Arbeid', 'nav.contact':'Kontakt',
     'hero.kicker':'Digital markedsfører', 'hero.title':'Hei, jeg er Daniel.',
     'foot.portfolio':'Portefølje 2026',
@@ -892,7 +899,7 @@ const I18N = {
   en: {
     'meta.title':'Daniel Ramslien Portfolio',
     'meta.desc':'Portfolio 2026. Daniel Ramslien is a digital marketer with a heart for social media: campaigns, content and analytics for Mufano, M40 Studios, Punkt Oslo, NOT Management and more.',
-    'skip':'Skip to content', 'aria.menu':'Main menu', 'aria.scroll':'Scroll down', 'aria.intro':'Introduction', 'aria.stats':'Results in numbers', 'aria.lang':'Choose language', 'aria.switchLang':'Switch language', 'egg.label':'Tap the ball a few times', 'egg.hint':'(tap me)',
+    'skip':'Skip to content', 'aria.menu':'Main menu', 'aria.scroll':'Scroll down', 'aria.intro':'Introduction', 'aria.stats':'Results in numbers', 'aria.lang':'Choose language', 'aria.switchLang':'Switch language', 'totop':'Back to top', 'egg.label':'Tap the ball a few times', 'egg.hint':'(tap me)',
     'nav.about':'About', 'nav.work':'Work', 'nav.contact':'Contact',
     'hero.kicker':'Digital marketer', 'hero.title':'Hi, I’m Daniel.',
     'foot.portfolio':'Portfolio 2026',
@@ -1714,6 +1721,14 @@ document.querySelectorAll('.reveal').forEach(el => revObs.observe(el));
     egg.classList.remove('wobble'); void egg.offsetWidth; egg.classList.add('wobble');
   });
   egg.addEventListener('animationend', e => { if (e.animationName === 'eggWobble') egg.classList.remove('wobble'); });
+}
+
+/* ---------- Til toppen ---------- */
+{
+  const tt = document.getElementById('to-top');
+  const upd = () => tt.classList.toggle('show', window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 160);
+  upd(); window.addEventListener('scroll', upd, {passive:true}); window.addEventListener('resize', upd);
+  tt.addEventListener('click', () => window.scrollTo({top:0, behavior: reduce ? 'auto' : 'smooth'}));
 }
 
 /* ---------- Cookies ---------- */
