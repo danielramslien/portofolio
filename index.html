@@ -1123,18 +1123,17 @@ function renderCards(){
   };
   list.innerHTML = CASES.map((c,i) => cardHtml(c,i)).join('');
 
-  /* Forhåndsvisning av video når man holder musepekeren over et kort */
-  if (canHover) {
-    document.querySelectorAll('#cases .case').forEach(card => {
-      const v = card.querySelector('video');
-      if (!v) return;
-      card.addEventListener('mouseenter', () => {
-        if (!v.src) v.src = v.dataset.src;
-        v.play().then(() => card.classList.add('playing')).catch(() => {});
-      });
-      card.addEventListener('mouseleave', () => { v.pause(); card.classList.remove('playing'); });
-    });
-  }
+  /* Videoene på kortene spiller av med en gang når kortet er synlig (uten lyd) */
+  if (window.cardVidObs) window.cardVidObs.disconnect();
+  window.cardVidObs = new IntersectionObserver(entries => entries.forEach(en => {
+    const card = en.target, v = card.querySelector('video'); if (!v) return;
+    if (en.isIntersecting) {
+      if (!v.src) v.src = v.dataset.src;
+      v.muted = true;
+      v.play().then(() => card.classList.add('playing')).catch(() => {});
+    } else v.pause();
+  }), {rootMargin:'200px 0px'});
+  document.querySelectorAll('#cases .case').forEach(card => { if (card.querySelector('video')) window.cardVidObs.observe(card); });
 }
 
 /* ---------- Anbefalinger og attester ---------- */
@@ -1238,7 +1237,8 @@ function showMedia(c, idx){
     el.classList.toggle('prev', k === currentMedia - 1);
     if (m.type === 'video') {
       const hasVideo = !!el.querySelector('video');
-      if (k === currentMedia && !hasVideo) el.innerHTML = `<video src="${m.src}" poster="${m.poster||''}" controls playsinline preload="metadata"></video>`;
+      if (k === currentMedia && !hasVideo) el.innerHTML = `<video src="${m.src}" controls playsinline preload="auto"></video>`;
+      if (k === currentMedia) { const v = el.querySelector('video'); if (v && dlg.open) v.play().catch(() => { v.muted = true; v.play().catch(() => {}); }); }
       if (k !== currentMedia && hasVideo) el.innerHTML = `<img src="${m.poster}" alt=""><span class="vplay">${ICON_PLAY}</span>`;
     }
   });
@@ -1376,6 +1376,7 @@ function openCase(i){
   lastFocus = document.activeElement;
   fillDialog(i);
   if (!dlg.open) dlg.showModal();
+  { const v = $('dlg-viewer').querySelector('.vslide.on video'); if (v) v.play().catch(() => { v.muted = true; v.play().catch(() => {}); }); }
   document.body.style.overflow = 'hidden';
 }
 function closeCase(){ dlg.close(); }
