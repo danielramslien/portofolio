@@ -1653,12 +1653,11 @@ const bar = $('top-bar');
 const onScroll = () => bar.classList.toggle('scrolled', window.scrollY > 24);
 /* Toppmenyen vises først når de store menyordene i toppen er ute av syne */
 {
-  const hn = document.querySelector('.hero-nav');
-  if (hn && document.documentElement.dataset.page === 'home') {
-    document.documentElement.classList.add('hero-menu');
-    new IntersectionObserver(([en]) => {
-      document.documentElement.classList.toggle('hero-menu', en.isIntersecting || en.boundingClientRect.top > 0);
-    }, {rootMargin:`-${getComputedStyle(document.documentElement).getPropertyValue('--header-h') || '68px'} 0px 0px 0px`}).observe(hn);
+  const hn = document.querySelector('.hero-nav'), root = document.documentElement;
+  if (hn && root.dataset.page === 'home') {
+    const upd = () => { const hh = bar.offsetHeight || 68; root.classList.toggle('hero-menu', hn.getBoundingClientRect().bottom > hh); };
+    upd(); window.addEventListener('scroll', upd, {passive:true}); window.addEventListener('resize', upd);
+    window.addEventListener('load', upd); setTimeout(upd, 300);
   }
 }
 onScroll(); window.addEventListener('scroll', onScroll, {passive:true});
