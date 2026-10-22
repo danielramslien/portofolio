@@ -20,5 +20,9 @@ for fname, (page, anchor, title) in PAGES.items():
     s = s.replace('<a class="skip" href="index.html#arbeid"', f'<a class="skip" href="#{anchor}"', 1)
     s = s.replace('<title>Daniel Ramslien Portefølje</title>', f'<title>{title}</title>', 1)
     s = s.replace('<meta property="og:url" content="https://portofolio-8jx.pages.dev/">', f'<meta property="og:url" content="https://portofolio-8jx.pages.dev/{fname[:-5]}">', 1)
+    if page == 'refs':
+        old = 'id="kontakt-tittel" data-i18n-html="contact.title">La oss ta en prat</h2>'
+        assert old in s
+        s = s.replace(old, 'id="kontakt-tittel" data-i18n="nav.contact">Kontakt</h2>', 1)
     (root / fname).write_text(s, encoding='utf-8')
     print(fname, 'oppdatert')
