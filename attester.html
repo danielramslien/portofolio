@@ -379,9 +379,9 @@ section{position:relative}
 .egg-shell .orb{box-shadow:inset -26px -34px 70px rgba(110,30,0,.35)}
 .egg-top{clip-path:polygon(0 0,100% 0,100% 52%,88% 46%,76% 55%,64% 47%,52% 56%,40% 46%,28% 55%,16% 47%,0 53%)}
 .egg-bot{clip-path:polygon(0 53%,16% 47%,28% 55%,40% 46%,52% 56%,64% 47%,76% 55%,88% 46%,100% 52%,100% 100%,0 100%)}
-.egg-cracks{position:absolute;inset:0;z-index:5;width:100%;height:100%;stroke:rgba(70,18,0,.85);stroke-width:1.1;pointer-events:none;transition:opacity .3s}
-.egg-cracks path{stroke-dasharray:120;stroke-dashoffset:120;transition:stroke-dashoffset .45s var(--ease)}
-.egg[data-stage="1"] .c1,.egg[data-stage="2"] .c1,.egg[data-stage="3"] .c1,.egg[data-stage="2"] .c2,.egg[data-stage="3"] .c2,.egg[data-stage="3"] .c3{stroke-dashoffset:0}
+.egg-cracks{position:absolute;inset:0;z-index:5;width:100%;height:100%;stroke:rgba(70,18,0,.85);stroke-width:1.2;pointer-events:none;transition:opacity .3s}
+.egg-cracks path{stroke-dasharray:1;stroke-dashoffset:1;transition:stroke-dashoffset .4s var(--ease)}
+.egg[data-stage="1"] .c1,.egg[data-stage="2"] .c1,.egg[data-stage="2"] .c2,.egg[data-stage="3"] .c1,.egg[data-stage="3"] .c2,.egg[data-stage="3"] .c3,.egg[data-stage="4"] .c1,.egg[data-stage="4"] .c2,.egg[data-stage="4"] .c3,.egg[data-stage="4"] .c4,.egg[data-stage="5"] .c1,.egg[data-stage="5"] .c2,.egg[data-stage="5"] .c3,.egg[data-stage="5"] .c4,.egg[data-stage="5"] .c5,.egg[data-stage="6"] .c1,.egg[data-stage="6"] .c2,.egg[data-stage="6"] .c3,.egg[data-stage="6"] .c4,.egg[data-stage="6"] .c5,.egg[data-stage="6"] .c6,.egg[data-stage="7"] .c1,.egg[data-stage="7"] .c2,.egg[data-stage="7"] .c3,.egg[data-stage="7"] .c4,.egg[data-stage="7"] .c5,.egg[data-stage="7"] .c6,.egg[data-stage="7"] .c7{stroke-dashoffset:0}
 .egg.wobble{animation:eggWobble .45s var(--ease)}
 @keyframes eggWobble{0%,100%{transform:rotate(0)}20%{transform:rotate(-6deg) scale(.97)}45%{transform:rotate(5deg)}70%{transform:rotate(-3deg)}85%{transform:rotate(1.5deg)}}
 .egg.hatched .egg-top{transform:translate(-6%,-30%) rotate(-18deg) scale(.6);opacity:0}
@@ -832,9 +832,13 @@ html[data-page="refs"] #anbefalinger .refs-head{display:none}
             <span class="egg-shell egg-top"><span class="orb"></span></span>
             <span class="egg-shell egg-bot"><span class="orb"></span></span>
             <svg class="egg-cracks" viewBox="0 0 100 100" aria-hidden="true" fill="none" stroke-linecap="round" stroke-linejoin="round">
-              <path class="c1" d="M40 46 L52 56 L58 50"/>
-              <path class="c2" d="M28 55 L40 46 M58 50 L64 47 L70 52 M52 56 L50 64 M40 46 L37 38"/>
-              <path class="c3" d="M0 53 L16 47 L28 55 M70 52 L76 55 L88 46 L100 52 M64 47 L66 39 M16 47 L13 41 M76 55 L79 63"/>
+              <path class="c1" pathLength="1" d="M40 46 L52 56 L58 50"/>
+              <path class="c2" pathLength="1" d="M52 56 L50 64 M40 46 L37 38"/>
+              <path class="c3" pathLength="1" d="M28 55 L40 46 M58 50 L64 47 L70 52"/>
+              <path class="c4" pathLength="1" d="M16 47 L28 55 M70 52 L76 55 M50 64 L45 70 M37 38 L41 31"/>
+              <path class="c5" pathLength="1" d="M0 53 L16 47 M76 55 L88 46 M64 47 L66 39 M45 70 L47 77"/>
+              <path class="c6" pathLength="1" d="M88 46 L100 52 M16 47 L13 41 M76 55 L79 63 M28 55 L24 63 M41 31 L36 26"/>
+              <path class="c7" pathLength="1" d="M66 39 L72 33 M79 63 L85 67 M13 41 L8 36 M24 63 L19 66 M47 77 L53 82 M58 50 L60 42"/>
             </svg>
           </button>
             <span class="egg-hint" data-i18n="egg.hint">(trykk på meg)</span>
@@ -1769,7 +1773,7 @@ document.querySelectorAll('.reveal').forEach(el => revObs.observe(el));
     const n = (+egg.dataset.taps || 0) + 1;
     egg.dataset.taps = n;
     if (n >= 8) { egg.classList.add('hatched'); egg.dataset.taps = 0; return; }
-    egg.dataset.stage = Math.ceil(n * 3 / 7);
+    egg.dataset.stage = n;
     egg.classList.remove('wobble'); void egg.offsetWidth; egg.classList.add('wobble');
   });
   egg.addEventListener('animationend', e => { if (e.animationName === 'eggWobble') egg.classList.remove('wobble'); });
