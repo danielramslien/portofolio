@@ -176,7 +176,7 @@ html[data-page="about"] .nav a[href="om-meg.html"]{color:var(--text)}
 section{position:relative}
 .section{padding:clamp(96px,12vw,150px) 0 0}
 #arbeid{padding-top:clamp(18px,2.4vw,32px)}
-#arbeid .work-head{margin-bottom:clamp(18px,2vw,28px)}
+#arbeid .work-head{margin:0}
 .thanks{margin:clamp(80px,10vw,140px) 0 18px;text-align:center;font-family:var(--font-display);font-stretch:100%;font-weight:800;font-size:clamp(18px,1.8vw,24px);letter-spacing:.02em;color:var(--text)}
 
 /* ---------- Hero ---------- */
@@ -605,7 +605,7 @@ section{position:relative}
   <section class="section" id="arbeid" aria-labelledby="arbeid-tittel">
     <div class="wrap">
       <div class="work-head">
-        <h2 class="display h-xl reveal" id="arbeid-tittel" data-i18n-html="work.title">Utvalgte case</h2>
+        <h2 class="sr" id="arbeid-tittel" data-i18n-html="work.title">Utvalgte case</h2>
       </div>
       <ul class="cases" id="cases"></ul>
       <div class="work-stats" id="resultater">
