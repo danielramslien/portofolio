@@ -145,6 +145,8 @@ button{font:inherit;color:inherit}
 .menu-open .menu-btn span:nth-child(1){transform:translateY(7px) rotate(45deg)}
 .menu-open .menu-btn span:nth-child(2){opacity:0}
 .menu-open .menu-btn span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+.nav-lang{display:none;align-items:center;gap:10px;align-self:flex-start;margin-top:22px;padding:9px 16px 9px 10px;border:1px solid var(--line-strong);border-radius:999px;background:rgba(243,237,230,.06);color:var(--text);font:inherit;font-size:14px;font-weight:600;letter-spacing:.08em;cursor:pointer}
+.nav-lang .flag{width:26px;height:18px;border-radius:3px;box-shadow:0 0 0 1px rgba(255,255,255,.12)}
 .lang{display:inline-flex;align-items:center;gap:2px;padding:3px;border:1px solid var(--line-strong);border-radius:999px;background:rgba(14,12,11,.4)}
 .lang-btn{display:inline-flex;align-items:center;gap:7px;padding:5px 10px 5px 6px;border:0;border-radius:999px;background:transparent;cursor:pointer;font-size:12px;font-weight:600;letter-spacing:.08em;color:var(--muted);transition:background .2s,color .2s}
 .lang-btn .flag{width:22px;height:15px;border-radius:3px;flex:none;filter:grayscale(.45);opacity:.7;transition:filter .2s,opacity .2s;box-shadow:0 0 0 1px rgba(255,255,255,.12)}
@@ -473,7 +475,8 @@ section{position:relative}
   .menu-btn{visibility:visible}
   .site-header .wrap{grid-template-columns:1fr auto 1fr;gap:10px}
   .menu-btn{grid-column:1;grid-row:1;justify-self:start}
-  .site-header .lang{grid-column:2;grid-row:1;justify-self:center;position:relative;z-index:2;-webkit-transform:translateZ(0);transform:translateZ(0)}
+  .site-header .lang{display:none}
+  .nav-lang{display:inline-flex}
   .hdr-cta{display:inline-flex;grid-column:3;grid-row:1;justify-self:end}
   .nav a.nav-cta{display:none}
   .site-header .nav{grid-column:1/-1;grid-row:1;justify-self:stretch;width:100vw}
@@ -506,6 +509,7 @@ section{position:relative}
         <a href="#anbefalinger"><span data-i18n="nav.testi">Anbefalinger</span></a>
         <a href="#om-meg"><span data-i18n="nav.about">Om meg</span></a>
         <a href="#kontakt" class="nav-cta"><span data-i18n="nav.contact">Kontakt</span></a>
+        <button type="button" class="nav-lang" id="nav-lang" aria-label="Bytt språk" data-i18n-aria="aria.switchLang"></button>
       </nav>
       <div class="lang" role="group" aria-label="Velg språk" data-i18n-aria="aria.lang">
         <button class="lang-btn" type="button" data-lang="no" lang="no" aria-pressed="true" title="Norsk"><svg class="flag" viewBox="0 0 22 16" aria-hidden="true" preserveAspectRatio="xMidYMid slice"><rect width="22" height="16" fill="#BA0C2F"/><rect x="6" width="4" height="16" fill="#fff"/><rect y="6" width="22" height="4" fill="#fff"/><rect x="7" width="2" height="16" fill="#00205B"/><rect y="7" width="22" height="2" fill="#00205B"/></svg><span class="code">NO</span><span class="sr">Norsk</span></button>
@@ -721,7 +725,7 @@ const I18N = {
   no: {
     'meta.title':'Daniel Ramslien Portefølje',
     'meta.desc':'Portefølje 2026. Daniel Ramslien er digital markedsfører med hjertet i sosiale medier: kampanjer, innhold og analyse for Mufano, M40 Studios, Punkt Oslo, NOT Management og flere.',
-    'skip':'Hopp til innhold', 'aria.menu':'Hovedmeny', 'aria.scroll':'Bla ned', 'aria.intro':'Introduksjon', 'aria.stats':'Resultater i tall', 'aria.lang':'Velg språk',
+    'skip':'Hopp til innhold', 'aria.menu':'Hovedmeny', 'aria.scroll':'Bla ned', 'aria.intro':'Introduksjon', 'aria.stats':'Resultater i tall', 'aria.lang':'Velg språk', 'aria.switchLang':'Bytt språk',
     'nav.about':'Om meg', 'nav.work':'Arbeid', 'nav.contact':'Kontakt',
     'hero.kicker':'Digital markedsfører', 'hero.title':'Hei, jeg er Daniel.',
     'foot.portfolio':'Portefølje 2026',
@@ -753,7 +757,7 @@ const I18N = {
   en: {
     'meta.title':'Daniel Ramslien Portfolio',
     'meta.desc':'Portfolio 2026. Daniel Ramslien is a digital marketer with a heart for social media: campaigns, content and analytics for Mufano, M40 Studios, Punkt Oslo, NOT Management and more.',
-    'skip':'Skip to content', 'aria.menu':'Main menu', 'aria.scroll':'Scroll down', 'aria.intro':'Introduction', 'aria.stats':'Results in numbers', 'aria.lang':'Choose language',
+    'skip':'Skip to content', 'aria.menu':'Main menu', 'aria.scroll':'Scroll down', 'aria.intro':'Introduction', 'aria.stats':'Results in numbers', 'aria.lang':'Choose language', 'aria.switchLang':'Switch language',
     'nav.about':'About', 'nav.work':'Work', 'nav.contact':'Contact',
     'hero.kicker':'Digital marketer', 'hero.title':'Hi, I’m Daniel.',
     'foot.portfolio':'Portfolio 2026',
@@ -1403,6 +1407,8 @@ function applyLang(next, save){
   document.querySelectorAll('[data-i18n-alt]').forEach(el => { el.setAttribute('alt', tr(el.dataset.i18nAlt)); });
   document.querySelectorAll('[data-count].counted').forEach(el => { el.textContent = fmt(+el.dataset.count) + (el.dataset.suffix || ''); });
   document.querySelectorAll('.lang-btn').forEach(b => b.setAttribute('aria-pressed', b.dataset.lang === lang ? 'true' : 'false'));
+  { const nl = document.getElementById('nav-lang'), src = document.querySelector(`.lang-btn[data-lang="${lang}"] .flag`);
+    if (nl && src) nl.innerHTML = src.outerHTML + `<span>${lang === 'en' ? 'EN' : 'NO'}</span>`; }
   renderCards();
   renderTesti();
   try { renderDots(); showSlide(slideIdx); } catch (e) { /* karusellen er ikke klar ennå ved første lasting */ }
@@ -1418,6 +1424,7 @@ function applyLang(next, save){
   }
 }
 document.querySelectorAll('.lang-btn').forEach(b => b.addEventListener('click', () => { if (b.dataset.lang !== lang) applyLang(b.dataset.lang, true); }));
+document.getElementById('nav-lang').addEventListener('click', () => applyLang(lang === 'en' ? 'no' : 'en', true));
 applyLang(lang, false);
 /* Kortene tegnes på nytt ved språkbytte, så de skal ikke animeres inn igjen */
 document.querySelectorAll('#cases .case').forEach(el => el.classList.remove('in'));
