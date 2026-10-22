@@ -371,7 +371,9 @@ section{position:relative}
 .tt-item iframe{width:100%;height:100%;border:0;display:block}
 .vslide.tt{background:#000}
 .vslide.tt iframe{width:100%;height:100%;border:0;display:block}
-.vslide.ig{background:#000}
+.vslide.ig{background:#000;overflow:hidden}
+.ig-likes{position:absolute;left:12px;bottom:12px;z-index:3;display:inline-flex;align-items:center;gap:6px;padding:6px 12px 6px 10px;border-radius:999px;background:rgba(0,0,0,.6);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);color:#fff;font-size:13px;font-weight:600;text-decoration:none}
+.ig-likes svg{width:16px;height:16px;fill:#ff3b5c}
 .ig-ph{background:linear-gradient(135deg,#7638fa,#d300c5 40%,#ff0069 70%,#ff7a00)!important}
 .ig-ph svg{filter:none!important}
 .tt-ph{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;color:#fff;font-weight:600;font-size:14px;letter-spacing:.04em;background:radial-gradient(circle at 50% 40%,#1d1a18,#050403)}
@@ -1016,7 +1018,7 @@ const I18N = {
     'foot.thanks':'Takk for at du tok deg tid',
     'foot.note':'© 2026 Daniel Ramslien · Rams Creative (Ramslien Creative ENK) · Org.nr. 935 128 986 · Referanser oppgis på forespørsel',
     'dlg.close':'Lukk case', 'dlg.did':'Hva jeg gjorde', 'dlg.thumbs':'Velg bilde eller video',
-    'dlg.client':'Kunde', 'dlg.role':'Rolle', 'dlg.period':'Periode', 'dlg.tags':'Kanaler og fag', 'dlg.docs':'Dokumenter', 'dlg.tiktok':'TikTok-videoene', 'logos.label':'Har samarbeidet med', 'dlg.tools':'Verktøy',
+    'dlg.client':'Kunde', 'dlg.role':'Rolle', 'dlg.period':'Periode', 'dlg.tags':'Kanaler og fag', 'dlg.docs':'Dokumenter', 'dlg.tiktok':'TikTok-videoene', 'ig.likes':'likerklikk', 'logos.label':'Har samarbeidet med', 'dlg.tools':'Verktøy',
     'card.video':'Video', 'card.images':'Bilder', 'card.view':'Se case', 'card.for':'for',
     'nav.refs':'Attester', 'refs.more':'Se flere', 'refs.less':'Se færre', 'about.more':'Les mer', 'about.less':'Les mindre', 'card.next':'Neste bilde', 'card.prev':'Forrige bilde', 'refs.title':'Attester', 'refs.lead':'Hele dokumentene. Trykk på en attest for å lese den.', 'refs.note':'Fødselsdato og adresse er sladdet.',
     'refs.close':'Lukk attest', 'refs.view':'Se attest fra',
@@ -1048,7 +1050,7 @@ const I18N = {
     'foot.thanks':'Thanks for your time',
     'foot.note':'© 2026 Daniel Ramslien · Rams Creative (Ramslien Creative ENK) · Org. no. 935 128 986 · References available on request',
     'dlg.close':'Close case', 'dlg.did':'What I did', 'dlg.thumbs':'Choose image or video',
-    'dlg.client':'Client', 'dlg.role':'Role', 'dlg.period':'Period', 'dlg.tags':'Channels and skills', 'dlg.docs':'Documents', 'dlg.tiktok':'The TikTok videos', 'logos.label':'Worked with', 'dlg.tools':'Tools',
+    'dlg.client':'Client', 'dlg.role':'Role', 'dlg.period':'Period', 'dlg.tags':'Channels and skills', 'dlg.docs':'Documents', 'dlg.tiktok':'The TikTok videos', 'ig.likes':'likes', 'logos.label':'Worked with', 'dlg.tools':'Tools',
     'card.video':'Video', 'card.images':'Images', 'card.view':'View case', 'card.for':'for',
     'nav.refs':'References', 'refs.more':'See more', 'refs.less':'See fewer', 'about.more':'Read more', 'about.less':'Read less', 'card.next':'Next image', 'card.prev':'Previous image', 'refs.title':'References', 'refs.lead':'The full documents. Tap a reference to read it.', 'refs.note':'Date of birth and address have been redacted. The documents are in Norwegian, except Open iT.',
     'refs.close':'Close reference', 'refs.view':'View reference from',
@@ -1133,7 +1135,7 @@ const CASES = [
     link:{href:'https://youtu.be/aBOuIqYqrRg', text:{no:'Se hele pitchdecken på YouTube',en:'Watch the full pitch deck on YouTube'}},
     media:[
       {type:'video',src:V+'knytt.mp4',poster:P+'knytt.jpg',cap:{no:'Video for Knytt, klippet av meg',en:'Video for Knytt, edited by me'}},
-      {type:'ig',id:'DRWuKmLDDjE',cap:{no:'Reel for Knytt på Instagram',en:'Reel for Knytt on Instagram'}},
+      {type:'ig',id:'DRWuKmLDDjE',likes:22,cap:{no:'Reel for Knytt på Instagram',en:'Reel for Knytt on Instagram'}},
       {type:'video',src:V+'div-eksamen.mp4',poster:P+'div-eksamen.jpg',cap:{no:'Eksamensvideo i Digitale verktøy om strategien til Knytt',en:'Exam video in Digital Tools on Knytt’s strategy'}},
       {type:'image',src:I+'knytt-landing.webp',cap:{no:'Landingssiden på knytt.org',en:'Landing page on knytt.org'}},
       {type:'image',src:I+'knytt-shop.webp',cap:{no:'Nettbutikken',en:'Online store'}},
@@ -1498,6 +1500,14 @@ function playWithSound(v){
     }
   });
 }
+/* Instagram-innlegget beskjæres slik at bare videoen vises: den hvite toppen og bunnen skjules */
+const IG_TOP = 80, IG_RATIO = 1.25, IG_BOTTOM = 260;
+function fitIg(el){
+  const f = el.querySelector('iframe'); if (!f) return;
+  const W = el.clientWidth, H = el.clientHeight, vh = W * IG_RATIO, sc = Math.max(1, H / vh);
+  f.style.cssText = `position:absolute;left:0;top:0;width:${W}px;height:${IG_TOP + vh + IG_BOTTOM}px;transform-origin:50% 0;transform:translateY(${-IG_TOP * sc}px) scale(${sc})`;
+}
+window.addEventListener('resize', () => document.querySelectorAll('.vslide.ig.on').forEach(fitIg));
 function showMedia(c, idx){
   currentMedia = Math.max(0, Math.min(idx, c.media.length - 1));
   const viewer = $('dlg-viewer');
@@ -1514,7 +1524,7 @@ function showMedia(c, idx){
     }
     if (m.type === 'ig') {
       const hasFrame = !!el.querySelector('iframe');
-      if (k === currentMedia && !hasFrame) el.innerHTML = `<iframe src="https://www.instagram.com/reel/${m.id}/embed/" title="Instagram" allow="autoplay; encrypted-media; fullscreen; picture-in-picture" scrolling="no"></iframe>`;
+      if (k === currentMedia && !hasFrame) { el.innerHTML = `<iframe src="https://www.instagram.com/reel/${m.id}/embed/" title="Instagram" allow="autoplay; encrypted-media; fullscreen; picture-in-picture" scrolling="no"></iframe>` + (m.likes ? `<a class="ig-likes" href="https://www.instagram.com/reel/${m.id}/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20.5s-7.5-4.6-9.3-9.2C1.4 7.9 3.6 4.5 7 4.5c2 0 3.4 1.1 5 3 1.6-1.9 3-3 5-3 3.4 0 5.6 3.4 4.3 6.8-1.8 4.6-9.3 9.2-9.3 9.2z"/></svg>${m.likes} ${tr('ig.likes')}</a>` : ''); fitIg(el); }
       if (k !== currentMedia && hasFrame) el.innerHTML = IG_PH;
     }
     if (m.type === 'video') {
