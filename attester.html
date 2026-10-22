@@ -641,7 +641,7 @@ section{position:relative}
         <h2 class="sr" id="arbeid-tittel" data-i18n-html="work.title">Utvalgte case</h2>
       </div>
       <div class="logos" aria-label="Har samarbeidet med" data-i18n-aria="logos.label">
-        <div class="logos-track"><ul><li class="lg-big"><img src="assets/img/logos/m40.png" alt="M40 Studios" loading="lazy"></li><li><img src="assets/img/logos/make-a-wish.png" alt="Make-A-Wish" loading="lazy"></li><li class="lg-big"><img src="assets/img/logos/kristiania.png" alt="Høyskolen Kristiania" loading="lazy"></li><li class="lg-big"><img src="assets/img/logos/kraft.png" alt="KRAFT Collective" loading="lazy"></li><li class="lg-big"><img src="assets/img/logos/punkt-oslo.png" alt="Punkt Oslo" loading="lazy"></li><li class="lg-sm"><img src="assets/img/logos/knytt.png" alt="Knytt" loading="lazy"></li><li><span class="logo-word">Mufano</span></li></ul></div>
+        <div class="logos-track"><ul><li class="lg-big"><img src="assets/img/logos/m40.png" alt="M40 Studios" loading="lazy"></li><li><img src="assets/img/logos/make-a-wish.png" alt="Make-A-Wish" loading="lazy"></li><li class="lg-big"><img src="assets/img/logos/kristiania.png" alt="Høyskolen Kristiania" loading="lazy"></li><li class="lg-big"><img src="assets/img/logos/kraft.png" alt="KRAFT Collective" loading="lazy"></li><li class="lg-big"><img src="assets/img/logos/punkt-oslo.png" alt="Punkt Oslo" loading="lazy"></li><li class="lg-sm"><img src="assets/img/logos/knytt.png" alt="Knytt" loading="lazy"></li><li class="lg-sm"><img src="assets/img/logos/oks.png" alt="OKS" loading="lazy"></li></ul></div>
       </div>
       <ul class="cases" id="cases"></ul>
       <div class="work-stats" id="resultater">
@@ -1343,6 +1343,18 @@ function buildViewer(c){
     (c.media.length > 1 ? `<button type="button" class="vnav vprev" aria-label="${tr('dlg.previmg')}">‹</button><button type="button" class="vnav vnext" aria-label="${tr('dlg.nextimg')}">›</button>` : '');
   $('dlg-thumbs').innerHTML = c.media.length > 1 ? c.media.map((m,k) => `<button type="button" data-k="${k}" aria-label="${tr('dlg.slide')} ${k+1}: ${esc(pick(m.cap))}"></button>`).join('') : '';
 }
+/* Spill av med lyd. Blokkerer nettleseren lyd, startes videoen uten lyd og lyden slås på ved første trykk i caset */
+function playWithSound(v){
+  v.muted = false; v.volume = 1;
+  const p = v.play();
+  if (p) p.catch(e => {
+    if (e && e.name === 'NotAllowedError') {
+      v.muted = true; v.play().catch(() => {});
+      const unmute = () => { v.muted = false; v.play().catch(() => {}); };
+      dlg.addEventListener('pointerdown', unmute, {once:true});
+    }
+  });
+}
 function showMedia(c, idx){
   currentMedia = Math.max(0, Math.min(idx, c.media.length - 1));
   const viewer = $('dlg-viewer');
@@ -1355,7 +1367,7 @@ function showMedia(c, idx){
     if (m.type === 'video') {
       const hasVideo = !!el.querySelector('video');
       if (k === currentMedia && !hasVideo) el.innerHTML = `<video src="${m.src}" controls playsinline preload="auto"></video>`;
-      if (k === currentMedia) { const v = el.querySelector('video'); if (v && dlg.open) v.play().catch(() => { v.muted = true; v.play().catch(() => {}); }); }
+      if (k === currentMedia) { const v = el.querySelector('video'); if (v && dlg.open) playWithSound(v); }
       if (k !== currentMedia && hasVideo) el.innerHTML = `<img src="${m.poster}" alt=""><span class="vplay">${ICON_PLAY}</span>`;
     }
   });
@@ -1496,7 +1508,7 @@ function openCase(i){
   lastFocus = document.activeElement;
   fillDialog(i);
   if (!dlg.open) dlg.showModal();
-  { const v = $('dlg-viewer').querySelector('.vslide.on video'); if (v) v.play().catch(() => { v.muted = true; v.play().catch(() => {}); }); }
+  { const v = $('dlg-viewer').querySelector('.vslide.on video'); if (v) playWithSound(v); }
   document.body.style.overflow = 'hidden';
 }
 function closeCase(){ dlg.close(); }
