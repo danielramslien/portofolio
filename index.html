@@ -135,6 +135,8 @@ button{font:inherit;color:inherit}
 .nav a{text-decoration:none;font-size:14px;color:var(--muted);transition:color .2s;white-space:nowrap}
 .nav a .n{color:var(--faint);margin-right:6px;transition:color .2s}
 .nav a:hover,.nav a.active{color:var(--text)}
+.site-header .nav,.site-header .menu-btn,.site-header .hdr-cta,.site-header .lang{transition:opacity .35s var(--ease),transform .35s var(--ease),visibility 0s 0s}
+html.hero-menu .site-header .nav,html.hero-menu .site-header .menu-btn,html.hero-menu .site-header .hdr-cta{opacity:0;transform:translateY(-8px);pointer-events:none;visibility:hidden;transition:opacity .35s var(--ease),transform .35s var(--ease),visibility 0s .35s}
 html[data-page="home"] #om-meg,html[data-page="home"] #attester{display:none}
 html[data-page="refs"] main > section:not(#attester):not(#anbefalinger):not(#kontakt){display:none}
 html[data-page="refs"] main{display:flex;flex-direction:column}
@@ -247,7 +249,7 @@ section{position:relative}
 .facts dd{margin:0;font-size:14px;line-height:1.55;color:var(--text-soft)}
 
 .work-stats{margin-top:clamp(56px,7vw,96px)}
-.stats-title{margin:0 0 18px;font-family:var(--font-display);font-stretch:100%;font-weight:800;font-size:clamp(17px,1.5vw,20px);color:var(--text)}
+.stats-title{margin:0 0 clamp(20px,2.4vw,32px);font-family:var(--font-display);font-stretch:100%;font-weight:900;text-transform:uppercase;line-height:.92;font-size:clamp(22px,4vw,58px);text-align:center;color:var(--text)}
 .stats{container-type:inline-size;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));margin-top:0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
 .stat{padding:30px 24px 30px 0}
 .stat + .stat{padding-left:24px;border-left:1px solid var(--line)}
@@ -647,6 +649,7 @@ section{position:relative}
         <li><a href="#arbeid" data-i18n="nav.work">Arbeid</a></li>
         <li><a href="#verktoy" data-i18n="nav.tools">Verktøy</a></li>
         <li><a href="#anbefalinger" data-i18n="nav.testi">Erfaringer</a></li>
+        <li><a href="attester.html" data-i18n="nav.refs">Attester</a></li>
         <li><a href="om-meg.html" data-i18n="nav.about">Om meg</a></li>
         <li><a href="#kontakt" class="hero-cta" data-i18n="nav.contact">Kontakt</a></li>
       </ul>
@@ -1648,6 +1651,16 @@ renderDots(); showSlide(0); startSlides();
 /* ---------- Header og aktiv seksjon ---------- */
 const bar = $('top-bar');
 const onScroll = () => bar.classList.toggle('scrolled', window.scrollY > 24);
+/* Toppmenyen vises først når de store menyordene i toppen er ute av syne */
+{
+  const hn = document.querySelector('.hero-nav');
+  if (hn && document.documentElement.dataset.page === 'home') {
+    document.documentElement.classList.add('hero-menu');
+    new IntersectionObserver(([en]) => {
+      document.documentElement.classList.toggle('hero-menu', en.isIntersecting || en.boundingClientRect.top > 0);
+    }, {rootMargin:`-${getComputedStyle(document.documentElement).getPropertyValue('--header-h') || '68px'} 0px 0px 0px`}).observe(hn);
+  }
+}
 onScroll(); window.addEventListener('scroll', onScroll, {passive:true});
 
 /* ---------- Hamburgermeny ---------- */
