@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="no">
+<html lang="no" data-page="home">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
@@ -134,6 +134,12 @@ button{font:inherit;color:inherit}
 .nav a{text-decoration:none;font-size:14px;color:var(--muted);transition:color .2s;white-space:nowrap}
 .nav a .n{color:var(--faint);margin-right:6px;transition:color .2s}
 .nav a:hover,.nav a.active{color:var(--text)}
+html[data-page="home"] #om-meg{display:none}
+html[data-page="about"] .hero,html[data-page="about"] #arbeid,html[data-page="about"] #verktoy,html[data-page="about"] #anbefalinger,html[data-page="about"] #attester{display:none}
+html[data-page="about"] #om-meg{padding-top:calc(var(--header-h) + clamp(48px,7vw,96px))}
+html[data-page="about"] .about-more{display:block}
+html[data-page="about"] .about-toggle{display:none!important}
+html[data-page="about"] .nav a[href="om-meg.html"]{color:var(--text)}
 .nav{align-items:center}
 .nav a.nav-cta{color:var(--ink);background:var(--accent);font-weight:600;padding:8px 18px;border-radius:999px;box-shadow:0 0 0 0 rgba(255,122,26,.5);transition:background .2s,box-shadow .3s,transform .2s}
 .nav a.nav-cta:hover,.nav a.nav-cta.active{color:var(--ink);background:#ff9447;box-shadow:0 6px 24px rgba(255,122,26,.35);transform:translateY(-1px)}
@@ -507,7 +513,7 @@ section{position:relative}
         <a href="#arbeid"><span data-i18n="nav.work">Arbeid</span></a>
         <a href="#verktoy"><span data-i18n="nav.tools">Verktøy</span></a>
         <a href="#anbefalinger"><span data-i18n="nav.testi">Anbefalinger</span></a>
-        <a href="#om-meg"><span data-i18n="nav.about">Om meg</span></a>
+        <a href="om-meg.html"><span data-i18n="nav.about">Om meg</span></a>
         <a href="#kontakt" class="nav-cta"><span data-i18n="nav.contact">Kontakt</span></a>
         <button type="button" class="nav-lang" id="nav-lang" aria-label="Bytt språk" data-i18n-aria="aria.switchLang"></button>
       </nav>
@@ -534,7 +540,7 @@ section{position:relative}
         <li><a href="#arbeid" data-i18n="nav.work">Arbeid</a></li>
         <li><a href="#verktoy" data-i18n="nav.tools">Verktøy</a></li>
         <li><a href="#anbefalinger" data-i18n="nav.testi">Anbefalinger</a></li>
-        <li><a href="#om-meg" data-i18n="nav.about">Om meg</a></li>
+        <li><a href="om-meg.html" data-i18n="nav.about">Om meg</a></li>
         <li><a href="#kontakt" class="hero-cta" data-i18n="nav.contact">Kontakt</a></li>
       </ul>
       <a class="hero-scroll" href="#arbeid" aria-label="Bla ned" data-i18n-aria="aria.scroll"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 7l7 6 7-6"/><path d="M5 13l7 6 7-6"/></svg></a>
@@ -1399,7 +1405,7 @@ dlg.addEventListener('keydown', e => {
 function applyLang(next, save){
   lang = next;
   document.documentElement.lang = lang === 'en' ? 'en' : 'no';
-  document.title = tr('meta.title');
+  document.title = document.documentElement.dataset.page === 'about' ? `${tr('nav.about')} · Daniel Ramslien` : tr('meta.title');
   document.querySelector('meta[name="description"]').setAttribute('content', tr('meta.desc'));
   document.querySelectorAll('[data-i18n]').forEach(el => { el.textContent = tr(el.dataset.i18n); });
   document.querySelectorAll('[data-i18n-html]').forEach(el => { el.innerHTML = tr(el.dataset.i18nHtml); });
