@@ -362,7 +362,8 @@ section{position:relative}
 .tools{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(16px,1.8vw,24px)}
 .tool-col{padding:clamp(24px,2.6vw,36px);background:var(--bg-card);border:1px solid var(--line);border-radius:16px}
 .tool-top{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:22px;padding-bottom:18px;border-bottom:1px solid var(--line)}
-.tool-level{font-family:var(--font-display);font-stretch:100%;font-weight:800;font-size:clamp(18px,1.6vw,22px);margin:0}
+.tool-col{container-type:inline-size}
+.tool-level{font-family:var(--font-display);font-stretch:100%;font-weight:800;font-size:19px;font-size:clamp(14px,calc((100cqi - 64px) / 14.3),19px);line-height:1.2;white-space:nowrap;margin:0}
 .tool-dots{display:flex;gap:7px}
 .tool-dots i{width:12px;height:12px;border-radius:50%;background:var(--line-strong)}
 .tool-dots i.on{background:radial-gradient(circle at 35% 30%,#ffe6cc 0%,#ffa24f 35%,#ff8125 60%,#c24a0b 100%);box-shadow:0 0 12px 2px rgba(255,122,26,.55)}
@@ -556,15 +557,15 @@ section{position:relative}
       </div>
       <div class="tools">
         <div class="tool-col reveal">
-          <div class="tool-top"><h3 class="tool-level" data-i18n="tools.adv">Avansert</h3><span class="tool-dots" aria-hidden="true"><i class="on"></i><i class="on"></i><i class="on"></i></span></div>
+          <div class="tool-top"><h3 class="tool-level" data-i18n="tools.adv">Avansert kompetanse</h3><span class="tool-dots" aria-hidden="true"><i class="on"></i><i class="on"></i><i class="on"></i></span></div>
           <ul class="pills"><li class="pill">Claude</li><li class="pill">CapCut</li><li class="pill">Canva</li><li class="pill">Premiere Pro</li><li class="pill">Meta &amp; TikTok Insights</li><li class="pill">Google Workspace</li></ul>
         </div>
         <div class="tool-col reveal" style="--d:.08s">
-          <div class="tool-top"><h3 class="tool-level" data-i18n="tools.good">God</h3><span class="tool-dots" aria-hidden="true"><i class="on"></i><i class="on"></i><i></i></span></div>
+          <div class="tool-top"><h3 class="tool-level" data-i18n="tools.good">God kompetanse</h3><span class="tool-dots" aria-hidden="true"><i class="on"></i><i class="on"></i><i></i></span></div>
           <ul class="pills"><li class="pill">GA4</li><li class="pill">Hotjar</li><li class="pill">Looker Studio</li><li class="pill">Google Search Console</li><li class="pill">Meta Ads</li><li class="pill">SEO</li><li class="pill">Tripletex</li></ul>
         </div>
         <div class="tool-col reveal" style="--d:.16s">
-          <div class="tool-top"><h3 class="tool-level" data-i18n="tools.basic">Grunnleggende</h3><span class="tool-dots" aria-hidden="true"><i class="on"></i><i></i><i></i></span></div>
+          <div class="tool-top"><h3 class="tool-level" data-i18n="tools.basic">Grunnleggende kompetanse</h3><span class="tool-dots" aria-hidden="true"><i class="on"></i><i></i><i></i></span></div>
           <ul class="pills"><li class="pill">DaVinci Resolve</li><li class="pill">Photoshop</li><li class="pill">Illustrator</li></ul>
         </div>
       </div>
@@ -736,7 +737,7 @@ const I18N = {
     'card.video':'Video', 'card.images':'Bilder', 'card.view':'Se case', 'card.for':'for',
     'nav.refs':'Attester', 'refs.more':'Se flere', 'refs.less':'Se færre', 'about.more':'Les mer', 'about.less':'Les mindre', 'card.next':'Neste bilde', 'card.prev':'Forrige bilde', 'refs.title':'Attester', 'refs.lead':'Hele dokumentene. Trykk på en attest for å lese den.', 'refs.note':'Fødselsdato og adresse er sladdet.',
     'refs.close':'Lukk attest', 'refs.view':'Se attest fra',
-    'nav.testi':'Anbefalinger', 'nav.tools':'Verktøy', 'tools.title':'Verktøy jeg bruker', 'tools.lead':'Fra idé og opptak til klipp, publisering og måling.', 'tools.adv':'Avansert', 'tools.good':'God', 'tools.basic':'Grunnleggende', 'tools.skills':'Ferdigheter',
+    'nav.testi':'Anbefalinger', 'nav.tools':'Verktøy', 'tools.title':'Verktøy jeg bruker', 'tools.lead':'Fra idé og opptak til klipp, publisering og måling.', 'tools.adv':'Avansert kompetanse', 'tools.good':'God kompetanse', 'tools.basic':'Grunnleggende kompetanse', 'tools.skills':'Ferdigheter',
     'sk.1':'Kampanje og konvertering', 'sk.2':'Innholdsproduksjon', 'sk.3':'Videoredigering', 'sk.4':'Måling og analyse', 'sk.5':'Salg og kunderelasjoner', 'sk.6':'Merkevarebygging', 'sk.7':'Regnskapsføring', 'testi.title':'Hva andre sier', 'testi.lead':'Utdrag fra attester og uttalelser fra folk jeg har jobbet med.', 'testi.tr':''
   },
   en: {
@@ -768,7 +769,7 @@ const I18N = {
     'card.video':'Video', 'card.images':'Images', 'card.view':'View case', 'card.for':'for',
     'nav.refs':'References', 'refs.more':'See more', 'refs.less':'See fewer', 'about.more':'Read more', 'about.less':'Read less', 'card.next':'Next image', 'card.prev':'Previous image', 'refs.title':'References', 'refs.lead':'The full documents. Tap a reference to read it.', 'refs.note':'Date of birth and address have been redacted. The documents are in Norwegian, except Open iT.',
     'refs.close':'Close reference', 'refs.view':'View reference from',
-    'nav.testi':'Testimonials', 'nav.tools':'Tools', 'tools.title':'Tools I use', 'tools.lead':'From idea and shooting to editing, publishing and measuring.', 'tools.adv':'Advanced', 'tools.good':'Proficient', 'tools.basic':'Basic', 'tools.skills':'Skills',
+    'nav.testi':'Testimonials', 'nav.tools':'Tools', 'tools.title':'Tools I use', 'tools.lead':'From idea and shooting to editing, publishing and measuring.', 'tools.adv':'Advanced skills', 'tools.good':'Solid skills', 'tools.basic':'Basic skills', 'tools.skills':'Skills',
     'sk.1':'Campaigns and conversion', 'sk.2':'Content production', 'sk.3':'Video editing', 'sk.4':'Measurement and analytics', 'sk.5':'Sales and client relations', 'sk.6':'Brand building', 'sk.7':'Bookkeeping', 'testi.title':'What others say', 'testi.lead':'Excerpts from references and statements by people I have worked with.', 'testi.tr':'Translated from Norwegian'
   }
 };
