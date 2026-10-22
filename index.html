@@ -474,6 +474,19 @@ section{position:relative}
 .zoom-close{position:absolute;top:14px;right:14px;z-index:2;width:44px;height:44px;border:0;border-radius:50%;background:rgba(14,12,11,.75);color:var(--text);display:grid;place-items:center;cursor:pointer}
 .zoom-close svg{width:16px;height:16px}
 .zoom-close:hover{background:var(--accent);color:var(--ink)}
+.znav{display:none;position:absolute;top:50%;z-index:2;width:48px;height:48px;margin-top:-24px;border:0;border-radius:50%;background:var(--accent);color:var(--ink);font-size:26px;line-height:1;cursor:pointer;box-shadow:0 6px 20px rgba(0,0,0,.4);transition:transform .2s,background .2s}
+.zoom.has-list .znav{display:grid;place-items:center}
+.zprev{left:16px}.znext{right:16px}
+.znav:hover{background:#ff9447;transform:scale(1.06)}
+.zoom-cap{position:absolute;left:0;right:0;top:24px;z-index:1;margin:0;text-align:center;font-size:13px;color:var(--text-soft);pointer-events:none}
+.zoom-cap:empty{display:none}
+.dlg-gal:empty{display:none}
+.dlg-gal .label{display:block;margin:18px 0 10px}
+.gal-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;list-style:none;margin:0;padding:0}
+.gal-item{display:block;width:100%;aspect-ratio:4/3;padding:0;border:1px solid var(--line);border-radius:10px;overflow:hidden;background:#111;cursor:zoom-in;transition:transform .25s var(--ease),border-color .25s,box-shadow .25s}
+.gal-item img{width:100%;height:100%;object-fit:cover;object-position:top;display:block}
+.gal-item:hover{transform:translateY(-3px);border-color:var(--accent-line);box-shadow:0 12px 26px rgba(0,0,0,.45)}
+@media (max-width:600px){.gal-grid{grid-template-columns:repeat(3,minmax(0,1fr))}.znav{width:40px;height:40px;margin-top:-20px;font-size:22px}.zprev{left:8px}.znext{right:8px}}
 .zoom-hint{position:absolute;left:0;right:0;bottom:16px;z-index:2;margin:0;text-align:center;font-size:12px;color:var(--muted);pointer-events:none}
 .vslide:fullscreen{background:#000;border-radius:0;transform:none!important;filter:none!important}
 .vslide:-webkit-full-screen{background:#000;border-radius:0;transform:none!important;filter:none!important}
@@ -941,7 +954,7 @@ section{position:relative}
 
 <!-- ======== Case-dialog ======== -->
 <dialog class="case-dialog" id="case-dialog" aria-labelledby="dlg-title">
-  <div class="zoom" id="zoom" hidden><button type="button" class="zoom-close" id="zoom-close" aria-label="Lukk" data-i18n-aria="zoom.close"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M3 3l10 10M13 3L3 13"/></svg></button><div class="zoom-stage" id="zoom-stage"><img id="zoom-img" alt=""></div><p class="zoom-hint" data-i18n="zoom.hint">Klyp, dobbelttrykk eller klikk for å zoome</p></div>
+  <div class="zoom" id="zoom" hidden><button type="button" class="zoom-close" id="zoom-close" aria-label="Lukk" data-i18n-aria="zoom.close"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M3 3l10 10M13 3L3 13"/></svg></button><div class="zoom-stage" id="zoom-stage"><img id="zoom-img" alt=""></div><button type="button" class="znav zprev" id="zoom-prev" aria-label="Forrige bilde" data-i18n-aria="card.prev">‹</button><button type="button" class="znav znext" id="zoom-next" aria-label="Neste bilde" data-i18n-aria="card.next">›</button><p class="zoom-cap" id="zoom-cap"></p><p class="zoom-hint" data-i18n="zoom.hint">Klyp, dobbelttrykk eller klikk for å zoome</p></div>
   <div class="dlg-scroll">
     <div class="dlg-grid">
       <div class="dlg-media">
@@ -949,6 +962,7 @@ section{position:relative}
         <p class="viewer-cap" id="dlg-cap"></p>
         <div class="vdots" id="dlg-thumbs" role="group" aria-label="Velg bilde eller video" data-i18n-aria="dlg.thumbs"></div>
         <div id="dlg-vlink"></div>
+        <div class="dlg-gal" id="dlg-gal"></div>
         <div class="dlg-docs" id="dlg-docs"></div>
         <div class="dlg-tt" id="dlg-tt"></div>
       </div>
@@ -1018,7 +1032,7 @@ const I18N = {
     'foot.thanks':'Takk for at du tok deg tid',
     'foot.note':'© 2026 Daniel Ramslien · Rams Creative (Ramslien Creative ENK) · Org.nr. 935 128 986 · Referanser oppgis på forespørsel',
     'dlg.close':'Lukk case', 'dlg.did':'Hva jeg gjorde', 'dlg.thumbs':'Velg bilde eller video',
-    'dlg.client':'Kunde', 'dlg.role':'Rolle', 'dlg.period':'Periode', 'dlg.tags':'Kanaler og fag', 'dlg.docs':'Dokumenter', 'dlg.tiktok':'TikTok-videoene', 'ig.likes':'likerklikk', 'logos.label':'Har samarbeidet med', 'dlg.tools':'Verktøy',
+    'dlg.client':'Kunde', 'dlg.role':'Rolle', 'dlg.period':'Periode', 'dlg.tags':'Kanaler og fag', 'dlg.docs':'Dokumenter', 'dlg.tiktok':'TikTok-videoene', 'dlg.gal':'Bilder fra nettsiden', 'ig.likes':'likerklikk', 'logos.label':'Har samarbeidet med', 'dlg.tools':'Verktøy',
     'card.video':'Video', 'card.images':'Bilder', 'card.view':'Se case', 'card.for':'for',
     'nav.refs':'Attester', 'refs.more':'Se flere', 'refs.less':'Se færre', 'about.more':'Les mer', 'about.less':'Les mindre', 'card.next':'Neste bilde', 'card.prev':'Forrige bilde', 'refs.title':'Attester', 'refs.lead':'Hele dokumentene. Trykk på en attest for å lese den.', 'refs.note':'Fødselsdato og adresse er sladdet.',
     'refs.close':'Lukk attest', 'refs.view':'Se attest fra',
@@ -1050,7 +1064,7 @@ const I18N = {
     'foot.thanks':'Thanks for your time',
     'foot.note':'© 2026 Daniel Ramslien · Rams Creative (Ramslien Creative ENK) · Org. no. 935 128 986 · References available on request',
     'dlg.close':'Close case', 'dlg.did':'What I did', 'dlg.thumbs':'Choose image or video',
-    'dlg.client':'Client', 'dlg.role':'Role', 'dlg.period':'Period', 'dlg.tags':'Channels and skills', 'dlg.docs':'Documents', 'dlg.tiktok':'The TikTok videos', 'ig.likes':'likes', 'logos.label':'Worked with', 'dlg.tools':'Tools',
+    'dlg.client':'Client', 'dlg.role':'Role', 'dlg.period':'Period', 'dlg.tags':'Channels and skills', 'dlg.docs':'Documents', 'dlg.tiktok':'The TikTok videos', 'dlg.gal':'Images from the website', 'ig.likes':'likes', 'logos.label':'Worked with', 'dlg.tools':'Tools',
     'card.video':'Video', 'card.images':'Images', 'card.view':'View case', 'card.for':'for',
     'nav.refs':'References', 'refs.more':'See more', 'refs.less':'See fewer', 'about.more':'Read more', 'about.less':'Read less', 'card.next':'Next image', 'card.prev':'Previous image', 'refs.title':'References', 'refs.lead':'The full documents. Tap a reference to read it.', 'refs.note':'Date of birth and address have been redacted. The documents are in Norwegian, except Open iT.',
     'refs.close':'Close reference', 'refs.view':'View reference from',
@@ -1136,14 +1150,16 @@ const CASES = [
     media:[
       {type:'video',src:V+'knytt.mp4',poster:P+'knytt.jpg',cap:{no:'Video for Knytt, klippet av meg',en:'Video for Knytt, edited by me'}},
       {type:'tiktok',id:'7575491131945880854',cap:{no:'TikTok for Knytt: Study ‘n Sip på Kulturhuset',en:'TikTok for Knytt: Study ‘n Sip at Kulturhuset'}},
-      {type:'video',src:V+'div-eksamen.mp4',poster:P+'div-eksamen.jpg',cap:{no:'Eksamensvideo i Digitale verktøy om strategien til Knytt',en:'Exam video in Digital Tools on Knytt’s strategy'}},
-      {type:'image',src:I+'knytt-landing.webp',cap:{no:'Landingssiden på knytt.org',en:'Landing page on knytt.org'}},
-      {type:'image',src:I+'knytt-shop.webp',cap:{no:'Nettbutikken',en:'Online store'}},
-      {type:'image',src:I+'knytt-serp.webp',cap:{no:'Knytt øverst i Google-søk',en:'Knytt at the top of Google search'}},
-      {type:'image',src:I+'knytt-pagespeed.webp',cap:{no:'PageSpeed på mobil, med SEO-score 100',en:'PageSpeed on mobile, with an SEO score of 100'}},
-      {type:'image',src:I+'knytt-heatmap.webp',cap:{no:'Heatmap av landingssiden',en:'Heatmap of the landing page'}},
-      {type:'image',src:I+'knytt-hotjar.webp',cap:{no:'Brukeratferd målt i Hotjar',en:'User behavior tracked in Hotjar'}},
-      {type:'image',src:I+'knytt-looker.webp',cap:{no:'Trafikk i Looker Studio',en:'Traffic in Looker Studio'}}
+      {type:'video',src:V+'div-eksamen.mp4',poster:P+'div-eksamen.jpg',cap:{no:'Eksamensvideo i Digitale verktøy om strategien til Knytt',en:'Exam video in Digital Tools on Knytt’s strategy'}}
+    ],
+    gallery:[
+      {src:I+'knytt-landing.webp',cap:{no:'Landingssiden på knytt.org',en:'Landing page on knytt.org'}},
+      {src:I+'knytt-shop.webp',cap:{no:'Nettbutikken',en:'Online store'}},
+      {src:I+'knytt-serp.webp',cap:{no:'Knytt øverst i Google-søk',en:'Knytt at the top of Google search'}},
+      {src:I+'knytt-pagespeed.webp',cap:{no:'PageSpeed på mobil, med SEO-score 100',en:'PageSpeed on mobile, with an SEO score of 100'}},
+      {src:I+'knytt-heatmap.webp',cap:{no:'Heatmap av landingssiden',en:'Heatmap of the landing page'}},
+      {src:I+'knytt-hotjar.webp',cap:{no:'Brukeratferd målt i Hotjar',en:'User behavior tracked in Hotjar'}},
+      {src:I+'knytt-looker.webp',cap:{no:'Trafikk i Looker Studio',en:'Traffic in Looker Studio'}}
     ],
     t:{
       no:{card:'Knytt.org', title:'Knytt: nettside, SEO og kommunikasjon', client:'Knytt SB', clientDesc:'Tidligere studentbedrift · Digitale verktøy', period:'Sep. – des. 2025',
@@ -1568,7 +1584,16 @@ function zZoomAt(ns, cx, cy){
   const px = cx - r.left - b.l, py = cy - r.top - b.t;
   zx = px - (px - zx) * ns / zs; zy = py - (py - zy) * ns / zs; zs = ns; zClamp(); zApply();
 }
-function openZoom(src){ zImg.src = src; zs = 1; zx = 0; zy = 0; zApply(); zoomEl.hidden = false; $('zoom-close').focus({preventScroll:true}); }
+let zList = null, zIdx = 0;
+function zShow(){ const g = zList[zIdx]; zImg.src = g.src; $('zoom-cap').textContent = `${pick(g.cap)} · ${zIdx + 1}/${zList.length}`; zs = 1; zx = 0; zy = 0; zApply(); }
+function zStep(d){ if (!zList) return; zIdx = (zIdx + d + zList.length) % zList.length; zShow(); }
+function openZoom(src, list, idx){
+  zList = list && list.length ? list : null; zoomEl.classList.toggle('has-list', !!zList);
+  if (zList) { zIdx = idx || 0; zShow(); } else { zImg.src = src; $('zoom-cap').textContent = ''; zs = 1; zx = 0; zy = 0; zApply(); }
+  zoomEl.hidden = false; $('zoom-close').focus({preventScroll:true}); }
+$('zoom-prev').addEventListener('click', () => zStep(-1));
+$('zoom-next').addEventListener('click', () => zStep(1));
+document.addEventListener('click', e => { const b = e.target.closest('.gal-item'); if (!b) return; openZoom(null, CASES[current].gallery, +b.dataset.g); });
 function closeZoom(){ zoomEl.hidden = true; zPts.clear(); zPinch = zPan = null; }
 $('zoom-close').addEventListener('click', closeZoom);
 dlg.addEventListener('cancel', e => { if (!zoomEl.hidden) { e.preventDefault(); closeZoom(); } });
@@ -1648,6 +1673,7 @@ function fillDialog(i, keepMedia){
   $('dlg-metrics').innerHTML = (x.metrics || []).map(([n,l]) => `<div><span class="metric-num">${esc(n)}</span><span class="metric-label">${esc(l)}</span></div>`).join('');
   $('dlg-list').innerHTML = x.bullets.map(b => `<li>${esc(b)}</li>`).join('');
   $('dlg-quote').innerHTML = c.quote ? [].concat(c.quote).map(q => `<blockquote class="quote"><p>${esc(pick(q.text))}</p><footer>${esc(pick(q.by))}</footer></blockquote>`).join('') : '';
+  $('dlg-gal').innerHTML = c.gallery ? `<span class="label">${tr('dlg.gal')}</span><ul class="gal-grid">${c.gallery.map((g,k) => `<li><button type="button" class="gal-item" data-g="${k}" aria-label="${esc(pick(g.cap))}"><img src="${g.src}" alt="" loading="lazy"></button></li>`).join('')}</ul>` : '';
   $('dlg-docs').innerHTML = c.docs ? `<span class="label">${tr('dlg.docs')}</span><ul class="doc-grid">${c.docs.map(d => `<li><a class="doc-card" href="${d.src}" target="_blank" rel="noopener"><span class="doc-card-thumb"><img src="${d.thumb}" alt="" loading="lazy"></span><span class="doc-card-t">${esc(pick(d.title))}</span><span class="doc-card-m">${esc(pick(d.meta))} ↗</span></a></li>`).join('')}</ul>` : '';
   $('dlg-tt').innerHTML = c.tiktok ? `<span class="label">${tr('dlg.tiktok')}</span><div class="tt-row">${c.tiktok.map(id => `<div class="tt-item"><iframe data-src="https://www.tiktok.com/player/v1/${id}?music_info=1&description=1&rel=0" title="TikTok" allow="encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe></div>`).join('')}</div>` : '';
   $('dlg-tt').querySelectorAll('iframe').forEach(f => { f.src = f.dataset.src; });
@@ -1695,6 +1721,7 @@ $('dlg-next').addEventListener('click', () => fillDialog(current + 1));
 $('dlg-thumbs').addEventListener('click', e => { const t = e.target.closest('button'); if (t) showMedia(CASES[current], +t.dataset.k); });
 dlg.addEventListener('click', e => { if (e.target === dlg) closeCase(); });
 dlg.addEventListener('keydown', e => {
+  if (!zoomEl.hidden) { if (zList && e.key === 'ArrowRight') zStep(1); if (zList && e.key === 'ArrowLeft') zStep(-1); return; }
   if (e.target.closest('video')) return;
   if (e.key === 'ArrowRight') { const c = CASES[current]; if (currentMedia < c.media.length - 1) showMedia(c, currentMedia + 1); }
   if (e.key === 'ArrowLeft') { const c = CASES[current]; if (currentMedia > 0) showMedia(c, currentMedia - 1); }
