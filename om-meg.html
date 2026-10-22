@@ -371,6 +371,9 @@ section{position:relative}
 .tt-item iframe{width:100%;height:100%;border:0;display:block}
 .vslide.tt{background:#000}
 .vslide.tt iframe{width:100%;height:100%;border:0;display:block}
+.vslide.ig{background:#000}
+.ig-ph{background:linear-gradient(135deg,#7638fa,#d300c5 40%,#ff0069 70%,#ff7a00)!important}
+.ig-ph svg{filter:none!important}
 .tt-ph{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;color:#fff;font-weight:600;font-size:14px;letter-spacing:.04em;background:radial-gradient(circle at 50% 40%,#1d1a18,#050403)}
 .tt-ph svg{width:44px;height:44px;filter:drop-shadow(-2px -2px 0 #25f4ee) drop-shadow(2px 2px 0 #fe2c55)}
 .case-body{padding-top:14px}
@@ -1127,9 +1130,10 @@ const CASES = [
   },
   {
     id:'knytt', tools:['WordPress', 'Elementor', 'GA4', 'Hotjar', 'Looker Studio', 'Google Search Console', 'CapCut', 'Canva'], year:'2025', cover:P+'knytt-paolo.jpg', preview:V+'knytt-preview.mp4',
-    link:{href:'https://youtu.be/aBOuIqYqrRg', text:{no:'Se hele eksamensvideoen på YouTube',en:'Watch the full exam video on YouTube'}},
+    link:{href:'https://youtu.be/aBOuIqYqrRg', text:{no:'Se hele pitchdecken på YouTube',en:'Watch the full pitch deck on YouTube'}},
     media:[
       {type:'video',src:V+'knytt.mp4',poster:P+'knytt.jpg',cap:{no:'Video for Knytt, klippet av meg',en:'Video for Knytt, edited by me'}},
+      {type:'ig',id:'DRWuKmLDDjE',cap:{no:'Reel for Knytt på Instagram',en:'Reel for Knytt on Instagram'}},
       {type:'video',src:V+'div-eksamen.mp4',poster:P+'div-eksamen.jpg',cap:{no:'Eksamensvideo i Digitale verktøy om strategien til Knytt',en:'Exam video in Digital Tools on Knytt’s strategy'}},
       {type:'image',src:I+'knytt-landing.webp',cap:{no:'Landingssiden på knytt.org',en:'Landing page on knytt.org'}},
       {type:'image',src:I+'knytt-shop.webp',cap:{no:'Nettbutikken',en:'Online store'}},
@@ -1470,11 +1474,12 @@ moreBtn.addEventListener('click', () => {
 const dlg = $('case-dialog');
 let current = 0, currentMedia = 0, lastFocus = null;
 
+const IG_PH = `<span class="tt-ph ig-ph"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.4" cy="6.6" r="1" fill="currentColor" stroke="none"/></svg><span>Instagram</span></span>`;
 const TT_PH = `<span class="tt-ph"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M16.6 5.82A4.28 4.28 0 0 1 15.54 3h-3.09v12.4a2.59 2.59 0 1 1-2.59-2.6c.27 0 .53.04.77.11V9.75a5.7 5.7 0 1 0 4.91 5.65V9.01a7.35 7.35 0 0 0 4.3 1.38V7.3a4.28 4.28 0 0 1-3.24-1.48z"/></svg><span>TikTok</span></span>`;
 function buildViewer(c){
   const viewer = $('dlg-viewer');
   viewer.classList.toggle('single', c.media.length < 2);
-  viewer.innerHTML = c.media.map((m,k) => `<div class="vslide${m.type === 'tiktok' ? ' tt' : ''}" data-k="${k}">${m.type === 'tiktok' ? TT_PH : m.type === 'video'
+  viewer.innerHTML = c.media.map((m,k) => `<div class="vslide${m.type === 'tiktok' ? ' tt' : m.type === 'ig' ? ' tt ig' : ''}" data-k="${k}">${m.type === 'tiktok' ? TT_PH : m.type === 'ig' ? IG_PH : m.type === 'video'
     ? `<img src="${m.poster}" alt=""><span class="vplay">${ICON_PLAY}</span>`
     : `<img src="${m.src}" alt="${esc(pick(m.cap))}">`}</div>`).join('') +
     `<button type="button" class="vfull" aria-label="${tr('dlg.full')}" title="${tr('dlg.full')}"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M2 6V2h4M10 2h4v4M14 10v4h-4M6 14H2v-4"/></svg></button>` +
@@ -1506,6 +1511,11 @@ function showMedia(c, idx){
       const hasFrame = !!el.querySelector('iframe');
       if (k === currentMedia && !hasFrame) el.innerHTML = `<iframe src="https://www.tiktok.com/player/v1/${m.id}?music_info=1&description=1&rel=0&autoplay=1" title="TikTok" allow="autoplay; encrypted-media; fullscreen; picture-in-picture"></iframe>`;
       if (k !== currentMedia && hasFrame) el.innerHTML = TT_PH;
+    }
+    if (m.type === 'ig') {
+      const hasFrame = !!el.querySelector('iframe');
+      if (k === currentMedia && !hasFrame) el.innerHTML = `<iframe src="https://www.instagram.com/reel/${m.id}/embed/" title="Instagram" allow="autoplay; encrypted-media; fullscreen; picture-in-picture" scrolling="no"></iframe>`;
+      if (k !== currentMedia && hasFrame) el.innerHTML = IG_PH;
     }
     if (m.type === 'video') {
       const hasVideo = !!el.querySelector('video');
