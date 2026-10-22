@@ -134,7 +134,18 @@ button{font:inherit;color:inherit}
 .nav a{text-decoration:none;font-size:14px;color:var(--muted);transition:color .2s;white-space:nowrap}
 .nav a .n{color:var(--faint);margin-right:6px;transition:color .2s}
 .nav a:hover,.nav a.active{color:var(--text)}
-html[data-page="home"] #om-meg{display:none}
+html[data-page="home"] #om-meg,html[data-page="home"] #attester{display:none}
+html[data-page="refs"] main > section:not(#attester):not(#kontakt){display:none}
+html[data-page="refs"] #attester{padding-top:calc(var(--header-h) + clamp(20px,3vw,40px))}
+html[data-page="refs"] #attester-tittel{font-family:var(--font-display);font-weight:900;text-transform:uppercase;line-height:.92;font-size:clamp(22px,4vw,58px);margin-bottom:clamp(28px,3.5vw,48px)}
+html[data-page="refs"] #attester .more-wrap{display:none}
+html[data-page="refs"] .refs > .doc{display:block!important}
+html[data-page="refs"] .refs{grid-template-columns:repeat(6,minmax(0,1fr))}
+html[data-page="refs"] .doc-org{font-size:13px;margin-top:10px}
+html[data-page="refs"] .doc-meta{font-size:12px;overflow-wrap:anywhere}
+html[data-page="refs"] .nav a[href="attester.html"]{color:var(--text)}
+@media (max-width:1000px){html[data-page="refs"] .refs{grid-template-columns:repeat(4,minmax(0,1fr))}}
+@media (max-width:600px){html[data-page="refs"] .refs{grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}}
 html[data-page="about"] .hero,html[data-page="about"] #arbeid,html[data-page="about"] #verktoy,html[data-page="about"] #anbefalinger,html[data-page="about"] #attester{display:none}
 html[data-page="about"] #om-meg{padding-top:calc(var(--header-h) + clamp(20px,3vw,40px))}
 html[data-page="about"] .about-more{display:block}
@@ -153,6 +164,10 @@ html[data-page="about"] .nav a[href="om-meg.html"]{color:var(--text)}
 .menu-open .menu-btn span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
 .nav-lang{display:none;align-items:center;gap:10px;align-self:flex-start;margin-top:22px;padding:9px 16px 9px 10px;border:1px solid var(--line-strong);border-radius:999px;background:rgba(243,237,230,.06);color:var(--text);font:inherit;font-size:14px;font-weight:600;letter-spacing:.08em;cursor:pointer}
 .nav-lang .flag{width:26px;height:18px;border-radius:3px;box-shadow:0 0 0 1px rgba(255,255,255,.12)}
+.lang .lang-btn{display:none}
+.lang-toggle:not(.nav-lang){display:inline-flex;align-items:center;gap:8px;padding:5px 12px 5px 6px;border:0;border-radius:999px;background:transparent;color:var(--text);font:inherit;font-size:12px;font-weight:600;letter-spacing:.08em;cursor:pointer;transition:background .2s}
+.lang-toggle:not(.nav-lang):hover{background:rgba(243,237,230,.12)}
+.lang-toggle:not(.nav-lang) .flag{width:22px;height:15px;border-radius:3px;box-shadow:0 0 0 1px rgba(255,255,255,.12)}
 .lang{display:inline-flex;align-items:center;gap:2px;padding:3px;border:1px solid var(--line-strong);border-radius:999px;background:rgba(14,12,11,.4)}
 .lang-btn{display:inline-flex;align-items:center;gap:7px;padding:5px 10px 5px 6px;border:0;border-radius:999px;background:transparent;cursor:pointer;font-size:12px;font-weight:600;letter-spacing:.08em;color:var(--muted);transition:background .2s,color .2s}
 .lang-btn .flag{width:22px;height:15px;border-radius:3px;flex:none;filter:grayscale(.45);opacity:.7;transition:filter .2s,opacity .2s;box-shadow:0 0 0 1px rgba(255,255,255,.12)}
@@ -280,13 +295,17 @@ section{position:relative}
 .contact-list a span{color:var(--muted)}
 .contact-list a:hover{color:var(--accent)}
 .contact-orb{display:grid;place-items:center}
-.egg{position:relative;display:block;width:min(100%,460px);aspect-ratio:1;padding:0;border:0;background:none;border-radius:50%;cursor:pointer;animation:float 10s ease-in-out infinite;-webkit-tap-highlight-color:transparent}
+.egg-wrap{position:relative;width:min(100%,460px);aspect-ratio:1;animation:float 10s ease-in-out infinite}
+.egg-glow{position:absolute;inset:-42%;border-radius:50%;background:radial-gradient(circle,rgba(255,110,20,.20) 0%,rgba(255,105,20,.08) 38%,rgba(255,100,20,0) 66%);pointer-events:none}
+.egg{position:absolute;inset:0;display:block;width:100%;height:100%;padding:0;border:0;background:none;border-radius:50%;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.egg .orb::before{display:none}
 .egg:focus-visible{outline-offset:8px}
 .egg .orb{position:absolute;inset:0;display:block}
 .egg-photo{position:absolute;inset:0;z-index:1;border-radius:50%;overflow:hidden;-webkit-mask-image:-webkit-radial-gradient(white,black);opacity:0;transform:scale(.82);transition:opacity .5s .25s var(--ease),transform .7s .2s var(--ease)}
 .egg-photo img{position:absolute;left:13%;bottom:-6%;width:74%;max-width:none;height:auto}
 .egg-shell{position:absolute;inset:0;z-index:2;transition:transform .9s cubic-bezier(.3,.6,.2,1),opacity .7s var(--ease)}
 .egg-shell .orb::before{display:none}
+.egg-shell .orb{box-shadow:inset -26px -34px 70px rgba(110,30,0,.35)}
 .egg-top{clip-path:polygon(0 0,100% 0,100% 52%,88% 46%,76% 55%,64% 47%,52% 56%,40% 46%,28% 55%,16% 47%,0 53%)}
 .egg-bot{clip-path:polygon(0 53%,16% 47%,28% 55%,40% 46%,52% 56%,64% 47%,76% 55%,88% 46%,100% 52%,100% 100%,0 100%)}
 .egg-cracks{position:absolute;inset:0;z-index:3;width:100%;height:100%;stroke:rgba(70,18,0,.85);stroke-width:1.1;pointer-events:none;transition:opacity .3s}
@@ -298,7 +317,7 @@ section{position:relative}
 .egg.hatched .egg-bot{transform:translate(6%,34%) rotate(12deg);opacity:0}
 .egg.hatched .egg-cracks{opacity:0}
 .egg.hatched .egg-photo{opacity:1;transform:none}
-@media (prefers-reduced-motion:reduce){.egg,.egg.wobble{animation:none}}
+@media (prefers-reduced-motion:reduce){.egg-wrap,.egg.wobble{animation:none}}
 .footer-note{color:var(--faint);font-size:13px;padding:0 0 32px;margin:0;text-align:center}
 
 /* ---------- Case-dialog ---------- */
@@ -463,7 +482,7 @@ section{position:relative}
   .ref-dialog{width:100%;max-height:100dvh;height:100dvh;border-radius:0;border:0;margin:0}
   .ref-dlg-scroll{max-height:calc(100dvh - 78px);padding:12px}
   .contact-orb{order:-1}
-  .egg{width:min(62vw,300px)}
+  .egg-wrap{width:min(62vw,300px)}
   .dlg-grid{grid-template-columns:1fr}
   .dlg-media{position:relative;padding:16px}
   .dlg-body{border-left:0;border-top:1px solid var(--line)}
@@ -532,10 +551,12 @@ section{position:relative}
         <a href="#verktoy"><span data-i18n="nav.tools">Verktøy</span></a>
         <a href="#anbefalinger"><span data-i18n="nav.testi">Anbefalinger</span></a>
         <a href="om-meg.html"><span data-i18n="nav.about">Om meg</span></a>
+        <a href="attester.html"><span data-i18n="nav.refs">Attester</span></a>
         <a href="#kontakt" class="nav-cta"><span data-i18n="nav.contact">Kontakt</span></a>
-        <button type="button" class="nav-lang" id="nav-lang" aria-label="Bytt språk" data-i18n-aria="aria.switchLang"></button>
+        <button type="button" class="nav-lang lang-toggle" id="nav-lang" aria-label="Bytt språk" data-i18n-aria="aria.switchLang"></button>
       </nav>
       <div class="lang" role="group" aria-label="Velg språk" data-i18n-aria="aria.lang">
+        <button type="button" class="lang-toggle" id="hdr-lang" aria-label="Bytt språk" data-i18n-aria="aria.switchLang"></button>
         <button class="lang-btn" type="button" data-lang="no" lang="no" aria-pressed="true" title="Norsk"><svg class="flag" viewBox="0 0 22 16" aria-hidden="true" preserveAspectRatio="xMidYMid slice"><rect width="22" height="16" fill="#BA0C2F"/><rect x="6" width="4" height="16" fill="#fff"/><rect y="6" width="22" height="4" fill="#fff"/><rect x="7" width="2" height="16" fill="#00205B"/><rect y="7" width="22" height="2" fill="#00205B"/></svg><span class="code">NO</span><span class="sr">Norsk</span></button>
         <button class="lang-btn" type="button" data-lang="en" lang="en" aria-pressed="false" title="English"><svg class="flag" viewBox="0 0 19 13" aria-hidden="true" preserveAspectRatio="xMidYMid slice"><rect width="19" height="13" fill="#B22234"/><rect y="1" width="19" height="1" fill="#fff"/><rect y="3" width="19" height="1" fill="#fff"/><rect y="5" width="19" height="1" fill="#fff"/><rect y="7" width="19" height="1" fill="#fff"/><rect y="9" width="19" height="1" fill="#fff"/><rect y="11" width="19" height="1" fill="#fff"/><rect width="7.6" height="7" fill="#3C3B6E"/><g fill="#fff"><circle cx="0.63" cy="0.45" r=".26"/><circle cx="1.90" cy="0.45" r=".26"/><circle cx="3.17" cy="0.45" r=".26"/><circle cx="4.44" cy="0.45" r=".26"/><circle cx="5.71" cy="0.45" r=".26"/><circle cx="6.98" cy="0.45" r=".26"/><circle cx="1.27" cy="1.22" r=".26"/><circle cx="2.54" cy="1.22" r=".26"/><circle cx="3.81" cy="1.22" r=".26"/><circle cx="5.08" cy="1.22" r=".26"/><circle cx="6.35" cy="1.22" r=".26"/><circle cx="0.63" cy="1.98" r=".26"/><circle cx="1.90" cy="1.98" r=".26"/><circle cx="3.17" cy="1.98" r=".26"/><circle cx="4.44" cy="1.98" r=".26"/><circle cx="5.71" cy="1.98" r=".26"/><circle cx="6.98" cy="1.98" r=".26"/><circle cx="1.27" cy="2.75" r=".26"/><circle cx="2.54" cy="2.75" r=".26"/><circle cx="3.81" cy="2.75" r=".26"/><circle cx="5.08" cy="2.75" r=".26"/><circle cx="6.35" cy="2.75" r=".26"/><circle cx="0.63" cy="3.51" r=".26"/><circle cx="1.90" cy="3.51" r=".26"/><circle cx="3.17" cy="3.51" r=".26"/><circle cx="4.44" cy="3.51" r=".26"/><circle cx="5.71" cy="3.51" r=".26"/><circle cx="6.98" cy="3.51" r=".26"/><circle cx="1.27" cy="4.28" r=".26"/><circle cx="2.54" cy="4.28" r=".26"/><circle cx="3.81" cy="4.28" r=".26"/><circle cx="5.08" cy="4.28" r=".26"/><circle cx="6.35" cy="4.28" r=".26"/><circle cx="0.63" cy="5.04" r=".26"/><circle cx="1.90" cy="5.04" r=".26"/><circle cx="3.17" cy="5.04" r=".26"/><circle cx="4.44" cy="5.04" r=".26"/><circle cx="5.71" cy="5.04" r=".26"/><circle cx="6.98" cy="5.04" r=".26"/><circle cx="1.27" cy="5.81" r=".26"/><circle cx="2.54" cy="5.81" r=".26"/><circle cx="3.81" cy="5.81" r=".26"/><circle cx="5.08" cy="5.81" r=".26"/><circle cx="6.35" cy="5.81" r=".26"/><circle cx="0.63" cy="6.57" r=".26"/><circle cx="1.90" cy="6.57" r=".26"/><circle cx="3.17" cy="6.57" r=".26"/><circle cx="4.44" cy="6.57" r=".26"/><circle cx="5.71" cy="6.57" r=".26"/><circle cx="6.98" cy="6.57" r=".26"/></g></svg><span class="code">EN</span><span class="sr">English</span></button>
       </div>
@@ -678,6 +699,7 @@ section{position:relative}
           </ul>
         </div>
         <div class="contact-orb reveal">
+          <div class="egg-wrap"><span class="egg-glow" aria-hidden="true"></span>
           <button type="button" class="egg" id="egg" aria-label="Trykk på ballen" data-i18n-aria="egg.label" data-stage="0">
             <span class="orb egg-core"><span class="egg-photo"><img src="assets/img/profil.webp" alt="" loading="lazy" width="933" height="1400"></span></span>
             <span class="egg-shell egg-top"><span class="orb"></span></span>
@@ -688,6 +710,7 @@ section{position:relative}
               <path class="c3" d="M0 53 L16 47 L28 55 M70 52 L76 55 L88 46 L100 52 M64 47 L66 39 M16 47 L13 41 M76 55 L79 63"/>
             </svg>
           </button>
+          </div>
         </div>
       </div>
       <p class="thanks reveal" data-i18n="foot.thanks">Takk for at du tok deg tid</p>
@@ -1435,7 +1458,7 @@ dlg.addEventListener('keydown', e => {
 function applyLang(next, save){
   lang = next;
   document.documentElement.lang = lang === 'en' ? 'en' : 'no';
-  document.title = document.documentElement.dataset.page === 'about' ? `${tr('nav.about')} · Daniel Ramslien` : tr('meta.title');
+  { const pg = document.documentElement.dataset.page; document.title = pg === 'about' ? `${tr('nav.about')} · Daniel Ramslien` : pg === 'refs' ? `${tr('nav.refs')} · Daniel Ramslien` : tr('meta.title'); }
   document.querySelector('meta[name="description"]').setAttribute('content', tr('meta.desc'));
   document.querySelectorAll('[data-i18n]').forEach(el => { el.textContent = tr(el.dataset.i18n); });
   document.querySelectorAll('[data-i18n-html]').forEach(el => { el.innerHTML = tr(el.dataset.i18nHtml); });
@@ -1443,8 +1466,8 @@ function applyLang(next, save){
   document.querySelectorAll('[data-i18n-alt]').forEach(el => { el.setAttribute('alt', tr(el.dataset.i18nAlt)); });
   document.querySelectorAll('[data-count].counted').forEach(el => { el.textContent = fmt(+el.dataset.count) + (el.dataset.suffix || ''); });
   document.querySelectorAll('.lang-btn').forEach(b => b.setAttribute('aria-pressed', b.dataset.lang === lang ? 'true' : 'false'));
-  { const nl = document.getElementById('nav-lang'), src = document.querySelector(`.lang-btn[data-lang="${lang}"] .flag`);
-    if (nl && src) nl.innerHTML = src.outerHTML + `<span>${lang === 'en' ? 'EN' : 'NO'}</span>`; }
+  { const src = document.querySelector(`.lang-btn[data-lang="${lang}"] .flag`);
+    if (src) document.querySelectorAll('.lang-toggle').forEach(t => { t.innerHTML = src.outerHTML + `<span>${lang === 'en' ? 'EN' : 'NO'}</span>`; }); }
   renderCards();
   renderTesti();
   try { renderDots(); showSlide(slideIdx); } catch (e) { /* karusellen er ikke klar ennå ved første lasting */ }
@@ -1460,7 +1483,7 @@ function applyLang(next, save){
   }
 }
 document.querySelectorAll('.lang-btn').forEach(b => b.addEventListener('click', () => { if (b.dataset.lang !== lang) applyLang(b.dataset.lang, true); }));
-document.getElementById('nav-lang').addEventListener('click', () => applyLang(lang === 'en' ? 'no' : 'en', true));
+document.querySelectorAll('.lang-toggle').forEach(t => t.addEventListener('click', () => applyLang(lang === 'en' ? 'no' : 'en', true)));
 applyLang(lang, false);
 /* Kortene tegnes på nytt ved språkbytte, så de skal ikke animeres inn igjen */
 document.querySelectorAll('#cases .case').forEach(el => el.classList.remove('in'));
