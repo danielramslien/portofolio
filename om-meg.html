@@ -464,7 +464,7 @@ section{position:relative}
 .vfull:hover{background:var(--accent);color:var(--ink)}
 .vfull svg{width:16px;height:16px}
 .vslide.on img{cursor:zoom-in}
-.zoom{position:fixed;inset:0;z-index:50;background:#050403;display:flex;align-items:center;justify-content:center}
+.zoom{position:absolute;inset:0;z-index:50;border-radius:inherit;overflow:hidden;background:#050403;display:flex;align-items:center;justify-content:center}
 .zoom[hidden]{display:none}
 .zoom-stage{position:absolute;inset:0;overflow:hidden;touch-action:none;display:flex;align-items:center;justify-content:center;cursor:zoom-in}
 .zoom-stage.zoomed{cursor:grab}
@@ -474,6 +474,9 @@ section{position:relative}
 .zoom-close:hover{background:var(--accent);color:var(--ink)}
 .znav{display:none;position:absolute;top:50%;z-index:2;width:48px;height:48px;margin-top:-24px;border:0;border-radius:50%;background:var(--accent);color:var(--ink);font-size:26px;line-height:1;cursor:pointer;box-shadow:0 6px 20px rgba(0,0,0,.4);transition:transform .2s,background .2s}
 .zoom.has-list .znav{display:grid;place-items:center}
+.zoom.has-list .zoom-stage{inset:64px 80px 44px}
+.zoom.has-list .zoom-stage img{border-radius:10px}
+@media (max-width:600px){.zoom.has-list .zoom-stage{inset:56px 12px 40px}}
 .zprev{left:16px}.znext{right:16px}
 .znav:hover{background:#ff9447;transform:scale(1.06)}
 .zoom-cap{position:absolute;left:0;right:0;top:24px;z-index:1;margin:0;text-align:center;font-size:13px;color:var(--text-soft);pointer-events:none}
