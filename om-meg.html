@@ -292,6 +292,10 @@ section{position:relative}
 .tt-row{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin:0}
 .tt-item{aspect-ratio:9/16;border-radius:12px;overflow:hidden;background:#000;scroll-snap-align:start}
 .tt-item iframe{width:100%;height:100%;border:0;display:block}
+.vslide.tt{background:#000}
+.vslide.tt iframe{width:100%;height:100%;border:0;display:block}
+.tt-ph{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;color:#fff;font-weight:600;font-size:14px;letter-spacing:.04em;background:radial-gradient(circle at 50% 40%,#1d1a18,#050403)}
+.tt-ph svg{width:44px;height:44px;filter:drop-shadow(-2px -2px 0 #25f4ee) drop-shadow(2px 2px 0 #fe2c55)}
 .case-body{padding-top:14px}
 .case-body > :not(.case-title-row),.case-year,.case-badge{display:none!important}
 #arbeid .more-wrap{display:none}
@@ -908,14 +912,14 @@ const I18N = {
 const V = 'assets/video/', I = 'assets/img/', P = 'assets/img/posters/';
 const CASES = [
   {
-    id:'mufano', tiktok:['7589815758230719766','7597986210790919446','7596553573861821718','7594312696271473942','7607353046934375702'], tools:['CapCut', 'TikTok Insights'], year:'2026', cover:P+'mufano-start.jpg', preview:V+'mufano.mp4',
+    id:'mufano', tools:['CapCut', 'TikTok Insights'], year:'2026', cover:P+'mufano-start.jpg', preview:V+'mufano.mp4',
     media:[
       {type:'video',src:V+'mufano.mp4',poster:P+'mufano-start.jpg',cap:{no:'Promovideo for låtlanseringen',en:'Promo video for the song launch'}},
-      {type:'image',src:I+'mufano-views-1.webp',cap:{no:'579,7K visninger på TikTok',en:'579.7K views on TikTok'}},
-      {type:'image',src:I+'mufano-views-2.webp',cap:{no:'146,8K visninger på TikTok',en:'146.8K views on TikTok'}},
-      {type:'image',src:I+'mufano-views-3.webp',cap:{no:'103,3K visninger på TikTok',en:'103.3K views on TikTok'}},
-      {type:'image',src:I+'mufano-views-4.webp',cap:{no:'37,5K visninger på TikTok',en:'37.5K views on TikTok'}},
-      {type:'image',src:I+'mufano-views-5.webp',cap:{no:'17K visninger på TikTok',en:'17K views on TikTok'}}
+      {type:'tiktok',id:'7589815758230719766',cap:{no:'TikTok-video 1 for Mufano',en:'TikTok video 1 for Mufano'}},
+      {type:'tiktok',id:'7597986210790919446',cap:{no:'TikTok-video 2 for Mufano',en:'TikTok video 2 for Mufano'}},
+      {type:'tiktok',id:'7596553573861821718',cap:{no:'TikTok-video 3 for Mufano',en:'TikTok video 3 for Mufano'}},
+      {type:'tiktok',id:'7594312696271473942',cap:{no:'TikTok-video 4 for Mufano',en:'TikTok video 4 for Mufano'}},
+      {type:'tiktok',id:'7607353046934375702',cap:{no:'TikTok-video 5 for Mufano',en:'TikTok video 5 for Mufano'}}
     ],
     t:{
       no:{card:'Innholdsstrategi for låtlansering', title:'Innholdsstrategi for låtlansering på TikTok', client:'Mufano', clientDesc:'TikToker og influenser', period:'Jan. 2026 – nå',
@@ -1334,10 +1338,11 @@ moreBtn.addEventListener('click', () => {
 const dlg = $('case-dialog');
 let current = 0, currentMedia = 0, lastFocus = null;
 
+const TT_PH = `<span class="tt-ph"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M16.6 5.82A4.28 4.28 0 0 1 15.54 3h-3.09v12.4a2.59 2.59 0 1 1-2.59-2.6c.27 0 .53.04.77.11V9.75a5.7 5.7 0 1 0 4.91 5.65V9.01a7.35 7.35 0 0 0 4.3 1.38V7.3a4.28 4.28 0 0 1-3.24-1.48z"/></svg><span>TikTok</span></span>`;
 function buildViewer(c){
   const viewer = $('dlg-viewer');
   viewer.classList.toggle('single', c.media.length < 2);
-  viewer.innerHTML = c.media.map((m,k) => `<div class="vslide" data-k="${k}">${m.type === 'video'
+  viewer.innerHTML = c.media.map((m,k) => `<div class="vslide${m.type === 'tiktok' ? ' tt' : ''}" data-k="${k}">${m.type === 'tiktok' ? TT_PH : m.type === 'video'
     ? `<img src="${m.poster}" alt=""><span class="vplay">${ICON_PLAY}</span>`
     : `<img src="${m.src}" alt="${esc(pick(m.cap))}">`}</div>`).join('') +
     `<button type="button" class="vfull" aria-label="${tr('dlg.full')}" title="${tr('dlg.full')}"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M2 6V2h4M10 2h4v4M14 10v4h-4M6 14H2v-4"/></svg></button>` +
@@ -1365,6 +1370,11 @@ function showMedia(c, idx){
     el.classList.toggle('on', k === currentMedia);
     el.classList.toggle('next', k === currentMedia + 1);
     el.classList.toggle('prev', k === currentMedia - 1);
+    if (m.type === 'tiktok') {
+      const hasFrame = !!el.querySelector('iframe');
+      if (k === currentMedia && !hasFrame) el.innerHTML = `<iframe src="https://www.tiktok.com/player/v1/${m.id}?music_info=1&description=1&rel=0&autoplay=1" title="TikTok" allow="autoplay; encrypted-media; fullscreen; picture-in-picture"></iframe>`;
+      if (k !== currentMedia && hasFrame) el.innerHTML = TT_PH;
+    }
     if (m.type === 'video') {
       const hasVideo = !!el.querySelector('video');
       if (k === currentMedia && !hasVideo) el.innerHTML = `<video src="${m.src}" controls playsinline preload="auto"></video>`;
@@ -1383,6 +1393,7 @@ function toggleFull(){
   if (fsEl) { (document.exitFullscreen || document.webkitExitFullscreen).call(document); return; }
   const on = $('dlg-viewer').querySelector('.vslide.on'); if (!on) return;
   const v = on.querySelector('video');
+  const fr = on.querySelector('iframe'); if (fr) { const rq = fr.requestFullscreen || fr.webkitRequestFullscreen; if (rq) rq.call(fr); return; }
   if (!v) { const img = on.querySelector('img'); if (img) openZoom(img.currentSrc || img.src); return; }
   const req = v.requestFullscreen || v.webkitRequestFullscreen || v.webkitEnterFullscreen;
   if (req) req.call(v);
