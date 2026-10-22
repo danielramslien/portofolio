@@ -476,6 +476,7 @@ section{position:relative}
 .testi-role{display:block;font-size:13px;line-height:1.45;color:var(--muted)}
 
 /* ---------- Attester (dokumenter) ---------- */
+#anbefalinger .refs-head{margin:0!important}
 .refs-head{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,420px);gap:32px;align-items:end;margin-bottom:clamp(40px,5vw,64px)}
 .refs-head .lead{text-align:right;color:var(--text-soft)}
 .refs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(14px,1.6vw,22px);list-style:none;margin:0;padding:0}
@@ -699,7 +700,7 @@ section{position:relative}
   <section class="section" id="anbefalinger" aria-labelledby="anbefalinger-tittel">
     <div class="wrap">
       <div class="refs-head">
-        <h2 class="display h-xl reveal" id="anbefalinger-tittel" data-i18n-html="testi.title">Hva andre sier</h2>
+        <h2 class="sr" id="anbefalinger-tittel" data-i18n-html="testi.title">Hva andre sier</h2>
       </div>
       <ul class="testi" id="testi"></ul>
     </div>
