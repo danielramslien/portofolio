@@ -208,8 +208,9 @@ html[data-page="about"] .about-contact{display:block;max-width:460px;margin:clam
 .about-contact-mail{display:inline-block;margin:0 0 14px;font-family:var(--font-display);font-stretch:100%;font-weight:800;font-size:clamp(17px,1.5vw,22px);color:var(--accent);text-decoration:none}
 .about-contact-mail:hover{text-decoration:underline;text-underline-offset:4px}
 .about-contact .contact-list{margin:0}
-.cv-btn{display:flex;width:max-content;align-items:center;gap:8px;margin:0 0 16px;padding:9px 16px;border-radius:999px;border:1px solid var(--accent-line);background:rgba(255,122,26,.06);color:#ffb27a;font-weight:600;font-size:14px;text-decoration:none;transition:background .2s,color .2s,border-color .2s}
+.cv-btn{display:none;width:max-content;align-items:center;gap:8px;margin:22px 0 4px;padding:9px 16px;border-radius:999px;border:1px solid var(--accent-line);background:rgba(255,122,26,.06);color:#ffb27a;font-weight:600;font-size:14px;text-decoration:none;transition:background .2s,color .2s,border-color .2s}
 .cv-btn svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;transition:transform .25s var(--ease)}
+html[data-page="about"] .cv-btn{display:flex}
 .cv-btn:hover{background:var(--accent);border-color:var(--accent);color:var(--ink)}
 .cv-btn:hover svg{transform:translateY(2px)}
 .contact-list a .cv-link{color:var(--text)}
@@ -903,7 +904,6 @@ section{position:relative}
         <div class="about-contact reveal" id="ta-kontakt">
           <h2 class="about-contact-title" data-i18n="ac.title">Ta kontakt</h2>
           <p data-i18n="ac.text">Send meg en melding, så svarer jeg raskt.</p>
-          <a class="cv-btn" href="assets/docs/daniel-ramslien-cv.pdf" download="Daniel-Ramslien-CV.pdf"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"/></svg><span data-i18n="cv.dl">Last ned CV (PDF)</span></a>
           <a class="about-contact-mail" href="mailto:danielramslien@gmail.com">danielramslien@gmail.com</a>
           <ul class="contact-list">
             <li><a href="tel:+4791168076"><span data-i18n="contact.phone">Telefon · </span>+47 911 68 076</a></li>
@@ -920,6 +920,7 @@ section{position:relative}
           <p class="body reveal" data-i18n="about.p2">Nå ser jeg etter en jobb der jeg kan jobbe tett med et team som bryr seg om både idé og resultat. Jeg er glad i god baristakaffe og drikker mokka hver dag, så jeg er ikke vanskelig å be ut på en kaffe.</p>
           </div>
           <button type="button" class="about-toggle" id="about-toggle" aria-expanded="false" aria-controls="about-more"><span data-i18n="about.more">Les mer</span></button>
+          <a class="cv-btn reveal" href="assets/docs/daniel-ramslien-cv.pdf" download="Daniel-Ramslien-CV.pdf"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"/></svg><span data-i18n="cv.dl">Last ned CV (PDF)</span></a>
           <span class="label reveal" data-i18n="about.skills">Det jeg jobber med</span>
           <ul class="pills reveal">
             <li class="pill" data-i18n="skill.1">Innholdsstrategi</li><li class="pill" data-i18n="skill.2">Sosiale medier</li><li class="pill" data-i18n="skill.5">Videoproduksjon</li><li class="pill" data-i18n="skill.7">Analyse</li><li class="pill" data-i18n="skill.8">Kampanjeplanlegging</li>
