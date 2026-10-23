@@ -24,7 +24,7 @@ for fname, (page, anchor, title) in PAGES.items():
     if page in ('refs', 'services'):
         old = 'id="kontakt-tittel" data-i18n-html="contact.title">La oss ta en prat</h2>'
         assert old in s
-        s = s.replace(old, 'id="kontakt-tittel" data-i18n="nav.contact">Kontakt</h2>', 1)
+        s = s.replace(old, 'id="kontakt-tittel" data-i18n="contact.short">Kontakt:</h2>', 1)
     (root / fname).write_text(s, encoding='utf-8')
     print(fname, 'oppdatert')
 # Gamle lenker til attester.html sendes videre til anbefalinger.html

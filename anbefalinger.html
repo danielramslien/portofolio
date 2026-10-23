@@ -182,7 +182,7 @@ html[data-page="refs"] #attester{order:2;padding-top:clamp(56px,6vw,88px)}
 html[data-page="refs"] #kontakt{order:3;padding-top:clamp(40px,4vw,56px)}
 html[data-page="refs"] .contact-orb,html[data-page="refs"] .contact-copy .lead{display:none}
 html[data-page="refs"] .contact-grid{grid-template-columns:1fr}
-html[data-page="refs"] .contact-email{margin-top:10px}
+html[data-page="refs"] .contact-email{margin:10px 0 16px;font-size:clamp(16px,1.4vw,20px)}
 html[data-page="refs"] #kontakt-tittel{font-size:clamp(20px,1.8vw,26px)}
 
 html[data-page="refs"] #anbefalinger-tittel{font-weight:900;line-height:.92;font-size:clamp(22px,4vw,58px)}
@@ -931,7 +931,7 @@ section{position:relative}
     <div class="wrap">
       <div class="contact-grid">
         <div class="contact-copy">
-          <h2 class="display h-xl reveal" id="kontakt-tittel" data-i18n="nav.contact">Kontakt</h2>
+          <h2 class="display h-xl reveal" id="kontakt-tittel" data-i18n="contact.short">Kontakt:</h2>
           <p class="lead reveal" data-i18n="contact.lead">Har du en ledig stilling, et prosjekt eller bare lyst på en kaffe? Send meg en melding, så svarer jeg innen kort tid.</p>
           <a class="contact-email reveal" href="mailto:danielramslien@gmail.com">danielramslien@gmail.com</a>
           <ul class="contact-list reveal">
@@ -1057,7 +1057,7 @@ const I18N = {
     'foot.thanks':'Takk for at du tok deg tid',
     'foot.note':'© 2026 Daniel Ramslien · Rams Creative (Ramslien Creative ENK) · Org.nr. 935 128 986 · Referanser oppgis på forespørsel',
     'dlg.close':'Lukk case', 'dlg.did':'Hva jeg gjorde', 'dlg.thumbs':'Velg bilde eller video',
-    'dlg.client':'Kunde', 'dlg.role':'Rolle', 'dlg.period':'Periode', 'dlg.tags':'Kanaler og fag', 'dlg.docs':'Dokumenter', 'dlg.tiktok':'TikTok-videoene', 'dlg.gal':'Bilder fra nettsiden', 'ig.likes':'likerklikk', 'logos.label':'Har samarbeidet med', 'dlg.tools':'Verktøy',
+    'dlg.client':'Kunde', 'dlg.role':'Rolle', 'dlg.period':'Periode', 'dlg.tags':'Kanaler og fag', 'dlg.docs':'Dokumenter', 'dlg.tiktok':'TikTok-videoene', 'dlg.gal':'Bilder fra nettsiden', 'contact.short':'Kontakt:', 'ig.likes':'likerklikk', 'logos.label':'Har samarbeidet med', 'dlg.tools':'Verktøy',
     'card.video':'Video', 'card.images':'Bilder', 'card.view':'Se case', 'card.for':'for',
     'nav.refs':'Attester', 'refs.more':'Se flere', 'refs.less':'Se færre', 'about.more':'Les mer', 'about.less':'Les mindre', 'card.next':'Neste bilde', 'card.prev':'Forrige bilde', 'refs.title':'Attester', 'refs.lead':'Hele dokumentene. Trykk på en attest for å lese den.', 'refs.note':'Fødselsdato og adresse er sladdet.',
     'refs.close':'Lukk attest', 'refs.view':'Se attest fra',
@@ -1089,7 +1089,7 @@ const I18N = {
     'foot.thanks':'Thanks for your time',
     'foot.note':'© 2026 Daniel Ramslien · Rams Creative (Ramslien Creative ENK) · Org. no. 935 128 986 · References available on request',
     'dlg.close':'Close case', 'dlg.did':'What I did', 'dlg.thumbs':'Choose image or video',
-    'dlg.client':'Client', 'dlg.role':'Role', 'dlg.period':'Period', 'dlg.tags':'Channels and skills', 'dlg.docs':'Documents', 'dlg.tiktok':'The TikTok videos', 'dlg.gal':'Images from the website', 'ig.likes':'likes', 'logos.label':'Worked with', 'dlg.tools':'Tools',
+    'dlg.client':'Client', 'dlg.role':'Role', 'dlg.period':'Period', 'dlg.tags':'Channels and skills', 'dlg.docs':'Documents', 'dlg.tiktok':'The TikTok videos', 'dlg.gal':'Images from the website', 'contact.short':'Contact:', 'ig.likes':'likes', 'logos.label':'Worked with', 'dlg.tools':'Tools',
     'card.video':'Video', 'card.images':'Images', 'card.view':'View case', 'card.for':'for',
     'nav.refs':'References', 'refs.more':'See more', 'refs.less':'See fewer', 'about.more':'Read more', 'about.less':'Read less', 'card.next':'Next image', 'card.prev':'Previous image', 'refs.title':'References', 'refs.lead':'The full documents. Tap a reference to read it.', 'refs.note':'Date of birth and address have been redacted. The documents are in Norwegian, except Open iT.',
     'refs.close':'Close reference', 'refs.view':'View reference from',
