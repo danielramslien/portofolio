@@ -1909,6 +1909,7 @@ document.querySelectorAll('.reveal').forEach(el => revObs.observe(el));
 /* ---------- Ballen ved Kontakt klekkes etter noen trykk ---------- */
 {
   const egg = document.getElementById('egg');
+  egg.addEventListener('pointerdown', () => { if (!egg.classList.contains('hatched')) egg.parentNode.classList.add('tapped'); });
   egg.addEventListener('click', () => {
     if (egg.classList.contains('hatched')) return;
     egg.parentNode.classList.add('tapped');
@@ -1916,9 +1917,26 @@ document.querySelectorAll('.reveal').forEach(el => revObs.observe(el));
     egg.dataset.taps = n;
     if (n >= 8) { egg.classList.add('hatched'); egg.dataset.taps = 0; return; }
     egg.dataset.stage = n;
-    egg.style.setProperty('--k', (1 + n * 0.18).toFixed(2)); egg.classList.remove('wobble'); void egg.offsetWidth; egg.classList.add('wobble');
+    shake(1 + n * 0.18);
   });
-  egg.addEventListener('animationend', e => { if (e.animationName === 'eggWobble') egg.classList.remove('wobble'); });
+  /* Ristingen kjøres med Web Animations, så den virker likt i alle nettlesere og blir kraftigere for hvert trykk */
+  let anim = null;
+  function shake(k){
+    if (reduce || !egg.animate) return;
+    if (anim) anim.cancel();
+    const r = d => `rotate(${(d * k).toFixed(2)}deg)`;
+    anim = egg.animate([
+      {transform:'none'},
+      {transform:'scale(1.04,.94) translateY(2%)', offset:.08},
+      {transform:`${r(-9)} scale(.98,1.02)`, offset:.18},
+      {transform:r(8), offset:.32},
+      {transform:r(-6), offset:.46},
+      {transform:r(4), offset:.6},
+      {transform:r(-2.5), offset:.74},
+      {transform:r(1), offset:.88},
+      {transform:'none'}
+    ], {duration:620, easing:'cubic-bezier(.36,.07,.19,.97)'});
+  }
 }
 
 /* ---------- Til toppen ---------- */
