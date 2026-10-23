@@ -1636,27 +1636,32 @@ zStage.addEventListener('pointerup', zEnd); zStage.addEventListener('pointercanc
 zStage.addEventListener('wheel', e => { e.preventDefault(); zZoomAt(zs * (e.deltaY < 0 ? 1.15 : 1/1.15), e.clientX, e.clientY); }, {passive:false});
 /* ---------- Sveip / dra mellom bilder ---------- */
 function addSwipe(el, onSwipe, activeSel){
-  let x0 = null, y0 = 0, dx = 0, id = null, moved = false;
+  let x0 = null, y0 = 0, dx = 0, id = null, moved = false, t0 = 0, lastX = 0, lastT = 0, vel = 0, a = null;
   el.addEventListener('pointerdown', e => {
     if (e.button !== 0) return;
     if (e.target.closest('button')) return;
     const v = e.target.closest('video');
     if (v) { const r = v.getBoundingClientRect(); if (e.clientY > r.bottom - 64) return; }
-    x0 = e.clientX; y0 = e.clientY; dx = 0; id = e.pointerId; moved = false;
+    x0 = lastX = e.clientX; y0 = e.clientY; dx = 0; vel = 0; id = e.pointerId; moved = false; t0 = lastT = performance.now(); a = null;
   });
   el.addEventListener('pointermove', e => {
     if (x0 === null || e.pointerId !== id) return;
     dx = e.clientX - x0;
-    if (!moved && Math.abs(dx) > 8 && Math.abs(dx) > Math.abs(e.clientY - y0)) { moved = true; el.classList.add('dragging'); try { el.setPointerCapture(id); } catch (_) {} }
-    if (moved) { const a = el.querySelector(activeSel); if (a) a.style.transform = `translateX(${dx * 0.6}px) rotate(${dx * 0.012}deg)`; }
+    const now = performance.now(); if (now > lastT) { vel = 0.7 * vel + 0.3 * ((e.clientX - lastX) / (now - lastT)); lastX = e.clientX; lastT = now; }
+    if (!moved && Math.abs(dx) > 6 && Math.abs(dx) > Math.abs(e.clientY - y0)) { moved = true; el.classList.add('dragging'); a = el.querySelector(activeSel); try { el.setPointerCapture(id); } catch (_) {} }
+    if (moved && a) a.style.transform = `translateX(${dx}px) rotate(${dx * 0.01}deg)`;
   });
   const end = e => {
     if (x0 === null || (e && e.pointerId !== id)) return;
-    const a = el.querySelector(activeSel); if (a) a.style.transform = '';
-    el.classList.remove('dragging');
-    if (moved && Math.abs(dx) > 50) onSwipe(dx < 0 ? 1 : -1);
-    if (moved) { el.dataset.justSwiped = '1'; setTimeout(() => delete el.dataset.justSwiped, 50); }
     x0 = null;
+    if (!moved) return;
+    /* Et raskt sveip eller et langt drag bytter bilde; bildet glir videre fra der fingeren slapp */
+    const go = Math.abs(dx) > 40 || (Math.abs(vel) > 0.35 && Math.abs(dx) > 12);
+    const dir = (Math.abs(dx) > 12 ? dx : vel) < 0 ? 1 : -1;
+    el.classList.remove('dragging');
+    if (go) onSwipe(dir);
+    const el2 = a; requestAnimationFrame(() => requestAnimationFrame(() => { if (el2) el2.style.transform = ''; }));
+    el.dataset.justSwiped = '1'; setTimeout(() => delete el.dataset.justSwiped, 60);
   };
   el.addEventListener('pointerup', end);
   el.addEventListener('pointercancel', end);
