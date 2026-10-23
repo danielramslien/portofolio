@@ -154,11 +154,9 @@ html[data-page="home"] #om-meg,html[data-page="home"] #attester,html[data-page="
 html[data-page="services"] main > section:not(#tjenester):not(#kontakt){display:none}
 html[data-page="services"] #tjenester{padding-top:calc(var(--header-h) + clamp(20px,3vw,40px))}
 html[data-page="services"] #tjenester-tittel{font-weight:900;line-height:.92;font-size:clamp(22px,4vw,58px)}
-html[data-page="services"] #kontakt{padding-top:clamp(48px,5vw,72px)}
-html[data-page="services"] .contact-orb,html[data-page="services"] .contact-copy .lead{display:none}
-html[data-page="services"] .contact-grid{grid-template-columns:1fr}
-html[data-page="services"] .contact-email{margin-top:10px}
-html[data-page="services"] #kontakt-tittel{font-size:clamp(20px,1.8vw,26px)}
+html[data-page="services"] #kontakt{padding-top:0}
+html[data-page="services"] #kontakt .contact-grid{display:none}
+html[data-page="services"] .footer-note{margin-top:clamp(90px,10vw,150px)}
 html[data-page="services"] .nav a[href="tjenester.html"]{color:var(--text)}
 .svc-lead{max-width:640px;margin:18px 0 clamp(28px,3vw,44px);color:var(--text-soft)}
 .svcs{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(16px,1.8vw,24px)}
@@ -214,7 +212,7 @@ html[data-page="about"] #kontakt{padding-top:0}
 html[data-page="about"] #om-meg{padding-bottom:0!important}
 @media (min-width:861px){html[data-page="about"] #to-top{display:none}}
 html[data-page="about"] .facts{margin-top:16px;padding-top:16px}
-html[data-page="about"] .footer-note{margin-top:clamp(12px,1.4vw,20px);padding-bottom:14px}
+html[data-page="about"] .footer-note{margin-top:clamp(90px,10vw,150px);padding-bottom:20px}
 html[data-page="about"] .about-more{display:block}
 html[data-page="about"] .about-toggle{display:none!important}
 html[data-page="about"] .nav a[href="om-meg.html"]{color:var(--text)}
@@ -488,11 +486,11 @@ section{position:relative}
 .gal-item img{width:100%;height:100%;object-fit:cover;object-position:top;display:block}
 .gal-item:hover{transform:translateY(-3px);border-color:var(--accent-line);box-shadow:0 12px 26px rgba(0,0,0,.45)}
 .svcs{grid-template-columns:repeat(6,minmax(0,1fr));gap:clamp(10px,1vw,16px)}
-.svc{padding:clamp(16px,1.4vw,22px) clamp(14px,1.2vw,18px);border-radius:18px;min-height:clamp(250px,22vw,320px)}
-.svc-ico{width:46px;height:46px;margin-bottom:14px;border-radius:13px}
-.svc-ico svg{width:24px;height:24px}
-.svc h3{font-size:clamp(15px,1.15vw,18px);margin-bottom:8px}
-.svc p{font-size:13.5px;line-height:1.5}
+.svc{padding:clamp(20px,1.7vw,26px) clamp(16px,1.4vw,22px);border-radius:18px;min-height:clamp(300px,25vw,380px)}
+.svc-ico{width:52px;height:52px;margin-bottom:18px;border-radius:14px}
+.svc-ico svg{width:27px;height:27px}
+.svc h3{font-size:clamp(16px,1.3vw,20px);margin-bottom:10px}
+.svc p{font-size:14.5px;line-height:1.55}
 .svc-links{padding-top:14px}
 .svc-link{padding:7px 12px;font-size:12px;gap:6px;white-space:nowrap}
 .svc-lead{margin-bottom:clamp(20px,2.2vw,32px)}
@@ -683,23 +681,25 @@ section{position:relative}
 @media (max-width:1080px){
   .menu-btn{visibility:visible}
   .site-header .wrap{grid-template-columns:1fr auto 1fr;gap:10px}
-  .menu-btn{grid-column:1;grid-row:1;justify-self:start;width:54px;height:54px;padding:0 14px;gap:6px}
-  .menu-btn span{height:2.5px}
-  .menu-open .menu-btn span:nth-child(1){transform:translateY(8.5px) rotate(45deg)}
-  .menu-open .menu-btn span:nth-child(3){transform:translateY(-8.5px) rotate(-45deg)}
+  .menu-btn{grid-column:1;grid-row:1;justify-self:start;width:42px;height:42px;padding:0 11px;gap:5px}
+  .menu-btn span{height:2px}
+  .menu-open .menu-btn span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+  .menu-open .menu-btn span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+  .hdr-cta{height:36px;padding:0 15px;font-size:14px}
   .site-header .lang{display:none}
-  .nav-lang{display:inline-flex}
+  .nav-lang{display:inline-flex;margin-top:14px;padding:6px 13px 6px 8px}
+  .nav-lang .flag{width:22px;height:15px}
   .hdr-cta{display:inline-flex;grid-column:3;grid-row:1;justify-self:end}
   .nav a.nav-cta{display:none}
   .site-header .nav{grid-column:1/-1;grid-row:1;justify-self:stretch;width:100vw}
   .site-header.menu-open{background:rgba(14,12,11,.96);border-bottom-color:var(--line)}
   .nav{position:fixed;left:0;right:0;top:var(--header-h);z-index:49;flex-direction:column;align-items:stretch;gap:0;
-    padding:8px var(--gutter) 28px;background:rgba(14,12,11,.97);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);border-bottom:1px solid var(--line);
+    padding:4px var(--gutter) 16px;background:rgba(14,12,11,.97);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);border-bottom:1px solid var(--line);
     opacity:0;transform:translateY(-10px);pointer-events:none;visibility:hidden;transition:opacity .3s var(--ease),transform .3s var(--ease),visibility 0s .3s}
   .menu-open .nav{opacity:1;transform:none;pointer-events:auto;visibility:visible;transition:opacity .3s var(--ease),transform .3s var(--ease)}
-  .nav a{display:block;padding:16px 0;border-bottom:1px solid var(--line);font-family:var(--font-display);font-stretch:100%;font-weight:800;font-size:22px;text-transform:uppercase;color:var(--text)}
+  .nav a{display:block;padding:11px 0;border-bottom:1px solid var(--line);font-family:var(--font-display);font-stretch:100%;font-weight:800;font-size:18px;text-transform:uppercase;color:var(--text)}
   .nav a.nav-home{display:flex;gap:12px}
-  .nav-home svg{width:22px;height:22px}
+  .nav-home svg{width:19px;height:19px}
   .nav-home-txt{position:static;width:auto;height:auto;clip:auto;overflow:visible}
   .nav a.nav-cta{margin-top:20px;padding:14px 22px;border-bottom:0;text-align:center;font-family:var(--font-body);font-stretch:100%;font-size:16px;text-transform:none}
 }
@@ -845,7 +845,7 @@ section{position:relative}
           <li class="svc reveal">
             <span class="svc-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 10v4a1 1 0 0 0 1 1h2l5 4V5L7 9H5a1 1 0 0 0-1 1z"/><path d="M16 9a4 4 0 0 1 0 6M18.5 6.5a7.5 7.5 0 0 1 0 11"/></svg></span>
             <h3 data-i18n="svc.3.t">Betalt annonsering</h3>
-            <p data-i18n="svc.3.d">Oppsett og optimalisering av annonser på Meta og TikTok, med en strategi der innholdet som slår best an får mer budsjett, for best mulig ytelse.</p>
+            <p data-i18n="svc.3.d">Oppsett og optimalisering av annonser på Meta, Google og TikTok, med en strategi der innholdet som slår best an får mer budsjett, for best mulig ytelse.</p>
           </li>
           <li class="svc reveal">
             <span class="svc-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 8h3l1.5-2.5h7L17 8h3a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1z"/><circle cx="12" cy="13" r="3.5"/></svg></span>
@@ -1048,7 +1048,7 @@ const I18N = {
     'card.video':'Video', 'card.images':'Bilder', 'card.view':'Se case', 'card.for':'for',
     'nav.refs':'Attester', 'refs.more':'Se flere', 'refs.less':'Se færre', 'about.more':'Les mer', 'about.less':'Les mindre', 'card.next':'Neste bilde', 'card.prev':'Forrige bilde', 'refs.title':'Attester', 'refs.lead':'Hele dokumentene. Trykk på en attest for å lese den.', 'refs.note':'Fødselsdato og adresse er sladdet.',
     'refs.close':'Lukk attest', 'refs.view':'Se attest fra',
-    'nav.testi':'Erfaringer', 'nav.recs':'Anbefalinger', 'svc.1.t':'Innhold til sosiale medier', 'svc.1.d':'Idé, filming og klipp av korte videoer til TikTok, Reels og Shorts, laget for å stoppe scrollingen.', 'svc.1.l':'Se caset', 'svc.2.t':'Strategi og kampanjer', 'svc.2.d':'Innholdsplan, kampanjeidé og gjennomføring, med tydelige mål fra start.', 'svc.2.l':'Se caset', 'svc.3.t':'Betalt annonsering', 'svc.3.d':'Oppsett og optimalisering av annonser på Meta og TikTok, med en strategi der innholdet som slår best an får mer budsjett, for best mulig ytelse.', 'svc.4.t':'Eventdekning og innholdsbank', 'svc.4.d':'Foto, video og lyd på arrangementet, og et ferdig bibliotek med innhold til bruk etterpå.', 'svc.4.l':'Se caset', 'svc.5.t':'Videoredigering', 'svc.5.d':'Klipp, teksting, lyd og tilpasning til hver plattform i Premiere Pro, CapCut og DaVinci Resolve.', 'svc.6.t':'Nettside', 'svc.6.d':'En enkel og praktisk nettside som gjør det lett for kundene å finne frem og ta kontakt. Denne nettsiden har jeg laget selv.', 'svc.6.l':'Se caset', 'svc.title':'Tjenester', 'svc.lead':'Dette kan jeg hjelpe deg med, enten som en del av teamet ditt eller på oppdrag gjennom mitt eget foretak, Rams Creative.', 'nav.svc':'Tjenester', 'recs.all':'Se alle anbefalinger og attester', 'nav.tools':'Verktøy', 'tools.title':'<svg class="title-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>Verktøy', 'tools.lead':'Fra idé og opptak til klipp, publisering og måling.', 'tools.adv':'Avansert kompetanse', 'tools.good':'God kompetanse', 'tools.basic':'Grunnleggende kompetanse', 'tools.skills':'Ferdigheter',
+    'nav.testi':'Erfaringer', 'nav.recs':'Anbefalinger', 'svc.1.t':'Innhold til sosiale medier', 'svc.1.d':'Idé, filming og klipp av korte videoer til TikTok, Reels og Shorts, laget for å stoppe scrollingen.', 'svc.1.l':'Se caset', 'svc.2.t':'Strategi og kampanjer', 'svc.2.d':'Innholdsplan, kampanjeidé og gjennomføring, med tydelige mål fra start.', 'svc.2.l':'Se caset', 'svc.3.t':'Betalt annonsering', 'svc.3.d':'Oppsett og optimalisering av annonser på Meta, Google og TikTok, med en strategi der innholdet som slår best an får mer budsjett, for best mulig ytelse.', 'svc.4.t':'Eventdekning og innholdsbank', 'svc.4.d':'Foto, video og lyd på arrangementet, og et ferdig bibliotek med innhold til bruk etterpå.', 'svc.4.l':'Se caset', 'svc.5.t':'Videoredigering', 'svc.5.d':'Klipp, teksting, lyd og tilpasning til hver plattform i Premiere Pro, CapCut og DaVinci Resolve.', 'svc.6.t':'Nettside', 'svc.6.d':'En enkel og praktisk nettside som gjør det lett for kundene å finne frem og ta kontakt. Denne nettsiden har jeg laget selv.', 'svc.6.l':'Se caset', 'svc.title':'Tjenester', 'svc.lead':'Dette kan jeg hjelpe deg med, enten som en del av teamet ditt eller på oppdrag gjennom mitt eget foretak, Rams Creative.', 'nav.svc':'Tjenester', 'recs.all':'Se alle anbefalinger og attester', 'nav.tools':'Verktøy', 'tools.title':'<svg class="title-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>Verktøy', 'tools.lead':'Fra idé og opptak til klipp, publisering og måling.', 'tools.adv':'Avansert kompetanse', 'tools.good':'God kompetanse', 'tools.basic':'Grunnleggende kompetanse', 'tools.skills':'Ferdigheter',
     'sk.1':'Kampanje og konvertering', 'sk.2':'Innholdsproduksjon', 'sk.3':'Videoredigering', 'sk.4':'Måling og analyse', 'sk.5':'Salg og kunderelasjoner', 'sk.6':'Merkevarebygging', 'sk.7':'Regnskapsføring', 'testi.title':'Anbefalinger', 'testi.lead':'Utdrag fra attester og uttalelser fra folk jeg har jobbet med.', 'testi.tr':''
   },
   en: {
@@ -1080,7 +1080,7 @@ const I18N = {
     'card.video':'Video', 'card.images':'Images', 'card.view':'View case', 'card.for':'for',
     'nav.refs':'References', 'refs.more':'See more', 'refs.less':'See fewer', 'about.more':'Read more', 'about.less':'Read less', 'card.next':'Next image', 'card.prev':'Previous image', 'refs.title':'References', 'refs.lead':'The full documents. Tap a reference to read it.', 'refs.note':'Date of birth and address have been redacted. The documents are in Norwegian, except Open iT.',
     'refs.close':'Close reference', 'refs.view':'View reference from',
-    'nav.testi':'Experience', 'nav.recs':'Recommendations', 'svc.1.t':'Social media content', 'svc.1.d':'Concept, filming and editing of short videos for TikTok, Reels and Shorts, made to stop the scroll.', 'svc.1.l':'See the case', 'svc.2.t':'Strategy and campaigns', 'svc.2.d':'Content plans, campaign ideas and execution, with clear goals from the start.', 'svc.2.l':'See the case', 'svc.3.t':'Paid advertising', 'svc.3.d':'Setting up and optimising ads on Meta and TikTok, with a strategy that puts more budget behind the content that performs best.', 'svc.4.t':'Event coverage and content library', 'svc.4.d':'Photo, video and audio at the event, plus a ready library of content to use afterwards.', 'svc.4.l':'See the case', 'svc.5.t':'Video editing', 'svc.5.d':'Editing, captions, sound and formatting for each platform in Premiere Pro, CapCut and DaVinci Resolve.', 'svc.6.t':'Websites', 'svc.6.d':'A simple, practical website that makes it easy for customers to find their way and get in touch. I built this website myself.', 'svc.6.l':'See the case', 'svc.title':'Services', 'svc.lead':'This is what I can help you with, either as part of your team or on assignment through my own company, Rams Creative.', 'nav.svc':'Services', 'recs.all':'See all recommendations and references', 'nav.tools':'Tools', 'tools.title':'<svg class="title-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>Tools', 'tools.lead':'From idea and shooting to editing, publishing and measuring.', 'tools.adv':'Advanced skills', 'tools.good':'Solid skills', 'tools.basic':'Basic skills', 'tools.skills':'Skills',
+    'nav.testi':'Experience', 'nav.recs':'Recommendations', 'svc.1.t':'Social media content', 'svc.1.d':'Concept, filming and editing of short videos for TikTok, Reels and Shorts, made to stop the scroll.', 'svc.1.l':'See the case', 'svc.2.t':'Strategy and campaigns', 'svc.2.d':'Content plans, campaign ideas and execution, with clear goals from the start.', 'svc.2.l':'See the case', 'svc.3.t':'Paid advertising', 'svc.3.d':'Setting up and optimising ads on Meta, Google and TikTok, with a strategy that puts more budget behind the content that performs best.', 'svc.4.t':'Event coverage and content library', 'svc.4.d':'Photo, video and audio at the event, plus a ready library of content to use afterwards.', 'svc.4.l':'See the case', 'svc.5.t':'Video editing', 'svc.5.d':'Editing, captions, sound and formatting for each platform in Premiere Pro, CapCut and DaVinci Resolve.', 'svc.6.t':'Websites', 'svc.6.d':'A simple, practical website that makes it easy for customers to find their way and get in touch. I built this website myself.', 'svc.6.l':'See the case', 'svc.title':'Services', 'svc.lead':'This is what I can help you with, either as part of your team or on assignment through my own company, Rams Creative.', 'nav.svc':'Services', 'recs.all':'See all recommendations and references', 'nav.tools':'Tools', 'tools.title':'<svg class="title-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>Tools', 'tools.lead':'From idea and shooting to editing, publishing and measuring.', 'tools.adv':'Advanced skills', 'tools.good':'Solid skills', 'tools.basic':'Basic skills', 'tools.skills':'Skills',
     'sk.1':'Campaigns and conversion', 'sk.2':'Content production', 'sk.3':'Video editing', 'sk.4':'Measurement and analytics', 'sk.5':'Sales and client relations', 'sk.6':'Brand building', 'sk.7':'Bookkeeping', 'testi.title':'Recommendations', 'testi.lead':'Excerpts from references and statements by people I have worked with.', 'testi.tr':'Translated from Norwegian'
   }
 };
@@ -1600,6 +1600,8 @@ let zList = null, zIdx = 0;
 function zShow(){ const g = zList[zIdx]; zImg.src = g.src; $('zoom-cap').textContent = `${pick(g.cap)} · ${zIdx + 1}/${zList.length}`; zs = 1; zx = 0; zy = 0; zApply(); }
 function zStep(d){ if (!zList) return; zIdx = (zIdx + d + zList.length) % zList.length; zShow(); }
 function openZoom(src, list, idx){
+  $('dlg-viewer').querySelectorAll('video').forEach(v => v.pause());
+  $('dlg-viewer').querySelectorAll('.vslide.tt iframe').forEach(f => { const el = f.parentElement; el.innerHTML = el.classList.contains('ig') ? IG_PH : TT_PH; });
   zList = list && list.length ? list : null; zoomEl.classList.toggle('has-list', !!zList);
   if (zList) { zIdx = idx || 0; zShow(); } else { zImg.src = src; $('zoom-cap').textContent = ''; zs = 1; zx = 0; zy = 0; zApply(); }
   zoomEl.hidden = false; $('zoom-close').focus({preventScroll:true}); }
@@ -1731,7 +1733,7 @@ $('dlg-close').addEventListener('click', closeCase);
 $('dlg-prev').addEventListener('click', () => fillDialog(current - 1));
 $('dlg-next').addEventListener('click', () => fillDialog(current + 1));
 $('dlg-thumbs').addEventListener('click', e => { const t = e.target.closest('button'); if (t) showMedia(CASES[current], +t.dataset.k); });
-dlg.addEventListener('click', e => { if (e.target === dlg) closeCase(); });
+dlg.addEventListener('click', e => { if (e.target === dlg) { if (!zoomEl.hidden) closeZoom(); else closeCase(); } });
 dlg.addEventListener('keydown', e => {
   if (!zoomEl.hidden) { if (zList && e.key === 'ArrowRight') zStep(1); if (zList && e.key === 'ArrowLeft') zStep(-1); return; }
   if (e.target.closest('video')) return;
@@ -1836,6 +1838,14 @@ const onScroll = () => bar.classList.toggle('scrolled', window.scrollY > 24);
   }
 }
 onScroll(); window.addEventListener('scroll', onScroll, {passive:true});
+/* Arbeid: hopp forbi logoene til casene, så toppmenyen står helt fremme */
+if (document.documentElement.dataset.page === 'home') {
+  const toWork = smooth => { const cs = document.getElementById('cases'); if (!cs) return;
+    const y = cs.getBoundingClientRect().top + window.scrollY - (bar.offsetHeight || 68) - 20;
+    window.scrollTo({top: y, behavior: smooth && !reduce ? 'smooth' : 'auto'}); };
+  document.addEventListener('click', e => { const a = e.target.closest('a[href="#arbeid"]'); if (!a) return; e.preventDefault(); toWork(true); history.replaceState(null, '', '#arbeid'); });
+  if (location.hash === '#arbeid') window.addEventListener('load', () => setTimeout(() => toWork(false), 60));
+}
 
 /* ---------- Hamburgermeny ---------- */
 const menuBtn = $('menu-btn');
