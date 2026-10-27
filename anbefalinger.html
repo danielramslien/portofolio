@@ -582,7 +582,7 @@ section{position:relative}
 .ask-btn:hover{background:var(--accent);color:var(--ink);transform:translateY(-2px)}
 .hero-visual{--ask-gap:clamp(64px,7.5vw,140px)}
 .ask-m{display:none}
-.ask-arrow{--aw:clamp(150px,12.5vw,200px);position:absolute;z-index:4;left:calc(100% + var(--ask-gap) + 28px - var(--aw) * .8167);top:calc(50% - 26px - var(--aw) * .5833);width:var(--aw);fill:none;stroke:#fff;stroke-width:3.4;stroke-linecap:round;stroke-linejoin:round;filter:drop-shadow(0 3px 6px rgba(0,0,0,.35));pointer-events:none;animation:askPoint 2.2s ease-in-out infinite}
+.ask-arrow{--aw:clamp(150px,12.5vw,200px);position:absolute;z-index:4;left:calc(100% + var(--ask-gap) + 4px - var(--aw) * .8167);top:calc(50% - 26px - var(--aw) * .5833);width:var(--aw);fill:none;stroke:#fff;stroke-width:4.6;stroke-linecap:round;stroke-linejoin:round;filter:drop-shadow(0 3px 6px rgba(0,0,0,.35));pointer-events:none;animation:askPoint 2.2s ease-in-out infinite}
 @keyframes askPoint{0%,100%{transform:translate(0,0)}50%{transform:translate(5px,4px)}}
 html:not([data-page="home"]) .ask-btn,html:not([data-page="home"]) .ask-arrow,html:not([data-page="home"]) .chat-bubble{display:none}
 .chat-bubble{position:fixed;right:18px;bottom:18px;z-index:60;width:52px;height:52px;border-radius:50%;display:grid;place-items:center;padding:0;cursor:pointer;background:rgba(14,12,11,.78);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.35);color:#fff;box-shadow:0 0 0 1px rgba(255,255,255,.06),0 0 22px rgba(255,255,255,.18);opacity:0;transform:scale(.6);pointer-events:none;transition:opacity .3s var(--ease),transform .3s var(--ease),box-shadow .25s}
