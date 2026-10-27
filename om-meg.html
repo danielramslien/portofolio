@@ -582,8 +582,7 @@ section{position:relative}
 .ask-btn:hover{background:var(--accent);color:var(--ink);transform:translateY(-2px)}
 .hero-visual{--ask-gap:clamp(64px,7.5vw,140px)}
 .ask-m{display:none}
-.ask-d{height:calc(39% - 30px)}
-.ask-arrow{position:absolute;z-index:4;left:85%;top:11%;width:calc(15% + var(--ask-gap) + 30px);fill:none;stroke:#fff;stroke-width:3.4;stroke-linecap:round;stroke-linejoin:round;filter:drop-shadow(0 3px 6px rgba(0,0,0,.35));pointer-events:none;animation:askPoint 2.2s ease-in-out infinite}
+.ask-arrow{--aw:clamp(112px,9.4vw,150px);position:absolute;z-index:4;left:calc(100% + var(--ask-gap) + 28px - var(--aw) * .8167);top:calc(50% - 26px - var(--aw) * .5833);width:var(--aw);fill:none;stroke:#fff;stroke-width:3.4;stroke-linecap:round;stroke-linejoin:round;filter:drop-shadow(0 3px 6px rgba(0,0,0,.35));pointer-events:none;animation:askPoint 2.2s ease-in-out infinite}
 @keyframes askPoint{0%,100%{transform:translate(0,0)}50%{transform:translate(5px,4px)}}
 html:not([data-page="home"]) .ask-btn,html:not([data-page="home"]) .ask-arrow,html:not([data-page="home"]) .chat-bubble{display:none}
 .chat-bubble{position:fixed;right:18px;bottom:18px;z-index:60;width:52px;height:52px;border-radius:50%;display:grid;place-items:center;padding:0;cursor:pointer;background:rgba(14,12,11,.78);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.35);color:#fff;box-shadow:0 0 0 1px rgba(255,255,255,.06),0 0 22px rgba(255,255,255,.18);opacity:0;transform:scale(.6);pointer-events:none;transition:opacity .3s var(--ease),transform .3s var(--ease),box-shadow .25s}
@@ -818,7 +817,7 @@ html[data-page="home"] .to-top{bottom:80px}
       </div>
       <div class="hero-visual">
         <div class="orb" id="hero-orb" aria-hidden="true"></div>
-        <svg class="ask-arrow ask-d" viewBox="0 0 150 100" preserveAspectRatio="none" aria-hidden="true"><path vector-effect="non-scaling-stroke" d="M4 8C64 -4 136 30 140 97"/><path vector-effect="non-scaling-stroke" d="M147.2 83.8L140 97L131.3 84.8"/></svg>
+        <svg class="ask-arrow ask-d" viewBox="0 0 120 74" aria-hidden="true"><path vector-effect="non-scaling-stroke" d="M12 14c22-10 52-9 72 6 14 11 18 27 14 46"/><path vector-effect="non-scaling-stroke" d="M84 54l14 16 12-19"/></svg>
         <svg class="ask-arrow ask-m" viewBox="0 0 120 74" aria-hidden="true"><path vector-effect="non-scaling-stroke" d="M12 14c22-10 52-9 72 6 14 11 18 27 14 46"/><path vector-effect="non-scaling-stroke" d="M84 54l14 16 12-19"/></svg>
         <button class="ask-btn" type="button" id="chat-fab" aria-controls="chat-panel" aria-expanded="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22z"/><circle cx="8" cy="12" r="1.25" fill="currentColor" stroke="none"/><circle cx="12" cy="12" r="1.25" fill="currentColor" stroke="none"/><circle cx="16" cy="12" r="1.25" fill="currentColor" stroke="none"/></svg><span data-i18n="chat.fab">Spør meg</span></button>
         <div class="hero-clip"><img class="hero-photo" src="assets/img/profil.webp" width="933" height="1400" alt="Portrett av Daniel Ramslien" data-i18n-alt="about.alt" fetchpriority="high"></div>
