@@ -581,8 +581,9 @@ section{position:relative}
 .ask-btn svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
 .ask-btn:hover{background:var(--accent);color:var(--ink);transform:translateY(-2px)}
 .hero-visual{--ask-gap:clamp(64px,7.5vw,140px)}
-.ask-arrow{position:absolute;z-index:4;left:calc(100% + 6px);bottom:calc(50% + 30px);width:calc((var(--ask-gap) + 34px) * 1.224);fill:none;stroke:#fff;stroke-width:3.4;stroke-linecap:round;stroke-linejoin:round;filter:drop-shadow(0 3px 6px rgba(0,0,0,.35));pointer-events:none;animation:askPoint 2.2s ease-in-out infinite}
-@keyframes askPoint{0%,100%{transform:translate(0,0) rotate(0)}50%{transform:translate(4px,6px) rotate(3deg)}}
+.ask-m{display:none}
+.ask-arrow{position:absolute;z-index:4;left:calc(100% + 4px);top:calc(50% - 4px - (var(--ask-gap) - 12px) * .6 * .74);width:calc(var(--ask-gap) - 12px);fill:none;stroke:#fff;stroke-width:3.4;stroke-linecap:round;stroke-linejoin:round;filter:drop-shadow(0 3px 6px rgba(0,0,0,.35));pointer-events:none;animation:askPoint 2.2s ease-in-out infinite}
+@keyframes askPoint{0%,100%{transform:translate(0,0)}50%{transform:translate(5px,4px)}}
 html:not([data-page="home"]) .ask-btn,html:not([data-page="home"]) .ask-arrow,html:not([data-page="home"]) .chat-bubble{display:none}
 .chat-bubble{position:fixed;right:18px;bottom:18px;z-index:60;width:52px;height:52px;border-radius:50%;display:grid;place-items:center;padding:0;cursor:pointer;background:rgba(14,12,11,.78);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.35);color:#fff;box-shadow:0 0 0 1px rgba(255,255,255,.06),0 0 22px rgba(255,255,255,.18);opacity:0;transform:scale(.6);pointer-events:none;transition:opacity .3s var(--ease),transform .3s var(--ease),box-shadow .25s}
 .chat-bubble svg{width:24px;height:24px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
@@ -622,6 +623,7 @@ html[data-page="home"] .to-top{bottom:80px}
 @media (max-width:640px){
   .ask-btn{left:auto;right:-14px;top:auto;bottom:-6px;margin-top:0;height:40px;padding:0 14px 0 12px;font-size:13px;gap:7px}
   .ask-btn svg{width:17px;height:17px}
+  .ask-d{display:none}.ask-m{display:block}
   .ask-arrow{left:auto;right:-4px;top:auto;bottom:38px;width:68px;stroke-width:3.6;transform-origin:center}
   .chat-panel{right:0;left:0;bottom:0;width:100%;height:min(86dvh,640px);border-radius:20px 20px 0 0;border-bottom:0}
 }
@@ -815,7 +817,8 @@ html[data-page="home"] .to-top{bottom:80px}
       </div>
       <div class="hero-visual">
         <div class="orb" id="hero-orb" aria-hidden="true"></div>
-        <svg class="ask-arrow" viewBox="0 0 120 74" aria-hidden="true"><path vector-effect="non-scaling-stroke" d="M12 14c22-10 52-9 72 6 14 11 18 27 14 46"/><path vector-effect="non-scaling-stroke" d="M84 54l14 16 12-19"/></svg>
+        <svg class="ask-arrow ask-d" viewBox="0 0 100 60" aria-hidden="true"><path vector-effect="non-scaling-stroke" d="M4 8C34 2 66 14 90 44"/><path vector-effect="non-scaling-stroke" d="M77 43l13 2 0-14"/></svg>
+        <svg class="ask-arrow ask-m" viewBox="0 0 120 74" aria-hidden="true"><path vector-effect="non-scaling-stroke" d="M12 14c22-10 52-9 72 6 14 11 18 27 14 46"/><path vector-effect="non-scaling-stroke" d="M84 54l14 16 12-19"/></svg>
         <button class="ask-btn" type="button" id="chat-fab" aria-controls="chat-panel" aria-expanded="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22z"/><circle cx="8" cy="12" r="1.25" fill="currentColor" stroke="none"/><circle cx="12" cy="12" r="1.25" fill="currentColor" stroke="none"/><circle cx="16" cy="12" r="1.25" fill="currentColor" stroke="none"/></svg><span data-i18n="chat.fab">Spør meg</span></button>
         <div class="hero-clip"><img class="hero-photo" src="assets/img/profil.webp" width="933" height="1400" alt="Portrett av Daniel Ramslien" data-i18n-alt="about.alt" fetchpriority="high"></div>
       </div>
@@ -967,7 +970,7 @@ html[data-page="home"] .to-top{bottom:80px}
         <div class="about-copy">
           <h2 class="display h-xl reveal" id="om-meg-tittel" data-i18n-html="about.title">Om meg</h2>
           <p class="lead reveal" data-i18n="about.lead">Jeg er digital markedsfører med hjertet i sosiale medier. Jeg liker å finne historien i en merkevare og fortelle den på en måte som passer feeden.</p>
-          <p class="body reveal" data-i18n="about.p1">Enten det er en Reel på femten sekunder eller en kampanje over flere måneder, starter jeg med menneskene på andre siden av skjermen. Hva får dem til å stoppe opp, le, eller dele videre?</p>
+          <p class="body reveal" data-i18n="about.p1">Enten det er en Reel på femten sekunder eller en kampanje over flere måneder, starter jeg med menneskene på andre siden av skjermen. Hva får dem til å stoppe opp, le eller dele videre?</p>
           <div class="about-more" id="about-more">
           <p class="body reveal" data-i18n="about.p3">I hverdagen jobber jeg med alt fra innholdsproduksjon og videoredigering til kampanjer som konverterer, og jeg måler alltid hva som faktisk virker. Gjennom eget foretak har jeg også fått erfaring med merkevarebygging, salg, kunderelasjoner og regnskap. I bunn har jeg sju år med musikkproduksjon, som har gitt meg et øre for rytme, timing og hva som fanger oppmerksomhet.</p>
           <p class="body reveal" data-i18n="about.p2">Nå ser jeg etter en jobb der jeg kan jobbe tett med et team som bryr seg om både idé og resultat. Jeg er glad i god baristakaffe og drikker mokka hver dag, så jeg er ikke vanskelig å be ut på en kaffe.</p>
@@ -1106,7 +1109,7 @@ const I18N = {
     'foot.portfolio':'Portefølje 2026',
     'about.title':'Om meg', 'photo.credit':'Foto:', 'aria.slides':'Bilder av Daniel', 'slides.go':'Vis bilde', 'about.alt':'Portrett av Daniel Ramslien',
     'about.lead':'Jeg er digital markedsfører med hjertet i sosiale medier. Jeg liker å finne historien i en merkevare og fortelle den på en måte som passer feeden.',
-    'about.p1':'Enten det er en Reel på femten sekunder eller en kampanje over flere måneder, starter jeg med menneskene på andre siden av skjermen. Hva får dem til å stoppe opp, le, eller dele videre?',
+    'about.p1':'Enten det er en Reel på femten sekunder eller en kampanje over flere måneder, starter jeg med menneskene på andre siden av skjermen. Hva får dem til å stoppe opp, le eller dele videre?',
     'about.p2':'Nå ser jeg etter en jobb der jeg kan jobbe tett med et team som bryr seg om både idé og resultat. Jeg er glad i god baristakaffe og drikker mokka hver dag, så jeg er ikke vanskelig å be ut på en kaffe.',
     'about.skills':'Det jeg jobber med',
     'about.p3':'I hverdagen jobber jeg med alt fra innholdsproduksjon og videoredigering til kampanjer som konverterer, og jeg måler alltid hva som faktisk virker. Gjennom eget foretak har jeg også fått erfaring med merkevarebygging, salg, kunderelasjoner og regnskap. I bunn har jeg sju år med musikkproduksjon, som har gitt meg et øre for rytme, timing og hva som fanger oppmerksomhet.',
@@ -1122,7 +1125,7 @@ const I18N = {
     'foot.thanks':'Takk for at du tok deg tid',
     'foot.note':'© 2026 Daniel Ramslien · Rams Creative (Ramslien Creative ENK) · Org.nr. 935 128 986 · Referanser oppgis på forespørsel',
     'dlg.close':'Lukk case', 'dlg.did':'Hva jeg gjorde', 'dlg.thumbs':'Velg bilde eller video',
-    'dlg.client':'Kunde', 'dlg.role':'Rolle', 'dlg.period':'Periode', 'dlg.tags':'Kanaler og fag', 'dlg.docs':'Dokumenter', 'dlg.tiktok':'TikTok-videoene', 'dlg.gal':'Bilder fra nettsiden', 'contact.short':'Kontakt:', 'chat.l.work':'Se arbeidet mitt', 'chat.l.about':'Les mer om meg', 'chat.l.cases':'Se alle casene', 'chat.l.m40':'Åpne M40-caset', 'chat.l.cv':'Last ned CV', 'chat.l.contact':'Gå til kontakt', 'chat.l.k':'Kontakt', 'chat.l.svc':'Se tjenestene', 'chat.l.punkt':'Se Punkt Oslo-caset', 'chat.l.kraft':'Se KRAFT-caset', 'chat.l.recs':'Les anbefalingene', 'chat.l.tools':'Se verktøyene', 'chat.l.mail':'Send e-post', 'chat.fab':'Spør meg', 'chat.title':'Spør meg', 'chat.sub':'Q&A', 'chat.hello':'Hei! Her har jeg svart på det jeg ofte får spørsmål om. Trykk på et spørsmål under.', 'chat.q1':'Hvordan jobber du?', 'chat.a1':'Jeg starter alltid med menneskene på andre siden av skjermen: hva får dem til å stoppe opp, le eller dele videre? Jeg tar ansvar for hele løpet, fra idé og innholdsplan til filming, klipp og publisering, og måler hva som faktisk virker i verktøy som Meta og TikTok Insights, GA4 og Looker Studio.', 'chat.q2':'Hvilke resultater har du skapt?', 'chat.a2':'Noen eksempler:\n• M40 Studios: 100 000 kr+ i salg av studioleie og 20 faste kunder, med 100 % organisk innhold.\n• Mufano: 863 000+ visninger og 9,1 % engasjementsrate på fire TikTok-videoer, uten annonser.\n• NOT x Make-A-Wish: med i teamet bak en innsamlingskampanje som samlet inn 46 000 USD.\n• Knytt: bygget en nettside med nettbutikk som fikk 100 i SEO-score.', 'chat.q3':'Hvorfor bør vi ansette deg?', 'chat.a3':'Jeg kombinerer kreativ innholdsproduksjon med forretningsforståelse: jeg lager innhold folk faktisk ser og deler, og kobler det til salg og målbare resultater. Jeg har jobbet med alt fra influensere og eventsteder til en internasjonal innsamlingskampanje, og gjennom eget foretak er jeg vant til å ta ansvar og jobbe tett med kunder.', 'chat.q4':'Hvilke tjenester tilbyr du?', 'chat.a4':'Gjennom Rams Creative tilbyr jeg innhold til sosiale medier, strategi og kampanjer, betalt annonsering på Meta, Google og TikTok, eventdekning med innholdsbank, videoredigering og enkle nettsider. Denne nettsiden har jeg laget selv.', 'chat.q5':'Filmer og redigerer du selv?', 'chat.a5':'Ja. Jeg filmer mest med mobil, som passer godt til sosiale medier, men plukker gjerne opp et kamera når prosjektet trenger det. Jeg klipper alt selv, blant annet 15 videoer på stedet under Arendalsuka for Punkt Oslo, en filmatisk recap-video for KRAFT Collective og TikTok-videoene for Mufano, mest i CapCut og Premiere Pro.', 'chat.q6':'Hvordan er du å samarbeide med?', 'chat.a6':'Det får andre svare på: anbefalingene mine beskriver meg som pålitelig, positiv og løsningsorientert. Kjartan Håvik i M40 Eiendom skriver at jeg «vil det beste for de rundt meg og setter alltid kunden først».', 'chat.q7':'Hvilke verktøy bruker du?', 'chat.a7':'Avansert: Claude, CapCut, Canva, Premiere Pro, Meta & TikTok Insights og Google Workspace.\nGod: GA4, Hotjar, Looker Studio, Google Search Console, Meta Ads, SEO, Tripletex, WordPress og Elementor.\nGrunnleggende: DaVinci Resolve, Photoshop og Illustrator.', 'chat.q8':'Hvordan kan vi ta kontakt?', 'chat.a8':'Send en e-post til danielramslien@gmail.com eller ring +47 911 68 076. Du finner meg også på LinkedIn, og CV-en min kan lastes ned på Om meg-siden. Jeg er heller ikke vanskelig å be ut på en kaffe.', 'cv.dl':'Last ned CV (PDF)', 'ig.likes':'likerklikk', 'logos.label':'Har samarbeidet med', 'dlg.tools':'Verktøy',
+    'dlg.client':'Kunde', 'dlg.role':'Rolle', 'dlg.period':'Periode', 'dlg.tags':'Kanaler og fag', 'dlg.docs':'Dokumenter', 'dlg.tiktok':'TikTok-videoene', 'dlg.gal':'Bilder fra nettsiden', 'contact.short':'Kontakt:', 'chat.l.work':'Se arbeidet mitt', 'chat.l.about':'Les mer om meg', 'chat.l.cases':'Se alle casene', 'chat.l.m40':'Åpne M40-caset', 'chat.l.cv':'Last ned CV', 'chat.l.contact':'Gå til kontakt', 'chat.l.k':'Kontakt', 'chat.l.svc':'Se tjenestene', 'chat.l.punkt':'Se Punkt Oslo-caset', 'chat.l.kraft':'Se KRAFT-caset', 'chat.l.recs':'Les anbefalingene', 'chat.l.tools':'Se verktøyene', 'chat.l.mail':'Send e-post', 'chat.fab':'Spør meg', 'chat.title':'Spør meg', 'chat.sub':'Q&A', 'chat.hello':'Hei! Her har jeg svart på det jeg ofte får spørsmål om. Trykk på et spørsmål under.', 'chat.q1':'Hvordan jobber du?', 'chat.a1':'Jeg starter alltid med menneskene på andre siden av skjermen: Hva får dem til å stoppe opp, le eller dele videre? Jeg tar ansvar for hele løpet, fra idé og innholdsplan til filming, klipp og publisering, og måler hva som faktisk virker i verktøy som Meta og TikTok Insights, GA4 og Looker Studio.', 'chat.q2':'Hvilke resultater har du skapt?', 'chat.a2':'Noen eksempler:\n• M40 Studios: 100 000 kr+ i salg av studioleie og 20 faste kunder, med 100 % organisk innhold.\n• Mufano: 863 000+ visninger og 9,1 % engasjementsrate på fire TikTok-videoer, uten annonser.\n• NOT x Make-A-Wish: Med i teamet bak en innsamlingskampanje som samlet inn 46 000 USD.\n• Knytt: Bygget en nettside med nettbutikk som fikk 100 i SEO-score.', 'chat.q3':'Hvorfor bør vi ansette deg?', 'chat.a3':'Jeg kombinerer kreativ innholdsproduksjon med forretningsforståelse: Jeg lager innhold folk faktisk ser og deler, og kobler det til salg og målbare resultater. Jeg har jobbet med alt fra influensere og eventsteder til en internasjonal innsamlingskampanje, og gjennom eget foretak er jeg vant til å ta ansvar og jobbe tett med kunder.', 'chat.q4':'Hvilke tjenester tilbyr du?', 'chat.a4':'Gjennom Rams Creative tilbyr jeg innhold til sosiale medier, strategi og kampanjer, betalt annonsering på Meta, Google og TikTok, eventdekning med innholdsbank, videoredigering og enkle nettsider. Denne nettsiden har jeg laget selv.', 'chat.q5':'Filmer og redigerer du selv?', 'chat.a5':'Ja. Jeg filmer mest med mobil, som passer godt til sosiale medier, men plukker gjerne opp et kamera når prosjektet trenger det. Jeg klipper alt selv, blant annet 15 videoer på stedet under Arendalsuka for Punkt Oslo, en filmatisk recap-video for KRAFT Collective og TikTok-videoene for Mufano, mest i CapCut og Premiere Pro.', 'chat.q6':'Hvordan er du å samarbeide med?', 'chat.a6':'Det får andre svare på: Anbefalingene mine beskriver meg som pålitelig, positiv og løsningsorientert. Kjartan Håvik i M40 Eiendom skriver at jeg «vil det beste for de rundt meg og setter alltid kunden først».', 'chat.q7':'Hvilke verktøy bruker du?', 'chat.a7':'Avansert: Claude, CapCut, Canva, Premiere Pro, Meta & TikTok Insights og Google Workspace.\nGod: GA4, Hotjar, Looker Studio, Google Search Console, Meta Ads, SEO, Tripletex, WordPress og Elementor.\nGrunnleggende: DaVinci Resolve, Photoshop og Illustrator.', 'chat.q8':'Hvordan kan vi ta kontakt?', 'chat.a8':'Send en e-post til danielramslien@gmail.com eller ring +47 911 68 076. Du finner meg også på LinkedIn, og CV-en min kan lastes ned på Om meg-siden. Jeg er heller ikke vanskelig å be ut på en kaffe.', 'cv.dl':'Last ned CV (PDF)', 'ig.likes':'likerklikk', 'logos.label':'Har samarbeidet med', 'dlg.tools':'Verktøy',
     'card.video':'Video', 'card.images':'Bilder', 'card.view':'Se case', 'card.for':'for',
     'nav.refs':'Attester', 'refs.more':'Se flere', 'refs.less':'Se færre', 'about.more':'Les mer', 'about.less':'Les mindre', 'card.next':'Neste bilde', 'card.prev':'Forrige bilde', 'refs.title':'Attester', 'refs.lead':'Hele dokumentene. Trykk på en attest for å lese den.', 'refs.note':'Fødselsdato og adresse er sladdet.',
     'refs.close':'Lukk attest', 'refs.view':'Se attest fra',
@@ -1179,15 +1182,15 @@ const CASES = [
       {type:'tiktok',id:'7607353046934375702',cap:{no:'TikTok-video 5 for Mufano',en:'TikTok video 5 for Mufano'}}
     ],
     t:{
-      no:{sub:'TikTok-innholdsstrategi', card:'Innholdsstrategi for låtlansering', title:'863 000 visninger, null kroner i annonser', client:'Mufano', clientDesc:'TikToker og influenser', period:'Jan. 2026 – nå',
+      no:{sub:'TikTok-innholdsstrategi', card:'Innholdsstrategi for låtlansering', title:'863 000 visninger, null kroner i annonser', client:'Mufano', clientDesc:'TikToker og influenser', period:'Jan. 2026 til nå',
         role:'Markedsfører og veileder (via Rams Creative)', tags:['TikTok','Video'], result:'863 000+ visninger',
         intro:'Fire TikTok-videoer for lanseringen av Mufanos egen låt, planlagt og produsert av meg.',
-        metrics:[['863 000+','visninger'],['9,1 %','engasjementsrate, over dobbelt så høyt som plattformsnittet på ca. 4 %'],['78 000+','interaksjoner'],['1,8 %','delingsrate']],
+        metrics:[['863 000+','visninger'],['9,1 %','engasjementsrate, over dobbelt så høy som plattformsnittet på ca. 4 %'],['78 000+','interaksjoner'],['1,8 %','delingsrate']],
         bullets:['Planla og produserte fire TikTok-videoer for lanseringen av hans egen låt.',
           'Videoene fikk 863 000+ visninger og 78 000+ interaksjoner: 57 000 likes, 15 900 delinger, 4 800 saves og 900 kommentarer.',
           'Oppnådde 9,1 % engasjementsrate og 1,8 % delingsrate.',
           'Veileder Mufano i innholdsstrategi, publiseringsrytme og analyse, slik at han selv kan drive kanalene videre.']},
-      en:{sub:'TikTok content strategy', card:'Content strategy for a song launch', title:'863,000 views, zero spent on ads', client:'Mufano', clientDesc:'TikToker and influencer', period:'Jan 2026 – present',
+      en:{sub:'TikTok content strategy', card:'Content strategy for a song launch', title:'863,000 views, zero spent on ads', client:'Mufano', clientDesc:'TikToker and influencer', period:'Jan 2026 to present',
         role:'Marketer and mentor (via Rams Creative)', tags:['TikTok','Video'], result:'863,000+ views',
         intro:'Four TikTok videos for the launch of Mufano’s own song, planned and produced by me.',
         metrics:[['863,000+','views'],['9.1%','engagement rate, more than double the platform average of about 4%'],['78,000+','interactions'],['1.8%','share rate']],
@@ -1202,14 +1205,14 @@ const CASES = [
     quote:{text:'… our interns (Simon Brusdal, Kathalina Nunez-Garate, Daniel Ramslien) researching every detail of the trip …',
       by:{no:'Lynn, NOT Management, i LinkedIn-innlegget om turen',en:'Lynn, NOT Management, in her LinkedIn post about the ride'}},
     media:[
-      {type:'image',src:I+'ride-for-wishes.webp',cap:{no:'Ride for Wishes – Portugal Edition med Hitch',en:'Ride for Wishes – Portugal Edition with Hitch'}},
+      {type:'image',src:I+'ride-for-wishes.webp',cap:{no:'Ride for Wishes: Portugal Edition med Hitch',en:'Ride for Wishes: Portugal Edition with Hitch'}},
       {type:'image',src:I+'not-results.webp',cap:{no:'Resultater: seere, innsamlet beløp og timer sett',en:'Results: viewers, funds raised and hours watched'}},
       {type:'image',src:I+'not-tandem.webp',cap:{no:'Bilder fra turen med tandemsykkelen',en:'Photos from the ride with the tandem bike'}},
       {type:'image',src:I+'daniel-not.webp',cap:{no:'Praksisstudent hos NOT Management',en:'Intern at NOT Management'}},
       {type:'image',src:'assets/img/not-logo.png',cap:{no:'NOT Management-logoen',en:'The NOT Management logo'}}
     ],
     t:{
-      no:{sub:'Innsamlingskampanje på 46 000 USD', brand:'NOT x Make-A-Wish', card:'Make-A-Wish-kampanje', title:'Make-A-Wish-kampanje: Ride for Wishes', client:'NOT Management', clientDesc:'Til inntekt for Make-A-Wish', period:'Mars – apr. 2026',
+      no:{sub:'Innsamlingskampanje på 46 000 USD', brand:'NOT x Make-A-Wish', card:'Make-A-Wish-kampanje', title:'Make-A-Wish-kampanje: Ride for Wishes', client:'NOT Management', clientDesc:'Til inntekt for Make-A-Wish', period:'Mars til april 2026',
         role:'Praksisstudent / marketing intern', tags:['Livestream','Innhold','Planlegging'], result:'46 000 USD samlet inn',
         intro:'Streameren Hitch, en av talentene til NOT Management, er kjent for å ta haiking til Twitch. Idéen hans var «Random Tandem»: å ta med andre creators ut av komfortsonen på en tandemsykkel. Sammen med Make-A-Wish ble det til Ride for Wishes, en veldedighetstur langs kysten av Portugal som ble livestreamet hele veien.',
         metrics:[['46 000 USD','samlet inn til Make-A-Wish'],['32,7 mill.','watch hours'],['11 000','samtidige seere på det meste'],['1 000+ km','på 26 dager med 12 creators']],
@@ -1217,7 +1220,7 @@ const CASES = [
           'Researchet og detaljplanla rute, gjester, sponsorer og medieoppfølging sammen med et team på 10+ personer.',
           'Livestreamen gikk på 3 plattformer og fikk 32,7 mill. watch hours og opptil 11 000 samtidige seere.',
           'Kampanjen samlet inn 46 000 USD for å oppfylle ønsker for alvorlig syke barn.']},
-      en:{sub:'USD 46,000 fundraising campaign', brand:'NOT x Make-A-Wish', card:'Make-A-Wish campaign', title:'Make-A-Wish campaign: Ride for Wishes', client:'NOT Management', clientDesc:'In support of Make-A-Wish', period:'Mar – Apr 2026',
+      en:{sub:'USD 46,000 fundraising campaign', brand:'NOT x Make-A-Wish', card:'Make-A-Wish campaign', title:'Make-A-Wish campaign: Ride for Wishes', client:'NOT Management', clientDesc:'In support of Make-A-Wish', period:'Mar to Apr 2026',
         role:'Marketing intern', tags:['Livestream','Content','Planning'], result:'USD 46,000 raised',
         intro:'Streamer Hitch, one of NOT Management’s talents, is known for bringing hitchhiking to Twitch. His idea was “Random Tandem”: taking other creators out of their comfort zone on a tandem bike. Together with Make-A-Wish it became Ride for Wishes, a charity ride along the coast of Portugal, livestreamed all the way.',
         metrics:[['USD 46,000','raised for Make-A-Wish'],['32.7M','watch hours'],['11,000','peak concurrent viewers'],['1,000+ km','in 26 days with 12 creators']],
@@ -1229,7 +1232,7 @@ const CASES = [
   },
   {
     id:'m40', tools:['Canva', 'Photoshop', 'Illustrator', 'CapCut', 'Meta Insights'], year:'2026', cover:P+'m40-start.jpg', preview:V+'m40-preview.mp4',
-    quote:{text:{no:'Daniel er en god og pålitelig rådgiver innen salg, kommunikasjon og markedsføring som jeg virkelig kan anbefale. Han vil det beste for de rundt seg og sette alltid kunden først.',
+    quote:{text:{no:'Daniel er en god og pålitelig rådgiver innen salg, kommunikasjon og markedsføring som jeg virkelig kan anbefale. Han vil det beste for de rundt seg og setter alltid kunden først.',
                  en:'Daniel is a good and reliable advisor in sales, communication and marketing whom I can truly recommend. He wants the best for those around him and always puts the customer first.'},
       by:{no:'Kjartan Håvik, daglig leder i M40 Eiendom AS',en:'Kjartan Håvik, CEO of M40 Eiendom AS (translated from Norwegian)'}},
     media:[{type:'video',src:V+'m40.mp4',poster:P+'m40-start.jpg',cap:{no:'Video for M40 Studios',en:'Video for M40 Studios'}},
@@ -1240,21 +1243,21 @@ const CASES = [
       {type:'image',src:'assets/img/m40/m40-logo-white.png',cap:{no:'M40 Studios-logoen',en:'The M40 Studios logo'}},
       {type:'image',src:'assets/img/m40/m40-ad-1.webp',cap:{no:'Annonse: Bygge ditt drømmestudio?',en:'Ad: Build your dream studio?'}},
       {type:'image',src:'assets/img/m40/m40-hvor-1.webp',cap:{no:'Karusellinnlegg: Hvor finner du oss?',en:'Carousel post: Where to find us'}},
-      {type:'image',src:'assets/img/m40/m40-hvor-2.webp',cap:{no:'Karusellinnlegg: Studio-kollektiver i Oslo',en:'Carousel post: Studio collectives in Oslo'}},
+      {type:'image',src:'assets/img/m40/m40-hvor-2.webp',cap:{no:'Karusellinnlegg: Studiokollektiver i Oslo',en:'Carousel post: Studio collectives in Oslo'}},
       {type:'image',src:'assets/img/m40/m40-li-1.webp',cap:{no:'LinkedIn-innlegg: M40 Studios',en:'LinkedIn post: M40 Studios'}},
       {type:'image',src:'assets/img/m40/m40-li-2.webp',cap:{no:'LinkedIn-innlegg: Marketing & Communication',en:'LinkedIn post: Marketing & Communication'}},
       {type:'image',src:'assets/img/m40/m40-li-3.webp',cap:{no:'LinkedIn-innlegg: Business & Administration',en:'LinkedIn post: Business & Administration'}},
       {type:'image',src:'assets/img/m40/m40-li-4.webp',cap:{no:'LinkedIn-innlegg: Hvor vi er',en:'LinkedIn post: Where we are'}},],
     t:{
-      no:{sub:'Kampanje – Fra null til 20 kunder', card:'Studiokampanje', title:'Fra null til 20 faste kunder', client:'M40 Studios', clientDesc:'M40 Eiendom AS', period:'Jan. – sep. 2026',
+      no:{sub:'Kampanje, fra null til 20 kunder', card:'Studiokampanje', title:'Fra null til 20 faste kunder', client:'M40 Studios', clientDesc:'M40 Eiendom AS', period:'Januar til september 2026',
         role:'Marketing & Communication (via Rams Creative)', tags:['Sosiale medier','Kampanje','Video'], result:'100 000 kr+ i salg',
         intro:'Jeg bygget merkevaren M40 Studios fra bunnen av, og hadde ansvar for alt fra kampanjer og innhold til salg og kunderelasjoner. Resultatene kom fra organisk innhold, ikke betalt annonsering.',
         metrics:[['100 000 kr+','i salg av studioleie fra kampanjen i mars'],['20','faste kunder via sosiale medier'],['100 %','organisk innhold, ingen betalt annonsering']],
-        bullets:['Utviklet og kjørte kampanje i mars som ga 100 000 kr+ i salg av studioleie.',
+        bullets:['Utviklet og kjørte en kampanje i mars som ga 100 000 kr+ i salg av studioleie.',
           'Bygget merkevaren M40 Studios fra bunnen av til 20 faste kunder via sosiale medier.',
           'Alt innholdet var organisk, uten betalt annonsering.',
           'Ansvar for salg, kunderelasjoner, kampanjebygging og innholdsproduksjon, inkludert grafisk design i Canva, Photoshop og Illustrator.']},
-      en:{sub:'Campaign – From zero to 20 clients', card:'Studio campaign', title:'From zero to 20 regular clients', client:'M40 Studios', clientDesc:'M40 Eiendom AS', period:'Jan – Sep 2026',
+      en:{sub:'Campaign, from zero to 20 clients', card:'Studio campaign', title:'From zero to 20 regular clients', client:'M40 Studios', clientDesc:'M40 Eiendom AS', period:'Jan to Sep 2026',
         role:'Marketing & Communication (via Rams Creative)', tags:['Social media','Campaign','Video'], result:'NOK 100,000+ in sales',
         intro:'I built the M40 Studios brand from scratch and was responsible for everything from campaigns and content to sales and client relations. The results came from organic content, not paid advertising.',
         metrics:[['NOK 100,000+','in studio rental sales from the March campaign'],['20','regular clients through social media'],['100%','organic content, no paid advertising']],
@@ -1282,7 +1285,7 @@ const CASES = [
       {src:I+'knytt-looker.webp',cap:{no:'Trafikk i Looker Studio',en:'Traffic in Looker Studio'}}
     ],
     t:{
-      no:{sub:'Nettsidebygging, SEO og klipping', card:'Knytt.org', title:'Knytt: nettside, SEO og kommunikasjon', client:'Knytt SB', clientDesc:'Tidligere studentbedrift · Digitale verktøy', period:'Sep. – des. 2025',
+      no:{sub:'Nettsidebygging, SEO og klipping', card:'Knytt.org', title:'Knytt: nettside, SEO og kommunikasjon', client:'Knytt SB', clientDesc:'Tidligere studentbedrift · Digitale verktøy', period:'September til desember 2025',
         role:'Kommunikasjonsleder og gründer', tags:['Nettside','SEO','Analyse','Partnerskap'], result:'SEO-score 100 · karakter A',
         intro:'Knytt var en studentbedrift som arrangerte lavterskel events for studenter og unge voksne i Oslo. Jeg ledet kommunikasjonen, bygget nettsiden med nettbutikk og målte hvordan den fungerte. Analysen leverte jeg som eksamen i Digitale verktøy.',
         metrics:[['3','arrangementer'],['5','partnere'],['100','i SEO-score'],['A','karakter i Digitale verktøy']],
@@ -1292,7 +1295,7 @@ const CASES = [
           'Målte trafikk og brukeratferd i GA4, Hotjar og Looker Studio. Nettsiden endte på 62 % returnerende brukere, 82 % scroll depth og 100 i SEO-score.',
           'Leverte analysen som en videopresentasjon på rundt tolv minutter i Digitale verktøy, med karakter A.',
           'Klippet video for Knytt til sosiale medier.']},
-      en:{sub:'Website building, SEO and editing', card:'Knytt.org', title:'Knytt: website, SEO and communication', client:'Knytt SB', clientDesc:'Former student company · Digital Tools', period:'Sep – Dec 2025',
+      en:{sub:'Website building, SEO and editing', card:'Knytt.org', title:'Knytt: website, SEO and communication', client:'Knytt SB', clientDesc:'Former student company · Digital Tools', period:'Sep to Dec 2025',
         role:'Head of communications and founder', tags:['Website','SEO','Analytics','Partnerships'], result:'SEO score 100 · grade A',
         intro:'Knytt was a student company hosting low-threshold events for students and young adults in Oslo. I led communications, built the website with an online store and measured how it performed. I delivered the analysis as my exam in Digital Tools.',
         metrics:[['3','events'],['5','partners'],['100','SEO score'],['A','grade in Digital Tools']],
@@ -1332,7 +1335,7 @@ const CASES = [
       {type:'video',src:V+'punkt-oslo-2.mp4',poster:P+'punkt-oslo-2.jpg',cap:{no:'Sommerfest hos Punkt Oslo',en:'Summer party at Punkt Oslo'}}
     ],
     t:{
-      no:{sub:'Innholdsproduksjon – Arendalsuka', card:'Innholdsproduksjon for Punkt Oslo', title:'Innholds\u00ADproduksjon for Punkt Oslo', client:'Punkt Oslo', clientDesc:'Møte- og eventsted i Oslo', period:'Mars – aug. 2026',
+      no:{sub:'Innholdsproduksjon på Arendalsuka', card:'Innholdsproduksjon for Punkt Oslo', title:'Innholds\u00ADproduksjon for Punkt Oslo', client:'Punkt Oslo', clientDesc:'Møte- og eventsted i Oslo', period:'Mars til august 2026',
         role:'Innholdsprodusent og lydtekniker (via Rams Creative)', tags:['LinkedIn','Video','Lyd'], result:'15 videoer på stedet',
         intro:'Innhold fra tre arrangementer, blant annet sommerfest og Arendalsuka, og en innholdsbank som dekker publiseringen gjennom hele høsten.',
         metrics:[['15','videoer filmet og klippet på stedet under Arendalsuka'],['10','podcastinnspillinger med lyd rigget og kjørt'],['25 + 150','videoer og utvalgte bilder i innholdsbanken'],['3','arrangementer dekket']],
@@ -1340,7 +1343,7 @@ const CASES = [
           'Under Arendalsuka filmet og klippet jeg 15 videoer på stedet til LinkedIn-kanalen deres.',
           'Rigget og kjørte lyd for 10 podcastinnspillinger i paviljongen.',
           'Leverte en innholdsbank på 25 videoer og 150 utvalgte bilder som dekker publiseringen deres gjennom hele høsten.']},
-      en:{sub:'Content production – Arendalsuka', card:'Content production for Punkt Oslo', title:'Content production for Punkt Oslo', client:'Punkt Oslo', clientDesc:'Meeting and event venue in Oslo', period:'Mar – Aug 2026',
+      en:{sub:'Content production at Arendalsuka', card:'Content production for Punkt Oslo', title:'Content production for Punkt Oslo', client:'Punkt Oslo', clientDesc:'Meeting and event venue in Oslo', period:'Mar to Aug 2026',
         role:'Content producer and sound engineer (via Rams Creative)', tags:['LinkedIn','Video','Audio'], result:'15 videos on location',
         intro:'Content from three events, including a summer party and Arendalsuka, Norway’s largest political festival, plus a content bank covering their posting throughout the fall.',
         metrics:[['15','videos filmed and edited on location at Arendalsuka'],['10','podcast recordings with sound rigged and run'],['25 + 150','videos and selected photos in the content bank'],['3','events covered']],
@@ -1362,7 +1365,7 @@ const CASES = [
       {type:'video',src:V+'kristiania-ail.mp4',poster:P+'kristiania-ail.jpg',cap:{no:'AIL-forelesning, 5. mai',en:'AIL lecture, May 5'}},
       {type:'video',src:V+'kristiania-qna.mp4',poster:P+'kristiania-qna.jpg',cap:{no:'Q&A med studenter',en:'Q&A with students'}}],
     t:{
-      no:{sub:'Innholdsproduksjon – Praksis', card:'Innhold og læring', title:'Høyskolen Kristiania: innholds\u00ADproduksjon og læring', client:'Høyskolen Kristiania', clientDesc:'Praksis og studentassistent', period:'Vår 2026',
+      no:{sub:'Innholdsproduksjon i praksis', card:'Innhold og læring', title:'Høyskolen Kristiania: innholds\u00ADproduksjon og læring', client:'Høyskolen Kristiania', clientDesc:'Praksis og studentassistent', period:'Vår 2026',
         role:'Innholdsprodusent (praksis) · studentassistent', tags:['Video','LinkedIn','Undervisning'], result:'10 videoer · 70 studenter veiledet',
         intro:'Ved Høyskolen Kristiania har jeg både laget innhold og hjulpet andre å lære. Som praksisstudent filmet og klippet jeg video fra arrangementer, og som studentassistent i Innholdskommunikasjon veiledet jeg førsteårsstudentene.',
         metrics:[['10','videoer fra 3 arrangementer'],['70','førsteårsstudenter veiledet'],['20','bedrifter på praksisdagen'],['ca. 85','deltakere på praksisdagen']],
@@ -1371,7 +1374,7 @@ const CASES = [
           'Ble valgt ut som studentassistent i emnet Innholdskommunikasjon, som faglig sterk student fra året før.',
           'Veiledet 70 førsteårsstudenter løpende via Discord og holdt workshop før arbeidskrav og eksamen.',
           'Delte egne erfaringer og tips til gode studierutiner, og bisto hovedlærer og gjesteforelesere i undervisningen og under gruppearbeid.']},
-      en:{sub:'Content production – Internship', card:'Content and learning', title:'Kristiania University: content production and learning', client:'Kristiania University of Applied Sciences', clientDesc:'Internship and student assistant', period:'Spring 2026',
+      en:{sub:'Content production internship', card:'Content and learning', title:'Kristiania University: content production and learning', client:'Kristiania University of Applied Sciences', clientDesc:'Internship and student assistant', period:'Spring 2026',
         role:'Content producer (intern) · student assistant', tags:['Video','LinkedIn','Teaching'], result:'10 videos · 70 students supervised',
         intro:'At Kristiania I have both created content and helped others learn. As an intern I filmed and edited video from events, and as a student assistant in Content Communication I supervised the first-year students.',
         metrics:[['10','videos from 3 events'],['70','first-year students supervised'],['20','companies at the internship day'],['approx. 85','participants at the internship day']],
@@ -1387,7 +1390,7 @@ const CASES = [
     link:{href:'https://youtu.be/_SuTFtps6bY', text:{no:'Se hele kampanjevideoen på YouTube',en:'Watch the full campaign video on YouTube'}},
     media:[{type:'video',src:V+'iko.mp4',poster:P+'iko-start.jpg',cap:{no:'Kampanjevideoen',en:'The campaign video'}}],
     t:{
-      no:{sub:'Kampanjevideo og pitch – Eksamen', brand:'Kampanjevideo', card:'Kampanjevideo', title:'Kampanjevideo pitch', client:'Høyskolen Kristiania', clientDesc:'Innholdskommunikasjon', period:'Vår 2025',
+      no:{sub:'Kampanjevideo og pitch, eksamen', brand:'Kampanjevideo', card:'Kampanjevideo', title:'Kampanjevideo og pitch', client:'Høyskolen Kristiania', clientDesc:'Innholdskommunikasjon', period:'Vår 2025',
         role:'Ansvarlig for kampanjevideoen i gruppen', tags:['Kampanje','Video','Skolearbeid'], result:'Karakter A',
         intro:'Skoleoppgave i Innholdskommunikasjon. I gruppeeksamenen laget jeg kampanjevideoen og kampanjepitchen. Alene designet jeg en personlig journal med musikktema i Photoshop og Illustrator.',
         metrics:[['A','karakter i emnet'],['16 timer','arbeid med kampanjevideoen']],
@@ -1396,7 +1399,7 @@ const CASES = [
           'Klippet og ferdigstilte videoen selv, et arbeid på rundt 16 timer.',
           'Laget kampanjepitchen som gruppen presenterte.',
           'Designet en personlig prosessjournal, «Rams», med musikktema i Photoshop og Illustrator.']},
-      en:{sub:'Campaign video and pitch – Exam', brand:'Campaign video', card:'Campaign video', title:'Campaign video pitch', client:'Kristiania University of Applied Sciences', clientDesc:'Content Communication', period:'Spring 2025',
+      en:{sub:'Campaign video and pitch, exam', brand:'Campaign video', card:'Campaign video', title:'Campaign video pitch', client:'Kristiania University of Applied Sciences', clientDesc:'Content Communication', period:'Spring 2025',
         role:'Responsible for the group’s campaign video', tags:['Campaign','Video','Coursework'], result:'Grade A',
         intro:'Coursework in Content Communication. For the group exam I made the campaign video and the campaign pitch. On my own I designed a personal, music-themed journal in Photoshop and Illustrator.',
         metrics:[['A','grade in the course'],['16 hours','spent on the campaign video']],
@@ -1416,7 +1419,7 @@ const AT = 'assets/img/attester/';
 const TESTI = [
   { name:'Kjartan Håvik', img:'assets/img/testimonials/kjartan-havik.webp',
     role:{no:'Daglig leder, M40 Eiendom AS', en:'CEO, M40 Eiendom AS'},
-    quote:{no:'Daniel er en god og pålitelig rådgiver innen salg, kommunikasjon og markedsføring som jeg virkelig kan anbefale. Han vil det beste for de rundt seg og sette alltid kunden først.',
+    quote:{no:'Daniel er en god og pålitelig rådgiver innen salg, kommunikasjon og markedsføring som jeg virkelig kan anbefale. Han vil det beste for de rundt seg og setter alltid kunden først.',
            en:'Daniel is a good and reliable advisor in sales, communication and marketing whom I can truly recommend. He wants the best for those around him and always puts the customer first.'} },
   { name:'Annette Kallevig', img:'assets/img/testimonials/annette-kallevig.webp',
     role:{no:'Studieprogramleder, Bachelor i digital markedsføring, Høyskolen Kristiania', en:'Head of Programme, Bachelor in Digital Marketing, Kristiania University of Applied Sciences'},
