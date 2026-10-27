@@ -577,10 +577,11 @@ section{position:relative}
 
 /* ---------- Responsivt ---------- */
 /* ---------- Chat ---------- */
-.ask-btn{position:absolute;z-index:4;left:calc(100% + clamp(18px,2.6vw,44px));top:50%;margin-top:-24px;display:inline-flex;align-items:center;gap:9px;height:48px;padding:0 20px 0 16px;border:0;border-radius:999px;background:#fff;color:var(--ink);font:inherit;font-weight:700;font-size:15px;white-space:nowrap;cursor:pointer;box-shadow:0 10px 30px rgba(0,0,0,.35);transition:transform .25s var(--ease),background .2s,color .2s}
+.ask-btn{position:absolute;z-index:4;left:calc(100% + var(--ask-gap));top:50%;margin-top:-24px;display:inline-flex;align-items:center;gap:9px;height:48px;padding:0 20px 0 16px;border:0;border-radius:999px;background:#fff;color:var(--ink);font:inherit;font-weight:700;font-size:15px;white-space:nowrap;cursor:pointer;box-shadow:0 10px 30px rgba(0,0,0,.35);transition:transform .25s var(--ease),background .2s,color .2s}
 .ask-btn svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
 .ask-btn:hover{background:var(--accent);color:var(--ink);transform:translateY(-2px)}
-.ask-arrow{position:absolute;z-index:4;left:calc(100% - clamp(6px,1vw,16px));bottom:calc(50% + 30px);width:clamp(92px,9vw,128px);fill:none;stroke:#fff;stroke-width:4.2;stroke-linecap:round;stroke-linejoin:round;filter:drop-shadow(0 3px 6px rgba(0,0,0,.35));pointer-events:none;animation:askPoint 2.2s ease-in-out infinite}
+.hero-visual{--ask-gap:clamp(64px,7.5vw,140px)}
+.ask-arrow{position:absolute;z-index:4;left:calc(100% + 6px);bottom:calc(50% + 30px);width:calc((var(--ask-gap) + 34px) * 1.224);fill:none;stroke:#fff;stroke-width:3.4;stroke-linecap:round;stroke-linejoin:round;filter:drop-shadow(0 3px 6px rgba(0,0,0,.35));pointer-events:none;animation:askPoint 2.2s ease-in-out infinite}
 @keyframes askPoint{0%,100%{transform:translate(0,0) rotate(0)}50%{transform:translate(4px,6px) rotate(3deg)}}
 html:not([data-page="home"]) .ask-btn,html:not([data-page="home"]) .ask-arrow,html:not([data-page="home"]) .chat-bubble{display:none}
 .chat-bubble{position:fixed;right:18px;bottom:18px;z-index:60;width:52px;height:52px;border-radius:50%;display:grid;place-items:center;padding:0;cursor:pointer;background:rgba(14,12,11,.78);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.35);color:#fff;box-shadow:0 0 0 1px rgba(255,255,255,.06),0 0 22px rgba(255,255,255,.18);opacity:0;transform:scale(.6);pointer-events:none;transition:opacity .3s var(--ease),transform .3s var(--ease),box-shadow .25s}
@@ -621,7 +622,7 @@ html[data-page="home"] .to-top{bottom:80px}
 @media (max-width:640px){
   .ask-btn{left:auto;right:-14px;top:auto;bottom:-6px;margin-top:0;height:40px;padding:0 14px 0 12px;font-size:13px;gap:7px}
   .ask-btn svg{width:17px;height:17px}
-  .ask-arrow{left:auto;right:-4px;top:auto;bottom:38px;width:68px;stroke-width:5;transform-origin:center}
+  .ask-arrow{left:auto;right:-4px;top:auto;bottom:38px;width:68px;stroke-width:3.6;transform-origin:center}
   .chat-panel{right:0;left:0;bottom:0;width:100%;height:min(86dvh,640px);border-radius:20px 20px 0 0;border-bottom:0}
 }
 @media (prefers-reduced-motion:reduce){.chat-panel,.ctyping i,.ask-arrow{transition:none;animation:none}}
@@ -814,7 +815,7 @@ html[data-page="home"] .to-top{bottom:80px}
       </div>
       <div class="hero-visual">
         <div class="orb" id="hero-orb" aria-hidden="true"></div>
-        <svg class="ask-arrow" viewBox="0 0 120 74" aria-hidden="true"><path d="M12 14c22-10 52-9 72 6 14 11 18 27 14 46"/><path d="M84 54l14 16 12-19"/></svg>
+        <svg class="ask-arrow" viewBox="0 0 120 74" aria-hidden="true"><path vector-effect="non-scaling-stroke" d="M12 14c22-10 52-9 72 6 14 11 18 27 14 46"/><path vector-effect="non-scaling-stroke" d="M84 54l14 16 12-19"/></svg>
         <button class="ask-btn" type="button" id="chat-fab" aria-controls="chat-panel" aria-expanded="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22z"/><circle cx="8" cy="12" r="1.25" fill="currentColor" stroke="none"/><circle cx="12" cy="12" r="1.25" fill="currentColor" stroke="none"/><circle cx="16" cy="12" r="1.25" fill="currentColor" stroke="none"/></svg><span data-i18n="chat.fab">Spør meg</span></button>
         <div class="hero-clip"><img class="hero-photo" src="assets/img/profil.webp" width="933" height="1400" alt="Portrett av Daniel Ramslien" data-i18n-alt="about.alt" fetchpriority="high"></div>
       </div>
