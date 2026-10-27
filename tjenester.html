@@ -601,16 +601,9 @@ section{position:relative}
 .ctyping i{width:6px;height:6px;border-radius:50%;background:var(--muted);animation:ctype 1.1s infinite ease-in-out}
 .ctyping i:nth-child(2){animation-delay:.15s}.ctyping i:nth-child(3){animation-delay:.3s}
 @keyframes ctype{0%,80%,100%{opacity:.3;transform:none}40%{opacity:1;transform:translateY(-3px)}}
-.chat-chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:2px}
+.chat-chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:4px;padding-bottom:4px}
 .chat-chips button{padding:7px 12px;border:1px solid var(--accent-line);border-radius:999px;background:rgba(255,122,26,.06);color:#ffb27a;font:inherit;font-size:13px;font-weight:500;cursor:pointer;text-align:left}
 .chat-chips button:hover{background:var(--accent);color:var(--ink);border-color:var(--accent)}
-.chat-form{display:flex;align-items:flex-end;gap:8px;padding:10px 12px 8px;border-top:1px solid var(--line)}
-.chat-form textarea{flex:1;resize:none;max-height:120px;min-height:42px;padding:10px 14px;border:1px solid var(--line-strong);border-radius:14px;background:rgba(243,237,230,.04);color:var(--text);font:inherit;font-size:14.5px;line-height:1.4;outline:none}
-.chat-form textarea:focus{border-color:var(--accent-line)}
-.chat-send{width:42px;height:42px;flex:none;border:0;border-radius:50%;background:var(--accent);color:var(--ink);display:grid;place-items:center;cursor:pointer}
-.chat-send:disabled{opacity:.45;cursor:default}
-.chat-send svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
-.chat-note{margin:0;padding:0 14px 10px;font-size:11px;color:var(--faint);text-align:center}
 @media (max-width:640px){
   .chat-fab{right:14px;bottom:14px;height:46px;padding:0 16px 0 13px;font-size:14px}
   .to-top{bottom:72px!important}
@@ -1066,10 +1059,8 @@ section{position:relative}
 
 <button class="chat-fab" type="button" id="chat-fab" aria-controls="chat-panel" aria-expanded="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20.5l1.4-4.9A8 8 0 1 1 21 12z"/><path d="M8.5 11h.01M12 11h.01M15.5 11h.01"/></svg><span data-i18n="chat.fab">Spør om meg</span></button>
 <section class="chat-panel" id="chat-panel" role="dialog" aria-modal="false" aria-labelledby="chat-title">
-  <header class="chat-head"><img class="chat-av" src="assets/img/profil.webp" alt="" width="40" height="40"><div><b id="chat-title" data-i18n="chat.title">Spør om Daniel</b><small data-i18n="chat.sub">Svarer om erfaring og arbeidsmåte</small></div><button class="chat-x" type="button" id="chat-x" aria-label="Lukk" data-i18n-aria="zoom.close"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 3l10 10M13 3L3 13"/></svg></button></header>
+  <header class="chat-head"><img class="chat-av" src="assets/img/profil.webp" alt="" width="40" height="40"><div><b id="chat-title" data-i18n="chat.title">Spør om Daniel</b><small data-i18n="chat.sub">Velg et spørsmål</small></div><button class="chat-x" type="button" id="chat-x" aria-label="Lukk" data-i18n-aria="zoom.close"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 3l10 10M13 3L3 13"/></svg></button></header>
   <div class="chat-log" id="chat-log" aria-live="polite"></div>
-  <form class="chat-form" id="chat-form"><textarea id="chat-in" rows="1" maxlength="800" placeholder="Skriv et spørsmål …" data-i18n-ph="chat.ph" aria-label="Spørsmål"></textarea><button class="chat-send" type="submit" id="chat-send" aria-label="Send" data-i18n-aria="chat.send"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button></form>
-  <p class="chat-note" data-i18n="chat.note">Svarene lages av en KI-assistent og kan inneholde feil.</p>
 </section>
 <button class="to-top" type="button" id="to-top"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 13V3M3.5 7.5L8 3l4.5 4.5"/></svg><span data-i18n="totop">Til toppen</span></button>
 <button class="cookie-btn" type="button" id="cookie-btn" aria-expanded="false" aria-controls="cookie-pop" aria-label="Cookies" data-i18n-aria="cookie.aria">
@@ -1113,7 +1104,7 @@ const I18N = {
     'foot.thanks':'Takk for at du tok deg tid',
     'foot.note':'© 2026 Daniel Ramslien · Rams Creative (Ramslien Creative ENK) · Org.nr. 935 128 986 · Referanser oppgis på forespørsel',
     'dlg.close':'Lukk case', 'dlg.did':'Hva jeg gjorde', 'dlg.thumbs':'Velg bilde eller video',
-    'dlg.client':'Kunde', 'dlg.role':'Rolle', 'dlg.period':'Periode', 'dlg.tags':'Kanaler og fag', 'dlg.docs':'Dokumenter', 'dlg.tiktok':'TikTok-videoene', 'dlg.gal':'Bilder fra nettsiden', 'contact.short':'Kontakt:', 'chat.fab':'Spør om meg', 'chat.title':'Spør om Daniel', 'chat.sub':'Svarer om erfaring og arbeidsmåte', 'chat.ph':'Skriv et spørsmål …', 'chat.send':'Send', 'chat.note':'Svarene lages av en KI-assistent og kan inneholde feil.', 'chat.hello':'Hei! Jeg svarer på spørsmål om hvordan Daniel jobber og hva han har fått til. Lim gjerne inn oppgavene i en stilling, så forteller jeg hvorfor han passer.', 'chat.q1':'Hvordan jobber Daniel?', 'chat.q2':'Hvilke resultater har han skapt?', 'chat.q3':'Hvorfor passer han hos oss?', 'chat.q4':'Hvilke verktøy bruker han?', 'chat.a1':'Daniel starter alltid med menneskene på andre siden av skjermen: hva får dem til å stoppe opp, le eller dele videre? Han tar ansvar for hele løpet, fra idé og innholdsplan til filming, klipp og publisering, og måler hva som faktisk virker i verktøy som Meta og TikTok Insights, GA4 og Looker Studio. Gjennom eget foretak, Rams Creative, er han vant til å jobbe tett med kunder og levere raskt.', 'chat.a2':'Noen eksempler:\n• M40 Studios: 100 000 kr+ i salg av studioleie og 20 faste kunder, med 100 % organisk innhold.\n• Mufano: 863 000+ visninger og 9,1 % engasjementsrate på fire TikTok-videoer, uten annonser.\n• NOT x Make-A-Wish: med i teamet bak en innsamlingskampanje som samlet inn 46 000 USD.\n• Knytt: bygget en nettside med nettbutikk som fikk 100 i SEO-score.', 'chat.a3':'Daniel kombinerer kreativ innholdsproduksjon med forretningsforståelse: han lager innhold folk faktisk ser og deler, og kobler det til salg og målbare resultater. Han har jobbet med alt fra influensere og eventsteder til en internasjonal innsamlingskampanje. Fortell gjerne hva stillingen innebærer, eller lim inn oppgavene fra annonsen, så kobler jeg dem til konkrete case.', 'chat.a4':'Avansert: Claude, CapCut, Canva, Premiere Pro, Meta & TikTok Insights og Google Workspace.\nGod: GA4, Hotjar, Looker Studio, Google Search Console, Meta Ads, SEO, Tripletex, WordPress og Elementor.\nGrunnleggende: DaVinci Resolve, Photoshop og Illustrator.', 'chat.err':'Chatten er ikke tilgjengelig akkurat nå. Send gjerne en e-post til danielramslien@gmail.com.', 'chat.rate':'Du har sendt mange meldinger på kort tid. Prøv igjen om noen minutter.', 'cv.dl':'Last ned CV (PDF)', 'ig.likes':'likerklikk', 'logos.label':'Har samarbeidet med', 'dlg.tools':'Verktøy',
+    'dlg.client':'Kunde', 'dlg.role':'Rolle', 'dlg.period':'Periode', 'dlg.tags':'Kanaler og fag', 'dlg.docs':'Dokumenter', 'dlg.tiktok':'TikTok-videoene', 'dlg.gal':'Bilder fra nettsiden', 'contact.short':'Kontakt:', 'chat.fab':'Spør om meg', 'chat.title':'Spør om Daniel', 'chat.sub':'Velg et spørsmål', 'chat.hello':'Hei! Velg et spørsmål under, så forteller jeg mer om hvordan Daniel jobber og hva han har fått til.', 'chat.q1':'Hvordan jobber Daniel?', 'chat.a1':'Daniel starter alltid med menneskene på andre siden av skjermen: hva får dem til å stoppe opp, le eller dele videre? Han tar ansvar for hele løpet, fra idé og innholdsplan til filming, klipp og publisering, og måler hva som faktisk virker i verktøy som Meta og TikTok Insights, GA4 og Looker Studio.', 'chat.q2':'Hvilke resultater har han skapt?', 'chat.a2':'Noen eksempler:\n• M40 Studios: 100 000 kr+ i salg av studioleie og 20 faste kunder, med 100 % organisk innhold.\n• Mufano: 863 000+ visninger og 9,1 % engasjementsrate på fire TikTok-videoer, uten annonser.\n• NOT x Make-A-Wish: med i teamet bak en innsamlingskampanje som samlet inn 46 000 USD.\n• Knytt: bygget en nettside med nettbutikk som fikk 100 i SEO-score.', 'chat.q3':'Hvorfor passer han hos oss?', 'chat.a3':'Daniel kombinerer kreativ innholdsproduksjon med forretningsforståelse: han lager innhold folk faktisk ser og deler, og kobler det til salg og målbare resultater. Han har jobbet med alt fra influensere og eventsteder til en internasjonal innsamlingskampanje, og gjennom eget foretak er han vant til å ta ansvar og jobbe tett med kunder.', 'chat.q4':'Hvilke tjenester tilbyr han?', 'chat.a4':'Gjennom Rams Creative tilbyr Daniel innhold til sosiale medier, strategi og kampanjer, betalt annonsering på Meta, Google og TikTok, eventdekning med innholdsbank, videoredigering og enkle nettsider. Denne nettsiden har han laget selv.', 'chat.q5':'Kan han filme og redigere selv?', 'chat.a5':'Ja. Han filmer og klipper selv, blant annet 15 videoer på stedet under Arendalsuka for Punkt Oslo, en filmatisk recap-video for KRAFT Collective og TikTok-videoene for Mufano. Han klipper mest i CapCut og Premiere Pro.', 'chat.q6':'Hvordan er han å samarbeide med?', 'chat.a6':'Anbefalingene peker på det samme: pålitelig, positiv og løsningsorientert. Kjartan Håvik i M40 Eiendom skriver at Daniel «vil det beste for de rundt seg og setter alltid kunden først».', 'chat.q7':'Hvilke verktøy bruker han?', 'chat.a7':'Avansert: Claude, CapCut, Canva, Premiere Pro, Meta & TikTok Insights og Google Workspace.\nGod: GA4, Hotjar, Looker Studio, Google Search Console, Meta Ads, SEO, Tripletex, WordPress og Elementor.\nGrunnleggende: DaVinci Resolve, Photoshop og Illustrator.', 'chat.q8':'Hvordan kan vi ta kontakt?', 'chat.a8':'Send en e-post til danielramslien@gmail.com eller ring +47 911 68 076. Du finner ham også på LinkedIn, og CV-en kan lastes ned på Om meg-siden. Han er heller ikke vanskelig å be ut på en kaffe.', 'cv.dl':'Last ned CV (PDF)', 'ig.likes':'likerklikk', 'logos.label':'Har samarbeidet med', 'dlg.tools':'Verktøy',
     'card.video':'Video', 'card.images':'Bilder', 'card.view':'Se case', 'card.for':'for',
     'nav.refs':'Attester', 'refs.more':'Se flere', 'refs.less':'Se færre', 'about.more':'Les mer', 'about.less':'Les mindre', 'card.next':'Neste bilde', 'card.prev':'Forrige bilde', 'refs.title':'Attester', 'refs.lead':'Hele dokumentene. Trykk på en attest for å lese den.', 'refs.note':'Fødselsdato og adresse er sladdet.',
     'refs.close':'Lukk attest', 'refs.view':'Se attest fra',
@@ -1145,7 +1136,7 @@ const I18N = {
     'foot.thanks':'Thanks for your time',
     'foot.note':'© 2026 Daniel Ramslien · Rams Creative (Ramslien Creative ENK) · Org. no. 935 128 986 · References available on request',
     'dlg.close':'Close case', 'dlg.did':'What I did', 'dlg.thumbs':'Choose image or video',
-    'dlg.client':'Client', 'dlg.role':'Role', 'dlg.period':'Period', 'dlg.tags':'Channels and skills', 'dlg.docs':'Documents', 'dlg.tiktok':'The TikTok videos', 'dlg.gal':'Images from the website', 'contact.short':'Contact:', 'chat.fab':'Ask about me', 'chat.title':'Ask about Daniel', 'chat.sub':'Answers about experience and work style', 'chat.ph':'Ask a question …', 'chat.send':'Send', 'chat.note':'Answers are generated by an AI assistant and may contain mistakes.', 'chat.hello':'Hi! I answer questions about how Daniel works and what he has achieved. Feel free to paste in the tasks from a job listing, and I will explain why he is a good fit.', 'chat.q1':'How does Daniel work?', 'chat.q2':'What results has he delivered?', 'chat.q3':'Why is he a good fit for us?', 'chat.q4':'Which tools does he use?', 'chat.a1':'Daniel always starts with the people on the other side of the screen: what makes them stop, laugh or share? He owns the whole process, from idea and content plan to filming, editing and publishing, and he measures what actually works in tools like Meta and TikTok Insights, GA4 and Looker Studio. Through his own company, Rams Creative, he is used to working closely with clients and delivering fast.', 'chat.a2':'A few examples:\n• M40 Studios: NOK 100,000+ in studio rental sales and 20 regular clients, with 100% organic content.\n• Mufano: 863,000+ views and a 9.1% engagement rate on four TikTok videos, with no ads.\n• NOT x Make-A-Wish: part of the team behind a fundraising campaign that raised USD 46,000.\n• Knytt: built a website with an online store that reached an SEO score of 100.', 'chat.a3':'Daniel combines creative content production with business understanding: he makes content people actually watch and share, and ties it to sales and measurable results. He has worked with everything from influencers and event venues to an international fundraising campaign. Tell me what the role involves, or paste in the tasks from the job listing, and I will connect them to concrete cases.', 'chat.a4':'Advanced: Claude, CapCut, Canva, Premiere Pro, Meta & TikTok Insights and Google Workspace.\nGood: GA4, Hotjar, Looker Studio, Google Search Console, Meta Ads, SEO, Tripletex, WordPress and Elementor.\nBasic: DaVinci Resolve, Photoshop and Illustrator.', 'chat.err':'The chat is not available right now. Feel free to email danielramslien@gmail.com.', 'chat.rate':'You have sent many messages in a short time. Please try again in a few minutes.', 'cv.dl':'Download CV (PDF)', 'ig.likes':'likes', 'logos.label':'Worked with', 'dlg.tools':'Tools',
+    'dlg.client':'Client', 'dlg.role':'Role', 'dlg.period':'Period', 'dlg.tags':'Channels and skills', 'dlg.docs':'Documents', 'dlg.tiktok':'The TikTok videos', 'dlg.gal':'Images from the website', 'contact.short':'Contact:', 'chat.fab':'Ask about me', 'chat.title':'Ask about Daniel', 'chat.sub':'Pick a question', 'chat.hello':'Hi! Pick a question below and I will tell you more about how Daniel works and what he has achieved.', 'chat.q1':'How does Daniel work?', 'chat.a1':'Daniel always starts with the people on the other side of the screen: what makes them stop, laugh or share? He owns the whole process, from idea and content plan to filming, editing and publishing, and measures what actually works in tools like Meta and TikTok Insights, GA4 and Looker Studio.', 'chat.q2':'What results has he delivered?', 'chat.a2':'A few examples:\n• M40 Studios: NOK 100,000+ in studio rental sales and 20 regular clients, with 100% organic content.\n• Mufano: 863,000+ views and a 9.1% engagement rate on four TikTok videos, with no ads.\n• NOT x Make-A-Wish: part of the team behind a fundraising campaign that raised USD 46,000.\n• Knytt: built a website with an online store that reached an SEO score of 100.', 'chat.q3':'Why is he a good fit for us?', 'chat.a3':'Daniel combines creative content production with business understanding: he makes content people actually watch and share, and ties it to sales and measurable results. He has worked with everything from influencers and event venues to an international fundraising campaign, and running his own company has made him used to taking ownership and working closely with clients.', 'chat.q4':'Which services does he offer?', 'chat.a4':'Through Rams Creative, Daniel offers social media content, strategy and campaigns, paid advertising on Meta, Google and TikTok, event coverage with a content library, video editing and simple websites. He built this website himself.', 'chat.q5':'Can he film and edit himself?', 'chat.a5':'Yes. He films and edits himself, including 15 videos on site at Arendalsuka for Punkt Oslo, a cinematic recap video for KRAFT Collective and the TikTok videos for Mufano. He mostly edits in CapCut and Premiere Pro.', 'chat.q6':'What is he like to work with?', 'chat.a6':'His recommendations say the same thing: reliable, positive and solution-oriented. Kjartan Håvik at M40 Eiendom writes that Daniel "wants the best for those around him and always puts the customer first".', 'chat.q7':'Which tools does he use?', 'chat.a7':'Advanced: Claude, CapCut, Canva, Premiere Pro, Meta & TikTok Insights and Google Workspace.\nGood: GA4, Hotjar, Looker Studio, Google Search Console, Meta Ads, SEO, Tripletex, WordPress and Elementor.\nBasic: DaVinci Resolve, Photoshop and Illustrator.', 'chat.q8':'How can we get in touch?', 'chat.a8':'Email danielramslien@gmail.com or call +47 911 68 076. You can also find him on LinkedIn, and his CV can be downloaded on the About page. He is not hard to invite out for a coffee either.', 'cv.dl':'Download CV (PDF)', 'ig.likes':'likes', 'logos.label':'Worked with', 'dlg.tools':'Tools',
     'card.video':'Video', 'card.images':'Images', 'card.view':'View case', 'card.for':'for',
     'nav.refs':'References', 'refs.more':'See more', 'refs.less':'See fewer', 'about.more':'Read more', 'about.less':'Read less', 'card.next':'Next image', 'card.prev':'Previous image', 'refs.title':'References', 'refs.lead':'The full documents. Tap a reference to read it.', 'refs.note':'Date of birth and address have been redacted. The documents are in Norwegian, except Open iT.',
     'refs.close':'Close reference', 'refs.view':'View reference from',
@@ -1998,62 +1989,38 @@ document.querySelectorAll('.reveal').forEach(el => revObs.observe(el));
 }
 
 
-/* ---------- Chat: spør om Daniel ---------- */
+/* ---------- Chat: spør om Daniel (ferdige svar, ingen server) ---------- */
 {
-  const root = document.documentElement, fab = $('chat-fab'), panel = $('chat-panel'), log = $('chat-log'), form = $('chat-form'), inp = $('chat-in'), send = $('chat-send');
-  const history = []; let busy = false, started = false;
-  const add = (role, text, cls) => { const d = document.createElement('div'); d.className = 'cmsg ' + (role === 'user' ? 'me' : 'bot') + (cls ? ' ' + cls : ''); d.textContent = text; log.appendChild(d); log.scrollTop = log.scrollHeight; return d; };
-  const clean = t => t.replace(/\*\*(.+?)\*\*/g, '$1').replace(/^#+\s*/gm, '');
-  function intro(){
-    log.innerHTML = ''; history.length = 0;
-    add('assistant', tr('chat.hello'));
+  const root = document.documentElement, fab = $('chat-fab'), log = $('chat-log');
+  const QS = ['1','2','3','4','5','6','7','8'];
+  let asked = [], busy = false, started = false;
+  const add = (role, text) => { const d = document.createElement('div'); d.className = 'cmsg ' + (role === 'user' ? 'me' : 'bot'); d.textContent = text; log.appendChild(d); return d; };
+  const scroll = () => { log.scrollTop = log.scrollHeight; };
+  function chips(){
+    const old = log.querySelector('.chat-chips'); if (old) old.remove();
+    let rest = QS.filter(n => !asked.includes(n));
+    if (!rest.length) { asked = []; rest = QS.slice(); }
     const c = document.createElement('div'); c.className = 'chat-chips';
-    ['1','2','3','4'].forEach(n => { const b = document.createElement('button'); b.type = 'button'; b.textContent = tr('chat.q' + n); b.addEventListener('click', () => canned(n)); c.appendChild(b); });
-    log.appendChild(c);
+    rest.forEach(n => { const b = document.createElement('button'); b.type = 'button'; b.textContent = tr('chat.q' + n); b.addEventListener('click', () => answer(n)); c.appendChild(b); });
+    log.appendChild(c); scroll();
   }
-  window.chatRelang = () => { if (started && !history.length) intro(); };
+  function intro(){ log.innerHTML = ''; asked = []; add('assistant', tr('chat.hello')); chips(); }
+  window.chatRelang = () => { if (started) intro(); };
+  function answer(n){
+    if (busy) return; busy = true; asked.push(n);
+    const c = log.querySelector('.chat-chips'); if (c) c.remove();
+    add('user', tr('chat.q' + n)); scroll();
+    const t = document.createElement('div'); t.className = 'cmsg bot ctyping'; t.innerHTML = '<i></i><i></i><i></i>'; log.appendChild(t); scroll();
+    setTimeout(() => { t.remove(); const a = add('assistant', tr('chat.a' + n)); busy = false; chips(); a.scrollIntoView({block:'nearest'}); log.scrollTop = Math.max(0, a.offsetTop - log.offsetTop - 60); }, reduce ? 0 : 550);
+  }
   function open(v){
     root.classList.toggle('chat-open', v); fab.setAttribute('aria-expanded', v ? 'true' : 'false');
-    if (v) { if (!started) { started = true; intro(); } setTimeout(() => inp.focus({preventScroll:true}), 250); } else fab.focus({preventScroll:true});
-  }
-  /* Ferdige svar på forslagene: koster ingenting og trenger ikke serveren */
-  function canned(n){
-    if (busy) return;
-    const chips = log.querySelector('.chat-chips'); if (chips) chips.remove();
-    const q = tr('chat.q' + n), a = tr('chat.a' + n);
-    add('user', q); history.push({role:'user', content:q});
-    busy = true; send.disabled = true;
-    const t = document.createElement('div'); t.className = 'cmsg bot ctyping'; t.innerHTML = '<i></i><i></i><i></i>'; log.appendChild(t); log.scrollTop = log.scrollHeight;
-    setTimeout(() => { t.remove(); add('assistant', a); history.push({role:'assistant', content:a}); busy = false; send.disabled = false; showMore(n); }, 650);
-  }
-  function showMore(used){
-    const rest = ['1','2','3','4'].filter(n => n !== used && !history.some(h => h.content === tr('chat.q' + n)));
-    if (!rest.length) return;
-    const c = document.createElement('div'); c.className = 'chat-chips';
-    rest.forEach(n => { const b = document.createElement('button'); b.type = 'button'; b.textContent = tr('chat.q' + n); b.addEventListener('click', () => canned(n)); c.appendChild(b); });
-    log.appendChild(c); log.scrollTop = log.scrollHeight;
-  }
-  async function ask(q){
-    q = q.trim(); if (!q || busy) return;
-    const chips = log.querySelector('.chat-chips'); if (chips) chips.remove();
-    add('user', q); history.push({role:'user', content:q});
-    inp.value = ''; inp.style.height = ''; busy = true; send.disabled = true;
-    const t = document.createElement('div'); t.className = 'cmsg bot ctyping'; t.innerHTML = '<i></i><i></i><i></i>'; log.appendChild(t); log.scrollTop = log.scrollHeight;
-    try {
-      const r = await fetch('/api/chat', {method:'POST', headers:{'content-type':'application/json'}, body: JSON.stringify({messages: history.slice(-12)})});
-      const d = await r.json().catch(() => ({}));
-      t.remove();
-      if (r.ok && d.reply) { const a = clean(d.reply); add('assistant', a); history.push({role:'assistant', content:a}); }
-      else { add('assistant', tr(r.status === 429 ? 'chat.rate' : 'chat.err'), 'err'); history.pop(); }
-    } catch (e) { t.remove(); add('assistant', tr('chat.err'), 'err'); history.pop(); }
-    busy = false; send.disabled = false; inp.focus({preventScroll:true});
+    if (v) { if (!started) { started = true; intro(); } setTimeout(() => { const b = log.querySelector('.chat-chips button'); if (b) b.focus({preventScroll:true}); }, 250); }
+    else fab.focus({preventScroll:true});
   }
   fab.addEventListener('click', () => open(true));
   $('chat-x').addEventListener('click', () => open(false));
   document.addEventListener('keydown', e => { if (e.key === 'Escape' && root.classList.contains('chat-open')) open(false); });
-  form.addEventListener('submit', e => { e.preventDefault(); ask(inp.value); });
-  inp.addEventListener('keydown', e => { if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); ask(inp.value); } });
-  inp.addEventListener('input', () => { inp.style.height = 'auto'; inp.style.height = Math.min(inp.scrollHeight, 120) + 'px'; });
 }
 
 /* ---------- Til toppen ---------- */
