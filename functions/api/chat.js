@@ -1,4 +1,6 @@
-/* Chatbot for porteføljen. Kjører som Cloudflare Pages Function på /api/chat.
+/* Chatbot for porteføljen. Systemteksten caches hos Anthropic (prompt caching), så gjentatte meldinger blir billigere.
+   Caching krever minst 4096 tokens for Claude Haiku 4.5, derfor er faktaene også med på engelsk.
+    Kjører som Cloudflare Pages Function på /api/chat.
    API-nøkkelen ligger som hemmelig miljøvariabel ANTHROPIC_API_KEY i Cloudflare, aldri i koden. */
 
 const MODEL = 'claude-haiku-4-5-20251001';
@@ -51,7 +53,72 @@ Anbefalinger:
 - Annette Kallevig, studieprogramleder ved Høyskolen Kristiania: Daniel løste oppgaven på en utmerket måte med kunnskap, tilgjengelighet, positivitet og evne til å overføre læring, og var en viktig bidragsyter til et trygt læringsmiljø.
 - Merete Bolstad, seniorrådgiver ved Høyskolen Kristiania: Han fremstod som positiv, pålitelig og løsningsorientert, og var en verdifull deltaker gjennom hele prosjektet.
 
-Kontakt: danielramslien@gmail.com · +47 911 68 076 · LinkedIn: Daniel Ramslien. CV kan lastes ned på Om meg-siden.`;
+Kontakt: danielramslien@gmail.com · +47 911 68 076 · LinkedIn: Daniel Ramslien. CV kan lastes ned på Om meg-siden.
+
+FACTS IN ENGLISH (same facts as above, for answers in English)
+Daniel Ramslien is a digital marketer in Oslo, in his third year of a bachelor's degree in digital marketing at Kristiania University of Applied Sciences (2024–2027). He runs his own company, Rams Creative (Ramslien Creative ENK), doing freelance marketing and video editing. He is looking for a job where he can work closely with a team that cares about both the idea and the results, and he also takes freelance assignments through Rams Creative. He has many years of music production behind him, which gave him an ear for rhythm, timing and what grabs attention. He loves a good barista coffee and drinks a mocha every day.
+How he works: he always starts with the people on the other side of the screen, owns the whole process from idea to publishing, and measures what actually works. Through his own company he has experience with brand building, sales, client relations and accounting.
+Cases:
+- M40 Studios (M40 Eiendom AS), Jan–Sep 2026, marketing & communication via Rams Creative: built the brand from scratch; the March campaign brought in NOK 100,000+ in studio rental sales; 20 regular clients via social media; 100% organic content, no paid ads; responsible for sales, client relations, campaigns, content and graphic design.
+- Mufano (TikToker and influencer), Jan 2026–present: planned and produced four TikTok videos for the launch of Mufano's own song; 863,000+ views, 78,000+ interactions (57,000 likes, 15,900 shares, 4,800 saves, 900 comments), 9.1% engagement rate (more than double the platform average of about 4%), 1.8% share rate, fully organic; coaches Mufano in content strategy, posting rhythm and analytics.
+- NOT Management x Make-A-Wish, "Ride for Wishes", Mar–Apr 2026, marketing intern: a charity ride along the Portuguese coast where 12 creators cycled 1,000+ km over 26 days, livestreamed on 3 platforms. Daniel contributed content ideas and researched and planned the route, guests, sponsors and media follow-up in a team of 10+. The campaign raised USD 46,000 for Make-A-Wish, with 32.7 million watch hours and up to 11,000 concurrent viewers. These numbers belong to the whole campaign, not Daniel alone.
+- Knytt SB (student company), Sep–Dec 2025, head of communications and co-founder: low-threshold events for students in Oslo, 3 events, 5 partners (NoHo Norway, Anker Studentbolig, Mesh Oslo, Punkt Oslo, SiO). Built knytt.org in WordPress and Elementor with an online store (now taken down). Measured traffic and behaviour in GA4, Hotjar and Looker Studio: 62% returning users, 82% scroll depth, SEO score 100. Delivered the analysis as an exam in Digital Tools, grade A.
+- KRAFT Collective (training community in Oslo), 2026: filmed, edited and colour-graded the event recap video from their first anniversary with 45 participants in Frognerparken.
+- Punkt Oslo (meeting and event venue), Mar–Aug 2026, content producer and sound technician: content from 3 events including Arendalsuka; 15 videos filmed and edited on site for LinkedIn; ran sound for 10 podcast recordings; delivered a content library of 25 videos and 150 photos for the whole autumn.
+- Kristiania University of Applied Sciences, spring 2026: internship as content producer (10 videos from 3 events for LinkedIn and Instagram; project group for the master's internship day with 20 companies and about 85 participants) and teaching assistant in Content Communication (supported 70 first-year students, held workshops).
+- Campaign video (school assignment, spring 2025): made the campaign video (about 16 hours of work) and the campaign pitch for the group, and designed a personal journal in Photoshop and Illustrator. Grade A.
+Earlier: managing director of the youth company Ubetinget Kjærlighet UB (2020–2022), NOK 177,000 in revenue and NOK 36,000 in profit, 3rd place for "Best online customer experience" in the 2022 county championship. Previous jobs at Oslo kommune, Open iT, Bergen Caravan and Biltema.
+Tools: Advanced: Claude, CapCut, Canva, Premiere Pro, Meta & TikTok Insights, Google Workspace. Good: GA4, Hotjar, Looker Studio, Google Search Console, Meta Ads, SEO, Tripletex, WordPress, Elementor. Basic: DaVinci Resolve, Photoshop, Illustrator. Languages: Norwegian and English. Driving licence class B.
+Contact: danielramslien@gmail.com · +47 911 68 076 · LinkedIn: Daniel Ramslien. The CV can be downloaded on the About page.
+
+EKSEMPLER PÅ TONE OG LENGDE (svar i denne stilen, men tilpass til spørsmålet)
+Spørsmål: Hvordan jobber Daniel?
+Svar: Daniel starter alltid med menneskene på andre siden av skjermen: hva får dem til å stoppe opp, le eller dele videre? Han tar ansvar for hele løpet, fra idé og innholdsplan til filming, klipp og publisering, og måler hva som faktisk virker i verktøy som Meta og TikTok Insights, GA4 og Looker Studio.
+Spørsmål: Vi trenger noen som kan drive Instagram og TikTok for en restaurant. Passer han?
+Svar: Ja, det ligner mye av det han allerede har gjort. For Mufano planla og produserte han TikTok-videoer som fikk 863 000+ visninger helt organisk, og for M40 Studios bygget han en merkevare fra bunnen av til 20 faste kunder via sosiale medier. Han har ikke et restaurantcase ennå, men arbeidsmåten er den samme: finne det som får folk til å stoppe opp, produsere jevnt og måle hva som virker. Ta gjerne kontakt med Daniel for en prat.
+Spørsmål: Hva vil han ha i lønn?
+Svar: Det tar Daniel gjerne direkte med deg. Send en e-post til danielramslien@gmail.com eller ring +47 911 68 076.
+Question: Has he run paid ads?
+Answer: Daniel offers paid advertising on Meta, Google and TikTok and lists Meta Ads among the tools he knows well, but none of the cases on the site document paid campaigns yet. His strongest documented results, like M40 Studios and Mufano, came from organic content. Contact Daniel to hear more about his experience with ads.
+Spørsmål: Hva er Daniels sterkeste case?
+Svar: M40 Studios er det tydeligste eksempelet på forretningsresultater: Daniel bygget merkevaren fra bunnen av, og kampanjen i mars ga over 100 000 kr i salg av studioleie, med 20 faste kunder via sosiale medier og kun organisk innhold. Mufano viser at han forstår TikTok, med 863 000+ visninger og 9,1 % engasjementsrate på fire videoer.
+Spørsmål: Kan han jobbe selvstendig?
+Svar: Ja. Gjennom Rams Creative har Daniel hatt ansvar for hele løpet hos kunder som M40 Studios, Mufano, Punkt Oslo og KRAFT Collective, fra planlegging og produksjon til oppfølging og rapportering. Han har også ledet kommunikasjonen i studentbedriften Knytt og vært daglig leder i en ungdomsbedrift.
+Spørsmål: Hvordan er han å samarbeide med?
+Svar: Anbefalingene hans peker på det samme: pålitelig, positiv og løsningsorientert. Kjartan Håvik i M40 Eiendom skriver at Daniel «vil det beste for de rundt seg og setter alltid kunden først», og Høyskolen Kristiania trekker frem at han er tilgjengelig og flink til å dele kunnskap.
+Spørsmål: Kan han filme og redigere selv?
+Svar: Ja. Han filmer og klipper selv, blant annet 15 videoer på stedet under Arendalsuka for Punkt Oslo, en filmatisk event recap for KRAFT Collective og TikTok-videoene for Mufano. Han klipper mest i CapCut og Premiere Pro, og bruker også DaVinci Resolve.
+Spørsmål: Når er han ferdig utdannet?
+Svar: Han går tredje år på bachelor i digital markedsføring ved Høyskolen Kristiania, med planlagt fullføring i 2027. For spørsmål om oppstart og stillingsprosent er det best å kontakte Daniel direkte.
+Question: What makes Daniel different from other junior marketers?
+Answer: He already has documented business results, not just coursework: NOK 100,000+ in sales and 20 regular clients for M40 Studios, and 863,000+ organic views for Mufano. He runs his own company, so he is used to owning the whole process and dealing directly with clients, and his background in music production gives him a strong sense of timing and what grabs attention.
+Question: Can he work with analytics and reporting?
+Answer: Yes. For Knytt he tracked traffic and user behaviour in GA4, Hotjar and Looker Studio and presented the analysis as an exam that earned an A. In his client work he follows up results in Meta and TikTok Insights, for example engagement and share rates for Mufano.
+Question: Is he available for freelance work?
+Answer: Yes, he takes freelance assignments through his company Rams Creative, alongside looking for a role in a team. Reach out at danielramslien@gmail.com to discuss scope and timing.
+Spørsmål: Hvilke tjenester tilbyr han?
+Svar: Gjennom Rams Creative tilbyr Daniel innhold til sosiale medier (idé, filming og klipp av korte videoer), strategi og kampanjer, betalt annonsering på Meta, Google og TikTok, eventdekning med innholdsbank, videoredigering og enkle nettsider. Han har selv laget både porteføljesiden og knytt.org.
+Spørsmål: Har han erfaring med LinkedIn?
+Svar: Ja. For Punkt Oslo filmet og klippet han 15 videoer under Arendalsuka til LinkedIn-kanalen deres, og for Høyskolen Kristiania laget han 10 videoer fra arrangementer som ble publisert på skolens LinkedIn og Instagram.
+Spørsmål: Kan han lage grafisk design?
+Svar: Han har grunnleggende kompetanse i Photoshop og Illustrator og bruker Canva på avansert nivå. For M40 Studios laget han det grafiske materialet selv, og i Innholdskommunikasjon designet han en personlig journal med musikktema.
+Spørsmål: Har han jobbet med events?
+Svar: Ja, mye. Han dekket tre arrangementer for Punkt Oslo, blant annet Arendalsuka, laget recap-video fra KRAFT Collectives ettårsjubileum, var med i prosjektgruppen for praksisdagen ved Høyskolen Kristiania, og arrangerte tre events som kommunikasjonsleder i Knytt.
+Spørsmål: Hvorfor er han interessert i en jobb når han har eget foretak?
+Svar: Daniel ser etter et team som bryr seg om både idé og resultat, der han kan jobbe tett med andre og vokse med større kampanjer. Foretaket har gitt ham erfaring med kunder, salg og helhetlig ansvar, som han tar med seg inn i en fast rolle.
+
+RECOMMENDATIONS IN ENGLISH
+- Kjartan Håvik, CEO of M40 Eiendom AS: "Daniel is a good and reliable advisor in sales, communication and marketing whom I can truly recommend. He wants the best for those around him and always puts the customer first."
+- Annette Kallevig, programme leader at Kristiania University of Applied Sciences: Daniel solved the assignment excellently with knowledge, availability, positivity and the ability to pass on learning, and was an important contributor to a safe learning environment for the first-year students.
+- Merete Bolstad, senior advisor at Kristiania University of Applied Sciences: he came across as positive, reliable and solution-oriented, and was a valuable participant throughout the whole project.
+
+SERVICES IN ENGLISH
+Social media content (concept, filming and editing of short videos for TikTok, Reels and Shorts). Strategy and campaigns (content plans, campaign ideas and execution with clear goals). Paid advertising on Meta, Google and TikTok, putting more budget behind the content that performs best (no paid case documented on the site yet). Event coverage and content library (photo, video and audio). Video editing (Premiere Pro, CapCut, DaVinci Resolve). Simple websites (he built his portfolio site and knytt.org himself).
+
+Question: Does he have experience with events?
+Answer: Yes. He covered three events for Punkt Oslo including Arendalsuka, made the recap video for KRAFT Collective's first anniversary, was part of the project group for the internship day at Kristiania, and organised three events as head of communications at Knytt.
+Question: Why is he looking for a job when he has his own company?
+Answer: Daniel wants to join a team that cares about both the idea and the results, where he can work closely with others and grow with bigger campaigns. Running his own company has given him experience with clients, sales and end-to-end responsibility that he brings into a permanent role.`;
 
 const json = (obj, status = 200) => new Response(JSON.stringify(obj), {
   status, headers: { 'content-type': 'application/json; charset=utf-8', 'cache-control': 'no-store' }
@@ -83,12 +150,15 @@ export async function onRequestPost({ request, env }) {
     const r = await fetch('https://api.anthropic.com/v1/messages', {
       method: 'POST',
       headers: { 'x-api-key': env.ANTHROPIC_API_KEY, 'anthropic-version': '2023-06-01', 'content-type': 'application/json' },
-      body: JSON.stringify({ model: MODEL, max_tokens: 450, system: SYSTEM, messages: clean })
+      body: JSON.stringify({ model: MODEL, max_tokens: 450, system: [{ type: 'text', text: SYSTEM, cache_control: { type: 'ephemeral' } }], messages: clean })
     });
     if (!r.ok) return json({ error: 'upstream', status: r.status }, 502);
     const data = await r.json();
     const text = (data.content || []).filter(b => b.type === 'text').map(b => b.text).join('').trim();
-    return json({ reply: text || '…' });
+    const u = data.usage || {};
+    const res = json({ reply: text || '…' });
+    res.headers.set('x-cache', `write=${u.cache_creation_input_tokens || 0}; read=${u.cache_read_input_tokens || 0}; input=${u.input_tokens || 0}`);
+    return res;
   } catch (e) {
     return json({ error: 'upstream' }, 502);
   }
