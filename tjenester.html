@@ -781,7 +781,8 @@ html[data-page="home"] .to-top{bottom:80px}
 @media (prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
   *,*::before,*::after{animation:none!important;transition:none!important}
-  .js .reveal{opacity:1;transform:none}
+  /* Rolig fade beholdes også når maskinen har redusert animasjon: bare gjennomsiktighet, ingen bevegelse */
+  .js .reveal{transform:none!important;transition:opacity .9s ease!important;transition-delay:var(--d,0s)!important}
 }
 </style>
 </head>
