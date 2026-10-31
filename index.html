@@ -642,7 +642,8 @@ html[data-page="home"] .to-top{bottom:80px}
 .tool-dots i.on{background:radial-gradient(circle at 35% 30%,#ffe6cc 0%,#ffa24f 35%,#ff8125 60%,#c24a0b 100%);box-shadow:0 0 12px 2px rgba(255,122,26,.55)}
 
 /* ---------- Anbefalinger ---------- */
-.testi{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(16px,1.8vw,24px);list-style:none;margin:0;padding:0}
+.testi{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:clamp(16px,1.8vw,24px);list-style:none;margin:0;padding:0}
+@media (max-width:1180px) and (min-width:761px){.testi{grid-template-columns:repeat(2,minmax(0,1fr))}}
 .testi-card{position:relative;display:flex;flex-direction:column;height:100%;margin:0;padding:clamp(20px,2vw,28px);background:var(--bg-card);border:1px solid var(--line);border-radius:16px;overflow:hidden}
 .testi-card::after{content:"";position:absolute;right:-90px;top:-90px;width:220px;height:220px;border-radius:50%;background:radial-gradient(circle,rgba(255,122,26,.16),rgba(255,122,26,0) 68%);pointer-events:none}
 .testi-mark{display:block;height:26px;font-family:var(--font-display);font-weight:900;font-size:52px;line-height:1;color:var(--accent);margin-bottom:10px}
@@ -1340,6 +1341,8 @@ const CASES = [
       {type:'video',src:V+'punkt-oslo-1.mp4',poster:P+'punkt-oslo-1.jpg',cap:{no:'Falling Walls Lab Oslo hos Punkt Oslo',en:'Falling Walls Lab Oslo at Punkt Oslo'}},
       {type:'video',src:V+'punkt-oslo-2.mp4',poster:P+'punkt-oslo-2.jpg',cap:{no:'Sommerfest hos Punkt Oslo',en:'Summer party at Punkt Oslo'}}
     ],
+    quote:[{text:{no:'Daniel var til stor hjelp gjennom hele uken. Han møtte presis, var pålitelig og gjennomførte oppgavene han ble tildelt på en god og selvstendig måte. (…) Vi var svært fornøyde med Daniels innsats og kan absolutt anbefale ham videre til andre arbeidsgivere.',
+                 en:'Daniel was a great help throughout the whole week. He was punctual, reliable and carried out the tasks he was given well and independently. (…) We were very pleased with Daniel’s efforts and can absolutely recommend him to other employers.'}, by:{no:'Martine Stolp, prosjektleder i Punkt Oslo, i attesten', en:'Martine Stolp, project manager at Punkt Oslo, in her reference'}}],
     t:{
       no:{sub:'Innholdsproduksjon på Arendalsuka', card:'Innholdsproduksjon for Punkt Oslo', title:'Innholds\u00ADproduksjon for Punkt Oslo', client:'Punkt Oslo', clientDesc:'Møte- og eventsted i Oslo', period:'Mars til august 2026',
         role:'Innholdsprodusent og lydtekniker (via Rams Creative)', tags:['LinkedIn','Video','Lyd'], result:'15 videoer på stedet',
@@ -1423,6 +1426,10 @@ const CASES = [
    ------------------------------------------------------------ */
 const AT = 'assets/img/attester/';
 const TESTI = [
+  { name:'Martine Stolp', img:'assets/img/testimonials/martine-stolp.webp',
+    role:{no:'Prosjektleder for innovasjon og økosystemutvikling, Punkt Oslo', en:'Project Manager for Innovation and Ecosystem Development, Punkt Oslo'},
+    quote:{no:'Daniel var til stor hjelp gjennom hele uken. Han møtte presis, var pålitelig og gjennomførte oppgavene han ble tildelt på en god og selvstendig måte. (…) Vi var svært fornøyde med Daniels innsats og kan absolutt anbefale ham videre til andre arbeidsgivere.',
+           en:'Daniel was a great help throughout the whole week. He was punctual, reliable and carried out the tasks he was given well and independently. (…) We were very pleased with Daniel’s efforts and can absolutely recommend him to other employers.'} },
   { name:'Kjartan Håvik', img:'assets/img/testimonials/kjartan-havik.webp',
     role:{no:'Daglig leder, M40 Eiendom AS', en:'CEO, M40 Eiendom AS'},
     quote:{no:'Daniel er en god og pålitelig rådgiver innen salg, kommunikasjon og markedsføring som jeg virkelig kan anbefale. Han vil det beste for de rundt seg og setter alltid kunden først.',
@@ -1437,6 +1444,8 @@ const TESTI = [
            en:'He came across as positive, reliable and solution-oriented, and was a valuable participant throughout the project. (…) Based on Daniel’s broad contribution, professional commitment and personal qualities, I give him my highest recommendations.'} }
 ];
 const REFS = [
+  { org:'Punkt Oslo', year:'2026', doc:AT+'attest-punkt-oslo.webp',
+    role:{no:'Produksjonsassistent, Arendalsuka', en:'Production assistant, Arendalsuka'} },
   { org:'M40 Eiendom AS', year:'2026', doc:AT+'attest-m40.webp',
     role:{no:'Uttalelse på e-post fra daglig leder', en:'Statement by email from the CEO'} },
   { org:'Høyskolen Kristiania', orgEn:'Kristiania University', year:'2026', doc:AT+'attest-kristiania-praksisdag.webp',
