@@ -1972,8 +1972,9 @@ function countUp(el){
   const target = +el.dataset.count, suffix = el.dataset.suffix || '';
   el.classList.add('counted');
   if (reduce) { el.textContent = fmt(target) + suffix; return; }
-  const t0 = performance.now(), dur = 1600;
+  const t0 = performance.now(), dur = 1600, run = el._run = (el._run || 0) + 1;
   const step = t => {
+    if (el._run !== run) return;
     const p = Math.min(1, (t - t0) / dur), e = 1 - Math.pow(1 - p, 3);
     el.textContent = fmt(target * e) + suffix;
     if (p < 1) requestAnimationFrame(step);
@@ -1982,14 +1983,20 @@ function countUp(el){
 }
 const revObs = new IntersectionObserver(entries => {
   entries.forEach(en => {
-    if (!en.isIntersecting) return;
-    en.target.classList.add('in');
-    en.target.querySelectorAll('[data-count]').forEach(countUp);
-    if (en.target.matches('[data-count]')) countUp(en.target);
-    revObs.unobserve(en.target);
+    const el = en.target;
+    if (en.isIntersecting) {
+      if (el.classList.contains('in')) return;
+      el.classList.add('in');
+      el.querySelectorAll('[data-count]').forEach(countUp);
+      if (el.matches('[data-count]')) countUp(el);
+    }
   });
 }, {threshold:.15, rootMargin:'0px 0px -6% 0px'});
-document.querySelectorAll('.reveal').forEach(el => revObs.observe(el));
+/* Når et element er helt ute under skjermen nullstilles det, så det fader inn igjen neste gang man scroller ned */
+const resetObs = new IntersectionObserver(entries => entries.forEach(en => {
+  if (!en.isIntersecting && en.boundingClientRect.top > 0) en.target.classList.remove('in');
+}), {threshold:0});
+document.querySelectorAll('.reveal').forEach(el => { revObs.observe(el); resetObs.observe(el); });
 
 /* ---------- Ballen ved Kontakt klekkes etter noen trykk ---------- */
 {
