@@ -262,7 +262,8 @@ section{position:relative}
 .hero-visual{position:relative;width:min(66vw,34vh,400px);aspect-ratio:1;animation:float 6s ease-in-out infinite}
 .hero-visual .orb{position:absolute;inset:0}
 .hero-clip{position:absolute;inset:0;z-index:1;border-radius:50%;overflow:hidden;-webkit-mask-image:-webkit-radial-gradient(white,black)}
-.hero-photo{position:absolute;left:50%;bottom:-6%;transform:translateX(-50%);width:74%;height:auto}
+.hero-photo{position:absolute;left:50%;bottom:-6%;transform:translateX(-50%);width:74%;height:auto;animation:photoBob 5s ease-in-out infinite}
+@keyframes photoBob{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(-3.5%)}}
 @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-14px)}}
 .hero-scroll{align-self:center;display:grid;place-items:center;width:60px;height:46px;margin-top:calc(-1 * clamp(8px,1.6vh,22px));color:var(--accent);text-decoration:none;animation:scrollBob 1.8s ease-in-out infinite}
 .hero-scroll svg{width:42px;height:42px;animation:scrollGlow 1.8s ease-in-out infinite}
@@ -440,7 +441,12 @@ section{position:relative}
 .egg-shards i{position:absolute;left:50%;top:50%;width:18%;height:16%;margin:-8% 0 0 -9%;background:radial-gradient(circle at 35% 30%,#ffd2a6,#ff8a2e 45%,#d65a10 80%,#9a380a);clip-path:polygon(10% 0,70% 8%,100% 45%,78% 100%,22% 84%,0 38%);opacity:0;transform:scale(.2);transition:transform .8s cubic-bezier(.2,.8,.2,1) var(--d),opacity .4s var(--d);filter:drop-shadow(0 0 10px rgba(255,115,25,.35))}
 .egg-shards i:nth-child(3n){clip-path:polygon(0 20%,60% 0,100% 30%,85% 90%,30% 100%)}
 .egg-shards i:nth-child(3n+1){clip-path:polygon(20% 0,100% 15%,90% 70%,45% 100%,0 60%)}
-.egg.hatched .egg-shards i{opacity:1;transform:translate(calc(var(--x) * 5.5),calc(var(--y) * 6.25)) rotate(var(--r)) scale(var(--s))}
+.egg.hatched .egg-shards i{opacity:1;transform:translate(calc(var(--x) * 5.5),calc(var(--y) * 6.25)) rotate(var(--r)) scale(var(--s));animation:shardFloat calc(4.6s + var(--s) * 2.4s) ease-in-out calc(.9s + var(--d)) infinite}
+.egg.hatched .egg-shards i:nth-child(even){animation-direction:reverse}
+/* Bitene svever rolig inn mot bildet og ut igjen, hver i sitt tempo */
+@keyframes shardFloat{
+  0%,100%{transform:translate(calc(var(--x) * 5.5),calc(var(--y) * 6.25)) rotate(var(--r)) scale(var(--s))}
+  50%{transform:translate(calc(var(--x) * 4.5),calc(var(--y) * 5.1)) rotate(calc(var(--r) + 14deg)) scale(var(--s))}}
 .egg.hatched .egg-cracks{opacity:0}
 .egg-core{transition:opacity .5s var(--ease)}
 .egg.hatched .egg-core{background:transparent;box-shadow:none}
@@ -785,6 +791,14 @@ html[data-page="home"] .to-top{bottom:80px}
   *,*::before,*::after{animation:none!important;transition:none!important}
   .hero-visual{animation:float 6s ease-in-out infinite!important}
   .egg-wrap{animation:float 6.5s ease-in-out infinite!important}
+  .hero-photo{animation:photoBob 5s ease-in-out infinite!important}
+  .egg.hatched .egg-shards i{animation:shardFloat calc(4.6s + var(--s) * 2.4s) ease-in-out calc(.9s + var(--d)) infinite!important}
+  .egg.hatched .egg-shards i:nth-child(even){animation-direction:reverse!important}
+  /* Klekkingen er noe man selv utløser, så den beholder bevegelsen */
+  .egg-shell{transition:transform .9s cubic-bezier(.3,.6,.2,1),opacity .7s ease!important}
+  .egg-photo{transition:opacity .4s .2s ease,transform .9s .25s cubic-bezier(.2,.8,.2,1)!important}
+  .egg-shards i{transition:transform .8s cubic-bezier(.2,.8,.2,1) var(--d),opacity .4s var(--d)!important}
+  .egg-cracks,.egg-cracks path{transition:opacity .3s,stroke-dashoffset .4s ease!important}
   /* Rolig fade beholdes også når maskinen har redusert animasjon: bare gjennomsiktighet, ingen bevegelse */
   .js .reveal{transform:none!important;transition:opacity .9s ease!important;transition-delay:var(--d,0s)!important}
 }
@@ -1509,14 +1523,26 @@ function renderCards(){
 
   /* Videoene på kortene spiller av med en gang når kortet er synlig (uten lyd) */
   if (window.cardVidObs) window.cardVidObs.disconnect();
+  /* På mobil brukes lettere versjoner av videoene (360p), så de rekker å laste og spille */
+  const small = matchMedia('(max-width:760px)').matches;
+  const playCard = card => {
+    const v = card.querySelector('video'); if (!v) return;
+    if (!v.src) v.src = small ? v.dataset.src.replace(/(-preview)?\.mp4$/, '-mobil.mp4') : v.dataset.src;
+    v.muted = true; v.defaultMuted = true;
+    const p = v.play();
+    if (p) p.then(() => card.classList.add('playing')).catch(() => {});
+  };
   window.cardVidObs = new IntersectionObserver(entries => entries.forEach(en => {
     const card = en.target, v = card.querySelector('video'); if (!v) return;
-    if (en.isIntersecting) {
-      if (!v.src) v.src = v.dataset.src;
-      v.muted = true;
-      v.play().then(() => card.classList.add('playing')).catch(() => {});
-    } else v.pause();
-  }), {rootMargin:'200px 0px'});
+    card.inView = en.isIntersecting;
+    if (en.isIntersecting) playCard(card); else v.pause();
+  }), {rootMargin: small ? '80px 0px' : '200px 0px'});
+  /* Noen telefoner (f.eks. iPhone i strømsparingsmodus) blokkerer autoavspilling til man har trykket på skjermen: prøv igjen da */
+  if (!window.cardVidRetry) {
+    window.cardVidRetry = true;
+    const retry = () => document.querySelectorAll('#cases .case').forEach(c => { if (c.inView && !c.classList.contains('playing')) playCard(c); });
+    ['touchend','click','scroll'].forEach(ev => addEventListener(ev, retry, {passive:true}));
+  }
   document.querySelectorAll('#cases .case').forEach(card => { if (card.querySelector('video')) window.cardVidObs.observe(card); });
 }
 
@@ -2007,8 +2033,8 @@ document.querySelectorAll('.reveal').forEach(el => { revObs.observe(el); resetOb
     egg.parentNode.classList.add('tapped');
     const n = (+egg.dataset.taps || 0) + 1;
     egg.dataset.taps = n;
-    if (n >= 8) { egg.classList.add('hatched'); egg.dataset.taps = 0; return; }
-    egg.dataset.stage = n;
+    if (n >= 5) { egg.classList.add('hatched'); egg.dataset.taps = 0; return; }
+    egg.dataset.stage = Math.round(n * 7 / 4);
     shake(1.25 + n * 0.2);
   });
   /* Ristingen kjøres med Web Animations, så den virker likt i alle nettlesere og blir kraftigere for hvert trykk */
