@@ -977,7 +977,7 @@ html[data-page="home"] .to-top{bottom:80px}
             <img class="slide" src="assets/img/daniel/daniel-2.webp" alt="" loading="lazy" data-credit="Jakob Kleppan">
             <img class="slide" src="assets/img/daniel/daniel-3.webp" alt="" loading="lazy" data-credit="Karin Bore (@photobykarin.yb)">
             <img class="slide" src="assets/img/daniel/daniel-4.webp" alt="" loading="lazy" data-credit="Simon Myklebost">
-            <img class="slide" src="assets/img/daniel/daniel-6.webp" alt="" loading="lazy">
+            <img class="slide" src="assets/img/daniel/daniel-6.webp" alt="" loading="lazy" data-cap="Make Oslo 2026">
             <img class="slide" src="assets/img/daniel/daniel-punkt-oslo.webp?v=2" alt="" loading="lazy">
             <img class="slide" src="assets/img/daniel/daniel-arendalsuka.webp?v=2" alt="" loading="lazy">
             <img class="slide" src="assets/img/daniel/daniel-venner.webp" alt="" loading="lazy">
@@ -1938,7 +1938,8 @@ function showSlide(i){
   });
   dotsWrap.querySelectorAll('button').forEach((b,k) => b.setAttribute('aria-current', k === slideIdx ? 'true' : 'false'));
   const c = slides[slideIdx].dataset.credit;
-  $('slides-credit').textContent = c ? `${tr('photo.credit')} ${c}` : '';
+  const cap = slides[slideIdx].dataset.cap;
+  $('slides-credit').textContent = c ? `${tr('photo.credit')} ${c}` : (cap || '');
 }
 /* Piltaster blar i bildene på Om meg når ingen dialog er åpen */
 document.addEventListener('keydown', e => {
