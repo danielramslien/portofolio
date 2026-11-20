@@ -303,7 +303,8 @@ section{position:relative}
 .slides-dots{display:flex;gap:8px}
 .slides-dots button{width:9px;height:9px;padding:0;border:0;border-radius:50%;background:var(--line-strong);cursor:pointer;transition:background .3s,width .3s}
 .slides-dots button[aria-current="true"]{width:26px;border-radius:999px;background:var(--accent)}
-.slides-credit{font-size:12px;color:var(--faint)}
+.slides-bar{flex-wrap:wrap;row-gap:10px}
+.slides-credit{flex:1 1 100%;font-size:13px;line-height:1.4;color:var(--muted);min-height:2.8em}
 .about-copy .display{margin-bottom:32px}
 .about-copy .lead{margin-bottom:22px}
 .about-copy .body + .body,.about-more > .body:first-child{margin-top:16px}
@@ -973,17 +974,17 @@ html[data-page="home"] .to-top{bottom:80px}
         <div class="about-side">
         <div class="slides reveal" id="slides" aria-roledescription="karusell" aria-label="Bilder av Daniel" data-i18n-aria="aria.slides">
           <div class="slides-frame">
-            <img class="slide on" src="assets/img/daniel/daniel-5.webp" alt="">
-            <img class="slide" src="assets/img/daniel/daniel-2.webp" alt="" loading="lazy" data-credit="Jakob Kleppan">
-            <img class="slide" src="assets/img/daniel/daniel-3.webp" alt="" loading="lazy" data-credit="Karin Bore (@photobykarin.yb)">
-            <img class="slide" src="assets/img/daniel/daniel-4.webp" alt="" loading="lazy" data-credit="Simon Myklebost">
-            <img class="slide" src="assets/img/daniel/daniel-6.webp" alt="" loading="lazy" data-cap="Make Oslo 2026">
-            <img class="slide" src="assets/img/daniel/daniel-punkt-oslo.webp?v=2" alt="" loading="lazy">
-            <img class="slide" src="assets/img/daniel/daniel-arendalsuka.webp?v=2" alt="" loading="lazy">
-            <img class="slide" src="assets/img/daniel/daniel-venner.webp" alt="" loading="lazy">
-            <img class="slide" src="assets/img/daniel/daniel-mat.webp" alt="" loading="lazy">
-            <img class="slide" src="assets/img/daniel/daniel-usa.webp" alt="" loading="lazy">
-            <img class="slide" src="assets/img/daniel/daniel-surf.webp" alt="" loading="lazy">
+            <img class="slide on" src="assets/img/daniel/daniel-5.webp" data-cap="Subjektprisen, VIP-lounge" data-cap-en="Subjektprisen, VIP lounge" alt="">
+            <img class="slide" src="assets/img/daniel/daniel-2.webp" data-cap="Shoot av coverbilde for artist" data-cap-en="Artist cover photo shoot" alt="" loading="lazy" data-credit="Jakob Kleppan">
+            <img class="slide" src="assets/img/daniel/daniel-3.webp" data-cap="Fotoshoot for merch" data-cap-en="Merch photo shoot" alt="" loading="lazy" data-credit="Karin Bore (@photobykarin.yb)">
+            <img class="slide" src="assets/img/daniel/daniel-4.webp" data-cap="Innspilling av musikkvideo, bak kulissene" data-cap-en="Music video shoot, behind the scenes" alt="" loading="lazy" data-credit="Simon Myklebost">
+            <img class="slide" src="assets/img/daniel/daniel-6.webp" data-cap="Make Oslo 2026" data-cap-en="Make Oslo 2026" alt="" loading="lazy">
+            <img class="slide" src="assets/img/daniel/daniel-punkt-oslo.webp?v=2" data-cap="Arendalsuka med Punkt Oslo" data-cap-en="Arendalsuka with Punkt Oslo" alt="" loading="lazy">
+            <img class="slide" src="assets/img/daniel/daniel-arendalsuka.webp?v=2" data-cap="I arbeid på standen til Punkt Oslo under Arendalsuka" data-cap-en="At work on the Punkt Oslo stand during Arendalsuka" alt="" loading="lazy">
+            <img class="slide" src="assets/img/daniel/daniel-venner.webp" data-cap="Shoot med gutta" data-cap-en="Shoot with the boys" alt="" loading="lazy">
+            <img class="slide" src="assets/img/daniel/daniel-mat.webp" data-cap="Matlaging med gutta" data-cap-en="Cooking with the boys" alt="" loading="lazy">
+            <img class="slide" src="assets/img/daniel/daniel-usa.webp" data-cap="MOTORSTOPP i Michigan, USA" data-cap-en="Car trouble in Michigan, USA" alt="" loading="lazy">
+            <img class="slide" src="assets/img/daniel/daniel-surf.webp" data-cap="Surfer for første gang i California, USA" data-cap-en="Surfing for the first time in California, USA" alt="" loading="lazy">
           </div>
           <div class="slides-bar"><div class="slides-dots" id="slides-dots"></div><span class="slides-credit" id="slides-credit"></span></div>
         </div>
@@ -1938,8 +1939,8 @@ function showSlide(i){
   });
   dotsWrap.querySelectorAll('button').forEach((b,k) => b.setAttribute('aria-current', k === slideIdx ? 'true' : 'false'));
   const c = slides[slideIdx].dataset.credit;
-  const cap = slides[slideIdx].dataset.cap;
-  $('slides-credit').textContent = c ? `${tr('photo.credit')} ${c}` : (cap || '');
+  const d = slides[slideIdx].dataset, cap = (lang === 'en' && d.capEn) ? d.capEn : d.cap;
+  $('slides-credit').textContent = [cap, c ? `${tr('photo.credit')} ${c}` : ''].filter(Boolean).join(' · ');
 }
 /* Piltaster blar i bildene på Om meg når ingen dialog er åpen */
 document.addEventListener('keydown', e => {
