@@ -289,6 +289,8 @@ section{position:relative}
 .slides-frame.dragging,.viewer.dragging{cursor:grabbing}
 .slides-frame.dragging .slide.on,.viewer.dragging .vslide.on{transition:none}
 .slides-frame{position:relative;width:74%;margin:0 auto;aspect-ratio:4/5;isolation:isolate}
+.slides.pinching{position:relative;z-index:60}
+.slides.pinching .slide.on{z-index:10;box-shadow:0 40px 90px rgba(0,0,0,.7)}
 .slides-frame::before{content:"";position:absolute;inset:-35%;z-index:-1;background:radial-gradient(circle,rgba(255,122,26,.2),rgba(255,122,26,0) 60%);pointer-events:none}
 .slide{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;border-radius:18px;opacity:0;z-index:0;pointer-events:none;
   transform:translateX(0) scale(.7);filter:brightness(.45);box-shadow:0 30px 70px rgba(0,0,0,.5);
@@ -1778,6 +1780,7 @@ function addSwipe(el, onSwipe, activeSel){
   });
   el.addEventListener('pointermove', e => {
     if (x0 === null || e.pointerId !== id) return;
+    if (el.closest('.pinching')) { x0 = null; moved = false; el.classList.remove('dragging'); if (a) a.style.transform = ''; return; }
     dx = e.clientX - x0;
     const now = performance.now(); if (now > lastT) { vel = 0.7 * vel + 0.3 * ((e.clientX - lastX) / (now - lastT)); lastX = e.clientX; lastT = now; }
     if (!moved && Math.abs(dx) > 6 && Math.abs(dx) > Math.abs(e.clientY - y0)) { moved = true; el.classList.add('dragging'); a = el.querySelector(activeSel); try { el.setPointerCapture(id); } catch (_) {} }
@@ -1957,6 +1960,41 @@ $('slides').addEventListener('mouseenter', () => clearInterval(slideTimer));
 $('slides').addEventListener('mouseleave', startSlides);
 addSwipe($('slides').querySelector('.slides-frame'), dir => { const n = slideIdx + dir; if (n >= 0 && n < slides.length) { showSlide(n); startSlides(); } }, '.slide.on');
 renderDots(); showSlide(0); startSlides();
+
+/* Klyp for å zoome inn på bildene på Om meg (mobil). Bildet følger fingrene og glir tilbake når man slipper, som på Instagram */
+(() => {
+  const box = $('slides'), frame = box.querySelector('.slides-frame');
+  let pz = null;
+  const dist = t => Math.hypot(t[0].clientX - t[1].clientX, t[0].clientY - t[1].clientY);
+  const mid = t => ({x:(t[0].clientX + t[1].clientX) / 2, y:(t[0].clientY + t[1].clientY) / 2});
+  frame.addEventListener('touchstart', e => {
+    if (e.touches.length !== 2) return;
+    const img = frame.querySelector('.slide.on'); if (!img) return;
+    const r = img.getBoundingClientRect(), m = mid(e.touches);
+    clearInterval(slideTimer);
+    img.style.transition = 'none';
+    img.style.transformOrigin = `${m.x - r.left}px ${m.y - r.top}px`;
+    pz = {img, d0: dist(e.touches), m0: m, s: 1};
+    box.classList.add('pinching');
+  }, {passive:true});
+  frame.addEventListener('touchmove', e => {
+    if (!pz || e.touches.length < 2) return;
+    e.preventDefault();
+    const m = mid(e.touches);
+    pz.s = Math.min(4, Math.max(1, dist(e.touches) / pz.d0));
+    pz.img.style.transform = `translate(${m.x - pz.m0.x}px,${m.y - pz.m0.y}px) scale(${pz.s})`;
+  }, {passive:false});
+  const end = e => {
+    if (!pz || e.touches.length >= 2) return;
+    const img = pz.img; pz = null;
+    img.style.transition = 'transform .45s cubic-bezier(.22,.8,.2,1)';
+    img.style.transform = '';
+    frame.dataset.justSwiped = '1';
+    setTimeout(() => { delete frame.dataset.justSwiped; box.classList.remove('pinching'); img.style.transition = ''; img.style.transformOrigin = ''; startSlides(); }, 460);
+  };
+  frame.addEventListener('touchend', end);
+  frame.addEventListener('touchcancel', end);
+})();
 
 /* ---------- Header og aktiv seksjon ---------- */
 const bar = $('top-bar');
