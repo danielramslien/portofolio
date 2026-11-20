@@ -295,6 +295,8 @@ section{position:relative}
 .slide{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;border-radius:18px;opacity:0;z-index:0;pointer-events:none;
   transform:translateX(0) scale(.7);filter:brightness(.45);box-shadow:0 30px 70px rgba(0,0,0,.5);
   transition:transform .8s cubic-bezier(.22,.8,.2,1),opacity .6s var(--ease),filter .6s var(--ease)}
+/* Liggende bilde (4:3) vises som et bredt kort midt i rammen, uten kanter over og under */
+.slide.wide{top:20%;height:60%}
 .slide.on{opacity:1;z-index:3;transform:translateX(0) scale(1) rotate(0);filter:none;pointer-events:auto}
 .slide.next{opacity:.9;z-index:2;transform:translateX(34%) scale(.8) rotate(4deg);pointer-events:auto;cursor:pointer}
 .slide.prev{opacity:.9;z-index:1;transform:translateX(-34%) scale(.8) rotate(-4deg);pointer-events:auto;cursor:pointer}
@@ -976,7 +978,7 @@ html[data-page="home"] .to-top{bottom:80px}
           <div class="slides-frame">
             <img class="slide on" src="assets/img/daniel/daniel-6.webp" data-cap="Make Oslo 2026, arrangert av AVIA Produksjon og Red Ant" data-cap-en="Make Oslo 2026, organised by AVIA Produksjon and Red Ant" alt="">
             <img class="slide" src="assets/img/daniel/daniel-arendalsuka.webp?v=2" data-cap="I arbeid på standen til Punkt Oslo under Arendalsuka 2026" data-cap-en="At work on the Punkt Oslo stand during Arendalsuka 2026" alt="" loading="lazy">
-            <img class="slide" src="assets/img/daniel/daniel-punkt-oslo.webp?v=2" data-cap="Arendalsuka 2026 med Punkt Oslo" data-cap-en="Arendalsuka 2026 with Punkt Oslo" alt="" loading="lazy">
+            <img class="slide wide" src="assets/img/daniel/daniel-punkt-oslo.webp?v=3" data-cap="Arendalsuka 2026 med Punkt Oslo" data-cap-en="Arendalsuka 2026 with Punkt Oslo" alt="" loading="lazy">
             <img class="slide" src="assets/img/daniel/daniel-2.webp" data-cap="Shoot av coverbilde for artistprosjekt" data-cap-en="Cover photo shoot for an artist project" alt="" loading="lazy" data-credit="Jakob Kleppan">
             <img class="slide" src="assets/img/daniel/daniel-3.webp" data-cap="Fotoshoot for merch" data-cap-en="Merch photo shoot" alt="" loading="lazy" data-credit="Karin Bore (@photobykarin.yb)">
             <img class="slide" src="assets/img/daniel/daniel-4.webp" data-cap="Innspilling av musikkvideo, bak kulissene" data-cap-en="Music video shoot, behind the scenes" alt="" loading="lazy" data-credit="Simon Myklebost">
