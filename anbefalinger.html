@@ -280,6 +280,8 @@ section{position:relative}
 .hero-nav a.hero-cta:hover,.hero-nav a.hero-cta:focus-visible{color:var(--ink);-webkit-text-stroke:0;background:#ff9447;transform:translateY(-2px)}
 @keyframes ctaPulse{0%,100%{box-shadow:0 8px 30px rgba(255,122,26,.35),0 0 0 0 rgba(255,122,26,.45)}50%{box-shadow:0 8px 30px rgba(255,122,26,.35),0 0 0 10px rgba(255,122,26,0)}}
 @media (prefers-reduced-motion:reduce){.hero-nav a.hero-cta{animation:none}}
+/* Mobil: Kontakt-knappen havner på egen rad, så den skal ha samme luft over seg som mellom titlene */
+@media (max-width:760px){.hero-nav a.hero-cta{margin-top:0}}
 
 /* ---------- Om meg ---------- */
 .about-grid{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:clamp(40px,6vw,96px);align-items:center}
