@@ -652,10 +652,10 @@ html[data-page="home"] .to-top{bottom:80px}
 }
 @media (prefers-reduced-motion:reduce){.chat-panel,.ctyping i,.ask-arrow{transition:none;animation:none}}
 /* ---------- Verktøy ---------- */
-.tools{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(14px,1.4vw,20px);align-items:start}
+.tools{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(14px,1.4vw,20px);align-items:stretch}
 /* Kompakte verktøyknapper som fyller hele bredden i boksen, som et puslespill */
 .tools .pills{gap:6px}
-.tools .pill{flex:1 1 auto;justify-content:center;font-size:12px;padding:5px 10px}
+.tools .pill{flex:1 1 0;min-width:max-content;justify-content:center;font-size:12px;padding:5px 10px}
 .tool-col{padding:clamp(18px,1.7vw,24px);background:var(--bg-card);border:1px solid var(--line);border-radius:16px}
 .tool-top{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:14px;padding-bottom:12px;border-bottom:1px solid var(--line)}
 .tool-col{container-type:inline-size}
