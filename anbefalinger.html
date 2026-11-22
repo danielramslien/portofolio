@@ -771,6 +771,11 @@ html[data-page="home"] .to-top{bottom:80px}
   .case-open svg{width:13px;height:13px}
   .case-media{border-radius:12px}
   .case-title{font-size:15px}
+  /* Casene i to rader med fire i hver, som på PC, og sveipes sidelengs */
+  .cases{grid-template-columns:repeat(4,calc((100% - 24px) / 2.4));grid-auto-flow:row;gap:18px 12px;overflow-x:auto;overscroll-behavior-x:contain;scroll-snap-type:x mandatory;scrollbar-width:none;margin:0 calc(-1 * var(--gutter));padding:0 var(--gutter) 4px;scroll-padding:0 var(--gutter)}
+  .cases::-webkit-scrollbar{display:none}
+  .cases > .case{scroll-snap-align:start;min-width:0}
+  .cases .case-title{font-size:14px}
   .case-body{padding-top:10px}
   .case-open{opacity:1;transform:scale(1)}
   .facts{grid-template-columns:1fr}
