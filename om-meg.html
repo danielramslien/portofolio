@@ -361,7 +361,12 @@ section{position:relative}
 .logos-track{display:flex;justify-content:center}
 .logos ul{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:clamp(14px,1.4vw,26px) clamp(22px,2.8vw,44px);list-style:none;margin:0;padding:0}
 .logos li{flex:none;display:flex;align-items:center;height:clamp(26px,2.7vw,38px);opacity:.6;transition:opacity .25s}
-.logos li:hover{opacity:1}
+.logos a{display:flex;align-items:center;height:100%;-webkit-tap-highlight-color:transparent;border-radius:6px}
+.logos img{transition:filter .25s}
+/* PC: logoen lyser hvitt når musen holdes over. Ingen hover på berøringsskjerm, så det blinker ikke når man trykker */
+@media (hover:hover) and (pointer:fine){.logos li:hover{opacity:1}.logos li:hover img{filter:brightness(0) invert(1) drop-shadow(0 0 14px rgba(255,255,255,.35))}}
+.logos li:has(a:focus-visible){opacity:1}
+.logos a:focus-visible{outline:2px solid var(--accent);outline-offset:6px}
 .logos img{height:100%;width:auto;display:block}
 .logos li.lg-big{height:clamp(38px,3.9vw,54px)}
 .logos li.lg-sm{height:clamp(19px,1.9vw,26px)}
@@ -868,7 +873,7 @@ html[data-page="home"] .to-top{bottom:80px}
         <h2 class="sr" id="arbeid-tittel" data-i18n-html="work.title">Utvalgte case</h2>
       </div>
       <div class="logos" aria-label="Har samarbeidet med" data-i18n-aria="logos.label">
-        <div class="logos-track"><ul><li><img src="assets/img/logos/make-a-wish.png" alt="Make-A-Wish" loading="lazy"></li><li class="lg-big"><img src="assets/img/logos/m40.png" alt="M40 Studios" loading="lazy"></li><li class="lg-big"><img src="assets/img/logos/kristiania.png" alt="Høyskolen Kristiania" loading="lazy"></li><li class="lg-big"><img src="assets/img/logos/punkt-oslo.png" alt="Punkt Oslo" loading="lazy"></li><li class="lg-big"><img src="assets/img/logos/kraft.png" alt="KRAFT Collective" loading="lazy"></li><li class="lg-sm"><img src="assets/img/logos/knytt.png" alt="Knytt" loading="lazy"></li></ul></div>
+        <div class="logos-track"><ul><li><a href="#case-ride-for-wishes" data-case="ride-for-wishes" aria-label="Make-A-Wish: se caset"><img src="assets/img/logos/make-a-wish.png" alt="Make-A-Wish" loading="lazy"></a></li><li class="lg-big"><a href="#case-m40" data-case="m40" aria-label="M40 Studios: se caset"><img src="assets/img/logos/m40.png" alt="M40 Studios" loading="lazy"></a></li><li class="lg-big"><a href="#case-kristiania" data-case="kristiania" aria-label="Høyskolen Kristiania: se caset"><img src="assets/img/logos/kristiania.png" alt="Høyskolen Kristiania" loading="lazy"></a></li><li class="lg-big"><a href="#case-punkt-oslo" data-case="punkt-oslo" aria-label="Punkt Oslo: se caset"><img src="assets/img/logos/punkt-oslo.png" alt="Punkt Oslo" loading="lazy"></a></li><li class="lg-big"><a href="#case-kraft" data-case="kraft" aria-label="KRAFT Collective: se caset"><img src="assets/img/logos/kraft.png" alt="KRAFT Collective" loading="lazy"></a></li><li class="lg-sm"><a href="#case-knytt" data-case="knytt" aria-label="Knytt: se caset"><img src="assets/img/logos/knytt.png" alt="Knytt" loading="lazy"></a></li></ul></div>
       </div>
       <ul class="cases" id="cases"></ul>
       <div class="work-stats" id="resultater">
@@ -1927,6 +1932,12 @@ testiList.querySelectorAll('li').forEach(el => el.classList.remove('in'));
 
 const fromHash = CASES.findIndex(c => location.hash === '#case-' + c.id);
 if (fromHash > -1) openCase(fromHash);
+/* Trykk på en logo åpner caset den hører til */
+document.querySelectorAll('.logos a[data-case]').forEach(a => a.addEventListener('click', e => {
+  const i = CASES.findIndex(c => c.id === a.dataset.case);
+  if (i < 0) return;
+  e.preventDefault(); openCase(i);
+}));
 
 /* ---------- Bildekarusell i Om meg ---------- */
 const slides = [...document.querySelectorAll('#slides .slide')];
