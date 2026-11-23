@@ -472,8 +472,8 @@ section{position:relative}
 /* Egget settes sammen igjen i fire steg:
    1. bildet krymper bort på et øyeblikk, 2. bitene trekker seg inn og danner en sirkel,
    3. skallet kommer tilbake med sprekkene, 4. sprekkene trekker seg sammen og egget er helt */
-.egg.re1 .egg-photo,.egg.re2 .egg-photo{transform:scale(0)!important;opacity:0!important;transition:transform .16s ease-in,opacity .16s ease-in!important}
-.egg.re1 .egg-shards i{animation:none!important;opacity:1;transform:translate(calc(var(--x) * 3.2),calc(var(--y) * 3.6)) rotate(calc(var(--r) * .4)) scale(var(--s));transition:transform .5s cubic-bezier(.55,0,.25,1) calc(.08s + var(--d) * .5)!important}
+.egg.re1 .egg-photo,.egg.re2 .egg-photo{transform:scale(0)!important;opacity:0!important;transition:transform .12s ease-in,opacity .12s ease-in!important}
+.egg.re1 .egg-shards i{animation:none!important;opacity:1;transform:translate(calc(var(--x) * 3.2),calc(var(--y) * 3.6)) rotate(calc(var(--r) * .4)) scale(var(--s));transition:transform .26s cubic-bezier(.55,0,.25,1) calc(.1s + var(--d) * .1)!important}
 .egg.re2 .egg-shards i{transition:transform .45s cubic-bezier(.5,0,.75,0),opacity .35s ease-in .1s!important}
 .egg.re2 .egg-shell{transition:transform .45s cubic-bezier(.3,.6,.2,1),opacity .35s ease!important}
 .egg.re2 .egg-cracks{transition:opacity .25s!important}
@@ -2151,10 +2151,10 @@ document.querySelectorAll('.reveal').forEach(el => { revObs.observe(el); resetOb
     setTimeout(() => {                                          /* 3: skallet kommer tilbake med sprekkene */
       egg.dataset.stage = 7;
       egg.classList.add('re2'); egg.classList.remove('re1', 'hatched');
-    }, 720);
-    setTimeout(() => { delete egg.dataset.stage; }, 1250);      /* 4: sprekkene trekker seg sammen */
-    setTimeout(() => { egg.classList.remove('re2'); egg.dataset.taps = 0; shake(.7); }, 1700);
-    setTimeout(() => { egg.parentNode.classList.remove('tapped'); reforming = false; }, 2200);
+    }, 340);
+    setTimeout(() => { delete egg.dataset.stage; }, 820);      /* 4: sprekkene trekker seg sammen */
+    setTimeout(() => { egg.classList.remove('re2'); egg.dataset.taps = 0; shake(.7); }, 1220);
+    setTimeout(() => { egg.parentNode.classList.remove('tapped'); reforming = false; }, 1720);
   }
   const wrap = egg.parentNode;
   let pinch = null;
