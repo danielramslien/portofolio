@@ -469,9 +469,16 @@ section{position:relative}
 .egg-core{transition:opacity .5s var(--ease)}
 .egg.hatched .egg-core{background:transparent;box-shadow:none}
 .egg.hatched .egg-photo{opacity:1;transform:none}
-.egg-photo{clip-path:circle(50% at 50% 50%)}
-/* Når egget settes sammen igjen, blir bildet borte fra kanten og innover mens det fader ut, uten å gli ned */
-.egg.reforming .egg-photo{opacity:0;transform:none;clip-path:circle(0% at 50% 50%);transition:clip-path .7s cubic-bezier(.5,0,.75,0),opacity .7s ease-in!important}
+/* Egget settes sammen igjen i fire steg:
+   1. bildet krymper bort på et øyeblikk, 2. bitene trekker seg inn og danner en sirkel,
+   3. skallet kommer tilbake med sprekkene, 4. sprekkene trekker seg sammen og egget er helt */
+.egg.re1 .egg-photo,.egg.re2 .egg-photo{transform:scale(0)!important;opacity:0!important;transition:transform .16s ease-in,opacity .16s ease-in!important}
+.egg.re1 .egg-shards i{animation:none!important;opacity:1;transform:translate(calc(var(--x) * 3.2),calc(var(--y) * 3.6)) rotate(calc(var(--r) * .4)) scale(var(--s));transition:transform .5s cubic-bezier(.55,0,.25,1) calc(.08s + var(--d) * .5)!important}
+.egg.re2 .egg-shards i{transition:transform .45s cubic-bezier(.5,0,.75,0),opacity .35s ease-in .1s!important}
+.egg.re2 .egg-shell{transition:transform .45s cubic-bezier(.3,.6,.2,1),opacity .35s ease!important}
+.egg.re2 .egg-cracks{transition:opacity .25s!important}
+/* Mobil: nettleseren skal ikke zoome siden når man klyper over det klekkede egget */
+.egg-wrap:has(.egg.hatched){touch-action:pan-x pan-y}
 .egg.hatched ~ .egg-glow,.egg-wrap:has(.egg.hatched) .egg-glow{opacity:.5}
 .egg-hint{position:absolute;left:0;right:0;top:50%;z-index:6;transform:translateY(-50%);text-align:center;font-size:clamp(12px,1.1vw,15px);letter-spacing:.08em;font-weight:600;color:rgba(70,24,0,.72);pointer-events:none;transition:opacity .4s}
 .egg-wrap.tapped .egg-hint{opacity:0}
@@ -2124,11 +2131,10 @@ document.querySelectorAll('.reveal').forEach(el => { revObs.observe(el); resetOb
 {
   const egg = document.getElementById('egg');
   egg.addEventListener('pointerdown', () => { if (!egg.classList.contains('hatched')) egg.parentNode.classList.add('tapped'); });
-  /* PC: et klikk med musen på det klekkede egget setter det sammen igjen. På mobil klyper man sammen */
-  let lastPointer = 'mouse';
-  egg.addEventListener('pointerdown', e => { lastPointer = e.pointerType; });
+  /* Et klikk eller trykk på det klekkede egget setter det sammen igjen. På mobil kan man også klype sammen */
   egg.addEventListener('click', () => {
-    if (egg.classList.contains('hatched')) { if (lastPointer === 'mouse') reform(); return; }
+    if (reforming) return;
+    if (egg.classList.contains('hatched')) { reform(); return; }
     egg.parentNode.classList.add('tapped');
     const n = (+egg.dataset.taps || 0) + 1;
     egg.dataset.taps = n;
@@ -2137,14 +2143,18 @@ document.querySelectorAll('.reveal').forEach(el => { revObs.observe(el); resetOb
     shake(1.25 + n * 0.2);
   });
   /* Klyp sammen (zoom ut) på det klekkede egget: bitene faller tilbake på plass og det blir et helt egg igjen */
+  let reforming = false;
   function reform(){
-    if (!egg.classList.contains('hatched')) return;
-    egg.classList.add('reforming');
-    egg.classList.remove('hatched');
-    delete egg.dataset.stage; egg.dataset.taps = 0;
-    setTimeout(() => egg.classList.remove('reforming'), 900);
-    setTimeout(() => shake(.7), 750);
-    setTimeout(() => egg.parentNode.classList.remove('tapped'), 1300);
+    if (!egg.classList.contains('hatched') || reforming) return;
+    reforming = true;
+    egg.classList.add('re1');                                   /* 1 og 2: bildet krymper, bitene samles i en sirkel */
+    setTimeout(() => {                                          /* 3: skallet kommer tilbake med sprekkene */
+      egg.dataset.stage = 7;
+      egg.classList.add('re2'); egg.classList.remove('re1', 'hatched');
+    }, 720);
+    setTimeout(() => { delete egg.dataset.stage; }, 1250);      /* 4: sprekkene trekker seg sammen */
+    setTimeout(() => { egg.classList.remove('re2'); egg.dataset.taps = 0; shake(.7); }, 1700);
+    setTimeout(() => { egg.parentNode.classList.remove('tapped'); reforming = false; }, 2200);
   }
   const wrap = egg.parentNode;
   let pinch = null;
