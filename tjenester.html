@@ -2130,6 +2130,27 @@ document.querySelectorAll('.reveal').forEach(el => { revObs.observe(el); resetOb
     egg.dataset.stage = Math.round(n * 7 / 4);
     shake(1.25 + n * 0.2);
   });
+  /* Klyp sammen (zoom ut) på det klekkede egget: bitene faller tilbake på plass og det blir et helt egg igjen */
+  function reform(){
+    if (!egg.classList.contains('hatched')) return;
+    egg.classList.remove('hatched');
+    delete egg.dataset.stage; egg.dataset.taps = 0;
+    setTimeout(() => shake(.7), 750);
+    setTimeout(() => egg.parentNode.classList.remove('tapped'), 1300);
+  }
+  const wrap = egg.parentNode;
+  let pinch = null;
+  const gap = t => Math.hypot(t[0].clientX - t[1].clientX, t[0].clientY - t[1].clientY);
+  wrap.addEventListener('touchstart', e => { if (e.touches.length === 2 && egg.classList.contains('hatched')) pinch = gap(e.touches); }, {passive:true});
+  wrap.addEventListener('touchmove', e => {
+    if (pinch === null || e.touches.length < 2) return;
+    e.preventDefault();
+    if (gap(e.touches) / pinch < .72) { pinch = null; reform(); }
+  }, {passive:false});
+  wrap.addEventListener('touchend', e => { if (e.touches.length < 2) pinch = null; });
+  wrap.addEventListener('gesturestart', e => { if (egg.classList.contains('hatched')) e.preventDefault(); });
+  /* Samme på PC med styreplate: klyp sammen (ctrl + rulling ut) over egget */
+  wrap.addEventListener('wheel', e => { if (e.ctrlKey && e.deltaY > 0 && egg.classList.contains('hatched')) { e.preventDefault(); reform(); } }, {passive:false});
   /* Ristingen kjøres med Web Animations, så den virker likt i alle nettlesere og blir kraftigere for hvert trykk */
   let anim = null;
   function shake(k){
