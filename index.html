@@ -2121,13 +2121,16 @@ document.querySelectorAll('.reveal').forEach(el => { revObs.observe(el); resetOb
 {
   const egg = document.getElementById('egg');
   egg.addEventListener('pointerdown', () => { if (!egg.classList.contains('hatched')) egg.parentNode.classList.add('tapped'); });
+  /* PC: et klikk med musen på det klekkede egget setter det sammen igjen. På mobil klyper man sammen */
+  let lastPointer = 'mouse';
+  egg.addEventListener('pointerdown', e => { lastPointer = e.pointerType; });
   egg.addEventListener('click', () => {
-    if (egg.classList.contains('hatched')) return;
+    if (egg.classList.contains('hatched')) { if (lastPointer === 'mouse') reform(); return; }
     egg.parentNode.classList.add('tapped');
     const n = (+egg.dataset.taps || 0) + 1;
     egg.dataset.taps = n;
-    if (n >= 5) { egg.classList.add('hatched'); egg.dataset.taps = 0; return; }
-    egg.dataset.stage = Math.round(n * 7 / 4);
+    if (n >= 4) { egg.classList.add('hatched'); egg.dataset.taps = 0; return; }
+    egg.dataset.stage = Math.round(n * 7 / 3);
     shake(1.25 + n * 0.2);
   });
   /* Klyp sammen (zoom ut) på det klekkede egget: bitene faller tilbake på plass og det blir et helt egg igjen */
