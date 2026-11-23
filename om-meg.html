@@ -469,6 +469,9 @@ section{position:relative}
 .egg-core{transition:opacity .5s var(--ease)}
 .egg.hatched .egg-core{background:transparent;box-shadow:none}
 .egg.hatched .egg-photo{opacity:1;transform:none}
+.egg-photo{clip-path:circle(50% at 50% 50%)}
+/* Når egget settes sammen igjen, blir bildet borte fra kanten og innover mens det fader ut, uten å gli ned */
+.egg.reforming .egg-photo{opacity:0;transform:none;clip-path:circle(0% at 50% 50%);transition:clip-path .7s cubic-bezier(.5,0,.75,0),opacity .7s ease-in!important}
 .egg.hatched ~ .egg-glow,.egg-wrap:has(.egg.hatched) .egg-glow{opacity:.5}
 .egg-hint{position:absolute;left:0;right:0;top:50%;z-index:6;transform:translateY(-50%);text-align:center;font-size:clamp(12px,1.1vw,15px);letter-spacing:.08em;font-weight:600;color:rgba(70,24,0,.72);pointer-events:none;transition:opacity .4s}
 .egg-wrap.tapped .egg-hint{opacity:0}
@@ -2136,8 +2139,10 @@ document.querySelectorAll('.reveal').forEach(el => { revObs.observe(el); resetOb
   /* Klyp sammen (zoom ut) på det klekkede egget: bitene faller tilbake på plass og det blir et helt egg igjen */
   function reform(){
     if (!egg.classList.contains('hatched')) return;
+    egg.classList.add('reforming');
     egg.classList.remove('hatched');
     delete egg.dataset.stage; egg.dataset.taps = 0;
+    setTimeout(() => egg.classList.remove('reforming'), 900);
     setTimeout(() => shake(.7), 750);
     setTimeout(() => egg.parentNode.classList.remove('tapped'), 1300);
   }
