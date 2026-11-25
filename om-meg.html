@@ -262,6 +262,7 @@ section{position:relative}
 .contact-slogan{font-style:italic;font-size:clamp(15px,1.2vw,18px);line-height:1.45;color:var(--muted);margin:0;max-width:34ch;text-wrap:balance}
 .hero-title{font-family:var(--font-display);font-stretch:100%;font-weight:800;font-size:clamp(30px,4.4vw,62px);line-height:1.02;letter-spacing:-.01em;color:var(--text);margin:0}
 .hero-slogan{margin:10px auto 0;max-width:none}
+/* «kunder» i slagordet øverst: hvitt og understreket */.slogan-key{color:#fff;text-decoration:underline;text-decoration-thickness:1.5px;text-underline-offset:.18em}
 /* PC: sitatet står til venstre for ballen, speilvendt av «Spør meg». Mobil: under overskriften */.hero-side{position:absolute;z-index:4;right:calc(100% + var(--ask-gap));top:50%;transform:translateY(-50%);width:min(26ch,calc((100vw - 100%) / 2 - var(--ask-gap) - 24px));margin:0;text-align:right;font-size:clamp(16px,1.3vw,20px)}@media (min-width:761px){.hero-copy .hero-slogan{display:none}}@media (max-width:760px){.hero-side{display:none}}
 /* Lave skjermer: tettere luft i toppen, så toppen av casene synes uten å scrolle */@media (max-height:860px) and (min-width:761px){.hero-main{gap:clamp(16px,3vh,40px);padding-bottom:14px}.logos{margin-bottom:16px}.logos li{height:28px}.logos li.lg-big{height:38px}.logos li.lg-sm{height:19px}#arbeid{padding-top:8px}}
 .hero-visual{position:relative;width:min(66vw,34vh,400px);aspect-ratio:1}
@@ -881,10 +882,10 @@ html[data-page="home"] .to-top{bottom:80px}
       <div class="hero-copy">
         <span class="hero-kicker" data-i18n-html="hero.kicker">Digital markedsfører</span>
         <h1 class="hero-title" data-i18n="hero.title">Hei, jeg er Daniel.</h1>
-        <p class="contact-slogan hero-slogan" data-i18n="hero.sub">«Hjelper bedrifter å gjøre seere om til kunder på sosiale medier»</p>
+        <p class="contact-slogan hero-slogan" data-i18n-html="hero.subk">«Hjelper bedrifter å gjøre seere om til <span class="slogan-key">kunder</span> på sosiale medier»</p>
       </div>
       <div class="hero-visual">
-        <p class="contact-slogan hero-side" data-i18n="hero.sub">«Hjelper bedrifter å gjøre seere om til kunder på sosiale medier»</p>
+        <p class="contact-slogan hero-side" data-i18n-html="hero.subk">«Hjelper bedrifter å gjøre seere om til <span class="slogan-key">kunder</span> på sosiale medier»</p>
         <div class="hero-float">
           <div class="orb" id="hero-orb" aria-hidden="true"></div>
           <div class="hero-clip"><img class="hero-photo" src="assets/img/profil.webp" width="933" height="1400" alt="Portrett av Daniel Ramslien" data-i18n-alt="about.alt" fetchpriority="high"></div>
@@ -1184,7 +1185,7 @@ const I18N = {
     'meta.desc':'Portefølje 2026. Daniel Ramslien er digital markedsfører med hjertet i sosiale medier: kampanjer, innhold og analyse for Mufano, M40 Studios, Punkt Oslo, NOT Management og flere.',
     'skip':'Hopp til innhold', 'aria.menu':'Hovedmeny', 'aria.scroll':'Bla ned', 'aria.intro':'Introduksjon', 'aria.stats':'Resultater i tall', 'aria.lang':'Velg språk', 'aria.switchLang':'Bytt språk', 'totop':'Til toppen', 'egg.label':'Trykk på ballen noen ganger', 'egg.hint':'(Trykk på meg)',
     'nav.about':'Om meg', 'nav.home':'Hjem', 'ac.title':'Ta kontakt', 'ac.text':'Gi meg en lyd, så svarer jeg raskt.', 'nav.work':'Arbeid', 'nav.contact':'Kontakt',
-    'hero.sub':'«Hjelper bedrifter å gjøre seere om til kunder på sosiale medier»', 'hero.kicker':'Digital markedsfører', 'hero.title':'Hei, jeg er Daniel.',
+    'hero.sub':'«Hjelper bedrifter å gjøre seere om til kunder på sosiale medier»', 'hero.subk':'«Hjelper bedrifter å gjøre seere om til <span class="slogan-key">kunder</span> på sosiale medier»', 'hero.kicker':'Digital markedsfører', 'hero.title':'Hei, jeg er Daniel.',
     'foot.portfolio':'Portefølje 2026',
     'about.title':'Om meg', 'photo.credit':'Foto:', 'aria.slides':'Bilder av Daniel', 'slides.go':'Vis bilde', 'about.alt':'Portrett av Daniel Ramslien',
     'about.lead':'Jeg er digital markedsfører med hjertet i sosiale medier. Jeg liker å finne historien i en merkevare og fortelle den slik at den passer feeden.',
@@ -1217,7 +1218,7 @@ const I18N = {
     'meta.desc':'Portfolio 2026. Daniel Ramslien is a digital marketer with a heart for social media: campaigns, content and analytics for Mufano, M40 Studios, Punkt Oslo, NOT Management and more.',
     'skip':'Skip to content', 'aria.menu':'Main menu', 'aria.scroll':'Scroll down', 'aria.intro':'Introduction', 'aria.stats':'Results in numbers', 'aria.lang':'Choose language', 'aria.switchLang':'Switch language', 'totop':'Back to top', 'egg.label':'Tap the ball a few times', 'egg.hint':'(Tap me)',
     'nav.about':'About', 'nav.home':'Home', 'ac.title':'Get in touch', 'ac.text':'Drop me a line and I will get back to you quickly.', 'nav.work':'Work', 'nav.contact':'Contact',
-    'hero.sub':'«Helping businesses turn viewers into customers on social media»', 'hero.kicker':'Digital marketer', 'hero.title':'Hi, I’m Daniel.',
+    'hero.sub':'«Helping businesses turn viewers into customers on social media»', 'hero.subk':'«Helping businesses turn viewers into <span class="slogan-key">customers</span> on social media»', 'hero.kicker':'Digital marketer', 'hero.title':'Hi, I’m Daniel.',
     'foot.portfolio':'Portfolio 2026',
     'about.title':'About me', 'photo.credit':'Photo:', 'aria.slides':'Photos of Daniel', 'slides.go':'Show photo', 'about.alt':'Portrait of Daniel Ramslien',
     'about.lead':'I’m a digital marketer with a heart for social media. I love finding the story in a brand and telling it in a way that fits the feed.',
