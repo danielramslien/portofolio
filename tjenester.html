@@ -2137,7 +2137,7 @@ document.querySelectorAll('.reveal').forEach(el => { revObs.observe(el); resetOb
 
 /* ---------- Buen i slagordet ----------
    Måler hvor «seere» og ringen rundt «kunder» faktisk står, og tegner buen fra under «seere»
-   til midt på bunnen av ringen, slik at den treffer rett uansett språk, skrift og skjermstørrelse */
+   til nedre venstre hjørne av ringen, slik at den treffer rett uansett språk, skrift og skjermstørrelse */
 (() => {
   const draw = () => document.querySelectorAll('.sl-link').forEach(link => {
     const svg = link.querySelector('.sl-arc'), from = link.querySelector('.sl-from'), ring = link.querySelector('.sl-ring');
@@ -2146,12 +2146,12 @@ document.querySelectorAll('.reveal').forEach(el => { revObs.observe(el); resetOb
     if (!L.width) return;
     const fs = parseFloat(getComputedStyle(link).fontSize);
     const x0 = F.left + F.width / 2 - L.left, y0 = F.bottom - L.top - fs * .12;
-    const x1 = R.left + R.width / 2 - L.left, y1 = R.bottom - R.height / 40 - L.top;
-    const w = x1 - x0, dip = fs * .42, h = Math.max(y1 - y0, 0) + dip;
+    const cx = R.left + R.width / 2 - L.left, cy = R.top + R.height / 2 - L.top;
+    const x1 = cx - R.width * .49 * Math.SQRT1_2, y1 = cy + R.height * .475 * Math.SQRT1_2;
+    const w = x1 - x0, ey = y1 - y0, h = Math.max(ey, 0) + fs * .42;
     Object.assign(svg.style, { left: x0 + 'px', top: y0 + 'px', width: w + 'px', height: h + 'px' });
     svg.setAttribute('viewBox', `0 0 ${w} ${h}`);
-    const ey = y1 - y0;
-    svg.firstElementChild.setAttribute('d', `M0 0 C${w * .08} ${h}, ${w} ${h}, ${w} ${ey}`);
+    svg.firstElementChild.setAttribute('d', `M0 0 C${w * .1} ${h}, ${w * .75} ${h}, ${w} ${ey}`);
   });
   let t; const later = () => { clearTimeout(t); t = setTimeout(draw, 60); };
   draw(); addEventListener('load', draw); addEventListener('resize', later);
