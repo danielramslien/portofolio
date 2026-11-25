@@ -261,11 +261,15 @@ section{position:relative}
 .hero-kicker{display:block;font-size:12px;font-weight:600;letter-spacing:.24em;text-transform:uppercase;color:var(--accent);margin-bottom:12px}
 .contact-slogan{font-style:italic;font-size:clamp(15px,1.2vw,18px);line-height:1.45;color:var(--muted);margin:0;max-width:34ch;text-wrap:balance}
 .hero-title{font-family:var(--font-display);font-stretch:100%;font-weight:800;font-size:clamp(30px,4.4vw,62px);line-height:1.02;letter-spacing:-.01em;color:var(--text);margin:0}
-.hero-visual{position:relative;width:min(66vw,34vh,400px);aspect-ratio:1;animation:float 6s ease-in-out infinite}
+.hero-slogan{margin:10px auto 0;max-width:none}
+/* PC: sitatet står til venstre for ballen, speilvendt av «Spør meg». Mobil: under overskriften */.hero-side{position:absolute;z-index:4;right:calc(100% + var(--ask-gap));top:50%;transform:translateY(-50%);width:min(26ch,calc((100vw - 100%) / 2 - var(--ask-gap) - 24px));margin:0;text-align:right;font-size:clamp(16px,1.3vw,20px)}@media (min-width:761px){.hero-copy .hero-slogan{display:none}}@media (max-width:760px){.hero-side{display:none}}
+/* Lave skjermer: tettere luft i toppen, så toppen av casene synes uten å scrolle */@media (max-height:860px) and (min-width:761px){.hero-main{gap:clamp(16px,3vh,40px);padding-bottom:14px}.logos{margin-bottom:16px}.logos li{height:28px}.logos li.lg-big{height:38px}.logos li.lg-sm{height:19px}#arbeid{padding-top:8px}}
+.hero-visual{position:relative;width:min(66vw,34vh,400px);aspect-ratio:1}
+/* Bare ballen og figuren svever. Pilen og «Spør meg» står i ro */
+.hero-float{position:absolute;inset:0;animation:float 6s ease-in-out infinite}
 .hero-visual .orb{position:absolute;inset:0}
 .hero-clip{position:absolute;inset:0;z-index:1;border-radius:50%;overflow:hidden;-webkit-mask-image:-webkit-radial-gradient(white,black)}
-.hero-photo{position:absolute;left:50%;bottom:-6%;transform:translateX(-50%);width:74%;height:auto;animation:photoBob 5s ease-in-out infinite}
-@keyframes photoBob{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(-3.5%)}}
+.hero-photo{position:absolute;left:50%;bottom:-6%;transform:translateX(-50%);width:74%;height:auto}
 @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-14px)}}
 .hero-scroll{align-self:center;display:grid;place-items:center;width:60px;height:46px;margin-top:calc(-1 * clamp(8px,1.6vh,22px));color:var(--accent);text-decoration:none;animation:scrollBob 1.8s ease-in-out infinite}
 .hero-scroll svg{width:42px;height:42px;animation:scrollGlow 1.8s ease-in-out infinite}
@@ -832,9 +836,8 @@ html[data-page="home"] .to-top{bottom:80px}
 @media (prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
   *,*::before,*::after{animation:none!important;transition:none!important}
-  .hero-visual{animation:float 6s ease-in-out infinite!important}
+  .hero-float{animation:float 6s ease-in-out infinite!important}
   .egg-wrap{animation:float 6.5s ease-in-out infinite!important}
-  .hero-photo{animation:photoBob 5s ease-in-out infinite!important}
   .egg.hatched .egg-shards i{animation:shardFloat calc(4.6s + var(--s) * 2.4s) ease-in-out calc(.9s + var(--d)) infinite!important}
   .egg.hatched .egg-shards i:nth-child(even){animation-direction:reverse!important}
   /* Klekkingen er noe man selv utløser, så den beholder bevegelsen */
@@ -878,13 +881,17 @@ html[data-page="home"] .to-top{bottom:80px}
       <div class="hero-copy">
         <span class="hero-kicker" data-i18n-html="hero.kicker">Digital markedsfører</span>
         <h1 class="hero-title" data-i18n="hero.title">Hei, jeg er Daniel.</h1>
+        <p class="contact-slogan hero-slogan" data-i18n="hero.sub">«Hjelper bedrifter å gjøre seere om til kunder på sosiale medier»</p>
       </div>
       <div class="hero-visual">
-        <div class="orb" id="hero-orb" aria-hidden="true"></div>
+        <p class="contact-slogan hero-side" data-i18n="hero.sub">«Hjelper bedrifter å gjøre seere om til kunder på sosiale medier»</p>
+        <div class="hero-float">
+          <div class="orb" id="hero-orb" aria-hidden="true"></div>
+          <div class="hero-clip"><img class="hero-photo" src="assets/img/profil.webp" width="933" height="1400" alt="Portrett av Daniel Ramslien" data-i18n-alt="about.alt" fetchpriority="high"></div>
+        </div>
         <svg class="ask-arrow ask-d" viewBox="0 0 120 74" aria-hidden="true"><path vector-effect="non-scaling-stroke" d="M12 14c22-10 52-9 72 6 14 11 18 27 14 46"/><path vector-effect="non-scaling-stroke" d="M84 54l14 16 12-19"/></svg>
         <svg class="ask-arrow ask-m" viewBox="0 0 100 100" aria-hidden="true"><path vector-effect="non-scaling-stroke" d="M44 12C72 0 98 32 86 86"/><path vector-effect="non-scaling-stroke" d="M99.2 72.4L86 86L78.3 68.6"/></svg>
         <button class="ask-btn" type="button" id="chat-fab" aria-controls="chat-panel" aria-expanded="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22z"/><circle cx="8" cy="12" r="1.25" fill="currentColor" stroke="none"/><circle cx="12" cy="12" r="1.25" fill="currentColor" stroke="none"/><circle cx="16" cy="12" r="1.25" fill="currentColor" stroke="none"/></svg><span data-i18n="chat.fab">Spør meg</span></button>
-        <div class="hero-clip"><img class="hero-photo" src="assets/img/profil.webp" width="933" height="1400" alt="Portrett av Daniel Ramslien" data-i18n-alt="about.alt" fetchpriority="high"></div>
       </div>
       <ul class="hero-nav">
         <li><a href="index.html#arbeid" data-i18n="nav.work">Arbeid</a></li>
@@ -1554,7 +1561,7 @@ function renderCards(){
     const x = tc(c);
     const hasVideo = c.media.some(m => m.type === 'video');
     return `
-    <li class="case reveal in" style="--d:${(i%3)*0.08}s" data-index="${i}">
+    <li class="case${i < (matchMedia('(max-width:760px)').matches ? 6 : 4) ? '' : ' reveal in'}" style="--d:${(i%3)*0.08}s" data-index="${i}">
       <div class="case-media">
         <img src="${c.cover}" alt="" loading="lazy"${c.coverPos ? ` style="object-position:${c.coverPos}"` : ''}>
         ${c.preview ? `<video muted loop playsinline preload="none" data-src="${c.preview}"${c.coverPos ? ` style="object-position:${c.coverPos}"` : ''}></video>` : ''}
@@ -2126,6 +2133,25 @@ const resetObs = new IntersectionObserver(entries => entries.forEach(en => {
   if (!en.isIntersecting && en.boundingClientRect.top > 0) en.target.classList.remove('in');
 }), {threshold:0});
 document.querySelectorAll('.reveal').forEach(el => { revObs.observe(el); resetObs.observe(el); });
+
+/* ---------- Toppen av casene skal synes når siden lastes ----------
+   Er det ikke plass, krymper ballen akkurat nok til at casene stikker opp nederst på skjermen */
+(() => {
+  const vis = document.querySelector('.hero-visual');
+  if (!vis) return;
+  const fit = () => {
+    vis.style.width = '';
+    const card = document.querySelector('.case');
+    if (!card || getComputedStyle(document.querySelector('.hero')).display === 'none') return;
+    if (matchMedia('(max-width:760px)').matches) return;
+    const peek = 104, min = 170;
+    const over = card.getBoundingClientRect().top + scrollY - (innerHeight - peek);
+    if (over > 0) vis.style.width = Math.max(min, vis.offsetWidth - over) + 'px';
+  };
+  let t; const later = () => { clearTimeout(t); t = setTimeout(fit, 120); };
+  fit(); addEventListener('load', fit); addEventListener('resize', later);
+  if (document.fonts) document.fonts.ready.then(fit);
+})();
 
 /* ---------- Ballen ved Kontakt klekkes etter noen trykk ---------- */
 {
