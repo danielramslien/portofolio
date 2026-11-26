@@ -396,7 +396,8 @@ section{position:relative}
 @media (max-width:760px){.logos{overflow:hidden;margin-left:calc(-1 * var(--gutter));margin-right:calc(-1 * var(--gutter));-webkit-mask-image:linear-gradient(90deg,transparent,#000 14%,#000 86%,transparent);mask-image:linear-gradient(90deg,transparent,#000 14%,#000 86%,transparent)}
 .logos-track{justify-content:flex-start;width:max-content;animation:logoGlide 20s linear infinite}
 .logos ul,.logos ul[aria-hidden]{display:flex;flex-wrap:nowrap;gap:0 24px;padding-right:24px}
-.logos li{height:28px}.logos li.lg-big{height:40px}.logos li.lg-sm{height:20px}}
+.logos li{height:28px}.logos li.lg-big{height:40px}.logos li.lg-sm{height:20px}
+/* SiO som nr. 4 i raden på mobil */.logos li:nth-child(n+4){order:2}.logos li:last-child{order:1}}
 @keyframes logoGlide{to{transform:translateX(-50%)}}
 .logos-track.js-glide{animation:none!important;will-change:transform}
 @media (max-width:760px){.logos{touch-action:pan-y}}
