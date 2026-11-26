@@ -391,6 +391,14 @@ section{position:relative}
 .logos img{height:100%;width:auto;display:block}
 .logos li.lg-big{height:clamp(38px,3.9vw,54px)}
 .logos li.lg-sm{height:clamp(19px,1.9vw,26px)}
+.logos ul[aria-hidden]{display:none}
+/* Mobil: logoene i én rad som glir rolig sidelengs, i stedet for å bryte over flere rader */
+@media (max-width:760px){.logos{overflow:hidden;margin-left:calc(-1 * var(--gutter));margin-right:calc(-1 * var(--gutter));-webkit-mask-image:linear-gradient(90deg,transparent,#000 14%,#000 86%,transparent);mask-image:linear-gradient(90deg,transparent,#000 14%,#000 86%,transparent)}
+.logos-track{justify-content:flex-start;width:max-content;animation:logoGlide 34s linear infinite}
+.logos ul,.logos ul[aria-hidden]{display:flex;flex-wrap:nowrap;gap:0 36px;padding-right:36px}
+.logos li{height:28px}.logos li.lg-big{height:40px}.logos li.lg-sm{height:20px}}
+@keyframes logoGlide{to{transform:translateX(-50%)}}
+@media (max-width:760px) and (prefers-reduced-motion:reduce){.logos{overflow-x:auto;-webkit-mask-image:none;mask-image:none}.logos-track{animation:none;padding:0 var(--gutter)}.logos ul[aria-hidden]{display:none}}
 .logo-word{font-family:var(--font-display);font-weight:800;font-size:clamp(17px,1.7vw,23px);letter-spacing:-.01em;color:#fff;white-space:nowrap}
 .dlg-docs:empty,.dlg-tt:empty{display:none}
 .dlg-docs .label{display:block;margin:10px 0 10px}
@@ -880,12 +888,12 @@ html[data-page="home"] .to-top{bottom:80px}
         <button type="button" class="nav-lang lang-toggle" id="nav-lang" aria-label="Bytt språk" data-i18n-aria="aria.switchLang"></button>
       </nav>
       <div class="hdr-right">
-        <a class="top-cta" href="#kontakt"><span data-i18n="nav.contact">Kontakt</span></a>
       <div class="lang" role="group" aria-label="Velg språk" data-i18n-aria="aria.lang">
         <button type="button" class="lang-toggle" id="hdr-lang" aria-label="Bytt språk" data-i18n-aria="aria.switchLang"></button>
         <button class="lang-btn" type="button" data-lang="no" lang="no" aria-pressed="true" title="Norsk"><svg class="flag" viewBox="0 0 22 16" aria-hidden="true" preserveAspectRatio="xMidYMid slice"><rect width="22" height="16" fill="#BA0C2F"/><rect x="6" width="4" height="16" fill="#fff"/><rect y="6" width="22" height="4" fill="#fff"/><rect x="7" width="2" height="16" fill="#00205B"/><rect y="7" width="22" height="2" fill="#00205B"/></svg><span class="code">NO</span><span class="sr">Norsk</span></button>
         <button class="lang-btn" type="button" data-lang="en" lang="en" aria-pressed="false" title="English"><svg class="flag" viewBox="0 0 19 13" aria-hidden="true" preserveAspectRatio="xMidYMid slice"><rect width="19" height="13" fill="#B22234"/><rect y="1" width="19" height="1" fill="#fff"/><rect y="3" width="19" height="1" fill="#fff"/><rect y="5" width="19" height="1" fill="#fff"/><rect y="7" width="19" height="1" fill="#fff"/><rect y="9" width="19" height="1" fill="#fff"/><rect y="11" width="19" height="1" fill="#fff"/><rect width="7.6" height="7" fill="#3C3B6E"/><g fill="#fff"><circle cx="0.63" cy="0.45" r=".26"/><circle cx="1.90" cy="0.45" r=".26"/><circle cx="3.17" cy="0.45" r=".26"/><circle cx="4.44" cy="0.45" r=".26"/><circle cx="5.71" cy="0.45" r=".26"/><circle cx="6.98" cy="0.45" r=".26"/><circle cx="1.27" cy="1.22" r=".26"/><circle cx="2.54" cy="1.22" r=".26"/><circle cx="3.81" cy="1.22" r=".26"/><circle cx="5.08" cy="1.22" r=".26"/><circle cx="6.35" cy="1.22" r=".26"/><circle cx="0.63" cy="1.98" r=".26"/><circle cx="1.90" cy="1.98" r=".26"/><circle cx="3.17" cy="1.98" r=".26"/><circle cx="4.44" cy="1.98" r=".26"/><circle cx="5.71" cy="1.98" r=".26"/><circle cx="6.98" cy="1.98" r=".26"/><circle cx="1.27" cy="2.75" r=".26"/><circle cx="2.54" cy="2.75" r=".26"/><circle cx="3.81" cy="2.75" r=".26"/><circle cx="5.08" cy="2.75" r=".26"/><circle cx="6.35" cy="2.75" r=".26"/><circle cx="0.63" cy="3.51" r=".26"/><circle cx="1.90" cy="3.51" r=".26"/><circle cx="3.17" cy="3.51" r=".26"/><circle cx="4.44" cy="3.51" r=".26"/><circle cx="5.71" cy="3.51" r=".26"/><circle cx="6.98" cy="3.51" r=".26"/><circle cx="1.27" cy="4.28" r=".26"/><circle cx="2.54" cy="4.28" r=".26"/><circle cx="3.81" cy="4.28" r=".26"/><circle cx="5.08" cy="4.28" r=".26"/><circle cx="6.35" cy="4.28" r=".26"/><circle cx="0.63" cy="5.04" r=".26"/><circle cx="1.90" cy="5.04" r=".26"/><circle cx="3.17" cy="5.04" r=".26"/><circle cx="4.44" cy="5.04" r=".26"/><circle cx="5.71" cy="5.04" r=".26"/><circle cx="6.98" cy="5.04" r=".26"/><circle cx="1.27" cy="5.81" r=".26"/><circle cx="2.54" cy="5.81" r=".26"/><circle cx="3.81" cy="5.81" r=".26"/><circle cx="5.08" cy="5.81" r=".26"/><circle cx="6.35" cy="5.81" r=".26"/><circle cx="0.63" cy="6.57" r=".26"/><circle cx="1.90" cy="6.57" r=".26"/><circle cx="3.17" cy="6.57" r=".26"/><circle cx="4.44" cy="6.57" r=".26"/><circle cx="5.71" cy="6.57" r=".26"/><circle cx="6.98" cy="6.57" r=".26"/></g></svg><span class="code">EN</span><span class="sr">English</span></button>
       </div>
+        <a class="top-cta" href="#kontakt"><span data-i18n="nav.contact">Kontakt</span></a>
       </div>
   </div>
 </header>
@@ -1990,6 +1998,9 @@ testiList.querySelectorAll('li').forEach(el => el.classList.remove('in'));
 
 const fromHash = CASES.findIndex(c => location.hash === '#case-' + c.id);
 if (fromHash > -1) openCase(fromHash);
+/* Mobil: en kopi av logolisten gjør at raden glir sømløst rundt */
+{ const tr = document.querySelector('.logos-track'), ul = tr && tr.querySelector('ul');
+  if (ul) { const c = ul.cloneNode(true); c.setAttribute('aria-hidden', 'true'); c.querySelectorAll('a').forEach(a => a.tabIndex = -1); tr.appendChild(c); } }
 /* Trykk på en logo åpner caset den hører til */
 document.querySelectorAll('.logos a[data-case]').forEach(a => a.addEventListener('click', e => {
   const i = CASES.findIndex(c => c.id === a.dataset.case);
