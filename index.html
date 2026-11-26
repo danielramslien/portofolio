@@ -334,7 +334,7 @@ section{position:relative}
 
 .work-stats{margin-top:clamp(56px,5.6vw,84px)}
 .stats-title{margin:0 0 clamp(20px,2.4vw,32px);font-family:var(--font-display);font-stretch:100%;font-weight:900;text-transform:uppercase;line-height:.92;font-size:clamp(22px,4vw,58px);text-align:center;color:var(--text)}
-.stats{container-type:inline-size;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));margin-top:0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.stats{container-type:inline-size;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));margin-top:0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
 .stat{padding:30px 24px 30px 0}
 .stat + .stat{padding-left:24px;border-left:1px solid var(--line)}
 .stat-num{display:flex;flex-wrap:wrap;align-items:baseline;column-gap:.25em;row-gap:.1em;font-family:var(--font-display);font-stretch:100%;font-weight:800;font-size:clamp(26px,2.5vw,36px);font-size:clamp(22px,2.75cqi,38px);line-height:1;color:var(--accent);letter-spacing:-.01em;white-space:nowrap}
@@ -744,6 +744,7 @@ html[data-page="home"] .to-top{bottom:80px}
   .stats{grid-template-columns:repeat(2,minmax(0,1fr))}
   .stat:nth-child(3){padding-left:0;border-left:0}
   .stat:nth-child(n+3){border-top:1px solid var(--line)}
+  .stat:nth-child(5){grid-column:1/-1;padding-left:0;border-left:0}
 }
 @media (max-width:960px){
 }
@@ -802,7 +803,7 @@ html[data-page="home"] .to-top{bottom:80px}
   .facts{grid-template-columns:1fr}
   .stat{padding:14px 12px 14px 0}
   .stat + .stat{padding-left:12px}
-  .stat:nth-child(3){padding-left:0}
+  .stat:nth-child(3),.stat:nth-child(5){padding-left:0}
   .stat-label{font-size:12px;line-height:1.4;margin-top:6px}
   .stat-num{font-size:24px;font-size:clamp(19px,6.2cqi,26px);font-stretch:100%}
   .dlg-meta,.metrics{grid-template-columns:1fr 1fr}
@@ -911,7 +912,7 @@ html[data-page="home"] .to-top{bottom:80px}
         <h2 class="sr" id="arbeid-tittel" data-i18n-html="work.title">Utvalgte case</h2>
       </div>
       <div class="logos" aria-label="Har samarbeidet med" data-i18n-aria="logos.label">
-        <div class="logos-track"><ul><li><a href="#case-ride-for-wishes" data-case="ride-for-wishes" aria-label="Make-A-Wish: se caset"><img src="assets/img/logos/make-a-wish.png" alt="Make-A-Wish" loading="lazy"></a></li><li><a href="#case-knytt" data-case="knytt" aria-label="NoHo Norway: se Knytt-caset"><img src="assets/img/logos/noho.png" alt="NoHo Norway" loading="lazy"></a></li><li class="lg-big"><a href="#case-m40" data-case="m40" aria-label="M40 Studios: se caset"><img src="assets/img/logos/m40.png" alt="M40 Studios" loading="lazy"></a></li><li class="lg-big"><a href="#case-kristiania" data-case="kristiania" aria-label="Høyskolen Kristiania: se caset"><img src="assets/img/logos/kristiania.png" alt="Høyskolen Kristiania" loading="lazy"></a></li><li class="lg-big"><a href="#case-punkt-oslo" data-case="punkt-oslo" aria-label="Punkt Oslo: se caset"><img src="assets/img/logos/punkt-oslo.png" alt="Punkt Oslo" loading="lazy"></a></li><li class="lg-big"><a href="#case-kraft" data-case="kraft" aria-label="KRAFT Collective: se caset"><img src="assets/img/logos/kraft.png" alt="KRAFT Collective" loading="lazy"></a></li><li class="lg-sm"><a href="#case-knytt" data-case="knytt" aria-label="Knytt: se caset"><img src="assets/img/logos/knytt.png" alt="Knytt" loading="lazy"></a></li><li><a href="#case-knytt" data-case="knytt" aria-label="SiO: se Knytt-caset"><img src="assets/img/logos/sio.png" alt="SiO" loading="lazy"></a></li></ul></div>
+        <div class="logos-track"><ul><li><a href="#case-ride-for-wishes" data-case="ride-for-wishes" aria-label="Make-A-Wish: se caset"><img src="assets/img/logos/make-a-wish.png" alt="Make-A-Wish" loading="lazy"></a></li><li class="lg-big"><a href="#case-knytt" data-case="knytt" aria-label="NoHo Norway: se Knytt-caset"><img src="assets/img/logos/noho.png" alt="NoHo Norway" loading="lazy"></a></li><li class="lg-big"><a href="#case-m40" data-case="m40" aria-label="M40 Studios: se caset"><img src="assets/img/logos/m40.png" alt="M40 Studios" loading="lazy"></a></li><li class="lg-big"><a href="#case-kristiania" data-case="kristiania" aria-label="Høyskolen Kristiania: se caset"><img src="assets/img/logos/kristiania.png" alt="Høyskolen Kristiania" loading="lazy"></a></li><li class="lg-big"><a href="#case-punkt-oslo" data-case="punkt-oslo" aria-label="Punkt Oslo: se caset"><img src="assets/img/logos/punkt-oslo.png" alt="Punkt Oslo" loading="lazy"></a></li><li class="lg-big"><a href="#case-kraft" data-case="kraft" aria-label="KRAFT Collective: se caset"><img src="assets/img/logos/kraft.png" alt="KRAFT Collective" loading="lazy"></a></li><li class="lg-sm"><a href="#case-knytt" data-case="knytt" aria-label="Knytt: se caset"><img src="assets/img/logos/knytt.png" alt="Knytt" loading="lazy"></a></li><li><a href="#case-knytt" data-case="knytt" aria-label="SiO: se Knytt-caset"><img src="assets/img/logos/sio.png" alt="SiO" loading="lazy"></a></li></ul></div>
       </div>
       <ul class="cases" id="cases"></ul>
       <div class="work-stats" id="resultater">
@@ -921,6 +922,7 @@ html[data-page="home"] .to-top{bottom:80px}
         <div class="stat reveal" style="--d:.08s"><span class="stat-num"><span data-count="100000" data-suffix="+">100 000+</span><small data-i18n="stat.2.unit">kr</small></span><span class="stat-label" data-i18n="stat.2">i salg av studioleie for M40 Studios</span></div>
         <div class="stat reveal" style="--d:.16s"><span class="stat-num"><span data-count="46000">46 000</span><small>USD</small></span><span class="stat-label" data-i18n="stat.3">samlet inn til Make-A-Wish med NOT Management</span></div>
         <div class="stat reveal" style="--d:.24s"><span class="stat-num" data-count="25" data-suffix=" + 150">25 + 150</span><span class="stat-label" data-i18n="stat.4">videoer og bilder i innholdsbanken til Punkt Oslo</span></div>
+        <div class="stat reveal" style="--d:.32s"><span class="stat-num" data-count="200" data-suffix="+">200+</span><span class="stat-label" data-i18n="stat.5">videoer laget med innholdssystemer og strategier</span></div>
       </div>
       </div>
       <div class="more-wrap"><button type="button" class="more-btn" id="more-btn" aria-controls="cases" aria-expanded="false"><span data-i18n="work.more">Se mer</span></button></div>
@@ -1199,7 +1201,7 @@ const I18N = {
     'stats.title':'Resultater', 'aria.menuBtn':'Meny', 'work.more':'Se mer', 'work.less':'Se mindre', 'dlg.full':'Fullskjerm', 'zoom.close':'Lukk', 'zoom.hint':'Klyp, dobbelttrykk eller klikk for å zoome', 'dlg.previmg':'Forrige bilde', 'dlg.nextimg':'Neste bilde', 'brand.sub':'Portefølje', 'work.school':'Skolearbeid', 'dlg.slide':'Vis', 'facts.biz':'Eget foretak', 'facts.biz.v':'Rams Creative, frilans markedsføring og videoredigering',
     'facts.tools':'Verktøy', 'facts.web':'Analyse og web',
     'stat.1':'visninger på TikTok for Mufano på 5 videoer', 'stat.2':'i salg av studioleie for M40 Studios', 'stat.2.unit':'kr',
-    'stat.3':'samlet inn til Make-A-Wish med NOT Management', 'stat.4':'videoer og bilder i innholdsbanken til Punkt Oslo', 'cookie.aria':'Om cookies', 'cookie.title':'Cookies', 'cookie.text':'Siden bruker ingen sporings- eller reklamecookies. Godtar du, huskes språkvalget ditt lokalt i nettleseren. Avviser du, lagres ingenting.', 'cookie.ok':'Godta alle', 'cookie.no':'Avvis alle',
+    'stat.3':'samlet inn til Make-A-Wish med NOT Management', 'stat.5':'videoer laget med innholdssystemer og strategier', 'stat.4':'videoer og bilder i innholdsbanken til Punkt Oslo', 'cookie.aria':'Om cookies', 'cookie.title':'Cookies', 'cookie.text':'Siden bruker ingen sporings- eller reklamecookies. Godtar du, huskes språkvalget ditt lokalt i nettleseren. Avviser du, lagres ingenting.', 'cookie.ok':'Godta alle', 'cookie.no':'Avvis alle',
     'work.title':'Utvalgte case', 'work.lead':'Et utvalg av innhold og kampanjer jeg har laget, fra idé til ferdig post. Trykk på et case for å se video, tall og hva jeg gjorde.',
     'contact.title':'La oss ta en prat', 'contact.lead':'Har du en ledig stilling, et prosjekt eller bare lyst på en kaffe? Send meg en melding, så svarer jeg innen kort tid.',
     'contact.phone':'Telefon · ', 'contact.portfolio':'Portefølje · ', 'contact.open':'Tilgjengelig for nye roller',
@@ -1232,7 +1234,7 @@ const I18N = {
     'stats.title':'Results', 'aria.menuBtn':'Menu', 'work.more':'See more', 'work.less':'See less', 'dlg.full':'Fullscreen', 'zoom.close':'Close', 'zoom.hint':'Pinch, double-tap or click to zoom', 'dlg.previmg':'Previous image', 'dlg.nextimg':'Next image', 'brand.sub':'Portfolio', 'work.school':'Coursework', 'dlg.slide':'Show', 'facts.biz':'Own business', 'facts.biz.v':'Rams Creative, freelance marketing and video editing',
     'facts.tools':'Tools', 'facts.web':'Analytics and web',
     'stat.1':'views on TikTok for Mufano across 5 videos', 'stat.2':'in studio rental sales for M40 Studios', 'stat.2.unit':'NOK',
-    'stat.3':'raised for Make-A-Wish with NOT Management', 'stat.4':'videos and photos in Punkt Oslo’s content bank', 'cookie.aria':'About cookies', 'cookie.title':'Cookies', 'cookie.text':'This site uses no tracking or advertising cookies. If you accept, your language choice is remembered locally in your browser. If you reject, nothing is stored.', 'cookie.ok':'Accept all', 'cookie.no':'Reject all',
+    'stat.3':'raised for Make-A-Wish with NOT Management', 'stat.5':'videos made with content systems and strategies', 'stat.4':'videos and photos in Punkt Oslo’s content bank', 'cookie.aria':'About cookies', 'cookie.title':'Cookies', 'cookie.text':'This site uses no tracking or advertising cookies. If you accept, your language choice is remembered locally in your browser. If you reject, nothing is stored.', 'cookie.ok':'Accept all', 'cookie.no':'Reject all',
     'work.title':'Selected work', 'work.lead':'A selection of content and campaigns I’ve made, from idea to finished post. Tap a case to see video, numbers and what I did.',
     'contact.title':'Let’s talk', 'contact.lead':'Have an open position, a project, or just fancy a coffee? Send me a message and I’ll get back to you shortly.',
     'contact.phone':'Phone · ', 'contact.portfolio':'Portfolio · ', 'contact.open':'Open to new roles',
