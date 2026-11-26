@@ -394,14 +394,14 @@ section{position:relative}
 .logos ul[aria-hidden]{display:none}
 /* Mobil: logoene i én rad som glir rolig sidelengs, i stedet for å bryte over flere rader */
 @media (max-width:760px){.logos{overflow:hidden;margin-left:calc(-1 * var(--gutter));margin-right:calc(-1 * var(--gutter));-webkit-mask-image:linear-gradient(90deg,transparent,#000 14%,#000 86%,transparent);mask-image:linear-gradient(90deg,transparent,#000 14%,#000 86%,transparent)}
-.logos-track{justify-content:flex-start;width:max-content;animation:logoGlide 20s linear infinite}
+.logos-track{justify-content:flex-start;width:max-content;animation:logoGlide 30s linear infinite}
 .logos ul,.logos ul[aria-hidden]{display:flex;flex-wrap:nowrap;gap:0 24px;padding-right:24px}
 .logos li{height:28px}.logos li.lg-big{height:40px}.logos li.lg-sm{height:20px}
 /* SiO som nr. 4 i raden på mobil */.logos li:nth-child(n+4){order:2}.logos li:last-child{order:1}}
 @keyframes logoGlide{to{transform:translateX(-50%)}}
 .logos-track.js-glide{animation:none!important;will-change:transform}
 @media (max-width:760px){.logos{touch-action:pan-y}}
-@media (max-width:760px) and (prefers-reduced-motion:reduce){.logos-track{animation:logoGlide 20s linear infinite!important}}
+@media (max-width:760px) and (prefers-reduced-motion:reduce){.logos-track{animation:logoGlide 30s linear infinite!important}}
 .logo-word{font-family:var(--font-display);font-weight:800;font-size:clamp(17px,1.7vw,23px);letter-spacing:-.01em;color:#fff;white-space:nowrap}
 .dlg-docs:empty,.dlg-tt:empty{display:none}
 .dlg-docs .label{display:block;margin:10px 0 10px}
@@ -2008,7 +2008,7 @@ if (fromHash > -1) openCase(fromHash);
 { const box = document.querySelector('.logos'), tr = box && box.querySelector('.logos-track'), mq = window.matchMedia('(max-width:760px)');
   if (tr) {
     let x = 0, last = 0, drag = false, sx = 0, sy = 0, bx = 0, moved = false, axis = 0, vel = 0, lt = 0, lx = 0, raf = 0;
-    const AUTO = 45; // px per sekund
+    const AUTO = 30; // px per sekund
     const half = () => tr.scrollWidth / 2;
     const wrap = () => { const h = half(); if (h > 0) { x %= h; if (x > 0) x -= h; } };
     const tick = t => { const dt = Math.min(.05, (t - (last || t)) / 1000); last = t;
