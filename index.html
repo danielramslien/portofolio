@@ -398,7 +398,7 @@ section{position:relative}
 .logos ul,.logos ul[aria-hidden]{display:flex;flex-wrap:nowrap;gap:0 36px;padding-right:36px}
 .logos li{height:28px}.logos li.lg-big{height:40px}.logos li.lg-sm{height:20px}}
 @keyframes logoGlide{to{transform:translateX(-50%)}}
-@media (max-width:760px) and (prefers-reduced-motion:reduce){.logos{overflow-x:auto;-webkit-mask-image:none;mask-image:none}.logos-track{animation:none;padding:0 var(--gutter)}.logos ul[aria-hidden]{display:none}}
+@media (max-width:760px) and (prefers-reduced-motion:reduce){.logos-track{animation:logoGlide 34s linear infinite!important}}
 .logo-word{font-family:var(--font-display);font-weight:800;font-size:clamp(17px,1.7vw,23px);letter-spacing:-.01em;color:#fff;white-space:nowrap}
 .dlg-docs:empty,.dlg-tt:empty{display:none}
 .dlg-docs .label{display:block;margin:10px 0 10px}
