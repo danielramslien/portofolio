@@ -398,6 +398,8 @@ section{position:relative}
 .logos ul,.logos ul[aria-hidden]{display:flex;flex-wrap:nowrap;gap:0 24px;padding-right:24px}
 .logos li{height:28px}.logos li.lg-big{height:40px}.logos li.lg-sm{height:20px}}
 @keyframes logoGlide{to{transform:translateX(-50%)}}
+.logos-track.js-glide{animation:none!important;will-change:transform}
+@media (max-width:760px){.logos{touch-action:pan-y}}
 @media (max-width:760px) and (prefers-reduced-motion:reduce){.logos-track{animation:logoGlide 20s linear infinite!important}}
 .logo-word{font-family:var(--font-display);font-weight:800;font-size:clamp(17px,1.7vw,23px);letter-spacing:-.01em;color:#fff;white-space:nowrap}
 .dlg-docs:empty,.dlg-tt:empty{display:none}
@@ -2001,6 +2003,29 @@ if (fromHash > -1) openCase(fromHash);
 /* Mobil: en kopi av logolisten gjør at raden glir sømløst rundt */
 { const tr = document.querySelector('.logos-track'), ul = tr && tr.querySelector('ul');
   if (ul) { const c = ul.cloneNode(true); c.setAttribute('aria-hidden', 'true'); c.querySelectorAll('a').forEach(a => a.tabIndex = -1); tr.appendChild(c); } }
+/* Mobil: logoraden roterer av seg selv, kan swipes begge veier, og fortsetter å rotere når man slipper */
+{ const box = document.querySelector('.logos'), tr = box && box.querySelector('.logos-track'), mq = window.matchMedia('(max-width:760px)');
+  if (tr) {
+    let x = 0, last = 0, drag = false, sx = 0, sy = 0, bx = 0, moved = false, axis = 0, vel = 0, lt = 0, lx = 0, raf = 0;
+    const AUTO = 45; // px per sekund
+    const half = () => tr.scrollWidth / 2;
+    const wrap = () => { const h = half(); if (h > 0) { x %= h; if (x > 0) x -= h; } };
+    const tick = t => { const dt = Math.min(.05, (t - (last || t)) / 1000); last = t;
+      if (!drag) { if (Math.abs(vel) > 5) { x += vel * dt; vel *= Math.pow(.04, dt); } else { vel = 0; x -= AUTO * dt; } }
+      wrap(); tr.style.transform = 'translate3d(' + x + 'px,0,0)'; raf = requestAnimationFrame(tick); };
+    const start = () => { if (raf) return; tr.classList.add('js-glide'); last = 0; raf = requestAnimationFrame(tick); };
+    const stop = () => { cancelAnimationFrame(raf); raf = 0; tr.classList.remove('js-glide'); tr.style.transform = ''; };
+    const sync = () => mq.matches ? start() : stop();
+    (mq.addEventListener ? mq.addEventListener('change', sync) : mq.addListener(sync)); sync();
+    box.addEventListener('touchstart', e => { if (!raf) return; const p = e.touches[0]; drag = true; moved = false; axis = 0; vel = 0; sx = lx = p.clientX; sy = p.clientY; bx = x; lt = performance.now(); }, { passive: true });
+    box.addEventListener('touchmove', e => { if (!drag) return; const p = e.touches[0], dx = p.clientX - sx, dy = p.clientY - sy;
+      if (!axis && (Math.abs(dx) > 6 || Math.abs(dy) > 6)) axis = Math.abs(dx) > Math.abs(dy) ? 1 : 2;
+      if (axis === 2) { drag = false; return; }
+      if (axis === 1) { e.preventDefault(); moved = true; x = bx + dx; const n = performance.now(), d = n - lt; if (d > 0) vel = .8 * vel + .2 * ((p.clientX - lx) / d * 1000); lt = n; lx = p.clientX; } }, { passive: false });
+    const end = () => { if (!drag) return; drag = false; if (performance.now() - lt > 80) vel = 0; vel = Math.max(-2500, Math.min(2500, vel)); };
+    box.addEventListener('touchend', end); box.addEventListener('touchcancel', end);
+    box.addEventListener('click', e => { if (moved) { e.preventDefault(); e.stopPropagation(); moved = false; } }, true);
+  } }
 /* Trykk på en logo åpner caset den hører til */
 document.querySelectorAll('.logos a[data-case]').forEach(a => a.addEventListener('click', e => {
   const i = CASES.findIndex(c => c.id === a.dataset.case);
